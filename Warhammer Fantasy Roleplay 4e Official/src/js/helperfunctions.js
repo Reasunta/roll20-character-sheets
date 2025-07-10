@@ -1,7 +1,29 @@
 
 
 const helperFunctions = (() => {
+    
+    const reverseRoll = (roll) => {
+        if (roll < 1 || roll > 100) {
+            throw new Error("number must be from 1 to 100 inclusively");
+        }
+        if (roll === 100) return 1;
 
+        const tens = Math.floor(roll / 10);
+        const units = roll % 10;
+        const result = units * 10 + tens
+        return result;
+    };
+
+    const isRollDouble = (roll) => {
+        if (roll < 1 || roll > 100) {
+            throw new Error("number must be from 1 to 100 inclusively");
+        }
+        if (roll === 100) return true;
+        const tens = Math.floor(roll / 10);
+        const units = roll % 10;
+        return tens == units;
+    };
+    
     const extractRepeatingId = (attribute, section) => {
         const prefix = `repeating_${section}`;
 
@@ -64,6 +86,8 @@ const helperFunctions = (() => {
     }
 
     return {
+        reverseRoll: reverseRoll,
+        isRollDouble: isRollDouble,
         extractRepeatingId: extractRepeatingId,
         extractRepeatingIdExact: extractRepeatingIdExact,
         getSectionIDsOrdered: getSectionIDsOrdered,

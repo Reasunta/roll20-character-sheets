@@ -1,8 +1,12 @@
 mixin advantage()
-    .wfrp-advantage__wrapper
+    h1.wfrp-panel__header(data-i18n="Advantage")
+    .wfrp-advantage__wrapper.sheet-grid-6
         if block
             block
         button.wfrp-advantage__reset.pictos(name="act_reset_advantage", type="action") 1
         button.wfrp-advantage__decrement.pictos(name="act_decrement_advantage", type="action") -
-        input.wfrp-advantage__input(name="attr_advantage", type="number", value="0")
+        input.wfrp-advantage__input.sheet-grid-span-2(name="attr_advantage", type="number", value="0")
+        div.sheet-wfrp-field.no-border
+            span.wfrp-armour__display.no-border /
+            span.wfrp-armour__display.no-border(name="attr_advantage_max")
         button.wfrp-advantage__increment.pictos(name="act_increment_advantage", type="action") +

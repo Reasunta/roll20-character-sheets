@@ -1,4 +1,4 @@
-.sheet-rolltemplate-wfrp {
+.sheet-rolltemplate-wfrp, .sheet-rolltemplate-wfrp-opposed, .sheet-rolltemplate-wfrp-riposte {
     font-family: $font-family-alt;
     color: black;
 
@@ -60,14 +60,6 @@
         padding: 1rem 1.5rem;
         
         background: url("https://s3.amazonaws.com/files.d20.io/images/151442442/WL3whxtgGLSL18KI8cvGQw/max.png?1595121884") no-repeat center/100% 100%;
-    
-        &__divider {
-            width: 100%;
-            height: 10px; 
-            grid-column: 1/-1;
-
-            background: url("https://s3.amazonaws.com/files.d20.io/images/151167682/MU4qaf0sjSe1o3s318ZhKA/max.png?1595036126") no-repeat center/100% 100%;
-        }
 
         &__result {
             grid-column: 1 / -1;
@@ -80,7 +72,7 @@
             grid-column: 1 / -1;
 
             display: grid;
-            grid-template-columns: 1fr 3em;
+            grid-template-columns: 1fr 5em;
             padding: .5rem;
 
             background: url("https://s3.amazonaws.com/files.d20.io/images/152053989/T4Qj08IjX22oQyaJ5_I9hA/max.png?1595356909") no-repeat center/100% 100%;
@@ -136,10 +128,14 @@
         &__label {
             font-weight: bold;
             text-align: left;
+
+            &-italic {
+                font-style: italic;
+            }
         }
 
         &__value {
-            text-align: center;
+            text-align: right;
 
             .inlinerollresult {
                 font-weight: normal;
@@ -156,5 +152,38 @@
             padding: .25rem;
             scrollbar-width: thin;
         }
+    }
+}
+
+.sheet-rolltemplate-wfrp-opposed {
+    .fullcrit, .fullfail {
+        color: inherit;
+    }
+    .sheet-fullcrit, {
+        color: darkgreen;
+    }
+
+    .sheet-fullfail, {
+        color: darkred;
+    }
+}
+
+.sheet-rolltemplate-wfrp-opposed, .sheet-rolltemplate-wfrp-riposte {
+    .sheet-wfrp-roll__row {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+span.inlinerollresult {
+    padding-left: 0!important;
+}
+
+*, .sheet-rolltemplate-wfrp-opposed, .sheet-rolltemplate-wfrp-riposte {
+    .sheet-wfrp-roll__divider {
+        width: 100%;
+        height: 10px;
+        grid-column: 1/-1;
+
+        background: url("https://s3.amazonaws.com/files.d20.io/images/151167682/MU4qaf0sjSe1o3s318ZhKA/max.png?1595036126") no-repeat center/100% 100%;
     }
 }

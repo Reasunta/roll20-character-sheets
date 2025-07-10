@@ -1,9 +1,12 @@
 mixin characteristic-col(characteristic)
     -
-        const attr = characteristic.name.toLowerCase().replace(/ /g,"_");
+        const attr = characteristic.name.toLowerCase().replace(/ /g, "_");
 
     .wfrp-chartable__cell--head
         button(data-i18n=characteristic.abbreviation, name=`roll_${attr}`, type="roll", value=rolls.characteristic[attr])
+    .wfrp-chartable__cell
+        input(name=`attr_${attr}_species`, type="hidden", value="0")
+        span.display(name=`attr_${attr}_species`)
     .wfrp-chartable__cell
         input(name=`attr_${attr}_initial`, type="number", value="0")
     .wfrp-chartable__cell

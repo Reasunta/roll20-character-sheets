@@ -187,9 +187,7 @@
             grid-column: span 2;
 
             &__wrapper {
-                display: grid;
-                    grid-template-columns: 3rem 3rem 1fr 3rem;
-                    align-items: center;
+                align-items: center;
     
                 width: 75%;
                 margin: $margin-general auto;

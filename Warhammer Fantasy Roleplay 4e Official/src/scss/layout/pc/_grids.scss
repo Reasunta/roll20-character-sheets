@@ -56,7 +56,7 @@
     &-chartable {
         display: grid;
         grid-template-columns: 2fr repeat(10, 1fr);
-        grid-template-rows: repeat(6, 1fr);
+        grid-template-rows: repeat(7, 1fr);
         grid-auto-flow: column;
 
         input[type=number],
@@ -387,7 +387,13 @@
 
         &__row--head,
         &__row {
-            grid-template-columns: 1.5rem 1fr .75fr .33fr .5fr .5fr 1.25fr;
+            grid-template-columns: 3rem .75fr 1.25fr .75fr .33fr .5fr .5fr 1.25fr;
+        }
+        &__quality-checkbox-row {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            text-align: left;
+            justify-items: center;
         }
     }
 
@@ -453,5 +459,27 @@
             width: 3.5rem;
             height: 3.5rem;
         }
+    }
+}
+
+.charsheet .sheet-wfrp-weapontable__cell--last {
+    display: grid
+}
+.charsheet .sheet-wfrp-weapontable__cell--last .sheet-weapon-qualities {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@for $i from 1 through 6 {
+    .sheet-grid-#{$i} {
+        display: grid;
+        grid-template-columns: repeat(#{$i}, 1fr);
+    }
+
+    .sheet-grid-span-#{$i} {
+        grid-column: span #{$i};
+    }
+    .sheet-grid-col-#{$i} {
+        grid-column: #{$i} / 1;
     }
 }

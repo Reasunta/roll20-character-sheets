@@ -10,6 +10,16 @@ mixin weapon-row
                 span(name=`attr_weapon_name`)
 
         .wfrp-weapontable__cell
+            span Defence
+            input.wfrp-settings__input(name=`attr_defence`, type="checkbox", value="1")
+            span Main
+            input.wfrp-settings__input(name=`attr_main_hand`, type="checkbox", value="1")
+            span Off
+            input.wfrp-settings__input(name=`attr_off_hand`, type="checkbox", value="1")
+
+
+
+        .wfrp-weapontable__cell
             span(name=`attr_weapon_group`)
 
         .wfrp-weapontable__cell
@@ -27,6 +37,31 @@ mixin weapon-row
 
         .wfrp-weapontable__cell--last
             span(name=`attr_weapon_qualities`)
+            .sheet-weapon-qualities
+                input(name=`attr_weapon_q_accurate` type=`hidden` value="0")
+                span Accurate
+                input(name=`attr_weapon_q_damaging` type=`hidden` value="0")
+                span Damaging
+                input(name=`attr_weapon_q_defensive` type=`hidden` value="0")
+                span Defensive
+                input(name=`attr_weapon_q_fast` type=`hidden` value="0")
+                span Fast
+                input(name=`attr_weapon_q_impact` type=`hidden` value="0")
+                span Impact
+                input(name=`attr_weapon_q_impale` type=`hidden` value="0")
+                span Impale
+                input(name=`attr_weapon_q_penetrating` type=`hidden` value="0")
+                span Penetrating
+                input(name=`attr_weapon_q_precise` type=`hidden` value="0")
+                span Precise
+                input(name=`attr_weapon_q_dangerous` type=`hidden` value="0")
+                span Dangerous
+                input(name=`attr_weapon_q_imprecise` type=`hidden` value="0")
+                span Imprecise
+                input(name=`attr_weapon_q_slow` type=`hidden` value="0")
+                span Slow
+                input(name=`attr_weapon_q_undamaging` type=`hidden` value="0")
+                span Undamaging
             
         .wfrp-weapontable__row.wfrp-settings.control__hide--weapon_settings
         
@@ -60,6 +95,49 @@ mixin weapon-row
             .wfrp-settings__row--span
                 .wfrp-settings__label(data-i18n=`Qualities`) 
                 input.wfrp-settings__input(name=`attr_weapon_qualities`, type="text")
+            .wfrp-settings__row--span
+                .wfrp-settings__label(data-i18n=`Quality Checkboxes`)
+                .wfrp-weapontable__quality-checkbox-row
+                    div
+                        span.wfrp-settings__label Accurate
+                        input.wfrp-settings__input(name=`attr_weapon_q_accurate`, type="checkbox")
+                    div
+                        span.wfrp-settings__label Damaging
+                        input.wfrp-settings__input(name=`attr_weapon_q_damaging`, type="checkbox")
+                    div
+                        span.wfrp-settings__label Defensive
+                        input.wfrp-settings__input(name=`attr_weapon_q_defensive`, type="checkbox")
+                    div
+                        span.wfrp-settings__label Fast
+                        input.wfrp-settings__input(name=`attr_weapon_q_fast`, type="checkbox")
+                    div
+                        span.wfrp-settings__label Impact
+                        input.wfrp-settings__input(name=`attr_weapon_q_impact`, type="checkbox")
+                    div
+                        span.wfrp-settings__label Impale
+                        input.wfrp-settings__input(name=`attr_weapon_q_impale`, type="checkbox")
+                    div
+                        span.wfrp-settings__label Penetrating
+                        input.wfrp-settings__input(name=`attr_weapon_q_penetrating`, type="checkbox")
+                    div
+                        span.wfrp-settings__label Precise
+                        input.wfrp-settings__input(name=`attr_weapon_q_precise`, type="checkbox")
+            .wfrp-settings__row--span
+                .wfrp-settings__label(data-i18n=`Flail Checkboxes`)
+                .wfrp-weapontable__quality-checkbox-row
+                    div
+                        span.wfrp-settings__label Dangerous
+                        input.wfrp-settings__input(name=`attr_weapon_q_dangerous`, type="checkbox")
+                    div
+                        span.wfrp-settings__label Imprecise
+                        input.wfrp-settings__input(name=`attr_weapon_q_imprecise`, type="checkbox")
+                    div
+                        span.wfrp-settings__label Slow
+                        input.wfrp-settings__input(name=`attr_weapon_q_slow`, type="checkbox")
+                    div
+                        span.wfrp-settings__label Undamaging
+                        input.wfrp-settings__input(name=`attr_weapon_q_undamaging`, type="checkbox")
+
         
             .wfrp-settings__row
                 .wfrp-settings__label(data-i18n=`Enc.`) 

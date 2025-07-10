@@ -102,7 +102,7 @@
       "descriptiontranslationkey": "settings_initiative_desc"
     },
     {
-      "attribute": "setting_max_advantage",
+      "attribute": "advantage_max",
       "displayname": "Max Advantage",
       "displaytranslationkey": "settings_maxadvantage",
       "type": "text",
