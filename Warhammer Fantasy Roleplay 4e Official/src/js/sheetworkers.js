@@ -971,8 +971,7 @@ const wfrpModule = ( () => {
     const rollInitial = () => {
         const rolls = wfrp.characteristics.map(ch => `{{${ch}=[[2d10]]}}`)
         update = {}
-
-        startRoll(`/w gm ${rolls.join(" ")}`, function(results) {
+        startRoll(`&{template:wfrp-initial} {{character_name=@{character_name}}} ${rolls.join(" ")}`, function(results) {
             wfrp.characteristics.forEach(ch => {
                 update[`${ch}_initial`] = results.results[ch].result
             })
@@ -2598,6 +2597,7 @@ const wfrpModule = ( () => {
         setWeaponAttrsForOpposedTest: setWeaponAttrsForOpposedTest,
         setAttackWeaponFrom: setAttackWeaponFrom,
         handleWeaponSelection:handleWeaponSelection,
+        setSelectedWeaponAs: setSelectedWeaponAs,
 
         // Combat Functions
         incrementAdvantage:incrementAdvantage,
@@ -2835,8 +2835,10 @@ on(`change:repeating_weapons:off_hand`, eventInfo => {wfrpModule.handleWeaponSel
 
 wfrpModule.wfrp.weapon_attrs_for_opposed_test.map(attr => attr.replace("repeating_weapons_", "repeating_weapons:"))
     .forEach(attr => on(`change:${attr}`, eventInfo => {
-            getAttrs(["repeating_weapons_defence"], v => {
-                if (v["repeating_weapons_defence"] !== '0') wfrpModule.updateDefenceWeapon(eventInfo.sourceAttribute )
+            getAttrs(["repeating_weapons_defence", "repeating_weapons_main_hand", "repeating_weapons_off_hand"], v => {
+                if (v["repeating_weapons_defence"] !== '0') wfrpModule.setSelectedWeaponAs(eventInfo.sourceAttribute, 'defence')
+                if (v["repeating_weapons_main_hand"] !== '0') wfrpModule.setSelectedWeaponAs(eventInfo.sourceAttribute, 'main_hand')
+                if (v["repeating_weapons_off_hand"] !== '0') wfrpModule.setSelectedWeaponAs(eventInfo.sourceAttribute, 'off_hand')
             })
     }))
 

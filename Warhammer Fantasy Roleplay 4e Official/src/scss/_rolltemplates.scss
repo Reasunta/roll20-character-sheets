@@ -1,4 +1,4 @@
-.sheet-rolltemplate-wfrp, .sheet-rolltemplate-wfrp-opposed, .sheet-rolltemplate-wfrp-riposte {
+.sheet-rolltemplate-wfrp, .sheet-rolltemplate-wfrp-opposed, .sheet-rolltemplate-wfrp-riposte, .sheet-rolltemplate-wfrp-initial {
     font-family: $font-family-alt;
     color: black;
 
@@ -168,7 +168,7 @@
     }
 }
 
-.sheet-rolltemplate-wfrp-opposed, .sheet-rolltemplate-wfrp-riposte {
+.sheet-rolltemplate-wfrp-opposed, .sheet-rolltemplate-wfrp-riposte, .sheet-rolltemplate-wfrp-initial {
     .sheet-wfrp-roll__row {
         grid-template-columns: 1fr 1fr;
     }
@@ -178,7 +178,7 @@ span.inlinerollresult {
     padding-left: 0!important;
 }
 
-*, .sheet-rolltemplate-wfrp-opposed, .sheet-rolltemplate-wfrp-riposte {
+*, .sheet-rolltemplate-wfrp-opposed, .sheet-rolltemplate-wfrp-riposte, .sheet-rolltemplate-wfrp-initial {
     .sheet-wfrp-roll__divider {
         width: 100%;
         height: 10px;

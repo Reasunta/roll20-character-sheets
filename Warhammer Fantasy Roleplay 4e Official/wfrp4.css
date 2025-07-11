@@ -1973,18 +1973,18 @@ input[name=attr_active_defence][type=hidden][value="1"] + div.sheet-wfrp-control
   border-bottom: 1px solid rgba(36, 107, 131, 0.33);
 }
 
-.sheet-rolltemplate-wfrp, .sheet-rolltemplate-wfrp-opposed, .sheet-rolltemplate-wfrp-riposte {
+.sheet-rolltemplate-wfrp, .sheet-rolltemplate-wfrp-opposed, .sheet-rolltemplate-wfrp-riposte, .sheet-rolltemplate-wfrp-initial {
   font-family: "Lusitana", serif;
   color: black;
 }
-.sheet-rolltemplate-wfrp h1, .sheet-rolltemplate-wfrp h2, .sheet-rolltemplate-wfrp h3, .sheet-rolltemplate-wfrp-opposed h1, .sheet-rolltemplate-wfrp-opposed h2, .sheet-rolltemplate-wfrp-opposed h3, .sheet-rolltemplate-wfrp-riposte h1, .sheet-rolltemplate-wfrp-riposte h2, .sheet-rolltemplate-wfrp-riposte h3 {
+.sheet-rolltemplate-wfrp h1, .sheet-rolltemplate-wfrp h2, .sheet-rolltemplate-wfrp h3, .sheet-rolltemplate-wfrp-opposed h1, .sheet-rolltemplate-wfrp-opposed h2, .sheet-rolltemplate-wfrp-opposed h3, .sheet-rolltemplate-wfrp-riposte h1, .sheet-rolltemplate-wfrp-riposte h2, .sheet-rolltemplate-wfrp-riposte h3, .sheet-rolltemplate-wfrp-initial h1, .sheet-rolltemplate-wfrp-initial h2, .sheet-rolltemplate-wfrp-initial h3 {
   grid-column: 1/-1;
   margin: 0;
   font-family: "Lusitana", serif;
   line-height: 1em;
   text-align: center;
 }
-.sheet-rolltemplate-wfrp h1, .sheet-rolltemplate-wfrp-opposed h1, .sheet-rolltemplate-wfrp-riposte h1 {
+.sheet-rolltemplate-wfrp h1, .sheet-rolltemplate-wfrp-opposed h1, .sheet-rolltemplate-wfrp-riposte h1, .sheet-rolltemplate-wfrp-initial h1 {
   padding: 0.5rem 0;
   color: black;
   font-family: "IM Fell DW Pica", serif;
@@ -1993,10 +1993,10 @@ input[name=attr_active_defence][type=hidden][value="1"] + div.sheet-wfrp-control
   line-height: 1;
   text-transform: uppercase;
 }
-.sheet-rolltemplate-wfrp h2, .sheet-rolltemplate-wfrp-opposed h2, .sheet-rolltemplate-wfrp-riposte h2 {
+.sheet-rolltemplate-wfrp h2, .sheet-rolltemplate-wfrp-opposed h2, .sheet-rolltemplate-wfrp-riposte h2, .sheet-rolltemplate-wfrp-initial h2 {
   font-size: 12pt;
 }
-.sheet-rolltemplate-wfrp h3, .sheet-rolltemplate-wfrp-opposed h3, .sheet-rolltemplate-wfrp-riposte h3 {
+.sheet-rolltemplate-wfrp h3, .sheet-rolltemplate-wfrp-opposed h3, .sheet-rolltemplate-wfrp-riposte h3, .sheet-rolltemplate-wfrp-initial h3 {
   font-size: 9pt;
   text-transform: uppercase;
   color: #333333;
@@ -2010,7 +2010,10 @@ input[name=attr_active_defence][type=hidden][value="1"] + div.sheet-wfrp-control
 .sheet-rolltemplate-wfrp-opposed .inlinerollresult, .sheet-rolltemplate-wfrp-riposte .importantroll,
 .sheet-rolltemplate-wfrp-riposte .fullcrit,
 .sheet-rolltemplate-wfrp-riposte .fullfail,
-.sheet-rolltemplate-wfrp-riposte .inlinerollresult {
+.sheet-rolltemplate-wfrp-riposte .inlinerollresult, .sheet-rolltemplate-wfrp-initial .importantroll,
+.sheet-rolltemplate-wfrp-initial .fullcrit,
+.sheet-rolltemplate-wfrp-initial .fullfail,
+.sheet-rolltemplate-wfrp-initial .inlinerollresult {
   border: none !important;
   background: transparent;
   font-family: inherit;
@@ -2019,27 +2022,29 @@ input[name=attr_active_defence][type=hidden][value="1"] + div.sheet-wfrp-control
 .sheet-rolltemplate-wfrp .sheet-fullcrit,
 .sheet-rolltemplate-wfrp .fullcrit, .sheet-rolltemplate-wfrp-opposed .sheet-fullcrit,
 .sheet-rolltemplate-wfrp-opposed .fullcrit, .sheet-rolltemplate-wfrp-riposte .sheet-fullcrit,
-.sheet-rolltemplate-wfrp-riposte .fullcrit {
+.sheet-rolltemplate-wfrp-riposte .fullcrit, .sheet-rolltemplate-wfrp-initial .sheet-fullcrit,
+.sheet-rolltemplate-wfrp-initial .fullcrit {
   color: darkgreen;
 }
 .sheet-rolltemplate-wfrp .sheet-fullfail,
 .sheet-rolltemplate-wfrp .fullfail, .sheet-rolltemplate-wfrp-opposed .sheet-fullfail,
 .sheet-rolltemplate-wfrp-opposed .fullfail, .sheet-rolltemplate-wfrp-riposte .sheet-fullfail,
-.sheet-rolltemplate-wfrp-riposte .fullfail {
+.sheet-rolltemplate-wfrp-riposte .fullfail, .sheet-rolltemplate-wfrp-initial .sheet-fullfail,
+.sheet-rolltemplate-wfrp-initial .fullfail {
   color: darkred;
 }
-.sheet-rolltemplate-wfrp .sheet-wfrp-roll, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll {
+.sheet-rolltemplate-wfrp .sheet-wfrp-roll, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll, .sheet-rolltemplate-wfrp-initial .sheet-wfrp-roll {
   display: grid;
   gap: 0.25rem;
   padding: 1rem 1.5rem;
   background: url("https://s3.amazonaws.com/files.d20.io/images/151442442/WL3whxtgGLSL18KI8cvGQw/max.png?1595121884") no-repeat center/100% 100%;
 }
-.sheet-rolltemplate-wfrp .sheet-wfrp-roll__result, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__result, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__result {
+.sheet-rolltemplate-wfrp .sheet-wfrp-roll__result, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__result, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__result, .sheet-rolltemplate-wfrp-initial .sheet-wfrp-roll__result {
   grid-column: 1/-1;
   font-size: 4rem;
   text-align: center;
 }
-.sheet-rolltemplate-wfrp .sheet-wfrp-roll__target, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__target, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__target {
+.sheet-rolltemplate-wfrp .sheet-wfrp-roll__target, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__target, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__target, .sheet-rolltemplate-wfrp-initial .sheet-wfrp-roll__target {
   grid-column: 1/-1;
   display: grid;
   grid-template-columns: 1fr 5em;
@@ -2047,7 +2052,7 @@ input[name=attr_active_defence][type=hidden][value="1"] + div.sheet-wfrp-control
   background: url("https://s3.amazonaws.com/files.d20.io/images/152053989/T4Qj08IjX22oQyaJ5_I9hA/max.png?1595356909") no-repeat center/100% 100%;
   font-weight: bold;
 }
-.sheet-rolltemplate-wfrp .sheet-wfrp-roll__success, .sheet-rolltemplate-wfrp .sheet-wfrp-roll__fail, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__success, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__fail, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__success, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__fail {
+.sheet-rolltemplate-wfrp .sheet-wfrp-roll__success, .sheet-rolltemplate-wfrp .sheet-wfrp-roll__fail, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__success, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__fail, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__success, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__fail, .sheet-rolltemplate-wfrp-initial .sheet-wfrp-roll__success, .sheet-rolltemplate-wfrp-initial .sheet-wfrp-roll__fail {
   grid-column: 1/-1;
   padding: 0.5rem;
   color: white;
@@ -2057,46 +2062,46 @@ input[name=attr_active_defence][type=hidden][value="1"] + div.sheet-wfrp-control
   text-align: center;
   text-transform: uppercase;
 }
-.sheet-rolltemplate-wfrp .sheet-wfrp-roll__success > span:not(:last-child), .sheet-rolltemplate-wfrp .sheet-wfrp-roll__fail > span:not(:last-child), .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__success > span:not(:last-child), .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__fail > span:not(:last-child), .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__success > span:not(:last-child), .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__fail > span:not(:last-child) {
+.sheet-rolltemplate-wfrp .sheet-wfrp-roll__success > span:not(:last-child), .sheet-rolltemplate-wfrp .sheet-wfrp-roll__fail > span:not(:last-child), .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__success > span:not(:last-child), .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__fail > span:not(:last-child), .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__success > span:not(:last-child), .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__fail > span:not(:last-child), .sheet-rolltemplate-wfrp-initial .sheet-wfrp-roll__success > span:not(:last-child), .sheet-rolltemplate-wfrp-initial .sheet-wfrp-roll__fail > span:not(:last-child) {
   margin-right: 0.5rem;
 }
-.sheet-rolltemplate-wfrp .sheet-wfrp-roll__success, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__success, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__success {
+.sheet-rolltemplate-wfrp .sheet-wfrp-roll__success, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__success, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__success, .sheet-rolltemplate-wfrp-initial .sheet-wfrp-roll__success {
   background: #073;
   background: url("https://s3.amazonaws.com/files.d20.io/images/152053987/hoKLlnb8gZzQDMW6zEUewQ/max.png?1595356908") no-repeat center/100% 100%;
 }
-.sheet-rolltemplate-wfrp .sheet-wfrp-roll__fail, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__fail, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__fail {
+.sheet-rolltemplate-wfrp .sheet-wfrp-roll__fail, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__fail, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__fail, .sheet-rolltemplate-wfrp-initial .sheet-wfrp-roll__fail {
   background: #900;
   background: url("https://s3.amazonaws.com/files.d20.io/images/152053988/NMX6iU7S6buq5KDq8l9NlQ/max.png?1595356908") no-repeat center/100% 100%;
 }
-.sheet-rolltemplate-wfrp .sheet-wfrp-roll__row, .sheet-rolltemplate-wfrp .sheet-wfrp-roll__row--full, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__row, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__row--full, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__row, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__row--full {
+.sheet-rolltemplate-wfrp .sheet-wfrp-roll__row, .sheet-rolltemplate-wfrp .sheet-wfrp-roll__row--full, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__row, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__row--full, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__row, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__row--full, .sheet-rolltemplate-wfrp-initial .sheet-wfrp-roll__row, .sheet-rolltemplate-wfrp-initial .sheet-wfrp-roll__row--full {
   display: grid;
   grid-template-columns: 0.75fr 1fr;
   gap: 0.25rem;
 }
-.sheet-rolltemplate-wfrp .sheet-wfrp-roll__row--number, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__row--number, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__row--number {
+.sheet-rolltemplate-wfrp .sheet-wfrp-roll__row--number, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__row--number, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__row--number, .sheet-rolltemplate-wfrp-initial .sheet-wfrp-roll__row--number {
   grid-template-columns: 1fr 3rem;
 }
-.sheet-rolltemplate-wfrp .sheet-wfrp-roll__row--full, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__row--full, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__row--full {
+.sheet-rolltemplate-wfrp .sheet-wfrp-roll__row--full, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__row--full, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__row--full, .sheet-rolltemplate-wfrp-initial .sheet-wfrp-roll__row--full {
   grid-template-columns: 1fr;
   grid-column: 1/-1;
 }
-.sheet-rolltemplate-wfrp .sheet-wfrp-roll__label, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__label, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__label {
+.sheet-rolltemplate-wfrp .sheet-wfrp-roll__label, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__label, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__label, .sheet-rolltemplate-wfrp-initial .sheet-wfrp-roll__label {
   font-weight: bold;
   text-align: left;
 }
-.sheet-rolltemplate-wfrp .sheet-wfrp-roll__label-italic, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__label-italic, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__label-italic {
+.sheet-rolltemplate-wfrp .sheet-wfrp-roll__label-italic, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__label-italic, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__label-italic, .sheet-rolltemplate-wfrp-initial .sheet-wfrp-roll__label-italic {
   font-style: italic;
 }
-.sheet-rolltemplate-wfrp .sheet-wfrp-roll__value, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__value, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__value {
+.sheet-rolltemplate-wfrp .sheet-wfrp-roll__value, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__value, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__value, .sheet-rolltemplate-wfrp-initial .sheet-wfrp-roll__value {
   text-align: right;
 }
-.sheet-rolltemplate-wfrp .sheet-wfrp-roll__value .inlinerollresult, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__value .inlinerollresult, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__value .inlinerollresult {
+.sheet-rolltemplate-wfrp .sheet-wfrp-roll__value .inlinerollresult, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__value .inlinerollresult, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__value .inlinerollresult, .sheet-rolltemplate-wfrp-initial .sheet-wfrp-roll__value .inlinerollresult {
   font-weight: normal;
 }
-.sheet-rolltemplate-wfrp .sheet-wfrp-roll_sl, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll_sl, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll_sl {
+.sheet-rolltemplate-wfrp .sheet-wfrp-roll_sl, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll_sl, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll_sl, .sheet-rolltemplate-wfrp-initial .sheet-wfrp-roll_sl {
   font-size: 0.9em;
 }
-.sheet-rolltemplate-wfrp .sheet-wfrp-roll__text, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__text, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__text {
+.sheet-rolltemplate-wfrp .sheet-wfrp-roll__text, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__text, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__text, .sheet-rolltemplate-wfrp-initial .sheet-wfrp-roll__text {
   max-height: 10em;
   overflow: hidden auto;
   padding: 0.25rem;
@@ -2113,7 +2118,7 @@ input[name=attr_active_defence][type=hidden][value="1"] + div.sheet-wfrp-control
   color: darkred;
 }
 
-.sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__row, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__row--full, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__row, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__row--full {
+.sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__row, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__row--full, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__row, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__row--full, .sheet-rolltemplate-wfrp-initial .sheet-wfrp-roll__row, .sheet-rolltemplate-wfrp-initial .sheet-wfrp-roll__row--full {
   grid-template-columns: 1fr 1fr;
 }
 
@@ -2121,7 +2126,7 @@ span.inlinerollresult {
   padding-left: 0 !important;
 }
 
-* .sheet-wfrp-roll__divider, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__divider, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__divider {
+* .sheet-wfrp-roll__divider, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__divider, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__divider, .sheet-rolltemplate-wfrp-initial .sheet-wfrp-roll__divider {
   width: 100%;
   height: 10px;
   grid-column: 1/-1;

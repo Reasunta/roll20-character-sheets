@@ -88,3 +88,19 @@ rolltemplate.sheet-rolltemplate-wfrp-riposte
         h2 {{aw_name}}
         .wfrp-roll__divider
         +damage
+
+rolltemplate.sheet-rolltemplate-wfrp-initial
+    .wfrp-roll
+        h1 {{character_name}}
+        h2 Initial char values
+        .wfrp-roll__divider
+        +row(`Weapon Skill`, `{{weapon_skill}}`)
+        +row(`Ballistic Skill`, `{{ballistic_skill}}`)
+        +row(`Strength`, `{{strength}}`)
+        +row(`Toughness`, `{{toughness}}`)
+        +row(`Initiative`, `{{initiative}}`)
+        +row(`Agility`, `{{agility}}`)
+        +row(`Dexterity`, `{{dexterity}}`)
+        +row(`Intelligence`, `{{intelligence}}`)
+        +row(`Willpower`, `{{willpower}}`)
+        +row(`Fellowship`, `{{fellowship}}`)
