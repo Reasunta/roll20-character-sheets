@@ -317,6 +317,7 @@ const wfrpModule = ( () => {
             "repeating_weapons_weapon_q_imprecise",
             "repeating_weapons_weapon_q_slow",
             "repeating_weapons_weapon_q_undamaging",
+            "repeating_weapons_weapon_qualities"
         ],
 
         weapon_qualities: [
@@ -340,7 +341,8 @@ const wfrpModule = ( () => {
             `weapon_s_index`,
             `weapon_s_value`,
             `weapon_damage`,
-            `weapon_qualities`
+            `weapon_qualities`,
+            `weapon_qualities_str`
         ]
     }
 
@@ -2148,10 +2150,18 @@ const wfrpModule = ( () => {
 
         // each quality is 1 bit
         let qualityState = 0;
+        const qualities_str_arr = []
+        if (v[`repeating_weapons_weapon_qualities`] && v[`repeating_weapons_weapon_qualities`] !== "")
+            qualities_str_arr.push(v[`repeating_weapons_weapon_qualities`])
 
         for (let i = 0; i < wfrpModule.wfrp.weapon_qualities.length; i++) {
             const hasQuality = v[`repeating_weapons_weapon_q_${wfrpModule.wfrp.weapon_qualities[i]}`] !== '0'
-            if (hasQuality) qualityState = qualityState + 2**i
+            if (hasQuality) {
+                qualityState = qualityState + 2**i
+                let quality_label = wfrpModule.wfrp.weapon_qualities[i]
+                quality_label = quality_label[0].toUpperCase() + quality_label.substring(1)
+                qualities_str_arr.push(quality_label)
+            }
         }
 
         result.weapon_id = source_attr_name.match(/-[A-Za-z0-9]+/)[0]
@@ -2160,6 +2170,7 @@ const wfrpModule = ( () => {
         result.weapon_s_value = v[`repeating_weapons_weapon_target_display`]
         result.weapon_damage = weapon_damage
         result.weapon_qualities = qualityState
+        result.weapon_qualities_str = qualities_str_arr.join(", ")
 
         return result
     }
@@ -2189,7 +2200,7 @@ const wfrpModule = ( () => {
     }
 
     const setEmptyWeaponAs = (weapon_type) => {
-        const empty = {weapon_id: '', weapon_name: '---', weapon_s_index: 0, weapon_s_value: 0, weapon_damage:0, weapon_qualities: 0}
+        const empty = {weapon_id: '', weapon_name: '---', weapon_s_index: 0, weapon_s_value: 0, weapon_damage:0, weapon_qualities: 0, weapon_qualities_str: ""}
         setWeaponAttrsForOpposedTest(weapon_type, empty)
     }
 
@@ -2198,7 +2209,7 @@ const wfrpModule = ( () => {
         getAttrs(['dodge'], v => {
             const dodge_attrs = {
                 weapon_id: '', weapon_name: wfrpModule.getSkillLabelById(skill_index),
-                weapon_s_index: skill_index, weapon_s_value: v[`dodge`], weapon_damage:0, weapon_qualities: 0
+                weapon_s_index: skill_index, weapon_s_value: v[`dodge`], weapon_damage:0, weapon_qualities: 0, weapon_qualities_str: ''
             }
             setWeaponAttrsForOpposedTest(weapon_type, dodge_attrs)
         })
@@ -2249,20 +2260,23 @@ const wfrpModule = ( () => {
         }
     }
 
-    const incrementAdvantage = () => {
-        getAttrs(["advantage", "advantage_max"], values => {
-            const maximum = (values.advantage_max && parseInt(values.advantage_max) > 0) ? parseInt(values.advantage_max) : 9999;
-            const advantage = (parseInt(values.advantage) < maximum) ? parseInt(values.advantage) + 1 : parseInt(values.advantage);
+    const incrementAttribute = (attr, attr_max) => {
+        getAttrs([attr, attr_max], values => {
+            const maximum = (values[attr_max] && parseInt(values[attr_max]) > 0) ? parseInt(values[attr_max]) : 9999;
+            const result = (parseInt(values[attr]) < maximum) ? parseInt(values[attr]) + 1 : parseInt(values[attr]);
 
-            setAttrs({advantage:advantage});
+            const update = {}
+            update[attr] = result
+            setAttrs(update);
         });
     }
 
-    const decrementAdvantage = () => {
-        getAttrs(["advantage"], values => {
-            const advantage = (parseInt(values.advantage) > 0) ? parseInt(values.advantage) - 1 : 0;
-
-            setAttrs({advantage:advantage});
+    const decrementAttribute = (attr) => {
+        getAttrs([attr], values => {
+            const result = (parseInt(values[attr]) > 0) ? parseInt(values[attr]) - 1 : 0;
+            const update = {}
+            update[attr] = result
+            setAttrs(update);
         });
     }
 
@@ -2600,8 +2614,8 @@ const wfrpModule = ( () => {
         setSelectedWeaponAs: setSelectedWeaponAs,
 
         // Combat Functions
-        incrementAdvantage:incrementAdvantage,
-        decrementAdvantage:decrementAdvantage,
+        incrementAttribute:incrementAttribute,
+        decrementAttribute:decrementAttribute,
         calculateMaxWounds:calculateMaxWounds,
         calculateMaxCorruptionPoints:calculateMaxCorruptionPoints,
 
@@ -2857,11 +2871,17 @@ on(`change:basic change:willpower_bonus change:corruption_points_mod`, eventInfo
 
 on(`change:strength_bonus change:toughness_bonus change:encumbrance_mod`, eventInfo => wfrpModule.calculateMaxEncumbrance());
 
-on(`clicked:increment_advantage`, eventInfo => wfrpModule.incrementAdvantage());
+on(`clicked:increment_advantage`, eventInfo => wfrpModule.incrementAttribute("advantage", "advantage_max"));
 
-on(`clicked:decrement_advantage`, eventInfo => wfrpModule.decrementAdvantage());
+on(`clicked:decrement_advantage`, eventInfo => wfrpModule.decrementAttribute("advantage"));
 
 on(`clicked:reset_advantage`, eventInfo => setAttrs({advantage:0}));
+
+on(`clicked:increment_wounds`, eventInfo => wfrpModule.incrementAttribute("wounds", "wounds_max"));
+
+on(`clicked:decrement_wounds`, eventInfo => wfrpModule.decrementAttribute("wounds"));
+
+on(`clicked:reset_wounds`, eventInfo => {getAttrs(["wounds_max"], v => {setAttrs({wounds: v["wounds_max"]})})})
 
 // SPELL FUNCTIONS
 

@@ -137,7 +137,7 @@
     </div>
     <div class="wfrp-test wfrp-panel page__encounter sheet-grid-span-6">
       <div class="sheet-grid-3">
-        <div class="wfrp-panel">
+        <div class="sheet-wfrp-panel">
           <h1 class="wfrp-panel__header" data-i18n="Advantage"></h1>
           <div class="wfrp-advantage__wrapper sheet-grid-6">
             <button class="wfrp-advantage__reset pictos" name="act_reset_advantage" type="action">1</button>
@@ -148,17 +148,66 @@
             <button class="wfrp-advantage__increment pictos" name="act_increment_advantage" type="action">+</button>
           </div>
         </div>
-        <div class="wfrp-panel">
-          <h1 class="wfrp-panel__header" data-i18n="Advantage"></h1>
+        <div class="sheet-wfrp-panel">
+          <h1 class="wfrp-panel__header" data-i18n="Wounds"></h1>
           <div class="wfrp-advantage__wrapper sheet-grid-6">
-            <button class="wfrp-advantage__reset pictos" name="act_reset_advantage" type="action">1</button>
-            <button class="wfrp-advantage__decrement pictos" name="act_decrement_advantage" type="action">-</button>
-            <input class="wfrp-advantage__input sheet-grid-span-2" name="attr_advantage" type="number" value="0"/>
-            <input name="attr_advantage_max" type="hidden" value="0"/>
-            <div class="sheet-wfrp-field no-border"><span class="wfrp-armour__display no-border">/</span><span class="wfrp-armour__display no-border" name="attr_advantage_max"></span></div>
-            <button class="wfrp-advantage__increment pictos" name="act_increment_advantage" type="action">+</button>
+            <button class="wfrp-advantage__reset pictos" name="act_reset_wounds" type="action">1</button>
+            <button class="wfrp-advantage__decrement pictos" name="act_decrement_wounds" type="action">-</button>
+            <input class="wfrp-advantage__input sheet-grid-span-2" name="attr_wounds" type="number" value="0"/>
+            <div class="sheet-wfrp-field no-border"><span class="wfrp-armour__display no-border">/</span><span class="wfrp-armour__display no-border" name="attr_wounds_max"></span></div>
+            <button class="wfrp-advantage__increment pictos" name="act_increment_wounds" type="action">+</button>
           </div>
         </div>
+      </div>
+      <h1 class="wfrp-panel__header" data-i18n="Hands"></h1>
+      <div class="sheet-wfrp-panel sheet-grid-6 sheet-grid-gap-5">
+        <div class="sheet-grid-4">
+          <div class="sheet-grid-1 sheet-main-hand-img"></div><span class="sheet-grid-span-3 wfrp-controls__cell" name="attr_main_hand_weapon_name"></span>
+        </div>
+        <div class="sheet-wfrp-wrapper sheet-grid-span-3 sheet-grid-4 sheet-grid-gap-5">
+          <div class="sheet-grid-1">
+            <div class="sheet-wfrp-controls sheet-grid-1">
+              <button data-i18n="Opposed Attack" type="action" name="act_main_opposed_attack"></button>
+            </div>
+          </div>
+          <div class="sheet-grid-1">
+            <div class="sheet-wfrp-controls sheet-grid-1">
+              <button data-i18n="Unopposed Attack" type="action" name="act_main_unopposed_attack"></button>
+            </div>
+          </div>
+          <div class="sheet-grid-1">
+          </div>
+          <div class="sheet-grid-1 sheet-grid-space-between"><span class="wfrp-controls__cell">Use for defence</span>
+            <input class="wfrp-settings__input" name="attr_main_hand_defence" type="checkbox" value="1"/>
+          </div>
+        </div>
+        <div class="sheet-grid-span-2"><span name="attr_main_hand_weapon_qualities_str"></span></div>
+      </div>
+      <div class="sheet-wfrp-panel sheet-grid-6 sheet-grid-gap-5">
+        <div class="sheet-grid-4">
+          <div class="sheet-grid-1 sheet-off-hand-img"></div><span class="sheet-grid-span-3 wfrp-controls__cell" name="attr_off_hand_weapon_name"></span>
+        </div>
+        <div class="sheet-wfrp-wrapper sheet-grid-span-3 sheet-grid-4 sheet-grid-gap-5">
+          <div class="sheet-grid-1">
+            <div class="sheet-wfrp-controls sheet-grid-1">
+              <button data-i18n="Opposed Attack" type="action" name="act_off_opposed_attack"></button>
+            </div>
+          </div>
+          <div class="sheet-grid-1">
+            <div class="sheet-wfrp-controls sheet-grid-1">
+              <button data-i18n="Unopposed Attack" type="action" name="act_off_unopposed_attack"></button>
+            </div>
+          </div>
+          <div class="sheet-grid-1">
+            <div class="sheet-wfrp-controls sheet-grid-1">
+              <button data-i18n="Dual Wielder" type="action" name="act_dual_wielder_attack"></button>
+            </div>
+          </div>
+          <div class="sheet-grid-1 sheet-grid-space-between"><span class="wfrp-controls__cell">Use for defence</span>
+            <input class="wfrp-settings__input" name="attr_off_hand_defence" type="checkbox" value="1"/>
+          </div>
+        </div>
+        <div class="sheet-grid-span-2"><span name="attr_off_hand_weapon_qualities_str"></span></div>
       </div>
     </div>
     <div class="wfrp-characteristics wfrp-panel page__main">
@@ -5647,12 +5696,12 @@
     </div>
     <div class="wfrp-wounds wfrp-panel page__combat">
       <h1 class="wfrp-panel__header" data-i18n="Wounds"></h1>
-      <input name="attr_wounds_mod" type="hidden"/>
-      <div class="wfrp-field--grid2-1"><span class="wfrp-field__header" data-i18n="Current Wounds"></span>
-        <input class="wfrp-field__input" name="attr_wounds" type="number"/>
-      </div>
-      <div class="wfrp-field--grid2-1"><span class="wfrp-field__header" data-i18n="Max Wounds"></span><span class="wfrp-field__span" name="attr_wounds_max"></span>
-        <input name="attr_wounds_max" type="hidden"/>
+      <div class="wfrp-advantage__wrapper sheet-grid-6">
+        <button class="wfrp-advantage__reset pictos" name="act_reset_wounds" type="action">1</button>
+        <button class="wfrp-advantage__decrement pictos" name="act_decrement_wounds" type="action">-</button>
+        <input class="wfrp-advantage__input sheet-grid-span-2" name="attr_wounds" type="number" value="0"/>
+        <div class="sheet-wfrp-field no-border"><span class="wfrp-armour__display no-border">/</span><span class="wfrp-armour__display no-border" name="attr_wounds_max"></span></div>
+        <button class="wfrp-advantage__increment pictos" name="act_increment_wounds" type="action">+</button>
       </div>
     </div>
     <div class="wfrp-wounds wfrp-panel page__combat">
@@ -9589,6 +9638,7 @@
             "repeating_weapons_weapon_q_imprecise",
             "repeating_weapons_weapon_q_slow",
             "repeating_weapons_weapon_q_undamaging",
+            "repeating_weapons_weapon_qualities"
         ],
 
         weapon_qualities: [
@@ -9612,7 +9662,8 @@
             `weapon_s_index`,
             `weapon_s_value`,
             `weapon_damage`,
-            `weapon_qualities`
+            `weapon_qualities`,
+            `weapon_qualities_str`
         ]
     }
 
@@ -11420,10 +11471,18 @@
 
         // each quality is 1 bit
         let qualityState = 0;
+        const qualities_str_arr = []
+        if (v[`repeating_weapons_weapon_qualities`] && v[`repeating_weapons_weapon_qualities`] !== "")
+            qualities_str_arr.push(v[`repeating_weapons_weapon_qualities`])
 
         for (let i = 0; i < wfrpModule.wfrp.weapon_qualities.length; i++) {
             const hasQuality = v[`repeating_weapons_weapon_q_${wfrpModule.wfrp.weapon_qualities[i]}`] !== '0'
-            if (hasQuality) qualityState = qualityState + 2**i
+            if (hasQuality) {
+                qualityState = qualityState + 2**i
+                let quality_label = wfrpModule.wfrp.weapon_qualities[i]
+                quality_label = quality_label[0].toUpperCase() + quality_label.substring(1)
+                qualities_str_arr.push(quality_label)
+            }
         }
 
         result.weapon_id = source_attr_name.match(/-[A-Za-z0-9]+/)[0]
@@ -11432,6 +11491,7 @@
         result.weapon_s_value = v[`repeating_weapons_weapon_target_display`]
         result.weapon_damage = weapon_damage
         result.weapon_qualities = qualityState
+        result.weapon_qualities_str = qualities_str_arr.join(", ")
 
         return result
     }
@@ -11461,7 +11521,7 @@
     }
 
     const setEmptyWeaponAs = (weapon_type) => {
-        const empty = {weapon_id: '', weapon_name: '---', weapon_s_index: 0, weapon_s_value: 0, weapon_damage:0, weapon_qualities: 0}
+        const empty = {weapon_id: '', weapon_name: '---', weapon_s_index: 0, weapon_s_value: 0, weapon_damage:0, weapon_qualities: 0, weapon_qualities_str: ""}
         setWeaponAttrsForOpposedTest(weapon_type, empty)
     }
 
@@ -11470,7 +11530,7 @@
         getAttrs(['dodge'], v => {
             const dodge_attrs = {
                 weapon_id: '', weapon_name: wfrpModule.getSkillLabelById(skill_index),
-                weapon_s_index: skill_index, weapon_s_value: v[`dodge`], weapon_damage:0, weapon_qualities: 0
+                weapon_s_index: skill_index, weapon_s_value: v[`dodge`], weapon_damage:0, weapon_qualities: 0, weapon_qualities_str: ''
             }
             setWeaponAttrsForOpposedTest(weapon_type, dodge_attrs)
         })
@@ -11521,20 +11581,23 @@
         }
     }
 
-    const incrementAdvantage = () => {
-        getAttrs(["advantage", "advantage_max"], values => {
-            const maximum = (values.advantage_max && parseInt(values.advantage_max) > 0) ? parseInt(values.advantage_max) : 9999;
-            const advantage = (parseInt(values.advantage) < maximum) ? parseInt(values.advantage) + 1 : parseInt(values.advantage);
+    const incrementAttribute = (attr, attr_max) => {
+        getAttrs([attr, attr_max], values => {
+            const maximum = (values[attr_max] && parseInt(values[attr_max]) > 0) ? parseInt(values[attr_max]) : 9999;
+            const result = (parseInt(values[attr]) < maximum) ? parseInt(values[attr]) + 1 : parseInt(values[attr]);
 
-            setAttrs({advantage:advantage});
+            const update = {}
+            update[attr] = result
+            setAttrs(update);
         });
     }
 
-    const decrementAdvantage = () => {
-        getAttrs(["advantage"], values => {
-            const advantage = (parseInt(values.advantage) > 0) ? parseInt(values.advantage) - 1 : 0;
-
-            setAttrs({advantage:advantage});
+    const decrementAttribute = (attr) => {
+        getAttrs([attr], values => {
+            const result = (parseInt(values[attr]) > 0) ? parseInt(values[attr]) - 1 : 0;
+            const update = {}
+            update[attr] = result
+            setAttrs(update);
         });
     }
 
@@ -11872,8 +11935,8 @@
         setSelectedWeaponAs: setSelectedWeaponAs,
 
         // Combat Functions
-        incrementAdvantage:incrementAdvantage,
-        decrementAdvantage:decrementAdvantage,
+        incrementAttribute:incrementAttribute,
+        decrementAttribute:decrementAttribute,
         calculateMaxWounds:calculateMaxWounds,
         calculateMaxCorruptionPoints:calculateMaxCorruptionPoints,
 
@@ -12129,11 +12192,17 @@ on(`change:basic change:willpower_bonus change:corruption_points_mod`, eventInfo
 
 on(`change:strength_bonus change:toughness_bonus change:encumbrance_mod`, eventInfo => wfrpModule.calculateMaxEncumbrance());
 
-on(`clicked:increment_advantage`, eventInfo => wfrpModule.incrementAdvantage());
+on(`clicked:increment_advantage`, eventInfo => wfrpModule.incrementAttribute("advantage", "advantage_max"));
 
-on(`clicked:decrement_advantage`, eventInfo => wfrpModule.decrementAdvantage());
+on(`clicked:decrement_advantage`, eventInfo => wfrpModule.decrementAttribute("advantage"));
 
 on(`clicked:reset_advantage`, eventInfo => setAttrs({advantage:0}));
+
+on(`clicked:increment_wounds`, eventInfo => wfrpModule.incrementAttribute("wounds", "wounds_max"));
+
+on(`clicked:decrement_wounds`, eventInfo => wfrpModule.decrementAttribute("wounds"));
+
+on(`clicked:reset_wounds`, eventInfo => {getAttrs(["wounds_max"], v => {setAttrs({wounds: v["wounds_max"]})})})
 
 // SPELL FUNCTIONS
 

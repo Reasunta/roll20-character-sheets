@@ -189,7 +189,7 @@
             &__wrapper {
                 align-items: center;
     
-                width: 75%;
+                width: 95%;
                 margin: $margin-general auto;
             }
         }
@@ -212,4 +212,17 @@
             }
         }
     }
+}
+
+.sheet-main-hand-img {
+    background: url("https://www.svgrepo.com/show/535674/sword.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.sheet-off-hand-img {
+    background: url("https://www.svgrepo.com/show/535622/shield.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }

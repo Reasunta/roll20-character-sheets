@@ -25,10 +25,13 @@ input(name="attr_setting_button_hide", type="hidden")
 
 .wfrp-test.wfrp-panel.page__encounter.sheet-grid-span-6
     .sheet-grid-3
-        .wfrp-panel
+        .sheet-wfrp-panel
             +advantage()
-        .wfrp-panel
-            +advantage()
+        .sheet-wfrp-panel
+            +wounds()
+    h1.wfrp-panel__header(data-i18n="Hands")
+    +hand-row(`main`)
+    +hand-row(`off`)
 
 .wfrp-characteristics.wfrp-panel.page__main
     input(name="attr_control_hide--characteristics", type="hidden")
@@ -288,10 +291,7 @@ input(name="attr_setting_button_hide", type="hidden")
     +advantage()
 
 .wfrp-wounds.wfrp-panel.page__combat
-    h1.wfrp-panel__header(data-i18n="Wounds")
-    input(name="attr_wounds_mod", type="hidden")
-    +generic-field({name: "Current Wounds", attr: "wounds"},"number","2-1")
-    +generic-display({name: "Max Wounds", attr: "wounds_max"}, "number", "2-1")
+    +wounds()
 
 .wfrp-wounds.wfrp-panel.page__combat
     h1.wfrp-panel__header(data-i18n="Critical Wounds")

@@ -470,7 +470,7 @@
     grid-template-columns: repeat(3, 1fr);
 }
 
-@for $i from 1 through 6 {
+@for $i from 1 through 12 {
     .sheet-grid-#{$i} {
         display: grid;
         grid-template-columns: repeat(#{$i}, 1fr);
@@ -482,4 +482,11 @@
     .sheet-grid-col-#{$i} {
         grid-column: #{$i} / 1;
     }
+    .sheet-grid-gap-#{$i} {
+        grid-column-gap: #{$i}px;
+    }
+}
+
+.sheet-grid-space-between {
+    align-content: space-between;
 }

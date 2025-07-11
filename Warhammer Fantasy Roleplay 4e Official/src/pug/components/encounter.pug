@@ -1,0 +1,21 @@
+mixin hand-row(hand)
+    .sheet-wfrp-panel.sheet-grid-6.sheet-grid-gap-5
+        div.sheet-grid-4
+            div(class=`sheet-grid-1 sheet-${hand}-hand-img`)
+            span.sheet-grid-span-3.wfrp-controls__cell(name = `attr_${hand}_hand_weapon_name`)
+        div.sheet-wfrp-wrapper.sheet-grid-span-3.sheet-grid-4.sheet-grid-gap-5
+            div.sheet-grid-1
+                .sheet-wfrp-controls.sheet-grid-1
+                    button(data-i18n="Opposed Attack", type="action", name=`act_${hand}_opposed_attack`)
+            div.sheet-grid-1
+                .sheet-wfrp-controls.sheet-grid-1
+                    button(data-i18n="Unopposed Attack", type="action", name=`act_${hand}_unopposed_attack`)
+            div.sheet-grid-1
+                if hand === `off`
+                    .sheet-wfrp-controls.sheet-grid-1
+                        button(data-i18n="Dual Wielder", type="action", name="act_dual_wielder_attack")
+            .sheet-grid-1.sheet-grid-space-between
+                span.wfrp-controls__cell Use for defence
+                input.wfrp-settings__input(name=`attr_${hand}_hand_defence`, type="checkbox", value="1")
+        div.sheet-grid-span-2
+            span(name=`attr_${hand}_hand_weapon_qualities_str`)
