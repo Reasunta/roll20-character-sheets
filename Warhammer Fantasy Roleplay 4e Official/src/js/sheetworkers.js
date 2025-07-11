@@ -661,6 +661,13 @@ const wfrpModule = ( () => {
         })
 
         saveLastRoll({a_roll: "0", d_roll: "0", total_sl: "0", is_opposed: "0"})
+
+        getAttrs(["setting_max_advantage"], values => {
+            const update = {}
+            update.advantage= "0"
+            update.advantage_max= values["setting_max_advantage"]
+            setAttrs(update)
+        })
     }
 
     const updateSheet = (version) => {

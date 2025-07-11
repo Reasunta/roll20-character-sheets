@@ -143,6 +143,7 @@
             <button class="wfrp-advantage__reset pictos" name="act_reset_advantage" type="action">1</button>
             <button class="wfrp-advantage__decrement pictos" name="act_decrement_advantage" type="action">-</button>
             <input class="wfrp-advantage__input sheet-grid-span-2" name="attr_advantage" type="number" value="0"/>
+            <input name="attr_advantage_max" type="hidden" value="0"/>
             <div class="sheet-wfrp-field no-border"><span class="wfrp-armour__display no-border">/</span><span class="wfrp-armour__display no-border" name="attr_advantage_max"></span></div>
             <button class="wfrp-advantage__increment pictos" name="act_increment_advantage" type="action">+</button>
           </div>
@@ -153,6 +154,7 @@
             <button class="wfrp-advantage__reset pictos" name="act_reset_advantage" type="action">1</button>
             <button class="wfrp-advantage__decrement pictos" name="act_decrement_advantage" type="action">-</button>
             <input class="wfrp-advantage__input sheet-grid-span-2" name="attr_advantage" type="number" value="0"/>
+            <input name="attr_advantage_max" type="hidden" value="0"/>
             <div class="sheet-wfrp-field no-border"><span class="wfrp-armour__display no-border">/</span><span class="wfrp-armour__display no-border" name="attr_advantage_max"></span></div>
             <button class="wfrp-advantage__increment pictos" name="act_increment_advantage" type="action">+</button>
           </div>
@@ -5638,6 +5640,7 @@
         <button class="wfrp-advantage__reset pictos" name="act_reset_advantage" type="action">1</button>
         <button class="wfrp-advantage__decrement pictos" name="act_decrement_advantage" type="action">-</button>
         <input class="wfrp-advantage__input sheet-grid-span-2" name="attr_advantage" type="number" value="0"/>
+        <input name="attr_advantage_max" type="hidden" value="0"/>
         <div class="sheet-wfrp-field no-border"><span class="wfrp-armour__display no-border">/</span><span class="wfrp-armour__display no-border" name="attr_advantage_max"></span></div>
         <button class="wfrp-advantage__increment pictos" name="act_increment_advantage" type="action">+</button>
       </div>
@@ -7736,6 +7739,7 @@
                 <button class="wfrp-advantage__reset pictos" name="act_reset_advantage" type="action">1</button>
                 <button class="wfrp-advantage__decrement pictos" name="act_decrement_advantage" type="action">-</button>
                 <input class="wfrp-advantage__input sheet-grid-span-2" name="attr_advantage" type="number" value="0"/>
+                <input name="attr_advantage_max" type="hidden" value="0"/>
                 <div class="sheet-wfrp-field no-border"><span class="wfrp-armour__display no-border">/</span><span class="wfrp-armour__display no-border" name="attr_advantage_max"></span></div>
                 <button class="wfrp-advantage__increment pictos" name="act_increment_advantage" type="action">+</button>
               </div>
@@ -9882,6 +9886,13 @@
         })
 
         saveLastRoll({a_roll: "0", d_roll: "0", total_sl: "0", is_opposed: "0"})
+
+        getAttrs(["setting_max_advantage"], values => {
+            const update = {}
+            update.advantage= "0"
+            update.advantage_max= values["setting_max_advantage"]
+            setAttrs(update)
+        })
     }
 
     const updateSheet = (version) => {

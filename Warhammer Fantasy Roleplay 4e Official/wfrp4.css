@@ -1353,6 +1353,10 @@ button.sheet-pictos[type=action]:hover {
   font-size: 16pt;
 }
 
+.sheet-wfrp-advantage__wrapper input[name=attr_advantage_max][type=hidden][value="9999"] + div.sheet-wfrp-field.sheet-no-border {
+  display: none;
+}
+
 .sheet-wfrp-navigation__item input[type=checkbox]:checked + span, .sheet-wfrp-navigation__item--settings input[type=checkbox]:checked + span,
 .sheet-wfrp-navigation__item input[type=radio]:checked + span,
 .sheet-wfrp-navigation__item--settings input[type=radio]:checked + span {

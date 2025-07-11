@@ -28,7 +28,8 @@
     &__cell {
       @extend %cell
     }
-    button,.sheet-default-defence-select {
+
+    button, .sheet-default-defence-select {
       select {
         text-align: center;
       }
@@ -50,5 +51,11 @@
         font-size: 16pt;
       }
     }
+  }
+}
+
+.sheet-wfrp-advantage__wrapper {
+  input[name = "attr_advantage_max"][type = "hidden"][value = "9999"] + div.sheet-wfrp-field.sheet-no-border {
+    display: none;
   }
 }

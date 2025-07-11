@@ -102,11 +102,11 @@
       "descriptiontranslationkey": "settings_initiative_desc"
     },
     {
-      "attribute": "advantage_max",
+      "attribute": "setting_max_advantage",
       "displayname": "Max Advantage",
       "displaytranslationkey": "settings_maxadvantage",
       "type": "text",
-      "default": "",
+      "default": "9999",
       "description": "Sets the maximum advantage possible.",
       "descriptiontranslationkey": "settings_bar1_value_desc"
     },
