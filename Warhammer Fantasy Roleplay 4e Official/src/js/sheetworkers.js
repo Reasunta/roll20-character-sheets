@@ -76,7 +76,8 @@ const wfrpModule = ( () => {
             "perception",
             "ride",
             "row",
-            "stealth"
+            "stealth",
+            "grapple"
         ],
 
         specialisations: [
@@ -312,12 +313,14 @@ const wfrpModule = ( () => {
             "repeating_weapons_weapon_q_impact",
             "repeating_weapons_weapon_q_impale",
             "repeating_weapons_weapon_q_penetrating",
+            "repeating_weapons_weapon_q_pistol",
             "repeating_weapons_weapon_q_precise",
             "repeating_weapons_weapon_q_dangerous",
             "repeating_weapons_weapon_q_imprecise",
             "repeating_weapons_weapon_q_slow",
             "repeating_weapons_weapon_q_undamaging",
-            "repeating_weapons_weapon_qualities"
+            "repeating_weapons_weapon_qualities",
+            "repeating_weapons_weapon_qualities_str"
         ],
 
         weapon_qualities: [
@@ -333,6 +336,7 @@ const wfrpModule = ( () => {
             "imprecise",
             "slow",
             "undamaging",
+            "pistol",
         ],
 
         public_weapon_attrs: [
@@ -342,7 +346,10 @@ const wfrpModule = ( () => {
             `weapon_s_value`,
             `weapon_damage`,
             `weapon_qualities`,
-            `weapon_qualities_str`
+            `weapon_qualities_str`,
+            `weapon_is_off_hand`,
+            `weapon_is_ranged`,
+            `weapon_is_pistol`,
         ]
     }
 
@@ -402,27 +409,110 @@ const wfrpModule = ( () => {
         return a_ts > d_ts ? outputs[`a_last_${attr}`] : outputs[`d_last_${attr}`]
     }
 
+    const rtEntry = (key, value) => `{{${key}=${value}}}`
+    const rtAttrEntry = (key, value) => `{{${key}=@{${value}}}}`
+    const rtNumAttrEntry = (key, value) => `{{${key}=[[@{${value}}]]}}`
+    const rtNumEntry = (key, value) => `{{${key}=[[${value}]]}}`
+    const rtOutputEntry = (key) => `{{${key}=[[1]]}}`
+
+    const rtString = (template_name, entries) => `${template_name} `.concat(entries.join(" "))
+
+    const addWeaponToRoll = (entries, prefix, char_source, w_type) => {
+        if (w_type === 'dodge') {
+            entries.push(
+                rtEntry(`${prefix}w_name`, `Dodge`),
+                rtNumEntry(`${prefix}s_id`, `${getSkillId('dodge')}`),
+                rtNumAttrEntry(`${prefix}s_value`, `${char_source}dodge`),
+                rtNumEntry(`${prefix}w_damage`, `0`),
+                rtNumEntry(`${prefix}w_qualities`, `0`),
+                rtNumAttrEntry(`${prefix}w_off_hand`, `0`)
+            )
+        } else if (w_type === 'grapple') {
+            entries.push(
+                rtEntry(`${prefix}w_name`, `Strength`),
+                rtNumEntry(`${prefix}s_id`, `${getSkillId('grapple')}`),
+                rtNumAttrEntry(`${prefix}s_value`, `${char_source}strength`),
+                rtNumEntry(`${prefix}w_damage`, `0`),
+                rtNumEntry(`${prefix}w_qualities`, `0`),
+                rtNumAttrEntry(`${prefix}w_off_hand`, `0`)
+            )
+        }
+        else {
+            entries.push(
+                rtAttrEntry(`${prefix}w_name`, `${char_source}${w_type}_weapon_name`),
+                rtNumAttrEntry(`${prefix}s_id`, `${char_source}${w_type}_weapon_s_index`),
+                rtNumAttrEntry(`${prefix}s_value`, `${char_source}${w_type}_weapon_s_value`),
+                rtNumAttrEntry(`${prefix}w_damage`, `${char_source}${w_type}_weapon_damage`),
+                rtNumAttrEntry(`${prefix}w_qualities`, `${char_source}${w_type}_weapon_qualities`),
+                rtNumAttrEntry(`${prefix}w_off_hand`, `${char_source}${w_type}_weapon_is_off_hand`),
+                rtNumAttrEntry(`${prefix}w_is_ranged`, `${char_source}${w_type}_weapon_is_ranged`)
+            )
+        }
+        return entries
+    }
+    const addDefenderResistanceToRoll = (entries, d_char_source) => {
+        entries.push(
+            rtNumAttrEntry(`da_head`, `${d_char_source}armour_head`) ,
+            rtNumAttrEntry(`da_leftarm`, `${d_char_source}armour_leftarm`) ,
+            rtNumAttrEntry(`da_rightarm`, `${d_char_source}armour_rightarm`) ,
+            rtNumAttrEntry(`da_body`, `${d_char_source}armour_body`) ,
+            rtNumAttrEntry(`da_leftleg`, `${d_char_source}armour_leftleg`),
+            rtNumAttrEntry(`da_rightleg`, `${d_char_source}armour_rightleg`),
+            rtNumAttrEntry(`da_shield`, `${d_char_source}armour_shield`),
+            rtNumAttrEntry(`d_tb`, `${d_char_source}toughness_bonus`)
+        )
+        return entries
+    }
+    const addLastValuesToRoll = (entries, a_char_source, d_char_source) => {
+        entries.push(
+            rtNumAttrEntry(`a_last_a_roll`, `${a_char_source}last_a_roll`),
+            rtNumAttrEntry(`a_last_d_roll`, `${a_char_source}last_d_roll`) ,
+            rtNumAttrEntry(`d_last_a_roll`, `${d_char_source}last_a_roll`) ,
+            rtNumAttrEntry(`d_last_d_roll`, `${d_char_source}last_d_roll`) ,
+            rtNumAttrEntry(`a_last_total_sl`, `${a_char_source}last_total_sl`),
+            rtNumAttrEntry(`d_last_total_sl`, `${d_char_source}last_total_sl`) ,
+            rtNumAttrEntry(`a_last_opposed`, `${a_char_source}last_opposed`) ,
+            rtNumAttrEntry(`d_last_opposed`, `${d_char_source}last_opposed`) ,
+            rtNumAttrEntry(`a_last_ts`, `${a_char_source}last_ts`) ,
+            rtNumAttrEntry(`d_last_ts`, `${d_char_source}last_ts`)
+        )
+        return entries
+    }
+    const addRollsToRoll = (entries, a_roll_source, d_roll_source, opposed_source) => {
+        entries.push(
+            rtEntry(`a_roll`, `[[${a_roll_source === "last" ? "-1" : a_roll_source}]]`) ,
+            rtEntry(`d_roll`, `[[${d_roll_source === "last" ? "-1" : d_roll_source}]]`) ,
+            rtEntry(`is_opposed`, `[[${opposed_source === "last" ? "-1": opposed_source}]]`)
+        )
+        return entries
+    }
+    const addOutputsToRoll = (entries, outputs) => {
+        outputs.forEach(key => {
+            entries.push(rtOutputEntry(key))
+        })
+        return entries
+    }
+
     const getRollTemplate = (template_name, test_name, a_char_source, aw_type, d_char_source, a_roll_source, d_roll_source, opposed_source) => {
-        const header = `{{name=${test_name}}}`
-        const names = `{{a_name=@{${a_char_source}character_name}}} {{d_name=@{${d_char_source}character_name}}}`
-        const weapon_names = `{{aw_name=@{${a_char_source}${aw_type}_weapon_name}}} {{dw_name=@{${d_char_source}defence_weapon_name}}}`
-        const skill_ids = `{{as_id=[[@{${a_char_source}${aw_type}_weapon_s_index}]]}} {{ds_id=[[@{${d_char_source}defence_weapon_s_index}]]}}`
-        const skill_values = `{{as_value=[[@{${a_char_source}${aw_type}_weapon_s_value}]]}} {{ds_value=[[@{${d_char_source}defence_weapon_s_value}]]}}`
+        let entries = []
+        entries.push(rtEntry(`name`, test_name))
+        entries.push(rtAttrEntry(`a_name`, `${a_char_source}character_name`), rtAttrEntry(`d_name`, `${d_char_source}character_name`))
+        entries.push(rtNumAttrEntry(`a_adv`, `${a_char_source}advantage`))
+        entries.push(rtNumAttrEntry(`d_adv`, `${d_char_source}advantage`))
 
-        const advantages = `{{a_adv=[[@{${a_char_source}advantage}]]}} {{d_adv=[[@{${d_char_source}advantage}]]}}`
+        entries = addWeaponToRoll(entries, 'a', a_char_source, aw_type)
+        entries = addWeaponToRoll(entries, 'd', d_char_source, `defence`)
+        entries = addDefenderResistanceToRoll(entries, d_char_source)
+        entries = addLastValuesToRoll(entries, a_char_source, d_char_source)
+        entries = addRollsToRoll(entries, a_roll_source, d_roll_source, opposed_source)
+        entries = addOutputsToRoll(entries, [
+            `a_target`, `d_target`, `a_roll_sl`, `d_roll_sl`, `total_sl`,
+            `hit_location`, `armour`, `is_attacker_win`, `a_is_crit`, `d_is_crit`, `total_damage`,
+            `aw_accurate`, `aw_damaging`, `aw_impact`, `aw_impale`, `aw_penetrating`, `aw_precise`,
+            `aw_dangerous`, `aw_imprecise`, `aw_undamaging`,
+            `dw_defensive`, `dw_fast`, `dw_impale`, `dw_dangerous`, `dw_slow`])
 
-        const damages = `{{aw_damage=[[@{${a_char_source}${aw_type}_weapon_damage}]]}} {{dw_damage=[[@{${d_char_source}defence_weapon_damage}]]}}`
-        const qualities = `{{aw_qualities=[[@{${a_char_source}${aw_type}_weapon_qualities}]]}} {{dw_qualities=[[@{${d_char_source}defence_weapon_qualities}]]}}`
-
-        const armour = `{{da_head=[[@{${d_char_source}armour_head}]]}} {{da_leftarm=[[@{${d_char_source}armour_leftarm}]]}} {{da_rightarm=[[@{${d_char_source}armour_rightarm}]]}} {{da_body=[[@{${d_char_source}armour_body}]]}} {{da_leftleg=[[@{${d_char_source}armour_leftleg}]]}} {{da_rightleg=[[@{${d_char_source}armour_rightleg}]]}} {{da_shield=[[@{${d_char_source}armour_shield}]]}}`
-        const tb = `{{d_tb=[[@{${d_char_source}toughness_bonus}]]}}`
-
-        const last_results = `{{a_last_a_roll=[[@{${a_char_source}last_a_roll}]]}} {{a_last_d_roll=[[@{${a_char_source}last_d_roll}]]}} {{d_last_a_roll=[[@{${d_char_source}last_a_roll}]]}} {{d_last_d_roll=[[@{${d_char_source}last_d_roll}]]}} {{a_last_total_sl=[[@{${a_char_source}last_total_sl}]]}} {{d_last_total_sl=[[@{${d_char_source}last_total_sl}]]}} {{a_last_opposed=[[@{${a_char_source}last_opposed}]]}} {{d_last_opposed=[[@{${d_char_source}last_opposed}]]}} {{a_last_ts=[[@{${a_char_source}last_ts}]]}} {{d_last_ts=[[@{${d_char_source}last_ts}]]}}`
-        const rolls = `{{a_roll=[[${a_roll_source == "last" ? "-1" : a_roll_source}]]}} {{d_roll=[[${d_roll_source == "last" ? "-1" : d_roll_source}]]}} {{is_opposed=[[${opposed_source == "last" ? "-1": opposed_source}]]}}`
-        const outputs = `{{a_target=[[1]]}} {{d_target=[[1]]}} {{a_roll_sl=[[1]]}} {{d_roll_sl=[[1]]}} {{total_sl=[[1]]}} {{hit_location=[[1]]}} {{armour=[[1]]}} {{is_attacker_win=[[1]]}} {{a_is_crit=[[1]]}} {{d_is_crit=[[1]]}} {{total_damage=[[1]]}}`
-        const weapon_outputs = `{{aw_accurate=[[1]]}} {{aw_damaging=[[1]]}} {{aw_impact=[[1]]}} {{aw_impale=[[1]]}} {{aw_penetrating=[[1]]}} {{aw_precise=[[1]]}} {{aw_dangerous=[[1]]}} {{aw_imprecise=[[1]]}} {{aw_undamaging=[[1]]}} {{dw_defensive=[[1]]}} {{dw_fast=[[1]]}} {{dw_impale=[[1]]}} {{dw_dangerous=[[1]]}} {{dw_slow=[[1]]}}`
-
-        return `${template_name} ${header} ${names} ${weapon_names} ${skill_ids} ${skill_values} ${advantages} ${damages} ${qualities} ${armour} ${tb} ${last_results} ${rolls} ${outputs} ${weapon_outputs}`
+        return rtString(template_name, entries)
     }
 
     const saveLastRoll = (outputs) => {
@@ -434,24 +524,22 @@ const wfrpModule = ( () => {
         update["last_ts"] = Math.floor(Date.now() / 1000)
         setAttrs(update)
     }
+    const processRoll = (input, p) => {
+        input[`${p}_is_passed`] = input[`${p}_roll`] <= input[`${p}_target`] && input[`${p}_roll`] < 100
+        input[`${p}_roll_sl`] = Math.trunc((input[`${p}_target`] - input[`${p}_roll`]) / 10)
 
-    // attacker_source and defender_source may be '' or 'target|'
-    const makeAttack = (testName, a_char_source, aw_type, d_char_source, a_roll_source, d_roll_source, opposed_source) => {
+        const is_double = helperFunctions.isRollDouble(input[`${p}_roll`])
+        input[`${p}_is_crit`] = !is_double ? 0 : input[`${p}_is_passed`] ? 1 : -1;
+        return input
+    }
 
+    const makeAttack = (test_name, a_char_source, aw_type, d_char_source, dw_type, a_roll_source, d_roll_source, opposed_source, active_defence_source) => {
         const prepareRoll = (input) => {
             input.a_adv = input.a_adv * 10
             input.d_adv = input.d_adv * 10
             input.a_target = input.as_value + input.a_adv
             input.d_target = input.ds_value + input.d_adv
 
-            return input
-        }
-        const processRoll = (input, p) => {
-            input[`${p}_is_passed`] = input[`${p}_roll`] <= input[`${p}_target`] && input[`${p}_roll`] < 100
-            input[`${p}_roll_sl`] = Math.floor((input[`${p}_target`] - input[`${p}_roll`]) / 10)
-
-            const is_double = helperFunctions.isRollDouble(input[`${p}_roll`])
-            input[`${p}_is_crit`] = !is_double ? 0 : input[`${p}_is_passed`] ? 1 : -1;
             return input
         }
 
@@ -472,6 +560,19 @@ const wfrpModule = ( () => {
             }
             return input
         }
+        const applyOffHand = (input) => {
+            input.a_off_hand_penalty = !input.aw_off_hand
+                ? 0
+                : Math.min(-20 + (parseInt(input.a_ambidextrous_rank) || 0) * 10, 0)
+
+            input.d_off_hand_penalty = (!input.dw_off_hand || hasQuality(input.dw_qualities, 'defensive'))
+                ? 0
+                : Math.min(-20 + (parseInt(input.d_ambidextrous_rank) || 0) * 10)
+
+            input.a_target = input.a_target + input.a_off_hand_penalty
+            input.d_target = input.d_target + input.d_off_hand_penalty
+            return input
+        }
 
         const applyDefensiveQuality = (input) => {
             input.dw_defensive = hasQuality(input.dw_qualities, 'defensive') ?  1 : 0
@@ -484,7 +585,7 @@ const wfrpModule = ( () => {
             return input
         }
         const applyImpaleQuality = (input) => {
-            const isImpaleRoll = (qualities, roll, is_passed) => hasQuality(qualities, 'impale') && roll % 10 == 0 && is_passed
+            const isImpaleRoll = (qualities, roll, is_passed) => hasQuality(qualities, 'impale') && roll % 10 === 0 && is_passed
 
             input.aw_impale = isImpaleRoll(input.aw_qualities, input.a_roll, input.a_is_passed) ? 1 : 0
             input.dw_impale = isImpaleRoll(input.dw_qualities, input.d_roll, input.d_is_passed) ? 1 : 0
@@ -501,7 +602,7 @@ const wfrpModule = ( () => {
         }
         const applyDangerousQuality = (input) => {
             const isDangerousRoll = (qualities, roll, is_passed) => hasQuality(qualities, 'dangerous')
-                && (roll % 10 == 9 || Math.floor(roll / 10) == 9) && !is_passed
+                && (roll % 10 === 9 || Math.floor(roll / 10) === 9) && !is_passed
 
             input.aw_dangerous = isDangerousRoll(input.aw_qualities, input.a_roll, input.a_is_passed) ? 1 : 0
             input.dw_dangerous = isDangerousRoll(input.dw_qualities, input.d_roll, input.d_is_passed) ? 1 : 0
@@ -517,17 +618,44 @@ const wfrpModule = ( () => {
             return input
         }
 
-        const rollString = getRollTemplate(`&{template:wfrp-opposed}`, testName, a_char_source, aw_type, d_char_source, a_roll_source, d_roll_source, opposed_source)
-        startRoll(rollString, (results) => {
+        let entries = []
+        entries.push(rtEntry(`name`, test_name))
+        entries.push(rtAttrEntry(`a_name`, `${a_char_source}character_name`), rtAttrEntry(`d_name`, `${d_char_source}character_name`))
+        entries.push(active_defence_source === "defender"
+            ? rtNumAttrEntry(`d_active_defence`, `${d_char_source}active_defence`)
+            : rtNumEntry(`d_active_defence`, active_defence_source)
+        )
+        entries.push(rtAttrEntry(`a_talent_str`, `${a_char_source}attacker_talent_str`), rtAttrEntry(`d_talent_str`, `${d_char_source}defender_talent_str`))
+        entries.push(rtNumAttrEntry(`a_talent_rank`, `${a_char_source}attacker_talent_rank`), rtNumAttrEntry(`d_talent_rank`, `${d_char_source}defender_talent_rank`))
+        entries.push(rtNumAttrEntry(`a_adv`, `${a_char_source}advantage`))
+        entries.push(rtNumAttrEntry(`d_adv`, `${d_char_source}advantage`))
+        entries.push(rtNumAttrEntry(`a_ambidextrous_rank`,`${a_char_source}ambidextrous_rank`),rtNumAttrEntry(`d_ambidextrous_rank`,`${d_char_source}ambidextrous_rank`))
+
+        entries = addWeaponToRoll(entries, 'a', a_char_source, aw_type)
+        entries = addWeaponToRoll(entries, 'd', d_char_source, dw_type)
+        entries = addDefenderResistanceToRoll(entries, d_char_source)
+        entries = addLastValuesToRoll(entries, a_char_source, d_char_source)
+        entries = addRollsToRoll(entries, a_roll_source, d_roll_source, opposed_source)
+        entries = addOutputsToRoll(entries, [
+            `a_target`, `d_target`, `a_roll_sl`, `d_roll_sl`, `total_sl`,
+            `hit_location`, `armour`, `is_attacker_win`, `a_is_crit`, `d_is_crit`, `total_damage`,
+            `aw_accurate`, `aw_damaging`, `aw_impact`, `aw_impale`, `aw_penetrating`, `aw_precise`,
+            `aw_dangerous`, `aw_imprecise`, `aw_undamaging`,
+            `dw_defensive`, `dw_fast`, `dw_impale`, `dw_dangerous`, `dw_slow`,
+            `is_only_aw_name`, `a_off_hand_penalty`, `d_off_hand_penalty`])
+
+        startRoll(rtString(`&{template:wfrp-opposed}`, entries), (results) => {
             let outputs = extractRollResults(results)
 
-            if (a_roll_source == "last") outputs.a_roll = getLastValue(outputs, "a_roll")
-            if (d_roll_source == "last") outputs.d_roll = getLastValue(outputs, "d_roll")
-            if (opposed_source == "last") outputs.is_opposed = getLastValue(outputs, "opposed")
+            if (a_roll_source === "last") outputs.a_roll = getLastValue(outputs, "a_roll")
+            if (d_roll_source === "last") outputs.d_roll = getLastValue(outputs, "d_roll")
+            if (opposed_source === "last") outputs.is_opposed = getLastValue(outputs, "opposed")
+            outputs.is_only_aw_name = (!outputs.is_opposed || outputs.d_active_defence) ? 1 : 0
 
             outputs = prepareRoll(outputs)
             outputs = applyAccurateQuality(outputs)
             outputs = applyFastQuality(outputs)
+            outputs = applyOffHand(outputs)
 
             outputs = processRoll(outputs, "a")
             outputs = processRoll(outputs, "d")
@@ -539,13 +667,17 @@ const wfrpModule = ( () => {
             outputs = applyImpreciseQuality(outputs)
             outputs = applySlowQuality(outputs)
 
+            if (!outputs.a_is_passed) outputs.a_talent_rank = 0
+            if (!outputs.d_is_passed) outputs.d_talent_rank = 0
+            outputs.a_roll_sl = outputs.a_roll_sl + outputs.a_talent_rank
+            outputs.d_roll_sl = outputs.d_roll_sl + outputs.d_talent_rank
+
             outputs.total_sl = outputs.is_opposed ? outputs.a_roll_sl - outputs.d_roll_sl : outputs.a_roll_sl;
             outputs.is_attacker_win = outputs.is_opposed
                 ? (outputs.total_sl > 0 || outputs.total_sl == 0 && outputs.as_value > outputs.ds_value ? 1 : 0)
                 : (outputs.a_is_passed ? 1 : 0)
 
             outputs = calculateDamage(outputs)
-
 
             const update = {}
             update["last_a_roll"] = outputs.a_roll
@@ -559,10 +691,17 @@ const wfrpModule = ( () => {
     }
 
     const makeRiposte = () => {
-        const rollString = getRollTemplate(`&{template:wfrp-riposte}`, `Riposte`, '', 'defence', 'target|', "1", "1", "1")
-        console.log(rollString)
+        let entries = []
+        entries.push(rtEntry(`name`, `Riposte`))
+        entries.push(rtAttrEntry(`a_name`, `character_name`), rtAttrEntry(`d_name`, `target|character_name`))
 
-        startRoll(rollString, (results) => {
+        entries = addWeaponToRoll(entries, 'a', '', `defence`)
+        entries = addDefenderResistanceToRoll(entries, 'target|')
+        entries = addLastValuesToRoll(entries, '', 'target|')
+        entries = addRollsToRoll(entries, `last`, `last`, `last`)
+        entries = addOutputsToRoll(entries, [`total_sl`, `hit_location`, `armour`, `total_damage`, `aw_damaging`, `aw_impact`, `aw_penetrating`, `aw_undamaging`])
+
+        startRoll(rtString(`&{template:wfrp-riposte}`, entries), (results) => {
             let inputs = extractRollResults(results)
             inputs.a_roll = getLastValue(inputs, "a_roll")
             inputs.total_sl = getLastValue(inputs, "total_sl")
@@ -667,9 +806,17 @@ const wfrpModule = ( () => {
         getAttrs(["setting_max_advantage"], values => {
             const update = {}
             update.advantage= "0"
-            update.advantage_max= values["setting_max_advantage"]
+            update.advantage_max= values["setting_max_advantage"] || 10
             setAttrs(update)
         })
+        setAttrs({
+            ["active_defence"]: "0",
+            ["dodge_defence"]: "1",
+            ["main_hand_defence"]: "0",
+            ["off_hand_defence"]: "0"
+        })
+        calculateCombatTalentAttr()
+        handleDefenceSelection("dodge_defence")
     }
 
     const updateSheet = (version) => {
@@ -878,6 +1025,7 @@ const wfrpModule = ( () => {
         })
         update["fate"] = wfrp.species[new_value]["fate"]
         update["fortune"] = wfrp.species[new_value]["fate"]
+        update["fortune_max"] = wfrp.species[new_value]["fate"]
         update["resilience"] = wfrp.species[new_value]["resilience"]
         update["resolve"] = wfrp.species[new_value]["resilience"]
         update["movement"] = wfrp.species[new_value]["movement"]
@@ -1036,8 +1184,7 @@ const wfrpModule = ( () => {
     const cascadeAttributeChange = (characteristic) => {
 
         getAttrs(["npc"], check => {
-
-            if (check["npc"] === "on") return;
+            //if (check["npc"] === "on") return;
 
             wfrp.skills.forEach(skill => {
                 getAttrs([`${skill}_characteristic`], values => {
@@ -1092,7 +1239,7 @@ const wfrpModule = ( () => {
 
         getAttrs(["npc"], check => {
 
-            if (check["npc"] === "on") return;
+            //if (check["npc"] === "on") return;
 
             const attrs = [
                 `${skill}_characteristic`
@@ -1133,7 +1280,7 @@ const wfrpModule = ( () => {
 
         getAttrs(["npc"], check => {
 
-            if (check["npc"] === "on") return;
+            //if (check["npc"] === "on") return;
 
             const attrs = [
                 `${specialisation}_characteristic`,
@@ -2141,6 +2288,28 @@ const wfrpModule = ( () => {
 
     }
 
+    const calculateWeaponQualitiesString = (sourceAttribute) => {
+        getAttrs(wfrpModule.wfrp.weapon_attrs_for_opposed_test, v => {
+            const qualities_str_arr = []
+            if (v[`repeating_weapons_weapon_qualities`] && v[`repeating_weapons_weapon_qualities`] !== "")
+                qualities_str_arr.push(v[`repeating_weapons_weapon_qualities`])
+
+            for (let i = 0; i < wfrpModule.wfrp.weapon_qualities.length; i++) {
+                const hasQuality = v[`repeating_weapons_weapon_q_${wfrpModule.wfrp.weapon_qualities[i]}`] !== '0'
+                if (hasQuality) {
+                    let quality_label = wfrpModule.wfrp.weapon_qualities[i]
+                    quality_label = quality_label[0].toUpperCase() + quality_label.substring(1)
+                    qualities_str_arr.push(quality_label)
+                }
+            }
+            const result = qualities_str_arr.length > 0 ? qualities_str_arr.join(", ") : "---"
+            const repeating_id = helperFunctions.extractRepeatingId(sourceAttribute, "weapons")
+            setAttrs({
+                [`${repeating_id}_weapon_qualities_str`]: result,
+            })
+        })
+    }
+
     const calculateCurrentWeaponAttrsForOpposedTest = (source_attr_name, v) => {
         result = {}
 
@@ -2150,17 +2319,11 @@ const wfrpModule = ( () => {
 
         // each quality is 1 bit
         let qualityState = 0;
-        const qualities_str_arr = []
-        if (v[`repeating_weapons_weapon_qualities`] && v[`repeating_weapons_weapon_qualities`] !== "")
-            qualities_str_arr.push(v[`repeating_weapons_weapon_qualities`])
 
         for (let i = 0; i < wfrpModule.wfrp.weapon_qualities.length; i++) {
             const hasQuality = v[`repeating_weapons_weapon_q_${wfrpModule.wfrp.weapon_qualities[i]}`] !== '0'
             if (hasQuality) {
                 qualityState = qualityState + 2**i
-                let quality_label = wfrpModule.wfrp.weapon_qualities[i]
-                quality_label = quality_label[0].toUpperCase() + quality_label.substring(1)
-                qualities_str_arr.push(quality_label)
             }
         }
 
@@ -2170,7 +2333,8 @@ const wfrpModule = ( () => {
         result.weapon_s_value = v[`repeating_weapons_weapon_target_display`]
         result.weapon_damage = weapon_damage
         result.weapon_qualities = qualityState
-        result.weapon_qualities_str = qualities_str_arr.join(", ")
+        result.weapon_qualities_str = v[`repeating_weapons_weapon_qualities_str`]
+        result.weapon_is_ranged = wfrp.specialisations.slice(8, 16).includes(v[`repeating_weapons_weapon_group`].toLowerCase()) ? 1: 0
 
         return result
     }
@@ -2195,12 +2359,17 @@ const wfrpModule = ( () => {
     const setSelectedWeaponAs = (weapon_id, weapon_type) => {
         getAttrs(wfrpModule.wfrp.weapon_attrs_for_opposed_test, v => {
             const weapon_attrs = calculateCurrentWeaponAttrsForOpposedTest(weapon_id, v)
+            weapon_attrs.weapon_is_off_hand = weapon_type==="off_hand" ? 1 : 0
+            weapon_attrs.weapon_is_pistol = hasQuality(weapon_attrs.weapon_qualities, 'pistol') ? 1 : 0
             setWeaponAttrsForOpposedTest(weapon_type, weapon_attrs)
         })
     }
 
     const setEmptyWeaponAs = (weapon_type) => {
-        const empty = {weapon_id: '', weapon_name: '---', weapon_s_index: 0, weapon_s_value: 0, weapon_damage:0, weapon_qualities: 0, weapon_qualities_str: ""}
+        const empty = {weapon_id: '', weapon_name: '---',
+            weapon_s_index: 0, weapon_s_value: 0, weapon_damage:0, weapon_qualities: 0, weapon_qualities_str: "---",
+            weapon_is_off_hand: 0, weapon_is_ranged: 0
+        }
         setWeaponAttrsForOpposedTest(weapon_type, empty)
     }
 
@@ -2209,7 +2378,9 @@ const wfrpModule = ( () => {
         getAttrs(['dodge'], v => {
             const dodge_attrs = {
                 weapon_id: '', weapon_name: wfrpModule.getSkillLabelById(skill_index),
-                weapon_s_index: skill_index, weapon_s_value: v[`dodge`], weapon_damage:0, weapon_qualities: 0, weapon_qualities_str: ''
+                weapon_s_index: skill_index, weapon_s_value: v[`dodge`], weapon_damage:0,
+                weapon_qualities: 0, weapon_qualities_str: '',
+                weapon_is_off_hand: 0, weapon_is_ranged: 0
             }
             setWeaponAttrsForOpposedTest(weapon_type, dodge_attrs)
         })
@@ -2225,27 +2396,7 @@ const wfrpModule = ( () => {
         })
     }
 
-    const updateDefenceWeapon = (source_attr_name) => {
-        console.log('here')
-
-        if (source_attr_name !== "") {
-            getAttrs(wfrpModule.wfrp.weapon_attrs_for_opposed_test, v => {
-                const weapon_attrs = calculateCurrentWeaponAttrsForOpposedTest(source_attr_name, v)
-                setWeaponAttrsForOpposedTest("defence", weapon_attrs)
-            })
-        } else {
-            const skill_index = wfrpModule.getSkillId('dodge')
-            getAttrs(['dodge'], v => {
-                const dodge_attrs = {
-                    weapon_id: '', weapon_name: wfrpModule.getSkillLabelById(skill_index),
-                    weapon_s_index: skill_index, weapon_s_value: v[`dodge`], weapon_damage:0, weapon_qualities: 0
-                }
-                setWeaponAttrsForOpposedTest("defence", dodge_attrs)
-            })
-        }
-    }
-
-    const handleWeaponSelection = (eventInfo, weapon_type, empty_state) => {
+    const handleWeaponHandSelection = (eventInfo, weapon_type, empty_state) => {
         if (eventInfo.sourceType === 'sheetworker') return
         const current_new_value = eventInfo.newValue
         const current_id = eventInfo.sourceAttribute
@@ -2260,10 +2411,27 @@ const wfrpModule = ( () => {
         }
     }
 
-    const incrementAttribute = (attr, attr_max) => {
+    const handleDefenceSelection = (source_attribute) => {
+        if (source_attribute === 'dodge_defence') {
+            setDodgeAs("defence")
+            return
+        }
+        const weapon_type = source_attribute.replace("_defence", "")
+
+        getAttrs(wfrp.public_weapon_attrs.map(attr => `${weapon_type}_${attr}`), v => {
+            const update = {}
+            wfrp.public_weapon_attrs.forEach(attr => {
+                update[attr] = v[`${weapon_type}_${attr}`]
+            })
+            setWeaponAttrsForOpposedTest("defence", update)
+        })
+
+    }
+
+    const incrementAttribute = (attr, attr_max, can_overflow) => {
         getAttrs([attr, attr_max], values => {
             const maximum = (values[attr_max] && parseInt(values[attr_max]) > 0) ? parseInt(values[attr_max]) : 9999;
-            const result = (parseInt(values[attr]) < maximum) ? parseInt(values[attr]) + 1 : parseInt(values[attr]);
+            const result = (parseInt(values[attr]) < maximum || can_overflow) ? parseInt(values[attr]) + 1 : parseInt(values[attr]);
 
             const update = {}
             update[attr] = result
@@ -2359,6 +2527,35 @@ const wfrpModule = ( () => {
         });
 
     };
+
+    const calculateCombatTalentAttr = () => {
+        const getTAttr = (id, attr) => `repeating_talent_${id}_${attr}`
+        const calcTalentStr = (ids, v) => ids.map(id => v[getTAttr(id, 'talent_name')]).join('\n') || '---'
+        const calcTalentRank = (ids, v) => ids.map(id => parseInt(v[getTAttr(id, 'talent_ranks')]) || 0).reduce((l, r) => l+r, 0)
+
+        helperFunctions.getSectionIDsOrdered('talent', (ids) => {
+            const talent_attrs = []
+            ids.forEach(id => {
+                talent_attrs.push(getTAttr(id, 'talent_name'),getTAttr(id, 'talent_ranks'),
+                    getTAttr(id, `use_in_defence`), getTAttr(id, `use_in_attack`), getTAttr(id, `ambidextrous`)
+                )
+            })
+            getAttrs(talent_attrs, v => {
+                const defence_ids = ids.filter(id => v[getTAttr(id, "use_in_defence")] === "1")
+                const attack_ids = ids.filter(id => v[getTAttr(id, "use_in_attack")] === "1")
+                const ambidextrous_ids = ids.filter(id => v[getTAttr(id, "ambidextrous")] === "1")
+
+                const update = {
+                    ["defender_talent_str"]: calcTalentStr(defence_ids, v),
+                    ["defender_talent_rank"]: calcTalentRank(defence_ids, v),
+                    ["attacker_talent_str"]: calcTalentStr(attack_ids, v),
+                    ["attacker_talent_rank"]: calcTalentRank(attack_ids, v),
+                    ["ambidextrous_rank"]: calcTalentRank(ambidextrous_ids, v),
+                }
+                setAttrs(update)
+            })
+        })
+    }
 
     // Spells & Prayers Functions
 
@@ -2606,12 +2803,15 @@ const wfrpModule = ( () => {
         updateWeaponDamage:updateWeaponDamage,
         updateWeaponTarget:updateWeaponTarget,
         currencyConversion:currencyConversion,
-        updateDefenceWeapon: updateDefenceWeapon,
         calculateCurrentWeaponAttrsForOpposedTest: calculateCurrentWeaponAttrsForOpposedTest,
+        calculateWeaponQualitiesString: calculateWeaponQualitiesString,
         setWeaponAttrsForOpposedTest: setWeaponAttrsForOpposedTest,
         setAttackWeaponFrom: setAttackWeaponFrom,
-        handleWeaponSelection:handleWeaponSelection,
+        handleWeaponHandSelection:handleWeaponHandSelection,
+        handleDefenceSelection:handleDefenceSelection,
         setSelectedWeaponAs: setSelectedWeaponAs,
+        setDodgeAs: setDodgeAs,
+        calculateCombatTalentAttr: calculateCombatTalentAttr,
 
         // Combat Functions
         incrementAttribute:incrementAttribute,
@@ -2798,68 +2998,157 @@ on(`change:strength_bonus change:toughness_bonus change:encumbrance_bonus change
 
 ["gold_to_silver", "silver_to_gold", "silver_to_brass", "brass_to_silver"].forEach(conversion => on(`clicked:${conversion}`, eventInfo => wfrpModule.currencyConversion(conversion)));
 
-// атака (и op и unop) - сделать расчет со 1d100 a_roll и d_roll, сохранить last_a_roll, last_d_roll в a
-// активная защита в оп атаке - сделать расчет с last_a_roll цели, 1d100 d_roll, сохранить last_a_roll, last_d_roll в d
-// реролл атакующего - сделать расчет с 1d100 a_roll и своим last_d_roll, сохранить last_a_roll, last_d_roll в a
-// реролл защитника - сделать расчет с последним (между a и d) last_a_roll и 1d100 d_roll, сохранить в d
-// рипост - сделать расчет с последним (между a и d) last_total_sl и d_roll, не сохранять
-// dual wielder - сделать расчет с последним (между a и d) last_a_roll и 1d100 d_roll, сохранить в a
-
 on(`clicked:main_opposed_attack`, (eventInfo) => {
-    wfrpModule.makeAttack("Opposed Test", '', 'main_hand', 'target|', '1d100', '1d100', '1')
+    wfrpModule.makeAttack(
+        "Opposed Test",
+        '', 'main_hand', 'target|', 'defence',
+        '1d100', '1d100', '1',
+        'defender'
+    )
     wfrpModule.setAttackWeaponFrom("main_hand")
 })
 
 on(`clicked:main_unopposed_attack`, (eventInfo) => {
-    wfrpModule.makeAttack("Unopposed Test", '', 'main_hand', 'target|', '1d100', '1d100', '0')
+    wfrpModule.makeAttack("Unopposed Test",
+        '', 'main_hand', 'target|', 'defence',
+        '1d100', '1d100', '0',
+        '0'
+    )
     wfrpModule.setAttackWeaponFrom("main_hand")
 })
 
+on(`clicked:main_defend`, (eventInfo) => {
+    wfrpModule.makeAttack("Opposed Test",
+        'target|', 'attack', '', 'main_hand',
+        '@{target|last_a_roll}', '1d100', '1',
+        '0'
+    )
+    wfrpModule.handleDefenceSelection("main_hand_defence")
+})
+
+on(`clicked:off_defend`, (eventInfo) => {
+    wfrpModule.makeAttack("Opposed Test",
+        'target|', 'attack', '', 'off_hand',
+        '@{target|last_a_roll}', '1d100', '1',
+        '0'
+    )
+    wfrpModule.handleDefenceSelection("off_hand_defence")
+})
+
+on(`clicked:dodge_defend`, (eventInfo) => {
+    wfrpModule.makeAttack("Opposed Test",
+        'target|', 'attack', '', 'dodge',
+        '@{target|last_a_roll}', '1d100', '1',
+        '0'
+    )
+    wfrpModule.handleDefenceSelection("dodge_defence")
+})
+
 on(`clicked:off_opposed_attack`, (eventInfo) => {
-    console.log('test')
-    wfrpModule.makeAttack("Opposed Test", '', 'off_hand', 'target|', '1d100', '1d100', '1')
+    wfrpModule.makeAttack("Opposed Test",
+        '', 'off_hand', 'target|', 'defence',
+        '1d100', '1d100', '1',
+        'defender'
+    )
     wfrpModule.setAttackWeaponFrom("off_hand")
 })
 
+on(`clicked:dual_wielder_attack`, (eventInfo) => {
+    getAttrs(["last_a_roll"], v => {
+        const last_a_roll = parseInt(v.last_a_roll)
+        const dual_wielder_roll = helperFunctions.isRollDouble(last_a_roll)
+            ? `?{Enter roll from Critical Table|${last_a_roll}`
+            : `${helperFunctions.reverseRoll(last_a_roll)}`
+
+        wfrpModule.makeAttack("Dual Wielder",
+            '', 'off_hand', 'target|', 'defence',
+            dual_wielder_roll, '1d100', '@{last_opposed}',
+            'defender'
+        )
+        wfrpModule.setAttackWeaponFrom("off_hand")
+    })
+})
+
 on(`clicked:off_unopposed_attack`, (eventInfo) => {
-    console.log('test')
-    wfrpModule.makeAttack("Unopposed Test", '', 'off_hand', 'target|', '1d100', '1d100', '0')
+    wfrpModule.makeAttack("Unopposed Test",
+        '', 'off_hand', 'target|', 'defence',
+        '1d100', '1d100', '0',
+        "0"
+    )
     wfrpModule.setAttackWeaponFrom("off_hand")
 })
 
 on(`clicked:reroll_as_attacker`, (eventInfo) => {
-    wfrpModule.makeAttack("Reroll Attacking Test", '', 'attack', 'target|', '1d100', '@{last_d_roll}', '@{last_opposed}')
+    wfrpModule.makeAttack("Reroll Attacking Test",
+        '', 'attack', 'target|', 'defence',
+        '1d100', '@{last_d_roll}', '@{last_opposed}',
+        "defender"
+    )
 })
 
 on(`clicked:reroll_as_defender`, (eventInfo) => {
-    wfrpModule.makeAttack("Reroll Defending Test", 'target|', 'attack', '', 'last', '1d100', '1')
+    wfrpModule.makeAttack("Reroll Defending Test",
+        'target|', 'attack', '', 'defence',
+        'last', '1d100', '1',
+        "0"
+    )
 })
 
-// on(`clicked:roll_test_values`, (eventInfo) => {
-//     wfrpModule.makeAttack("Debug Roll", '', 'target|', '?{Attacker roll|0}', '?{Defender roll|0}','?{Is opposed|1}')
-// })
+on(`clicked:debug_roll`, (eventInfo) => {
+    wfrpModule.makeAttack("Debug Roll",
+        '', 'attack', 'target|', 'defence',
+        '?{Attacker roll|0}', '?{Defender roll|0}','?{Is opposed|1}',
+        '0'
+    )
+})
+
+on(`clicked:grapple`, (eventInfo) => {
+    wfrpModule.makeAttack("Grapple",
+        '', 'grapple', 'target|', 'grapple',
+        '1d100', '1d100','1',
+        '0'
+    )
+})
+
 on(`clicked:riposte`, (eventInfo) => {
     wfrpModule.makeRiposte()
 })
 
+on(`change:repeating_weapons:main_hand`, eventInfo => {wfrpModule.handleWeaponHandSelection(eventInfo, "main_hand", "empty")})
 
-on(`change:repeating_weapons:defence`, eventInfo => {wfrpModule.handleWeaponSelection(eventInfo, "defence", "dodge")})
-on(`change:repeating_weapons:main_hand`, eventInfo => {wfrpModule.handleWeaponSelection(eventInfo, "main_hand", "empty")})
-on(`change:repeating_weapons:off_hand`, eventInfo => {wfrpModule.handleWeaponSelection(eventInfo, "off_hand", "empty")})
-
+on(`change:repeating_weapons:off_hand`, eventInfo => {wfrpModule.handleWeaponHandSelection(eventInfo, "off_hand", "empty")})
 wfrpModule.wfrp.weapon_attrs_for_opposed_test.map(attr => attr.replace("repeating_weapons_", "repeating_weapons:"))
     .forEach(attr => on(`change:${attr}`, eventInfo => {
-            getAttrs(["repeating_weapons_defence", "repeating_weapons_main_hand", "repeating_weapons_off_hand"], v => {
-                if (v["repeating_weapons_defence"] !== '0') wfrpModule.setSelectedWeaponAs(eventInfo.sourceAttribute, 'defence')
-                if (v["repeating_weapons_main_hand"] !== '0') wfrpModule.setSelectedWeaponAs(eventInfo.sourceAttribute, 'main_hand')
-                if (v["repeating_weapons_off_hand"] !== '0') wfrpModule.setSelectedWeaponAs(eventInfo.sourceAttribute, 'off_hand')
-            })
+        wfrpModule.calculateWeaponQualitiesString(eventInfo.sourceAttribute)
+
+        getAttrs(["repeating_weapons_main_hand", "repeating_weapons_off_hand"], v => {
+            if (v["repeating_weapons_main_hand"] !== '0') wfrpModule.setSelectedWeaponAs(eventInfo.sourceAttribute, 'main_hand')
+            if (v["repeating_weapons_off_hand"] !== '0') wfrpModule.setSelectedWeaponAs(eventInfo.sourceAttribute, 'off_hand')
+        })
     }))
 
-on(`change:dodge`, eventInfo => {getAttrs(["defence_weapon_id"], v => {
-    if (!v["defence_weapon_id"])
-        wfrpModule.updateDefenceWeapon('')
-})})
+on(`change:main_hand_defence change:off_hand_defence change:dodge_defence`, eventInfo => {
+    if (eventInfo.sourceType === 'sheetworker') return
+    if (eventInfo.newValue === '0') {
+        setAttrs({[eventInfo.sourceAttribute]: "1"})
+        return
+    }
+    const update = {}
+    update.main_hand_defence = "0"
+    update.off_hand_defence = "0"
+    update.dodge_defence = "0"
+    update[eventInfo.sourceAttribute] = "1"
+    setAttrs(update)
+    wfrpModule.handleDefenceSelection(eventInfo.sourceAttribute)
+})
+
+on(wfrpModule.wfrp.public_weapon_attrs.map(attr => `change:main_hand_${attr} change:off_hand_${attr}`).join(" ").concat(` change:dodge`), (eventInfo) => {
+    getAttrs(["main_hand_defence", "off_hand_defence", "dodge_defence"], v => {
+        if(v["main_hand_defence"] !== "0") wfrpModule.handleDefenceSelection("main_hand_defence")
+        if(v["off_hand_defence"] !== "0") wfrpModule.handleDefenceSelection("off_hand_defence")
+        if(v["dodge_defence"] !== "0") wfrpModule.handleDefenceSelection("dodge_defence")
+    })
+})
 
 // COMBAT FUNCTIONS 
 
@@ -2871,17 +3160,21 @@ on(`change:basic change:willpower_bonus change:corruption_points_mod`, eventInfo
 
 on(`change:strength_bonus change:toughness_bonus change:encumbrance_mod`, eventInfo => wfrpModule.calculateMaxEncumbrance());
 
-on(`clicked:increment_advantage`, eventInfo => wfrpModule.incrementAttribute("advantage", "advantage_max"));
-
+on(`clicked:increment_advantage`, eventInfo => wfrpModule.incrementAttribute("advantage", "advantage_max", false));
 on(`clicked:decrement_advantage`, eventInfo => wfrpModule.decrementAttribute("advantage"));
-
 on(`clicked:reset_advantage`, eventInfo => setAttrs({advantage:0}));
 
-on(`clicked:increment_wounds`, eventInfo => wfrpModule.incrementAttribute("wounds", "wounds_max"));
-
+on(`clicked:increment_wounds`, eventInfo => wfrpModule.incrementAttribute("wounds", "wounds_max", true));
 on(`clicked:decrement_wounds`, eventInfo => wfrpModule.decrementAttribute("wounds"));
-
 on(`clicked:reset_wounds`, eventInfo => {getAttrs(["wounds_max"], v => {setAttrs({wounds: v["wounds_max"]})})})
+
+on(`clicked:increment_cp`, eventInfo => wfrpModule.incrementAttribute("corruption_points", "corruption_points_max", true));
+on(`clicked:decrement_cp`, eventInfo => wfrpModule.decrementAttribute("corruption_points"));
+
+on(`clicked:increment_fp`, eventInfo => wfrpModule.incrementAttribute("fortune", "fortune_max", false));
+on(`clicked:decrement_fp`, eventInfo => wfrpModule.decrementAttribute("fortune"));
+on(`clicked:reset_fp`, eventInfo => {getAttrs(["fortune_max"], v => {setAttrs({fortune: v["fortune_max"]})})})
+
 
 // SPELL FUNCTIONS
 
@@ -2898,3 +3191,7 @@ on(`change:weapon_skill change:ballistic_skill`, eventInfo => wfrpModule.cascade
 });
 
 on(`change:npc sheet:opened`, eventInfo => wfrpModule.updateNPCButtons());
+
+// TALENT FUNCTIONS
+on(`change:repeating_talent:talent_name change:repeating_talent:talent_ranks change:repeating_talent:use_in_defence ` +
+    `change:repeating_talent:use_in_attack change:repeating_talent:ambidextrous`, (eventInfo) => wfrpModule.calculateCombatTalentAttr())

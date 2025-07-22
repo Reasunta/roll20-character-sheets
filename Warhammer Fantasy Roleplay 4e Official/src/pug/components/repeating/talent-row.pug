@@ -19,30 +19,45 @@ mixin talent-row
             span(name=`attr_talent_description`)
             
         .wfrp-talenttable__row.wfrp-settings.control__hide--talent_settings
-        
-            .wfrp-settings__row--span
-                .wfrp-settings__label(data-i18n=`Name`) 
-                input.wfrp-settings__input(name=`attr_talent_name`, type="text")
-        
-            .wfrp-settings__row
-                .wfrp-settings__label(data-i18n=`Ranks`) 
-                input.wfrp-settings__input(name=`attr_talent_ranks`, type="number")
-        
-            .wfrp-settings__row
-                .wfrp-settings__label(data-i18n=`Max`) 
-                input.wfrp-settings__input(name=`attr_talent_ranks_max`, type="number")
-        
-            .wfrp-settings__row--span
-                .wfrp-settings__label(data-i18n=`Modifiers`) 
-                input.wfrp-settings__input(name=`attr_talent_mods`, type="text") 
+            +talent-row-settings()
 
             .wfrp-settings__row--span.control__hide--skill
-                .wfrp-settings__label(data-i18n=`Skill`) 
+                .wfrp-settings__label(data-i18n=`Skill`)
                 select.wfrp-settings__select.control__select(name="attr_talent_test_skill")
-                    option(data-i18n="None", value="none") 
+                    option(data-i18n="None", value="none")
                     each skill in [...skills.basic, ...skills.advanced]
-                        option(data-i18n=skill.name, value=skill.name.toLowerCase().replace(/ /g,"_"))
-                            
-            .wfrp-settings__row--span
-                .wfrp-settings__label--full(data-i18n=`Description`) 
-                textarea.wfrp-settings__textarea(name=`attr_talent_description`)     
+                        option(data-i18n=skill.name, value=skill.name.toLowerCase().replace(/ /g, "_"))
+
+
+mixin talent-row-settings
+    .wfrp-settings__row--span
+        .wfrp-settings__label(data-i18n=`Name`)
+        input.wfrp-settings__input(name=`attr_talent_name`, type="text")
+    .wfrp-settings__row
+        .wfrp-settings__label(data-i18n=`Ranks`)
+        input.wfrp-settings__input(name=`attr_talent_ranks`, type="number")
+    .wfrp-settings__row
+        .wfrp-settings__label(data-i18n=`Max`)
+        input.wfrp-settings__input(name=`attr_talent_ranks_max`, type="number")
+    .wfrp-settings__row--span
+        .wfrp-settings__label(data-i18n=`Modifiers`)
+        input.wfrp-settings__input(name=`attr_talent_mods`, type="text")
+
+    .wfrp-settings__row
+        .wfrp-settings__label(data-i18n=`Combat`)
+        input.wfrp-settings__input(name=`attr_is_combat`, type="checkbox", value="1", title="Show the talent in encounter mode")
+    .wfrp-settings__row
+        .wfrp-settings__label(data-i18n=`Defence`)
+        input.wfrp-settings__input(name=`attr_use_in_defence`, type="checkbox", value="1", title="Add the Talent's Ranks to SL of passed Melee Test in Defence")
+    .wfrp-settings__row--span
+        .wfrp-settings__label--full(data-i18n=`Description`)
+        textarea.wfrp-settings__textarea(name=`attr_talent_description`)
+    .wfrp-settings__row
+        .wfrp-settings__label(data-i18n=`Ambidextrous`)
+        input.wfrp-settings__input(name=`attr_ambidextrous`, type="checkbox", value="1", title="Use the talent's Ranks to decrease off hand penalty")
+    .wfrp-settings__row
+        .wfrp-settings__label(data-i18n=`Accurate Shot`)
+        input.wfrp-settings__input(name=`attr_accurate_shot`, type="checkbox", value="1", title="Add the Talent's Ranks to Ranged Weapon Damage")
+    .wfrp-settings__row
+        .wfrp-settings__label(data-i18n=`Strike Mighty Blow`)
+        input.wfrp-settings__input(name=`attr_strike_mighty_blow`, type="checkbox", value="1", title="Add the Talent's Ranks to Melee weapon Damage")

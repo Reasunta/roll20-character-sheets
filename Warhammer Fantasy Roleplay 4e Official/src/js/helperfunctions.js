@@ -7,14 +7,15 @@ const helperFunctions = (() => {
             throw new Error("number must be from 1 to 100 inclusively");
         }
         if (roll === 100) return 1;
+        if (roll === 1) return 100;
 
         const tens = Math.floor(roll / 10);
         const units = roll % 10;
-        const result = units * 10 + tens
-        return result;
+        return units * 10 + tens
     };
 
     const isRollDouble = (roll) => {
+        console.log(roll)
         if (roll < 1 || roll > 100) {
             throw new Error("number must be from 1 to 100 inclusively");
         }

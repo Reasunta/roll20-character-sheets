@@ -387,7 +387,7 @@
 
         &__row--head,
         &__row {
-            grid-template-columns: 3rem .75fr 1.25fr .75fr .33fr .5fr .5fr 1.25fr;
+            grid-template-columns: 3rem .75fr .75fr .33fr .5fr .5fr 1.25fr;
         }
         &__quality-checkbox-row {
             display: grid;
@@ -484,9 +484,26 @@
     }
     .sheet-grid-gap-#{$i} {
         grid-column-gap: #{$i}px;
+        grid-row-gap: #{$i}px;
+    }
+    .sheet-margin-#{$i} {
+        margin: #{$i}px;
     }
 }
 
-.sheet-grid-space-between {
-    align-content: space-between;
+.sheet-grid-align-content-start {
+    align-content: start;
+}
+.sheet-grid-align-content-center {
+    align-content: center;
+}
+.sheet-grid-align-items-center {
+    align-items: center;
+}
+.sheet-text-align-center {
+    text-align: center;
+}
+
+.sheet-flex {
+    display: flex;
 }

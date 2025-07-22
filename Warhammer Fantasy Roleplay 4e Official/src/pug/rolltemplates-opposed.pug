@@ -27,6 +27,7 @@ mixin total_sl(class_name, label, value)
 
 mixin damage
     +total_sl(`wfrp-roll__success`, `Total SL:`, `{{computed::total_sl}}`)
+    != `{{#rollGreater() aw_damage 0}}`
     +row(`Weapon damage`, `+{{aw_damage}}`)
     +row(`Damaging weapon`, `+{{computed::aw_damaging}}`, `rollGreater() computed::aw_damaging 0`, `wfrp-roll__label-italic`)
     +row(`Impact weapon`, `+{{computed::aw_impact}}`, `rollGreater() computed::aw_impact 0`, `wfrp-roll__label-italic`)
@@ -38,48 +39,61 @@ mixin damage
     +row(`TB`, `{{d_tb}}`)
     .wfrp-roll__divider
     +row(`Total damage`, `{{computed::total_damage}}`)
+    != `{{/rollGreater() aw_damage 0}}`
 
 
 rolltemplate.sheet-rolltemplate-wfrp-opposed
     h3 {{name}}
     .wfrp-roll
         h1 {{a_name}} vs {{d_name}}
+        != `{{#rollLess() computed::is_only_aw_name 1}}`
         h2 {{aw_name}} vs {{dw_name}}
+        != `{{/rollLess() computed::is_only_aw_name 1}}`
+        != `{{#rollGreater() computed::is_only_aw_name 0}}`
+        h2 {{aw_name}}
+        != `{{/rollGreater() computed::is_only_aw_name 0}}`
         .wfrp-roll__divider
         //- Attacker
+        +roll_row(`Attacker roll`, `{{computed::a_roll}} vs {{computed::a_target}}`, `computed::a_is_crit`)
         +row(`Skill value`, `{{as_value}}`)
         +row(`Advantages`, `{{computed::a_adv}}`)
+        +row(`Off hand penalty`, `{{computed::a_off_hand_penalty}}`, `rollLess() computed::a_off_hand_penalty 0`)
         +row(`Accurate weapon`, `+{{computed::aw_accurate}}`, `rollGreater() computed::aw_accurate 0`, `wfrp-roll__label-italic`)
         +row(`Precise weapon`, `+{{computed::aw_precise}} SL`, `rollGreater() computed::aw_precise 0`, `wfrp-roll__label-italic`)
         +row(`Imprecise weapon`, `{{computed::aw_imprecise}} SL`, `rollLess() computed::aw_imprecise 0`, `wfrp-roll__label-italic`)
         +row(`Impale weapon`, ``, `rollGreater() computed::aw_impale 0`, `wfrp-roll__label-italic`)
         +row(`Dangerous weapon`, ``, `rollGreater() computed::aw_dangerous 0`, `wfrp-roll__label-italic`)
-        +roll_row(`Attacker roll`, `{{computed::a_roll}} vs {{computed::a_target}}`, `computed::a_is_crit`)
+        +row(`{{a_talent_str}}`, `+{{a_talent_rank}} SL`, `rollGreater() computed::a_talent_rank 0`, `wfrp-roll__label-italic`)
+        +row(`Attacker SL`, `{{computed::a_roll_sl}}`, ``, `wfrp-roll__label-underline`)
+
+        != `{{#rollGreater() d_active_defence 0}}`
+        +total_sl(`wfrp-roll__success`, `Need Defence action`, '')
+        != `{{/rollGreater() d_active_defence 0}}`
+
         //- Defender
+        != `{{#rollLess() d_active_defence 1}}`
         != `{{#rollGreater() computed::is_opposed 0}}`
+        +roll_row(`Defender roll`, `{{computed::d_roll}} vs {{computed::d_target}}`, `computed::d_is_crit`)
         +row(`Skill value`, `{{ds_value}}`)
         +row(`Advantages`, `{{computed::d_adv}}`)
+        +row(`Off hand penalty`, `{{computed::d_off_hand_penalty}}`, `rollLess() computed::d_off_hand_penalty 0`)
         +row(`vs Fast weapon`, `{{computed::dw_fast}}`, `rollLess() computed::dw_fast 0`, `wfrp-roll__label-italic`)
         +row(`Defensive weapon`, `+{{computed::dw_defensive}} SL`, `rollGreater() computed::dw_defensive 0`, `wfrp-roll__label-italic`)
         +row(`vs Slow weapon`, `+{{computed::dw_defensive}} SL`, `rollGreater() computed::dw_slow 0`, `wfrp-roll__label-italic`)
         +row(`Impale weapon`, ``, `rollGreater() computed::dw_impale 0`, `wfrp-roll__label-italic`)
         +row(`Dangerous weapon`, ``, `rollGreater() computed::dw_dangerous 0`, `wfrp-roll__label-italic`)
-        +roll_row(`Defender roll`, `{{computed::d_roll}} vs {{computed::d_target}}`, `computed::d_is_crit`)
+        +row(`{{d_talent_str}}`, `+{{d_talent_rank}} SL`, `rollGreater() computed::d_talent_rank 0`, `wfrp-roll__label-italic`)
+        +row(`Defender SL`, `{{computed::d_roll_sl}}`, ``, `wfrp-roll__label-underline`)
+
         != `{{/rollGreater() computed::is_opposed 0}}`
         // Results
-        +row(`Attacker SL`, `{{computed::a_roll_sl}}`)
-        != `{{#rollGreater() computed::is_opposed 0}}`
-        +row(`Defender SL`, `{{computed::d_roll_sl}}`)
-        != `{{/rollGreater() computed::is_opposed 0}}`
-
         != `{{#rollLess() computed::is_attacker_win 1}}`
         +total_sl(`wfrp-roll__fail`, `Total SL:`, `{{computed::total_sl}}`)
         != `{{/rollLess() computed::is_attacker_win 1}}`
-
         != `{{#rollGreater() computed::is_attacker_win 0}}`
         +damage
         != `{{/rollGreater() computed::is_attacker_win 0}}`
-
+        != `{{/rollLess() d_active_defence 1}}`
 
 rolltemplate.sheet-rolltemplate-wfrp-riposte
     h3 {{name}}

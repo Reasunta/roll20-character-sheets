@@ -266,18 +266,64 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
   flex-grow: 1;
 }
 
-.sheet-main-hand-img {
-  background: url("https://www.svgrepo.com/show/535674/sword.svg");
+.sheet-page__encounter .sheet-wfrp-panel .sheet-imaged button {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  min-height: 50px;
+}
+.sheet-page__encounter .sheet-wfrp-panel .sheet-imaged button:hover {
+  background-color: rgba(44, 76, 87, 0.325);
 }
 
-.sheet-off-hand-img {
-  background: url("https://www.svgrepo.com/show/535622/shield.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+input[name=attr_main_hand_weapon_is_ranged][type=hidden] ~ div button[name=act_main_opposed_attack],
+input[name=attr_off_hand_weapon_is_ranged][type=hidden] ~ div button[name=act_off_opposed_attack] {
+  background-image: url("https://www.svgrepo.com/show/321547/swords-emblem.svg");
+}
+
+input[name=attr_main_hand_weapon_is_ranged][type=hidden][value="1"] ~ div button[name=act_main_opposed_attack],
+input[name=attr_off_hand_weapon_is_ranged][type=hidden][value="1"] ~ div button[name=act_off_opposed_attack] {
+  background-image: url("https://www.svgrepo.com/show/320348/arrows-shield.svg");
+}
+
+input[name=attr_main_hand_weapon_is_ranged][type=hidden] ~ div button[name=act_main_unopposed_attack],
+input[name=attr_off_hand_weapon_is_ranged][type=hidden] ~ div button[name=act_off_unopposed_attack] {
+  background-image: url("https://www.svgrepo.com/show/321308/saber-slash.svg");
+}
+
+input[name=attr_main_hand_weapon_is_ranged][type=hidden][value="1"] ~ div button[name=act_main_unopposed_attack],
+input[name=attr_off_hand_weapon_is_ranged][type=hidden][value="1"] ~ div button[name=act_off_unopposed_attack] {
+  background-image: url("https://www.svgrepo.com/show/320942/high-shot.svg");
+}
+
+input[name=attr_main_hand_weapon_is_ranged][type=hidden][value="1"] + input[name=attr_main_hand_weapon_is_pistol][type=hidden][value="1"] ~ div button[name=act_main_unopposed_attack],
+input[name=attr_off_hand_weapon_is_ranged][type=hidden][value="1"] + input[name=attr_off_hand_weapon_is_pistol][type=hidden][value="1"] ~ div button[name=act_off_unopposed_attack] {
+  background-image: url("https://www.svgrepo.com/show/320423/blunderbuss.svg");
+}
+
+div button[name=act_main_defend],
+div button[name=act_off_defend] {
+  background-image: url("https://www.svgrepo.com/show/321360/shield-reflect.svg");
+}
+
+div button[name=act_dual_wielder_attack] {
+  background-image: url("https://www.svgrepo.com/show/320605/crossed-swords.svg");
+}
+
+input[name=attr_main_hand_weapon_is_pistol][type=hidden] + input[name=attr_main_hand_weapon_is_ranged],
+input[name=attr_off_hand_weapon_is_pistol][type=hidden] + input[name=attr_off_hand_weapon_is_ranged] {
+  display: none;
+}
+
+input[name=attr_main_hand_weapon_is_pistol][type=hidden][value="1"] + input[name=attr_main_hand_weapon_is_ranged],
+input[name=attr_off_hand_weapon_is_pistol][type=hidden][value="1"] + input[name=attr_off_hand_weapon_is_ranged] {
+  display: inherit;
+}
+
+.sheet-page__encounter .repcontrol[data-groupname=repeating_weapons],
+.sheet-page__encounter .repcontrol[data-groupname=repeating_talent],
+.sheet-page__encounter .repcontrol[data-groupname=repeating_spells] {
+  display: none !important;
 }
 
 .sheet-wfrp-header__logo {
@@ -617,7 +663,7 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
   grid-template-columns: 1.5rem 1fr 1fr 4rem;
 }
 .sheet-wfrp-weapontable__row--head, .sheet-wfrp-weapontable__row {
-  grid-template-columns: 3rem 0.75fr 1.25fr 0.75fr 0.33fr 0.5fr 0.5fr 1.25fr;
+  grid-template-columns: 3rem 0.75fr 0.75fr 0.33fr 0.5fr 0.5fr 1.25fr;
 }
 .sheet-wfrp-weapontable__quality-checkbox-row {
   display: grid;
@@ -678,6 +724,11 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 
 .sheet-grid-gap-1 {
   grid-column-gap: 1px;
+  grid-row-gap: 1px;
+}
+
+.sheet-margin-1 {
+  margin: 1px;
 }
 
 .sheet-grid-2 {
@@ -695,6 +746,11 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 
 .sheet-grid-gap-2 {
   grid-column-gap: 2px;
+  grid-row-gap: 2px;
+}
+
+.sheet-margin-2 {
+  margin: 2px;
 }
 
 .sheet-grid-3 {
@@ -712,6 +768,11 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 
 .sheet-grid-gap-3 {
   grid-column-gap: 3px;
+  grid-row-gap: 3px;
+}
+
+.sheet-margin-3 {
+  margin: 3px;
 }
 
 .sheet-grid-4 {
@@ -729,6 +790,11 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 
 .sheet-grid-gap-4 {
   grid-column-gap: 4px;
+  grid-row-gap: 4px;
+}
+
+.sheet-margin-4 {
+  margin: 4px;
 }
 
 .sheet-grid-5 {
@@ -746,6 +812,11 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 
 .sheet-grid-gap-5 {
   grid-column-gap: 5px;
+  grid-row-gap: 5px;
+}
+
+.sheet-margin-5 {
+  margin: 5px;
 }
 
 .sheet-grid-6 {
@@ -763,6 +834,11 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 
 .sheet-grid-gap-6 {
   grid-column-gap: 6px;
+  grid-row-gap: 6px;
+}
+
+.sheet-margin-6 {
+  margin: 6px;
 }
 
 .sheet-grid-7 {
@@ -780,6 +856,11 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 
 .sheet-grid-gap-7 {
   grid-column-gap: 7px;
+  grid-row-gap: 7px;
+}
+
+.sheet-margin-7 {
+  margin: 7px;
 }
 
 .sheet-grid-8 {
@@ -797,6 +878,11 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 
 .sheet-grid-gap-8 {
   grid-column-gap: 8px;
+  grid-row-gap: 8px;
+}
+
+.sheet-margin-8 {
+  margin: 8px;
 }
 
 .sheet-grid-9 {
@@ -814,6 +900,11 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 
 .sheet-grid-gap-9 {
   grid-column-gap: 9px;
+  grid-row-gap: 9px;
+}
+
+.sheet-margin-9 {
+  margin: 9px;
 }
 
 .sheet-grid-10 {
@@ -831,6 +922,11 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 
 .sheet-grid-gap-10 {
   grid-column-gap: 10px;
+  grid-row-gap: 10px;
+}
+
+.sheet-margin-10 {
+  margin: 10px;
 }
 
 .sheet-grid-11 {
@@ -848,6 +944,11 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 
 .sheet-grid-gap-11 {
   grid-column-gap: 11px;
+  grid-row-gap: 11px;
+}
+
+.sheet-margin-11 {
+  margin: 11px;
 }
 
 .sheet-grid-12 {
@@ -865,10 +966,31 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 
 .sheet-grid-gap-12 {
   grid-column-gap: 12px;
+  grid-row-gap: 12px;
 }
 
-.sheet-grid-space-between {
-  align-content: space-between;
+.sheet-margin-12 {
+  margin: 12px;
+}
+
+.sheet-grid-align-content-start {
+  align-content: start;
+}
+
+.sheet-grid-align-content-center {
+  align-content: center;
+}
+
+.sheet-grid-align-items-center {
+  align-items: center;
+}
+
+.sheet-text-align-center {
+  text-align: center;
+}
+
+.sheet-flex {
+  display: flex;
 }
 
 .sheet-wfrp-field {
@@ -1479,7 +1601,7 @@ button.sheet-pictos[type=action]:hover {
 }
 
 .sheet-wfrp-wrapper .sheet-wfrp-controls button, .sheet-wfrp-wrapper .sheet-wfrp-controls .sheet-default-defence-select {
-  background: rgba(44, 76, 87, 0.125);
+  background-color: rgba(44, 76, 87, 0.125);
   text-align: center;
 }
 .sheet-wfrp-wrapper .sheet-wfrp-controls button select, .sheet-wfrp-wrapper .sheet-wfrp-controls .sheet-default-defence-select select {
@@ -1499,6 +1621,14 @@ button.sheet-pictos[type=action]:hover {
 
 .sheet-wfrp-advantage__wrapper input[name=attr_advantage_max][type=hidden][value="9999"] + div.sheet-wfrp-field.sheet-no-border {
   display: none;
+}
+
+.sheet-wfrp-wrapper .sheet-size-large {
+  font-size: large;
+}
+
+.sheet-wfrp-wrapper input[type=number].sheet-border, .sheet-border {
+  border: 1px solid black;
 }
 
 .sheet-wfrp-navigation__item input[type=checkbox]:checked + span, .sheet-wfrp-navigation__item--settings input[type=checkbox]:checked + span,
@@ -1821,8 +1951,29 @@ input[type=hidden][name=attr_npc][value=on] ~ * .sheet-wfrp-npc, input[type=hidd
   display: none;
 }
 
-input[name=attr_active_defence][type=hidden][value="1"] + div.sheet-wfrp-controls__wrapper {
+input[name=attr_active_defence][type=hidden] + div {
   display: none;
+}
+
+input[name=attr_active_defence][type=hidden][value="1"] + div.sheet-active-defence,
+input[name=attr_active_defence][type=hidden][value="0"] + div.sheet-passive-defence {
+  display: inherit;
+}
+
+input[name=attr_show_description][type=hidden] + textarea[name=attr_weapon_description] {
+  display: none;
+}
+
+input[name=attr_show_description][type=hidden][value="1"] + textarea[name=attr_weapon_description] {
+  display: inherit;
+}
+
+input[name=attr_is_combat][type=hidden] + div[class=sheet-wfrp-talenttable__row] {
+  display: none;
+}
+
+input[name=attr_is_combat][type=hidden][value="1"] + div[class=sheet-wfrp-talenttable__row] {
+  display: grid;
 }
 
 .sheet-wfrp-npc {
@@ -2116,6 +2267,21 @@ input[name=attr_active_defence][type=hidden][value="1"] + div.sheet-wfrp-control
   border-top: 1px solid rgba(36, 107, 131, 0.33);
   border-bottom: 1px solid rgba(36, 107, 131, 0.33);
 }
+.sheet-wfrp-npc .sheet-wfrp-advantage {
+  grid-column: span 2;
+}
+.sheet-wfrp-npc .sheet-wfrp-advantage__wrapper {
+  align-items: center;
+  width: 95%;
+  margin: 0.5rem auto;
+}
+
+.sheet-wfrp-npc .sheet-wfrp-controls__wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0.25rem;
+  margin: 0.25rem;
+}
 
 .sheet-rolltemplate-wfrp, .sheet-rolltemplate-wfrp-opposed, .sheet-rolltemplate-wfrp-riposte, .sheet-rolltemplate-wfrp-initial {
   font-family: "Lusitana", serif;
@@ -2236,6 +2402,9 @@ input[name=attr_active_defence][type=hidden][value="1"] + div.sheet-wfrp-control
 .sheet-rolltemplate-wfrp .sheet-wfrp-roll__label-italic, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__label-italic, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__label-italic, .sheet-rolltemplate-wfrp-initial .sheet-wfrp-roll__label-italic {
   font-style: italic;
 }
+.sheet-rolltemplate-wfrp .sheet-wfrp-roll__label-underline, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__label-underline, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__label-underline, .sheet-rolltemplate-wfrp-initial .sheet-wfrp-roll__label-underline {
+  text-decoration: underline;
+}
 .sheet-rolltemplate-wfrp .sheet-wfrp-roll__value, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__value, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__value, .sheet-rolltemplate-wfrp-initial .sheet-wfrp-roll__value {
   text-align: right;
 }
@@ -2270,7 +2439,7 @@ span.inlinerollresult {
   padding-left: 0 !important;
 }
 
-* .sheet-wfrp-roll__divider, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__divider, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__divider, .sheet-rolltemplate-wfrp-initial .sheet-wfrp-roll__divider {
+* .sheet-wfrp-roll__divider, .sheet-rolltemplate-wfrp .sheet-wfrp-roll__divider, .sheet-rolltemplate-wfrp-opposed .sheet-wfrp-roll__divider, .sheet-rolltemplate-wfrp-riposte .sheet-wfrp-roll__divider, .sheet-rolltemplate-wfrp-initial .sheet-wfrp-roll__divider {
   width: 100%;
   height: 10px;
   grid-column: 1/-1;

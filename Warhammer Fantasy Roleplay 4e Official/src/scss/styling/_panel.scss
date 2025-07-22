@@ -34,7 +34,7 @@
         text-align: center;
       }
 
-      background: rgba($form-button-background, 0.125);
+      background-color: rgba($form-button-background, 0.125);
       text-align: center;
     }
   }
@@ -58,4 +58,11 @@
   input[name = "attr_advantage_max"][type = "hidden"][value = "9999"] + div.sheet-wfrp-field.sheet-no-border {
     display: none;
   }
+}
+
+.sheet-wfrp-wrapper .sheet-size-large {
+  font-size: large;
+}
+.sheet-wfrp-wrapper input[type="number"].sheet-border, .sheet-border {
+  border: 1px solid black;
 }

@@ -214,15 +214,58 @@
     }
 }
 
-.sheet-main-hand-img {
-    background: url("https://www.svgrepo.com/show/535674/sword.svg");
+.sheet-page__encounter .sheet-wfrp-panel .sheet-imaged button {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    min-height: 50px;
+    &:hover {
+        background-color: rgba(44, 76, 87, 0.325);
+    }
 }
-.sheet-off-hand-img {
-    background: url("https://www.svgrepo.com/show/535622/shield.svg");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+
+input[name="attr_main_hand_weapon_is_ranged"][type="hidden"] ~ div button[name="act_main_opposed_attack"],
+input[name="attr_off_hand_weapon_is_ranged"][type="hidden"] ~ div button[name="act_off_opposed_attack"]{
+    background-image: url("https://www.svgrepo.com/show/321547/swords-emblem.svg");
+}
+input[name="attr_main_hand_weapon_is_ranged"][type="hidden"][value="1"] ~ div button[name="act_main_opposed_attack"],
+input[name="attr_off_hand_weapon_is_ranged"][type="hidden"][value="1"] ~ div button[name="act_off_opposed_attack"]{
+    background-image: url("https://www.svgrepo.com/show/320348/arrows-shield.svg");
+}
+input[name="attr_main_hand_weapon_is_ranged"][type="hidden"] ~ div button[name="act_main_unopposed_attack"],
+input[name="attr_off_hand_weapon_is_ranged"][type="hidden"] ~ div button[name="act_off_unopposed_attack"]{
+    background-image: url("https://www.svgrepo.com/show/321308/saber-slash.svg");
+}
+input[name="attr_main_hand_weapon_is_ranged"][type="hidden"][value="1"] ~ div button[name="act_main_unopposed_attack"],
+input[name="attr_off_hand_weapon_is_ranged"][type="hidden"][value="1"] ~ div button[name="act_off_unopposed_attack"]{
+    background-image: url("https://www.svgrepo.com/show/320942/high-shot.svg");
+}
+
+input[name="attr_main_hand_weapon_is_ranged"][type="hidden"][value="1"] + input[name="attr_main_hand_weapon_is_pistol"][type="hidden"][value="1"]  ~ div button[name="act_main_unopposed_attack"],
+input[name="attr_off_hand_weapon_is_ranged"][type="hidden"][value="1"] + input[name="attr_off_hand_weapon_is_pistol"][type="hidden"][value="1"] ~ div button[name="act_off_unopposed_attack"]{
+    background-image: url("https://www.svgrepo.com/show/320423/blunderbuss.svg");
+}
+
+div button[name="act_main_defend"],
+div button[name="act_off_defend"] {
+    background-image: url("https://www.svgrepo.com/show/321360/shield-reflect.svg");
+}
+div button[name="act_dual_wielder_attack"] {
+    background-image: url("https://www.svgrepo.com/show/320605/crossed-swords.svg");
+}
+
+input[name="attr_main_hand_weapon_is_pistol"][type="hidden"] + input[name="attr_main_hand_weapon_is_ranged"],
+input[name="attr_off_hand_weapon_is_pistol"][type="hidden"] + input[name="attr_off_hand_weapon_is_ranged"]{
+    display: none;
+}
+
+input[name="attr_main_hand_weapon_is_pistol"][type="hidden"][value="1"] + input[name="attr_main_hand_weapon_is_ranged"],
+input[name="attr_off_hand_weapon_is_pistol"][type="hidden"][value="1"] + input[name="attr_off_hand_weapon_is_ranged"]{
+    display: inherit;
+}
+
+.sheet-page__encounter .repcontrol[data-groupname="repeating_weapons"],
+.sheet-page__encounter .repcontrol[data-groupname="repeating_talent"],
+.sheet-page__encounter .repcontrol[data-groupname="repeating_spells"] {
+    display: none !important;
 }

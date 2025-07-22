@@ -23,15 +23,7 @@ input(name="attr_setting_button_hide", type="hidden")
                 else
                     span(data-i18n=item)
 
-.wfrp-test.wfrp-panel.page__encounter.sheet-grid-span-6
-    .sheet-grid-3
-        .sheet-wfrp-panel
-            +advantage()
-        .sheet-wfrp-panel
-            +wounds()
-    h1.wfrp-panel__header(data-i18n="Hands")
-    +hand-row(`main`)
-    +hand-row(`off`)
++encounter()
 
 .wfrp-characteristics.wfrp-panel.page__main
     input(name="attr_control_hide--characteristics", type="hidden")
@@ -232,29 +224,6 @@ input(name="attr_setting_button_hide", type="hidden")
             .wfrp-armour__roll
             span.wfrp-armour__display(name="attr_toughness_bonus")
             .wfrp-armour__location(data-i18n="TB")
-    .wfrp-roll__divider
-
-    .wfrp-controls__wrapper
-        span.wfrp-controls__cell Active Defence
-        input.wfrp-settings__input(name=`attr_active_defence`, type="checkbox", value="1")
-    input(name=`attr_active_defence`, type="hidden")
-    .wfrp-controls__wrapper
-        span.wfrp-controls__cell Default Defence
-        span.wfrp-controls__cell(name = "attr_defence_weapon_name")
-    .sheet-grid-4
-        span.wfrp-controls__cell Main hand
-        span.wfrp-controls__cell(name = "attr_main_hand_weapon_name")
-        button(name="act_main_opposed_attack", type="action")
-            span.wfrp-displaytoggle__span='('
-        button(name="act_main_unopposed_attack", type="action")
-            span.wfrp-displaytoggle__span=')'
-    .sheet-grid-4
-        span.wfrp-controls__cell Off hand
-        span.wfrp-controls__cell(name = "attr_off_hand_weapon_name")
-        button(name="act_off_opposed_attack", type="action")
-            span.wfrp-displaytoggle__span='('
-        button(name="act_off_unopposed_attack", type="action")
-            span.wfrp-displaytoggle__span=')'
 
 .wfrp-controls.wfrp-panel.page__combat
     h1.wfrp-panel__header(data-i18n="Controls")
@@ -271,17 +240,6 @@ input(name="attr_setting_button_hide", type="hidden")
             button(data-i18n="Perception", type="roll", value=rolls.combat.perception)
         .wfrp-controls__button
             button(data-i18n="Cool", type="roll", value=rolls.combat.cool)
-        .wfrp-roll__divider
-        .wfrp-controls__button
-            button(type="action", name="act_reroll_as_attacker") Reroll as Attacker
-        .wfrp-controls__button
-            button(type="action", name="act_reroll_as_defender") Reroll as Defender
-        .wfrp-controls__button
-            button(type="action", name="act_riposte") Riposte
-        .wfrp-controls__button
-            button(type="action", name="act_dual_wielder") Dual Wielder
-        .wfrp-controls__button
-            button(type="action", name="act_roll_test_values") Roll Test Values
         //.wfrp-controls__button
             button(data-i18n="Critical Hit", type="roll", value=rolls.crit)
         //.wfrp-controls__button
@@ -317,7 +275,6 @@ input(name="attr_setting_button_hide", type="hidden")
     .wfrp-weapontable
         .wfrp-weapontable__row--head
             .wfrp-weapontable__cell(data-i18n="Name")
-            .wfrp-weapontable__cell(data-i18n="Main/Off-hand")
             .wfrp-weapontable__cell(data-i18n="Group")
             .wfrp-weapontable__cell(data-i18n="Total")
             .wfrp-weapontable__cell(data-i18n="Range")

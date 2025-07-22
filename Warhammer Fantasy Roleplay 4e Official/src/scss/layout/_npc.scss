@@ -421,5 +421,23 @@
         }
 
     }
+    .sheet-wfrp {
+        &-advantage {
+            grid-column: span 2;
 
+            &__wrapper {
+                align-items: center;
+
+                width: 95%;
+                margin: $margin-general auto;
+            }
+        }
+    }
+}
+
+.sheet-wfrp-npc .sheet-wfrp-controls__wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: $margin-small;
+    margin: $margin-small;
 }

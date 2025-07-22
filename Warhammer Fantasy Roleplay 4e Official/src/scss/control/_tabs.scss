@@ -69,8 +69,27 @@ input[type="hidden"][name="attr_npc"] {
     }
 }
 
-input[name="attr_active_defence"][type="hidden"][value="1"] + div.sheet-wfrp-controls__wrapper {
+input[name="attr_active_defence"][type="hidden"] + div {
     display: none;
+}
+input[name="attr_active_defence"][type="hidden"][value="1"] + div.sheet-active-defence,
+input[name="attr_active_defence"][type="hidden"][value="0"] + div.sheet-passive-defence
+{
+    display: inherit;
+}
+
+input[name="attr_show_description"][type="hidden"] + textarea[name="attr_weapon_description"] {
+    display: none;
+}
+input[name="attr_show_description"][type="hidden"][value="1"] + textarea[name="attr_weapon_description"] {
+    display: inherit;
+}
+
+input[name="attr_is_combat"][type="hidden"] + div[class="sheet-wfrp-talenttable__row"] {
+    display: none;
+}
+input[name="attr_is_combat"][type="hidden"][value="1"] + div[class="sheet-wfrp-talenttable__row"] {
+    display: grid;
 }
 
 
