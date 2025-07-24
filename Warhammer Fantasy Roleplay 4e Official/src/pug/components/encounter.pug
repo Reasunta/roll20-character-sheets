@@ -25,7 +25,7 @@ mixin hand-row(hand)
                     button(title="Second attack with Dual Wielder", type="action", name="act_dual_wielder_attack")
         input(name=`attr_active_defence`, type="hidden")
         .sheet-grid-1.sheet-grid-align-content-start.passive-defence
-            span.wfrp-controls__cell Use for defence
+            span.wfrp-controls__cell(data-i18n="Use for defence")
             input.wfrp-settings__input(name=`attr_${hand}_hand_defence`, type="checkbox", value="1")
         input(name=`attr_active_defence`, type="hidden")
         div.sheet-grid-1.active-defence.sheet-imaged
@@ -46,9 +46,9 @@ mixin encounter-weapon-row
         .wfrp-weapontable__cell.sheet-grid-span-2
             span(name=`attr_weapon_name`)
         .wfrp-weapontable__cell.sheet-grid-span-2
-            span Main
+            span(data-i18n="main-hand-checkbox")
             input.wfrp-settings__input(name=`attr_main_hand`, type="checkbox", value="1")
-            span Off
+            span(data-i18n="off-hand-checkbox")
             input.wfrp-settings__input(name=`attr_off_hand`, type="checkbox", value="1")
         .wfrp-weapontable__cell.sheet-grid-span-1
             span(name=`attr_weapon_range`)
@@ -112,10 +112,10 @@ mixin encounter-modifier-block(title, type, modifiers)
         label(title=title, class=`sheet-icon sheet-unopposed-${type}-attack-icon`)
             input(type="checkbox" value="1" name=`attr_show_${type}_modifiers_settings`, style="display: none;")
         div
-            .sheet-bold Total
+            .sheet-bold(data-i18n=`Total`)
             span(name=`attr_cm_${type}_sum`)
         .sheet-grid-span-10
-            .sheet-bold Active
+            .sheet-bold(data-i18n=`Active`)
             div.sheet-flex
                 for modifier in modifiers
                     +encounter-modifier-header-view(modifier.label, modifier.values[type], modifier.attr, modifier.tooltips[type])
@@ -162,7 +162,7 @@ mixin encounter()
                 .sheet-grid-span-3.sheet-wfrp-roll__divider
                 +encounter_button("Initiative", "roll", "&{template:wfrp} {{name=@{character_name}}} {{roll_name=Initiative}} @{roll_init}")
                 .sheet-grid-span-2.sheet-flex
-                    span.wfrp-controls__cell Active Defence
+                    span.wfrp-controls__cell(data-i18n=`Active Defence`)
                     input.wfrp-settings__input(name=`attr_active_defence`, type="checkbox", value="1")
 
             div.sheet-grid-3.sheet-grid-gap-5.sheet-wfrp-panel
@@ -170,7 +170,7 @@ mixin encounter()
                 +encounter_button("Riposte", "action", "act_riposte")
                 input(name=`attr_active_defence`, type="hidden")
                 .sheet-grid-1.sheet-grid-align-content-start.passive-defence
-                    span.wfrp-controls__cell Use Dodge for defence
+                    span.wfrp-controls__cell(data-i18n=`Use Dodge for defence`)
                     input.wfrp-settings__input(name=`attr_dodge_defence`, type="checkbox", value="1")
                 input(name=`attr_active_defence`, type="hidden")
                 .active-defence

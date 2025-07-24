@@ -1,4 +1,9 @@
-mixin weapon-row 
+mixin weapon-quality-checkbox(label, attr)
+    div
+        span.wfrp-settings__label(data-i18n=label)
+        input.wfrp-settings__input(name=attr, type="checkbox")
+
+mixin weapon-row
     input(name=`attr_weapon_settings`, type="hidden", value=1)
     .wfrp-weapontable__row
         .wfrp-weapontable__cell--settingstoggle
@@ -57,50 +62,22 @@ mixin weapon-row
             .wfrp-settings__row--span
                 .wfrp-settings__label(data-i18n=`Quality Checkboxes`)
                 .wfrp-weapontable__quality-checkbox-row
-                    div
-                        span.wfrp-settings__label Accurate
-                        input.wfrp-settings__input(name=`attr_weapon_q_accurate`, type="checkbox")
-                    div
-                        span.wfrp-settings__label Damaging
-                        input.wfrp-settings__input(name=`attr_weapon_q_damaging`, type="checkbox")
-                    div
-                        span.wfrp-settings__label Defensive
-                        input.wfrp-settings__input(name=`attr_weapon_q_defensive`, type="checkbox")
-                    div
-                        span.wfrp-settings__label Fast
-                        input.wfrp-settings__input(name=`attr_weapon_q_fast`, type="checkbox")
-                    div
-                        span.wfrp-settings__label Impact
-                        input.wfrp-settings__input(name=`attr_weapon_q_impact`, type="checkbox")
-                    div
-                        span.wfrp-settings__label Impale
-                        input.wfrp-settings__input(name=`attr_weapon_q_impale`, type="checkbox")
-                    div
-                        span.wfrp-settings__label Penetrating
-                        input.wfrp-settings__input(name=`attr_weapon_q_penetrating`, type="checkbox")
-                    div
-                        span.wfrp-settings__label Pistol
-                        input.wfrp-settings__input(name=`attr_weapon_q_pistol`, type="checkbox")
-                    div
-                        span.wfrp-settings__label Precise
-                        input.wfrp-settings__input(name=`attr_weapon_q_precise`, type="checkbox")
+                    +weapon-quality-checkbox(`Accurate`, `attr_weapon_q_accurate`)
+                    +weapon-quality-checkbox(`Damaging`, `attr_weapon_q_damaging`)
+                    +weapon-quality-checkbox(`Defensive`, `attr_weapon_q_defensive`)
+                    +weapon-quality-checkbox(`Fast`, `attr_weapon_q_fast`)
+                    +weapon-quality-checkbox(`Impact`, `attr_weapon_q_impact`)
+                    +weapon-quality-checkbox(`Impale`, `attr_weapon_q_impale`)
+                    +weapon-quality-checkbox(`Penetrating`, `attr_weapon_q_penetrating`)
+                    +weapon-quality-checkbox(`Pistol`, `attr_weapon_q_pistol`)
+                    +weapon-quality-checkbox(`Precise`, `attr_weapon_q_precise`)
             .wfrp-settings__row--span
                 .wfrp-settings__label(data-i18n=`Flail Checkboxes`)
                 .wfrp-weapontable__quality-checkbox-row
-                    div
-                        span.wfrp-settings__label Dangerous
-                        input.wfrp-settings__input(name=`attr_weapon_q_dangerous`, type="checkbox")
-                    div
-                        span.wfrp-settings__label Imprecise
-                        input.wfrp-settings__input(name=`attr_weapon_q_imprecise`, type="checkbox")
-                    div
-                        span.wfrp-settings__label Slow
-                        input.wfrp-settings__input(name=`attr_weapon_q_slow`, type="checkbox")
-                    div
-                        span.wfrp-settings__label Undamaging
-                        input.wfrp-settings__input(name=`attr_weapon_q_undamaging`, type="checkbox")
-
-        
+                    +weapon-quality-checkbox(`Dangerous`, `attr_weapon_q_dangerous`)
+                    +weapon-quality-checkbox(`Imprecise`, `attr_weapon_q_imprecise`)
+                    +weapon-quality-checkbox(`Slow`, `attr_weapon_q_slow`)
+                    +weapon-quality-checkbox(`Undamaging`, `attr_weapon_q_undamaging`)
             .wfrp-settings__row
                 .wfrp-settings__label(data-i18n=`Enc.`) 
                 input.wfrp-settings__input(name=`attr_weapon_enc`, type="number")

@@ -26,14 +26,16 @@ mixin roll_row(label, value, crit_attr)
 
 mixin total_sl(class_name, label, value)
     div(class = class_name)
-        span #{label} #{value}
+        span(data-i18n=label)
+        span : #{value}
 
 mixin damage
-    +total_sl(`wfrp-roll__success`, `Total SL:`, `{{computed::total_sl}}`)
+    +total_sl(`wfrp-roll__success`, `Total SL`, `{{computed::total_sl}}`)
     != `{{#rollGreater() aw_damage 0}}`
     +row(`Weapon damage`, `+{{aw_damage}}`)
     +row(`Damaging weapon`, `+{{computed::aw_damaging}}`, `rollGreater() computed::aw_damaging 0`, `wfrp-roll__label-italic`)
     +row(`Impact weapon`, `+{{computed::aw_impact}}`, `rollGreater() computed::aw_impact 0`, `wfrp-roll__label-italic`)
+    +row(`Attacker is bigger`, `x{{computed::size_damage_mod}}`, `rollGreater() computed::size_damage_mod 1`, `wfrp-roll__label-italic`)
     .wfrp-roll__divider
     +row(`Hit Location`, `{{computed::hit_location}}`)
     +row(`AP`, `{{computed::armour}}`)
@@ -43,6 +45,15 @@ mixin damage
     .wfrp-roll__divider
     +row(`Total damage`, `{{computed::total_damage}}`)
     != `{{/rollGreater() aw_damage 0}}`
+
+mixin target-size
+    +row(`Target is tiny`, `{{computed::d_size_mod}}`, `rollTotal() d_size_mod -30`)
+    +row(`Target is little`, `{{computed::d_size_mod}}`, `rollTotal() d_size_mod -20`)
+    +row(`Target is small`, `{{computed::d_size_mod}}`, `rollTotal() d_size_mod -10`)
+    +row(`Target is large`, `+{{computed::d_size_mod}}`, `rollTotal() d_size_mod 20`)
+    +row(`Target is enormous`, `{{computed::d_size_mod}}`, `rollTotal() d_size_mod 40`)
+    +row(`Target is monstrous`, `{{computed::d_size_mod}}`, `rollTotal() d_size_mod 60`)
+
 
 
 rolltemplate.sheet-rolltemplate-wfrp-opposed
@@ -68,6 +79,8 @@ rolltemplate.sheet-rolltemplate-wfrp-opposed
         +row(`Imprecise weapon`, `{{computed::aw_imprecise}} SL`, `rollLess() computed::aw_imprecise 0`, `wfrp-roll__label-italic`)
         +row(`Impale weapon`, ``, `rollGreater() computed::aw_impale 0`, `wfrp-roll__label-italic`)
         +row(`Dangerous weapon`, ``, `rollGreater() computed::aw_dangerous 0`, `wfrp-roll__label-italic`)
+        +row(`Attacker is smaller`, `+{{computed::a_is_smaller_mod}}`, `rollGreater() computed::a_is_smaller_mod 0`)
+        +target-size()
         +row(`{{a_talent_str}}`, `+{{a_talent_rank}} SL`, `rollGreater() computed::a_talent_rank 0`, `wfrp-roll__label-italic`, false)
         +row(`Attacker SL`, `{{computed::a_roll_sl}}`, ``, `wfrp-roll__label-underline`)
 
@@ -89,6 +102,7 @@ rolltemplate.sheet-rolltemplate-wfrp-opposed
         +row(`vs Slow weapon`, `+{{computed::dw_defensive}} SL`, `rollGreater() computed::dw_slow 0`, `wfrp-roll__label-italic`)
         +row(`Impale weapon`, ``, `rollGreater() computed::dw_impale 0`, `wfrp-roll__label-italic`)
         +row(`Dangerous weapon`, ``, `rollGreater() computed::dw_dangerous 0`, `wfrp-roll__label-italic`)
+        +row(`Defender is smaller`, `{{computed::d_is_smaller_sl}} SL`, `rollLess() computed::d_is_smaller_sl 0`, `wfrp-roll__label-italic`)
         +row(`{{d_talent_str}}`, `+{{d_talent_rank}} SL`, `rollGreater() computed::d_talent_rank 0`, `wfrp-roll__label-italic`, false)
         +row(`Defender SL`, `{{computed::d_roll_sl}}`, ``, `wfrp-roll__label-underline`)
 

@@ -159,13 +159,13 @@
           </div>
         </div>
         <div class="sheet-wfrp-panel">
-          <div class="sheet-grid-align-items-center sheet-text-align-center sheet-grid-6 sheet-size-large"><span title="Corruption points counter">CP</span>
+          <div class="sheet-grid-align-items-center sheet-text-align-center sheet-grid-6 sheet-size-large"><span title="Corruption points counter" data-i18n="CP"></span>
             <button class="wfrp-advantage__decrement pictos" name="act_decrement_cp" type="action">-</button>
             <input class="sheet-border sheet-grid-span-2 sheet-size-large" name="attr_corruption_points" type="number" value="0"/>
             <div class="sheet-wfrp-field no-border"><span class="wfrp-armour__display no-border">/</span><span class="wfrp-armour__display no-border" name="attr_corruption_points_max"></span></div>
             <button class="wfrp-advantage__increment pictos" name="act_increment_cp" type="action">+</button>
           </div>
-          <div class="sheet-grid-align-items-center sheet-text-align-center sheet-grid-6 sheet-size-large"><span title="Fortune points counter">FP</span>
+          <div class="sheet-grid-align-items-center sheet-text-align-center sheet-grid-6 sheet-size-large"><span title="Fortune points counter" data-i18n="FP"></span>
             <button class="wfrp-advantage__decrement pictos" name="act_decrement_fp" type="action">-</button>
             <button class="wfrp-advantage__reset pictos" name="act_reset_fp" type="action">1</button>
             <input class="sheet-border sheet-size-large" name="attr_fortune" type="number" value="0"/>
@@ -207,7 +207,7 @@
             </div>
           </div>
           <input name="attr_active_defence" type="hidden"/>
-          <div class="sheet-grid-1 sheet-grid-align-content-start passive-defence"><span class="wfrp-controls__cell">Use for defence</span>
+          <div class="sheet-grid-1 sheet-grid-align-content-start passive-defence"><span class="wfrp-controls__cell" data-i18n="Use for defence"></span>
             <input class="wfrp-settings__input" name="attr_main_hand_defence" type="checkbox" value="1"/>
           </div>
           <input name="attr_active_defence" type="hidden"/>
@@ -236,7 +236,7 @@
             </div>
           </div>
           <input name="attr_active_defence" type="hidden"/>
-          <div class="sheet-grid-1 sheet-grid-align-content-start passive-defence"><span class="wfrp-controls__cell">Use for defence</span>
+          <div class="sheet-grid-1 sheet-grid-align-content-start passive-defence"><span class="wfrp-controls__cell" data-i18n="Use for defence"></span>
             <input class="wfrp-settings__input" name="attr_off_hand_defence" type="checkbox" value="1"/>
           </div>
           <input name="attr_active_defence" type="hidden"/>
@@ -301,7 +301,7 @@
               <button data-i18n="Initiative" type="roll" value="&amp;{template:wfrp} {{name=@{character_name}}} {{roll_name=Initiative}} @{roll_init}"></button>
             </div>
           </div>
-          <div class="sheet-grid-span-2 sheet-flex"><span class="wfrp-controls__cell">Active Defence</span>
+          <div class="sheet-grid-span-2 sheet-flex"><span class="wfrp-controls__cell" data-i18n="Active Defence"></span>
             <input class="wfrp-settings__input" name="attr_active_defence" type="checkbox" value="1"/>
           </div>
         </div>
@@ -317,7 +317,7 @@
             </div>
           </div>
           <input name="attr_active_defence" type="hidden"/>
-          <div class="sheet-grid-1 sheet-grid-align-content-start passive-defence"><span class="wfrp-controls__cell">Use Dodge for defence</span>
+          <div class="sheet-grid-1 sheet-grid-align-content-start passive-defence"><span class="wfrp-controls__cell" data-i18n="Use Dodge for defence"></span>
             <input class="wfrp-settings__input" name="attr_dodge_defence" type="checkbox" value="1"/>
           </div>
           <input name="attr_active_defence" type="hidden"/>
@@ -352,10 +352,10 @@
             <input type="checkbox" value="1" name="attr_show_melee_modifiers_settings" style="display: none;"/>
           </label>
           <div>
-            <div class="sheet-bold">Total</div><span name="attr_cm_melee_sum"></span>
+            <div class="sheet-bold" data-i18n="Total"></div><span name="attr_cm_melee_sum"></span>
           </div>
           <div class="sheet-grid-span-10">
-            <div class="sheet-bold">Active</div>
+            <div class="sheet-bold" data-i18n="Active"></div>
             <div class="sheet-flex">
               <input name="attr_cm_outnumbered_21" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber 2 to 1" data-i18n="Outnumbered 2:1"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber 2 to 1">(+20),</span></span>
               <input name="attr_cm_outnumbered_31" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber 3 to 1" data-i18n="Outnumbered 3:1"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber 3 to 1">(+40),</span></span>
@@ -429,10 +429,10 @@
             <input type="checkbox" value="1" name="attr_show_ranged_modifiers_settings" style="display: none;"/>
           </label>
           <div>
-            <div class="sheet-bold">Total</div><span name="attr_cm_ranged_sum"></span>
+            <div class="sheet-bold" data-i18n="Total"></div><span name="attr_cm_ranged_sum"></span>
           </div>
           <div class="sheet-grid-span-10">
-            <div class="sheet-bold">Active</div>
+            <div class="sheet-bold" data-i18n="Active"></div>
             <div class="sheet-flex">
               <input name="attr_cm_point_blank_range" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting a target at Point Blank Range" data-i18n="Point Blank Range"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting a target at Point Blank Range">(+40),</span></span>
               <input name="attr_cm_short_range" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at Short Range: less than half weapon range" data-i18n="Short Range"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at Short Range: less than half weapon range">(+20),</span></span>
@@ -510,10 +510,10 @@
             <input type="checkbox" value="1" name="attr_show_parry_modifiers_settings" style="display: none;"/>
           </label>
           <div>
-            <div class="sheet-bold">Total</div><span name="attr_cm_parry_sum"></span>
+            <div class="sheet-bold" data-i18n="Total"></div><span name="attr_cm_parry_sum"></span>
           </div>
           <div class="sheet-grid-span-10">
-            <div class="sheet-bold">Active</div>
+            <div class="sheet-bold" data-i18n="Active"></div>
             <div class="sheet-flex">
               <input name="attr_cm_defensive_stand" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls" data-i18n="Defensive Stand"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls">(+20),</span></span>
               <input name="attr_cm_after_dual_wielder" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="" data-i18n="After Dual Wielder"></span><span class="wfrp-settings__label sheet-margin-right-2" title="">(-10),</span></span>
@@ -543,10 +543,10 @@
             <input type="checkbox" value="1" name="attr_show_dodge_modifiers_settings" style="display: none;"/>
           </label>
           <div>
-            <div class="sheet-bold">Total</div><span name="attr_cm_dodge_sum"></span>
+            <div class="sheet-bold" data-i18n="Total"></div><span name="attr_cm_dodge_sum"></span>
           </div>
           <div class="sheet-grid-span-10">
-            <div class="sheet-bold">Active</div>
+            <div class="sheet-bold" data-i18n="Active"></div>
             <div class="sheet-flex">
               <input name="attr_cm_defensive_stand" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls" data-i18n="Defensive Stand"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls">(+20),</span></span>
               <input name="attr_cm_after_dual_wielder" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="" data-i18n="After Dual Wielder"></span><span class="wfrp-settings__label sheet-margin-right-2" title="">(-10),</span></span>
@@ -588,8 +588,8 @@
             <fieldset class="repeating_weapons">
               <div class="wfrp-weapontable__row sheet-grid-9">
                 <div class="wfrp-weapontable__cell sheet-grid-span-2"><span name="attr_weapon_name"></span></div>
-                <div class="wfrp-weapontable__cell sheet-grid-span-2"><span>Main</span>
-                  <input class="wfrp-settings__input" name="attr_main_hand" type="checkbox" value="1"/><span>Off</span>
+                <div class="wfrp-weapontable__cell sheet-grid-span-2"><span data-i18n="main-hand-checkbox"></span>
+                  <input class="wfrp-settings__input" name="attr_main_hand" type="checkbox" value="1"/><span data-i18n="off-hand-checkbox"></span>
                   <input class="wfrp-settings__input" name="attr_off_hand" type="checkbox" value="1"/>
                 </div>
                 <div class="wfrp-weapontable__cell sheet-grid-span-1"><span name="attr_weapon_range"></span></div>
@@ -6382,31 +6382,31 @@
               <div class="wfrp-settings__row--span">
                 <div class="wfrp-settings__label" data-i18n="Quality Checkboxes"></div>
                 <div class="wfrp-weapontable__quality-checkbox-row">
-                  <div><span class="wfrp-settings__label">Accurate</span>
+                  <div><span class="wfrp-settings__label" data-i18n="Accurate"></span>
                     <input class="wfrp-settings__input" name="attr_weapon_q_accurate" type="checkbox"/>
                   </div>
-                  <div><span class="wfrp-settings__label">Damaging</span>
+                  <div><span class="wfrp-settings__label" data-i18n="Damaging"></span>
                     <input class="wfrp-settings__input" name="attr_weapon_q_damaging" type="checkbox"/>
                   </div>
-                  <div><span class="wfrp-settings__label">Defensive</span>
+                  <div><span class="wfrp-settings__label" data-i18n="Defensive"></span>
                     <input class="wfrp-settings__input" name="attr_weapon_q_defensive" type="checkbox"/>
                   </div>
-                  <div><span class="wfrp-settings__label">Fast</span>
+                  <div><span class="wfrp-settings__label" data-i18n="Fast"></span>
                     <input class="wfrp-settings__input" name="attr_weapon_q_fast" type="checkbox"/>
                   </div>
-                  <div><span class="wfrp-settings__label">Impact</span>
+                  <div><span class="wfrp-settings__label" data-i18n="Impact"></span>
                     <input class="wfrp-settings__input" name="attr_weapon_q_impact" type="checkbox"/>
                   </div>
-                  <div><span class="wfrp-settings__label">Impale</span>
+                  <div><span class="wfrp-settings__label" data-i18n="Impale"></span>
                     <input class="wfrp-settings__input" name="attr_weapon_q_impale" type="checkbox"/>
                   </div>
-                  <div><span class="wfrp-settings__label">Penetrating</span>
+                  <div><span class="wfrp-settings__label" data-i18n="Penetrating"></span>
                     <input class="wfrp-settings__input" name="attr_weapon_q_penetrating" type="checkbox"/>
                   </div>
-                  <div><span class="wfrp-settings__label">Pistol</span>
+                  <div><span class="wfrp-settings__label" data-i18n="Pistol"></span>
                     <input class="wfrp-settings__input" name="attr_weapon_q_pistol" type="checkbox"/>
                   </div>
-                  <div><span class="wfrp-settings__label">Precise</span>
+                  <div><span class="wfrp-settings__label" data-i18n="Precise"></span>
                     <input class="wfrp-settings__input" name="attr_weapon_q_precise" type="checkbox"/>
                   </div>
                 </div>
@@ -6414,16 +6414,16 @@
               <div class="wfrp-settings__row--span">
                 <div class="wfrp-settings__label" data-i18n="Flail Checkboxes"></div>
                 <div class="wfrp-weapontable__quality-checkbox-row">
-                  <div><span class="wfrp-settings__label">Dangerous</span>
+                  <div><span class="wfrp-settings__label" data-i18n="Dangerous"></span>
                     <input class="wfrp-settings__input" name="attr_weapon_q_dangerous" type="checkbox"/>
                   </div>
-                  <div><span class="wfrp-settings__label">Imprecise</span>
+                  <div><span class="wfrp-settings__label" data-i18n="Imprecise"></span>
                     <input class="wfrp-settings__input" name="attr_weapon_q_imprecise" type="checkbox"/>
                   </div>
-                  <div><span class="wfrp-settings__label">Slow</span>
+                  <div><span class="wfrp-settings__label" data-i18n="Slow"></span>
                     <input class="wfrp-settings__input" name="attr_weapon_q_slow" type="checkbox"/>
                   </div>
-                  <div><span class="wfrp-settings__label">Undamaging</span>
+                  <div><span class="wfrp-settings__label" data-i18n="Undamaging"></span>
                     <input class="wfrp-settings__input" name="attr_weapon_q_undamaging" type="checkbox"/>
                   </div>
                 </div>
@@ -8577,31 +8577,31 @@
                   <div class="wfrp-settings__row--span">
                     <div class="wfrp-settings__label" data-i18n="Quality Checkboxes"></div>
                     <div class="wfrp-weapontable__quality-checkbox-row">
-                      <div><span class="wfrp-settings__label">Accurate</span>
+                      <div><span class="wfrp-settings__label" data-i18n="Accurate"></span>
                         <input class="wfrp-settings__input" name="attr_weapon_q_accurate" type="checkbox"/>
                       </div>
-                      <div><span class="wfrp-settings__label">Damaging</span>
+                      <div><span class="wfrp-settings__label" data-i18n="Damaging"></span>
                         <input class="wfrp-settings__input" name="attr_weapon_q_damaging" type="checkbox"/>
                       </div>
-                      <div><span class="wfrp-settings__label">Defensive</span>
+                      <div><span class="wfrp-settings__label" data-i18n="Defensive"></span>
                         <input class="wfrp-settings__input" name="attr_weapon_q_defensive" type="checkbox"/>
                       </div>
-                      <div><span class="wfrp-settings__label">Fast</span>
+                      <div><span class="wfrp-settings__label" data-i18n="Fast"></span>
                         <input class="wfrp-settings__input" name="attr_weapon_q_fast" type="checkbox"/>
                       </div>
-                      <div><span class="wfrp-settings__label">Impact</span>
+                      <div><span class="wfrp-settings__label" data-i18n="Impact"></span>
                         <input class="wfrp-settings__input" name="attr_weapon_q_impact" type="checkbox"/>
                       </div>
-                      <div><span class="wfrp-settings__label">Impale</span>
+                      <div><span class="wfrp-settings__label" data-i18n="Impale"></span>
                         <input class="wfrp-settings__input" name="attr_weapon_q_impale" type="checkbox"/>
                       </div>
-                      <div><span class="wfrp-settings__label">Penetrating</span>
+                      <div><span class="wfrp-settings__label" data-i18n="Penetrating"></span>
                         <input class="wfrp-settings__input" name="attr_weapon_q_penetrating" type="checkbox"/>
                       </div>
-                      <div><span class="wfrp-settings__label">Pistol</span>
+                      <div><span class="wfrp-settings__label" data-i18n="Pistol"></span>
                         <input class="wfrp-settings__input" name="attr_weapon_q_pistol" type="checkbox"/>
                       </div>
-                      <div><span class="wfrp-settings__label">Precise</span>
+                      <div><span class="wfrp-settings__label" data-i18n="Precise"></span>
                         <input class="wfrp-settings__input" name="attr_weapon_q_precise" type="checkbox"/>
                       </div>
                     </div>
@@ -8609,16 +8609,16 @@
                   <div class="wfrp-settings__row--span">
                     <div class="wfrp-settings__label" data-i18n="Flail Checkboxes"></div>
                     <div class="wfrp-weapontable__quality-checkbox-row">
-                      <div><span class="wfrp-settings__label">Dangerous</span>
+                      <div><span class="wfrp-settings__label" data-i18n="Dangerous"></span>
                         <input class="wfrp-settings__input" name="attr_weapon_q_dangerous" type="checkbox"/>
                       </div>
-                      <div><span class="wfrp-settings__label">Imprecise</span>
+                      <div><span class="wfrp-settings__label" data-i18n="Imprecise"></span>
                         <input class="wfrp-settings__input" name="attr_weapon_q_imprecise" type="checkbox"/>
                       </div>
-                      <div><span class="wfrp-settings__label">Slow</span>
+                      <div><span class="wfrp-settings__label" data-i18n="Slow"></span>
                         <input class="wfrp-settings__input" name="attr_weapon_q_slow" type="checkbox"/>
                       </div>
-                      <div><span class="wfrp-settings__label">Undamaging</span>
+                      <div><span class="wfrp-settings__label" data-i18n="Undamaging"></span>
                         <input class="wfrp-settings__input" name="attr_weapon_q_undamaging" type="checkbox"/>
                       </div>
                     </div>
@@ -8800,13 +8800,13 @@
             </div>
           </div>
           <div class="sheet-wfrp-panel">
-            <div class="sheet-grid-align-items-center sheet-text-align-center sheet-grid-6 sheet-size-large"><span title="Corruption points counter">CP</span>
+            <div class="sheet-grid-align-items-center sheet-text-align-center sheet-grid-6 sheet-size-large"><span title="Corruption points counter" data-i18n="CP"></span>
               <button class="wfrp-advantage__decrement pictos" name="act_decrement_cp" type="action">-</button>
               <input class="sheet-border sheet-grid-span-2 sheet-size-large" name="attr_corruption_points" type="number" value="0"/>
               <div class="sheet-wfrp-field no-border"><span class="wfrp-armour__display no-border">/</span><span class="wfrp-armour__display no-border" name="attr_corruption_points_max"></span></div>
               <button class="wfrp-advantage__increment pictos" name="act_increment_cp" type="action">+</button>
             </div>
-            <div class="sheet-grid-align-items-center sheet-text-align-center sheet-grid-6 sheet-size-large"><span title="Fortune points counter">FP</span>
+            <div class="sheet-grid-align-items-center sheet-text-align-center sheet-grid-6 sheet-size-large"><span title="Fortune points counter" data-i18n="FP"></span>
               <button class="wfrp-advantage__decrement pictos" name="act_decrement_fp" type="action">-</button>
               <button class="wfrp-advantage__reset pictos" name="act_reset_fp" type="action">1</button>
               <input class="sheet-border sheet-size-large" name="attr_fortune" type="number" value="0"/>
@@ -8848,7 +8848,7 @@
               </div>
             </div>
             <input name="attr_active_defence" type="hidden"/>
-            <div class="sheet-grid-1 sheet-grid-align-content-start passive-defence"><span class="wfrp-controls__cell">Use for defence</span>
+            <div class="sheet-grid-1 sheet-grid-align-content-start passive-defence"><span class="wfrp-controls__cell" data-i18n="Use for defence"></span>
               <input class="wfrp-settings__input" name="attr_main_hand_defence" type="checkbox" value="1"/>
             </div>
             <input name="attr_active_defence" type="hidden"/>
@@ -8877,7 +8877,7 @@
               </div>
             </div>
             <input name="attr_active_defence" type="hidden"/>
-            <div class="sheet-grid-1 sheet-grid-align-content-start passive-defence"><span class="wfrp-controls__cell">Use for defence</span>
+            <div class="sheet-grid-1 sheet-grid-align-content-start passive-defence"><span class="wfrp-controls__cell" data-i18n="Use for defence"></span>
               <input class="wfrp-settings__input" name="attr_off_hand_defence" type="checkbox" value="1"/>
             </div>
             <input name="attr_active_defence" type="hidden"/>
@@ -8942,7 +8942,7 @@
                 <button data-i18n="Initiative" type="roll" value="&amp;{template:wfrp} {{name=@{character_name}}} {{roll_name=Initiative}} @{roll_init}"></button>
               </div>
             </div>
-            <div class="sheet-grid-span-2 sheet-flex"><span class="wfrp-controls__cell">Active Defence</span>
+            <div class="sheet-grid-span-2 sheet-flex"><span class="wfrp-controls__cell" data-i18n="Active Defence"></span>
               <input class="wfrp-settings__input" name="attr_active_defence" type="checkbox" value="1"/>
             </div>
           </div>
@@ -8958,7 +8958,7 @@
               </div>
             </div>
             <input name="attr_active_defence" type="hidden"/>
-            <div class="sheet-grid-1 sheet-grid-align-content-start passive-defence"><span class="wfrp-controls__cell">Use Dodge for defence</span>
+            <div class="sheet-grid-1 sheet-grid-align-content-start passive-defence"><span class="wfrp-controls__cell" data-i18n="Use Dodge for defence"></span>
               <input class="wfrp-settings__input" name="attr_dodge_defence" type="checkbox" value="1"/>
             </div>
             <input name="attr_active_defence" type="hidden"/>
@@ -8993,10 +8993,10 @@
               <input type="checkbox" value="1" name="attr_show_melee_modifiers_settings" style="display: none;"/>
             </label>
             <div>
-              <div class="sheet-bold">Total</div><span name="attr_cm_melee_sum"></span>
+              <div class="sheet-bold" data-i18n="Total"></div><span name="attr_cm_melee_sum"></span>
             </div>
             <div class="sheet-grid-span-10">
-              <div class="sheet-bold">Active</div>
+              <div class="sheet-bold" data-i18n="Active"></div>
               <div class="sheet-flex">
                 <input name="attr_cm_outnumbered_21" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber 2 to 1" data-i18n="Outnumbered 2:1"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber 2 to 1">(+20),</span></span>
                 <input name="attr_cm_outnumbered_31" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber 3 to 1" data-i18n="Outnumbered 3:1"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber 3 to 1">(+40),</span></span>
@@ -9070,10 +9070,10 @@
               <input type="checkbox" value="1" name="attr_show_ranged_modifiers_settings" style="display: none;"/>
             </label>
             <div>
-              <div class="sheet-bold">Total</div><span name="attr_cm_ranged_sum"></span>
+              <div class="sheet-bold" data-i18n="Total"></div><span name="attr_cm_ranged_sum"></span>
             </div>
             <div class="sheet-grid-span-10">
-              <div class="sheet-bold">Active</div>
+              <div class="sheet-bold" data-i18n="Active"></div>
               <div class="sheet-flex">
                 <input name="attr_cm_point_blank_range" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting a target at Point Blank Range" data-i18n="Point Blank Range"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting a target at Point Blank Range">(+40),</span></span>
                 <input name="attr_cm_short_range" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at Short Range: less than half weapon range" data-i18n="Short Range"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at Short Range: less than half weapon range">(+20),</span></span>
@@ -9151,10 +9151,10 @@
               <input type="checkbox" value="1" name="attr_show_parry_modifiers_settings" style="display: none;"/>
             </label>
             <div>
-              <div class="sheet-bold">Total</div><span name="attr_cm_parry_sum"></span>
+              <div class="sheet-bold" data-i18n="Total"></div><span name="attr_cm_parry_sum"></span>
             </div>
             <div class="sheet-grid-span-10">
-              <div class="sheet-bold">Active</div>
+              <div class="sheet-bold" data-i18n="Active"></div>
               <div class="sheet-flex">
                 <input name="attr_cm_defensive_stand" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls" data-i18n="Defensive Stand"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls">(+20),</span></span>
                 <input name="attr_cm_after_dual_wielder" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="" data-i18n="After Dual Wielder"></span><span class="wfrp-settings__label sheet-margin-right-2" title="">(-10),</span></span>
@@ -9184,10 +9184,10 @@
               <input type="checkbox" value="1" name="attr_show_dodge_modifiers_settings" style="display: none;"/>
             </label>
             <div>
-              <div class="sheet-bold">Total</div><span name="attr_cm_dodge_sum"></span>
+              <div class="sheet-bold" data-i18n="Total"></div><span name="attr_cm_dodge_sum"></span>
             </div>
             <div class="sheet-grid-span-10">
-              <div class="sheet-bold">Active</div>
+              <div class="sheet-bold" data-i18n="Active"></div>
               <div class="sheet-flex">
                 <input name="attr_cm_defensive_stand" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls" data-i18n="Defensive Stand"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls">(+20),</span></span>
                 <input name="attr_cm_after_dual_wielder" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="" data-i18n="After Dual Wielder"></span><span class="wfrp-settings__label sheet-margin-right-2" title="">(-10),</span></span>
@@ -9229,8 +9229,8 @@
               <fieldset class="repeating_weapons">
                 <div class="wfrp-weapontable__row sheet-grid-9">
                   <div class="wfrp-weapontable__cell sheet-grid-span-2"><span name="attr_weapon_name"></span></div>
-                  <div class="wfrp-weapontable__cell sheet-grid-span-2"><span>Main</span>
-                    <input class="wfrp-settings__input" name="attr_main_hand" type="checkbox" value="1"/><span>Off</span>
+                  <div class="wfrp-weapontable__cell sheet-grid-span-2"><span data-i18n="main-hand-checkbox"></span>
+                    <input class="wfrp-settings__input" name="attr_main_hand" type="checkbox" value="1"/><span data-i18n="off-hand-checkbox"></span>
                     <input class="wfrp-settings__input" name="attr_off_hand" type="checkbox" value="1"/>
                   </div>
                   <div class="wfrp-weapontable__cell sheet-grid-span-1"><span name="attr_weapon_range"></span></div>
@@ -10585,7 +10585,35 @@
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label-italic" data-i18n="Dangerous weapon"></div>
       <div class="wfrp-roll__value"></div>
-    </div>{{/rollGreater() computed::aw_dangerous 0}}{{#rollGreater() computed::a_talent_rank 0}}
+    </div>{{/rollGreater() computed::aw_dangerous 0}}{{#rollGreater() computed::a_is_smaller_mod 0}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Attacker is smaller"></div>
+      <div class="wfrp-roll__value">+{{computed::a_is_smaller_mod}}</div>
+    </div>{{/rollGreater() computed::a_is_smaller_mod 0}}{{#rollTotal() d_size_mod -30}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Target is tiny"></div>
+      <div class="wfrp-roll__value">{{computed::d_size_mod}}</div>
+    </div>{{/rollTotal() d_size_mod -30}}{{#rollTotal() d_size_mod -20}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Target is little"></div>
+      <div class="wfrp-roll__value">{{computed::d_size_mod}}</div>
+    </div>{{/rollTotal() d_size_mod -20}}{{#rollTotal() d_size_mod -10}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Target is small"></div>
+      <div class="wfrp-roll__value">{{computed::d_size_mod}}</div>
+    </div>{{/rollTotal() d_size_mod -10}}{{#rollTotal() d_size_mod 20}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Target is large"></div>
+      <div class="wfrp-roll__value">+{{computed::d_size_mod}}</div>
+    </div>{{/rollTotal() d_size_mod 20}}{{#rollTotal() d_size_mod 40}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Target is enormous"></div>
+      <div class="wfrp-roll__value">{{computed::d_size_mod}}</div>
+    </div>{{/rollTotal() d_size_mod 40}}{{#rollTotal() d_size_mod 60}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Target is monstrous"></div>
+      <div class="wfrp-roll__value">{{computed::d_size_mod}}</div>
+    </div>{{/rollTotal() d_size_mod 60}}{{#rollGreater() computed::a_talent_rank 0}}
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label-italic">{{a_talent_str}}</div>
       <div class="wfrp-roll__value">+{{a_talent_rank}} SL</div>
@@ -10594,7 +10622,7 @@
       <div class="wfrp-roll__label-underline" data-i18n="Attacker SL"></div>
       <div class="wfrp-roll__value">{{computed::a_roll_sl}}</div>
     </div>{{#rollGreater() d_active_defence 0}}
-    <div class="wfrp-roll__success"><span>Need Defence action </span></div>{{/rollGreater() d_active_defence 0}}{{#rollLess() d_active_defence 1}}{{#rollGreater() computed::is_opposed 0}}{{#rollTotal() computed::d_is_crit 0}}
+    <div class="wfrp-roll__success"><span data-i18n="Need Defence action"></span><span>: </span></div>{{/rollGreater() d_active_defence 0}}{{#rollLess() d_active_defence 1}}{{#rollGreater() computed::is_opposed 0}}{{#rollTotal() computed::d_is_crit 0}}
     <div class="wfrp-roll__target">
       <div class="wfrp-roll__label" data-i18n="Defender roll"></div>
       <div class="wfrp-roll__value">{{computed::d_roll}} vs {{computed::d_target}}</div>
@@ -10654,7 +10682,11 @@
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label-italic" data-i18n="Dangerous weapon"></div>
       <div class="wfrp-roll__value"></div>
-    </div>{{/rollGreater() computed::dw_dangerous 0}}{{#rollGreater() computed::d_talent_rank 0}}
+    </div>{{/rollGreater() computed::dw_dangerous 0}}{{#rollLess() computed::d_is_smaller_sl 0}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label-italic" data-i18n="Defender is smaller"></div>
+      <div class="wfrp-roll__value">{{computed::d_is_smaller_sl}} SL</div>
+    </div>{{/rollLess() computed::d_is_smaller_sl 0}}{{#rollGreater() computed::d_talent_rank 0}}
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label-italic">{{d_talent_str}}</div>
       <div class="wfrp-roll__value">+{{d_talent_rank}} SL</div>
@@ -10664,8 +10696,8 @@
       <div class="wfrp-roll__value">{{computed::d_roll_sl}}</div>
     </div>{{/rollGreater() computed::is_opposed 0}}
     <!-- Results-->{{#rollLess() computed::is_attacker_win 1}}
-    <div class="wfrp-roll__fail"><span>Total SL: {{computed::total_sl}}</span></div>{{/rollLess() computed::is_attacker_win 1}}{{#rollGreater() computed::is_attacker_win 0}}
-    <div class="wfrp-roll__success"><span>Total SL: {{computed::total_sl}}</span></div>{{#rollGreater() aw_damage 0}}
+    <div class="wfrp-roll__fail"><span data-i18n="Total SL:"></span><span>: {{computed::total_sl}}</span></div>{{/rollLess() computed::is_attacker_win 1}}{{#rollGreater() computed::is_attacker_win 0}}
+    <div class="wfrp-roll__success"><span data-i18n="Total SL"></span><span>: {{computed::total_sl}}</span></div>{{#rollGreater() aw_damage 0}}
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label" data-i18n="Weapon damage"></div>
       <div class="wfrp-roll__value">+{{aw_damage}}</div>
@@ -10677,7 +10709,11 @@
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label-italic" data-i18n="Impact weapon"></div>
       <div class="wfrp-roll__value">+{{computed::aw_impact}}</div>
-    </div>{{/rollGreater() computed::aw_impact 0}}
+    </div>{{/rollGreater() computed::aw_impact 0}}{{#rollGreater() computed::size_damage_mod 1}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label-italic" data-i18n="Attacker is bigger"></div>
+      <div class="wfrp-roll__value">x{{computed::size_damage_mod}}</div>
+    </div>{{/rollGreater() computed::size_damage_mod 1}}
     <div class="wfrp-roll__divider"></div>
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label" data-i18n="Hit Location"></div>
@@ -10712,7 +10748,7 @@
     <h1>{{a_name}} vs {{d_name}}</h1>
     <h2>{{aw_name}}</h2>
     <div class="wfrp-roll__divider"></div>
-    <div class="wfrp-roll__success"><span>Total SL: {{computed::total_sl}}</span></div>{{#rollGreater() aw_damage 0}}
+    <div class="wfrp-roll__success"><span data-i18n="Total SL"></span><span>: {{computed::total_sl}}</span></div>{{#rollGreater() aw_damage 0}}
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label" data-i18n="Weapon damage"></div>
       <div class="wfrp-roll__value">+{{aw_damage}}</div>
@@ -10724,7 +10760,11 @@
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label-italic" data-i18n="Impact weapon"></div>
       <div class="wfrp-roll__value">+{{computed::aw_impact}}</div>
-    </div>{{/rollGreater() computed::aw_impact 0}}
+    </div>{{/rollGreater() computed::aw_impact 0}}{{#rollGreater() computed::size_damage_mod 1}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label-italic" data-i18n="Attacker is bigger"></div>
+      <div class="wfrp-roll__value">x{{computed::size_damage_mod}}</div>
+    </div>{{/rollGreater() computed::size_damage_mod 1}}
     <div class="wfrp-roll__divider"></div>
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label" data-i18n="Hit Location"></div>
@@ -11278,7 +11318,9 @@
                 "attr": "cm_after_dual_wielder",
                 "values": { "parry": -10, "dodge": -10 },
             }
-        ]
+        ],
+
+        sizes: ["tiny", "little", "small", "average", "large", "enormous", "monstrous"],
     }
 
     // if input is skill name, return integer positive number
@@ -11322,6 +11364,11 @@
     const hasQuality = (qualities, quality_name) => {
         const index = wfrp.weapon_qualities.indexOf(quality_name)
         return (qualities & (1 << index)) > 0
+    }
+
+    const addQuality = (qualities, quality_name) => {
+        const index = wfrp.weapon_qualities.indexOf(quality_name)
+        return qualities + 2**index
     }
 
     const extractRollResults = (results) => {
@@ -11424,28 +11471,6 @@
         return entries
     }
 
-    const getRollTemplate = (template_name, test_name, a_char_source, aw_type, d_char_source, a_roll_source, d_roll_source, opposed_source) => {
-        let entries = []
-        entries.push(rtEntry(`name`, test_name))
-        entries.push(rtAttrEntry(`a_name`, `${a_char_source}character_name`), rtAttrEntry(`d_name`, `${d_char_source}character_name`))
-        entries.push(rtNumAttrEntry(`a_adv`, `${a_char_source}advantage`))
-        entries.push(rtNumAttrEntry(`d_adv`, `${d_char_source}advantage`))
-
-        entries = addWeaponToRoll(entries, 'a', a_char_source, aw_type)
-        entries = addWeaponToRoll(entries, 'd', d_char_source, `defence`)
-        entries = addDefenderResistanceToRoll(entries, d_char_source)
-        entries = addLastValuesToRoll(entries, a_char_source, d_char_source)
-        entries = addRollsToRoll(entries, a_roll_source, d_roll_source, opposed_source)
-        entries = addOutputsToRoll(entries, [
-            `a_target`, `d_target`, `a_roll_sl`, `d_roll_sl`, `total_sl`,
-            `hit_location`, `armour`, `is_attacker_win`, `a_is_crit`, `d_is_crit`, `total_damage`,
-            `aw_accurate`, `aw_damaging`, `aw_impact`, `aw_impale`, `aw_penetrating`, `aw_precise`,
-            `aw_dangerous`, `aw_imprecise`, `aw_undamaging`,
-            `dw_defensive`, `dw_fast`, `dw_impale`, `dw_dangerous`, `dw_slow`])
-
-        return rtString(template_name, entries)
-    }
-
     const saveLastRoll = (outputs) => {
         const update = {}
         update["last_a_roll"] = outputs.a_roll
@@ -11539,6 +11564,7 @@
 
             return input
         }
+
         const applyDefensiveQuality = (input) => {
             input.dw_defensive = hasQuality(input.dw_qualities, 'defensive') ?  1 : 0
             input.d_roll_sl = input.d_roll_sl + input.dw_defensive
@@ -11583,6 +11609,27 @@
             return input
         }
 
+        const applySizeModifers = (input) => {
+            input.a_is_smaller_mod = 0
+            input.d_size_mod = 0
+
+            if (input.size_delta < 0 && !input.aw_is_ranged) input.a_is_smaller_mod = 10
+            if (input.aw_is_ranged) {
+                input.d_size_mod = input.d_size < 4 ? 10 * input.d_size - 30 : 20 * input.d_size - 60
+            }
+            input.a_mod = input.a_mod + input.a_is_smaller_mod + input.d_size_mod
+            return input
+        }
+        const applySizeSL = (input) => {
+            const attr = wfrpModule.getSkillAttrById(input.ds_id)
+            const d_is_melee = !input.dw_is_ranged && !input.dw_is_dodge
+
+            input.d_is_smaller_sl = (!input.aw_is_ranged && d_is_melee && input.size_delta > 0) ? -2 * input.size_delta : 0
+            input.d_roll_sl = input.d_roll_sl + input.d_is_smaller_sl
+
+            return input
+        }
+
         let entries = []
         entries.push(rtEntry(`name`, test_name))
         entries.push(rtAttrEntry(`a_name`, `${a_char_source}character_name`), rtAttrEntry(`d_name`, `${d_char_source}character_name`))
@@ -11595,6 +11642,7 @@
         entries.push(rtNumAttrEntry(`a_adv`, `${a_char_source}advantage`))
         entries.push(rtNumAttrEntry(`d_adv`, `${d_char_source}advantage`))
         entries.push(rtNumAttrEntry(`a_ambidextrous_rank`,`${a_char_source}ambidextrous_rank`),rtNumAttrEntry(`d_ambidextrous_rank`,`${d_char_source}ambidextrous_rank`))
+        entries.push(rtNumAttrEntry(`a_size`, `${a_char_source}size_index`), rtNumAttrEntry(`d_size`, `${d_char_source}size_index`))
 
         entries = addWeaponToRoll(entries, 'a', a_char_source, aw_type)
         entries = addWeaponToRoll(entries, 'd', d_char_source, dw_type)
@@ -11616,7 +11664,8 @@
             `aw_accurate`, `aw_damaging`, `aw_impact`, `aw_impale`, `aw_penetrating`, `aw_precise`,
             `aw_dangerous`, `aw_imprecise`, `aw_undamaging`,
             `dw_defensive`, `dw_fast`, `dw_impale`, `dw_dangerous`, `dw_slow`,
-            `is_only_aw_name`, `a_off_hand_penalty`, `d_off_hand_penalty`])
+            `is_only_aw_name`, `a_off_hand_penalty`, `d_off_hand_penalty`,
+            `a_is_smaller_mod`, `d_size_mod`, `d_is_smaller_sl`, `size_damage_mod`])
 
         startRoll(rtString(`&{template:wfrp-opposed}`, entries), (results) => {
             let outputs = extractRollResults(results)
@@ -11624,13 +11673,16 @@
             if (a_roll_source === "last") outputs.a_roll = getLastValue(outputs, "a_roll")
             if (d_roll_source === "last") outputs.d_roll = getLastValue(outputs, "d_roll")
             if (opposed_source === "last") outputs.is_opposed = getLastValue(outputs, "opposed")
+
             outputs.is_only_aw_name = (!outputs.is_opposed || outputs.d_active_defence) ? 1 : 0
+            outputs.size_delta = outputs.a_size - outputs.d_size
 
             outputs = prepareRoll(outputs)
             outputs = applyAccurateQuality(outputs)
             outputs = applyFastQuality(outputs)
             outputs = applyOffHand(outputs)
             outputs = applyCombatModifiers(outputs)
+            outputs = applySizeModifers(outputs)
 
             outputs = processRoll(outputs, "a")
             outputs = processRoll(outputs, "d")
@@ -11641,6 +11693,7 @@
             outputs = applyDangerousQuality(outputs)
             outputs = applyImpreciseQuality(outputs)
             outputs = applySlowQuality(outputs)
+            outputs = applySizeSL(outputs)
 
             if (!outputs.a_is_passed) outputs.a_talent_rank = 0
             if (!outputs.d_is_passed) outputs.d_talent_rank = 0
@@ -11674,13 +11727,18 @@
         entries = addDefenderResistanceToRoll(entries, 'target|')
         entries = addLastValuesToRoll(entries, '', 'target|')
         entries = addRollsToRoll(entries, `last`, `last`, `last`)
-        entries = addOutputsToRoll(entries, [`total_sl`, `hit_location`, `armour`, `total_damage`, `aw_damaging`, `aw_impact`, `aw_penetrating`, `aw_undamaging`])
+        entries = addOutputsToRoll(entries, [`total_sl`, `hit_location`, `armour`, `total_damage`,
+            `aw_damaging`, `aw_impact`, `aw_penetrating`, `aw_undamaging`, `size_damage_mod`])
+
+        entries.push(rtNumAttrEntry(`a_size`, `${a_char_source}size_index`), rtNumAttrEntry(`d_size`, `${d_char_source}size_index`))
 
         startRoll(rtString(`&{template:wfrp-riposte}`, entries), (results) => {
             let inputs = extractRollResults(results)
             inputs.a_roll = getLastValue(inputs, "a_roll")
             inputs.total_sl = getLastValue(inputs, "total_sl")
             inputs.total_sl = -inputs.total_sl
+            outputs.size_delta = outputs.a_size - outputs.d_size
+
             let outputs = calculateDamage(inputs)
 
             console.log(outputs)
@@ -11726,6 +11784,21 @@
             return input
         }
 
+        const applySizeWeaponQualities = (input) => {
+            if (input.aw_is_ranged) return input
+            if (input.size_delta == 1 && !hasQuality(input.aw_qualities, 'damaging')) {
+                input.aw_qualities = addQuality(input.aw_qualities, 'damaging')
+            }
+            if (input.size_delta > 1 && !hasQuality(input.aw_qualities, 'impact')) {
+                input.aw_qualities = addQuality(input.aw_qualities, 'impact')
+            }
+            return input
+        }
+        const applySizeDamage = (input) => {
+            input.size_damage_mod = (!input.aw_is_ranged && input.size_delta > 1) ? input.size_delta : 1
+            return input
+        }
+
         const hit_location = getHitLocation(inputs.a_roll)
 
         inputs.hit_location = hit_location[1].label
@@ -11734,12 +11807,14 @@
 
         const initial_total_sl = inputs.total_sl
 
-        let outputs = applyDamagingQuality(inputs)
+        let outputs = applySizeWeaponQualities(inputs)
+        outputs = applyDamagingQuality(inputs)
         outputs = applyImpactQuality(outputs)
         outputs = applyPenetratingQuality(outputs)
         outputs = applyUndamagingQuality(outputs)
+        outputs = applySizeDamage(outputs)
 
-        outputs.total_damage = Math.max(outputs.total_sl + outputs.aw_damage - outputs.armour - outputs.d_tb, outputs.min_damage)
+        outputs.total_damage = Math.max((outputs.total_sl + outputs.aw_damage) * outputs.size_damage_mod - outputs.armour - outputs.d_tb, outputs.min_damage)
         outputs.total_sl = initial_total_sl
         outputs.armour = initial_armour
         return outputs
@@ -13240,6 +13315,7 @@
             const updateAttrs = {};
 
             updateAttrs["wounds_max"] = new_wounds + wound_mod;
+            updateAttrs["size_index"] = wfrp.sizes.indexOf(values["size"]) || 3;
 
             setAttrs(updateAttrs);
         });
@@ -14131,8 +14207,6 @@ on(wfrpModule.wfrp.public_weapon_attrs.map(attr => `change:main_hand_${attr} cha
 on(`change:strength_bonus change:toughness_bonus change:willpower_bonus change:wound_mod change:size`, eventInfo => wfrpModule.calculateMaxWounds());
 
 on(`change:toughness_bonus change:willpower_bonus change:corruption_points_mod`, eventInfo => wfrpModule.calculateMaxCorruptionPoints());
-
-on(`change:basic change:willpower_bonus change:corruption_points_mod`, eventInfo => wfrpModule.calculateMaxCorruptionPoints());
 
 on(`change:strength_bonus change:toughness_bonus change:encumbrance_mod`, eventInfo => wfrpModule.calculateMaxEncumbrance());
 

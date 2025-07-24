@@ -475,7 +475,9 @@ const wfrpModule = ( () => {
                 "attr": "cm_after_dual_wielder",
                 "values": { "parry": -10, "dodge": -10 },
             }
-        ]
+        ],
+
+        sizes: ["tiny", "little", "small", "average", "large", "enormous", "monstrous"],
     }
 
     // if input is skill name, return integer positive number
@@ -519,6 +521,11 @@ const wfrpModule = ( () => {
     const hasQuality = (qualities, quality_name) => {
         const index = wfrp.weapon_qualities.indexOf(quality_name)
         return (qualities & (1 << index)) > 0
+    }
+
+    const addQuality = (qualities, quality_name) => {
+        const index = wfrp.weapon_qualities.indexOf(quality_name)
+        return qualities + 2**index
     }
 
     const extractRollResults = (results) => {
@@ -621,28 +628,6 @@ const wfrpModule = ( () => {
         return entries
     }
 
-    const getRollTemplate = (template_name, test_name, a_char_source, aw_type, d_char_source, a_roll_source, d_roll_source, opposed_source) => {
-        let entries = []
-        entries.push(rtEntry(`name`, test_name))
-        entries.push(rtAttrEntry(`a_name`, `${a_char_source}character_name`), rtAttrEntry(`d_name`, `${d_char_source}character_name`))
-        entries.push(rtNumAttrEntry(`a_adv`, `${a_char_source}advantage`))
-        entries.push(rtNumAttrEntry(`d_adv`, `${d_char_source}advantage`))
-
-        entries = addWeaponToRoll(entries, 'a', a_char_source, aw_type)
-        entries = addWeaponToRoll(entries, 'd', d_char_source, `defence`)
-        entries = addDefenderResistanceToRoll(entries, d_char_source)
-        entries = addLastValuesToRoll(entries, a_char_source, d_char_source)
-        entries = addRollsToRoll(entries, a_roll_source, d_roll_source, opposed_source)
-        entries = addOutputsToRoll(entries, [
-            `a_target`, `d_target`, `a_roll_sl`, `d_roll_sl`, `total_sl`,
-            `hit_location`, `armour`, `is_attacker_win`, `a_is_crit`, `d_is_crit`, `total_damage`,
-            `aw_accurate`, `aw_damaging`, `aw_impact`, `aw_impale`, `aw_penetrating`, `aw_precise`,
-            `aw_dangerous`, `aw_imprecise`, `aw_undamaging`,
-            `dw_defensive`, `dw_fast`, `dw_impale`, `dw_dangerous`, `dw_slow`])
-
-        return rtString(template_name, entries)
-    }
-
     const saveLastRoll = (outputs) => {
         const update = {}
         update["last_a_roll"] = outputs.a_roll
@@ -736,6 +721,7 @@ const wfrpModule = ( () => {
 
             return input
         }
+
         const applyDefensiveQuality = (input) => {
             input.dw_defensive = hasQuality(input.dw_qualities, 'defensive') ?  1 : 0
             input.d_roll_sl = input.d_roll_sl + input.dw_defensive
@@ -780,6 +766,27 @@ const wfrpModule = ( () => {
             return input
         }
 
+        const applySizeModifers = (input) => {
+            input.a_is_smaller_mod = 0
+            input.d_size_mod = 0
+
+            if (input.size_delta < 0 && !input.aw_is_ranged) input.a_is_smaller_mod = 10
+            if (input.aw_is_ranged) {
+                input.d_size_mod = input.d_size < 4 ? 10 * input.d_size - 30 : 20 * input.d_size - 60
+            }
+            input.a_mod = input.a_mod + input.a_is_smaller_mod + input.d_size_mod
+            return input
+        }
+        const applySizeSL = (input) => {
+            const attr = wfrpModule.getSkillAttrById(input.ds_id)
+            const d_is_melee = !input.dw_is_ranged && !input.dw_is_dodge
+
+            input.d_is_smaller_sl = (!input.aw_is_ranged && d_is_melee && input.size_delta > 0) ? -2 * input.size_delta : 0
+            input.d_roll_sl = input.d_roll_sl + input.d_is_smaller_sl
+
+            return input
+        }
+
         let entries = []
         entries.push(rtEntry(`name`, test_name))
         entries.push(rtAttrEntry(`a_name`, `${a_char_source}character_name`), rtAttrEntry(`d_name`, `${d_char_source}character_name`))
@@ -792,6 +799,7 @@ const wfrpModule = ( () => {
         entries.push(rtNumAttrEntry(`a_adv`, `${a_char_source}advantage`))
         entries.push(rtNumAttrEntry(`d_adv`, `${d_char_source}advantage`))
         entries.push(rtNumAttrEntry(`a_ambidextrous_rank`,`${a_char_source}ambidextrous_rank`),rtNumAttrEntry(`d_ambidextrous_rank`,`${d_char_source}ambidextrous_rank`))
+        entries.push(rtNumAttrEntry(`a_size`, `${a_char_source}size_index`), rtNumAttrEntry(`d_size`, `${d_char_source}size_index`))
 
         entries = addWeaponToRoll(entries, 'a', a_char_source, aw_type)
         entries = addWeaponToRoll(entries, 'd', d_char_source, dw_type)
@@ -813,7 +821,8 @@ const wfrpModule = ( () => {
             `aw_accurate`, `aw_damaging`, `aw_impact`, `aw_impale`, `aw_penetrating`, `aw_precise`,
             `aw_dangerous`, `aw_imprecise`, `aw_undamaging`,
             `dw_defensive`, `dw_fast`, `dw_impale`, `dw_dangerous`, `dw_slow`,
-            `is_only_aw_name`, `a_off_hand_penalty`, `d_off_hand_penalty`])
+            `is_only_aw_name`, `a_off_hand_penalty`, `d_off_hand_penalty`,
+            `a_is_smaller_mod`, `d_size_mod`, `d_is_smaller_sl`, `size_damage_mod`])
 
         startRoll(rtString(`&{template:wfrp-opposed}`, entries), (results) => {
             let outputs = extractRollResults(results)
@@ -821,13 +830,16 @@ const wfrpModule = ( () => {
             if (a_roll_source === "last") outputs.a_roll = getLastValue(outputs, "a_roll")
             if (d_roll_source === "last") outputs.d_roll = getLastValue(outputs, "d_roll")
             if (opposed_source === "last") outputs.is_opposed = getLastValue(outputs, "opposed")
+
             outputs.is_only_aw_name = (!outputs.is_opposed || outputs.d_active_defence) ? 1 : 0
+            outputs.size_delta = outputs.a_size - outputs.d_size
 
             outputs = prepareRoll(outputs)
             outputs = applyAccurateQuality(outputs)
             outputs = applyFastQuality(outputs)
             outputs = applyOffHand(outputs)
             outputs = applyCombatModifiers(outputs)
+            outputs = applySizeModifers(outputs)
 
             outputs = processRoll(outputs, "a")
             outputs = processRoll(outputs, "d")
@@ -838,6 +850,7 @@ const wfrpModule = ( () => {
             outputs = applyDangerousQuality(outputs)
             outputs = applyImpreciseQuality(outputs)
             outputs = applySlowQuality(outputs)
+            outputs = applySizeSL(outputs)
 
             if (!outputs.a_is_passed) outputs.a_talent_rank = 0
             if (!outputs.d_is_passed) outputs.d_talent_rank = 0
@@ -871,13 +884,18 @@ const wfrpModule = ( () => {
         entries = addDefenderResistanceToRoll(entries, 'target|')
         entries = addLastValuesToRoll(entries, '', 'target|')
         entries = addRollsToRoll(entries, `last`, `last`, `last`)
-        entries = addOutputsToRoll(entries, [`total_sl`, `hit_location`, `armour`, `total_damage`, `aw_damaging`, `aw_impact`, `aw_penetrating`, `aw_undamaging`])
+        entries = addOutputsToRoll(entries, [`total_sl`, `hit_location`, `armour`, `total_damage`,
+            `aw_damaging`, `aw_impact`, `aw_penetrating`, `aw_undamaging`, `size_damage_mod`])
+
+        entries.push(rtNumAttrEntry(`a_size`, `${a_char_source}size_index`), rtNumAttrEntry(`d_size`, `${d_char_source}size_index`))
 
         startRoll(rtString(`&{template:wfrp-riposte}`, entries), (results) => {
             let inputs = extractRollResults(results)
             inputs.a_roll = getLastValue(inputs, "a_roll")
             inputs.total_sl = getLastValue(inputs, "total_sl")
             inputs.total_sl = -inputs.total_sl
+            outputs.size_delta = outputs.a_size - outputs.d_size
+
             let outputs = calculateDamage(inputs)
 
             console.log(outputs)
@@ -923,6 +941,21 @@ const wfrpModule = ( () => {
             return input
         }
 
+        const applySizeWeaponQualities = (input) => {
+            if (input.aw_is_ranged) return input
+            if (input.size_delta == 1 && !hasQuality(input.aw_qualities, 'damaging')) {
+                input.aw_qualities = addQuality(input.aw_qualities, 'damaging')
+            }
+            if (input.size_delta > 1 && !hasQuality(input.aw_qualities, 'impact')) {
+                input.aw_qualities = addQuality(input.aw_qualities, 'impact')
+            }
+            return input
+        }
+        const applySizeDamage = (input) => {
+            input.size_damage_mod = (!input.aw_is_ranged && input.size_delta > 1) ? input.size_delta : 1
+            return input
+        }
+
         const hit_location = getHitLocation(inputs.a_roll)
 
         inputs.hit_location = hit_location[1].label
@@ -931,12 +964,14 @@ const wfrpModule = ( () => {
 
         const initial_total_sl = inputs.total_sl
 
-        let outputs = applyDamagingQuality(inputs)
+        let outputs = applySizeWeaponQualities(inputs)
+        outputs = applyDamagingQuality(inputs)
         outputs = applyImpactQuality(outputs)
         outputs = applyPenetratingQuality(outputs)
         outputs = applyUndamagingQuality(outputs)
+        outputs = applySizeDamage(outputs)
 
-        outputs.total_damage = Math.max(outputs.total_sl + outputs.aw_damage - outputs.armour - outputs.d_tb, outputs.min_damage)
+        outputs.total_damage = Math.max((outputs.total_sl + outputs.aw_damage) * outputs.size_damage_mod - outputs.armour - outputs.d_tb, outputs.min_damage)
         outputs.total_sl = initial_total_sl
         outputs.armour = initial_armour
         return outputs
@@ -2437,6 +2472,7 @@ const wfrpModule = ( () => {
             const updateAttrs = {};
 
             updateAttrs["wounds_max"] = new_wounds + wound_mod;
+            updateAttrs["size_index"] = wfrp.sizes.indexOf(values["size"]) || 3;
 
             setAttrs(updateAttrs);
         });
@@ -3328,8 +3364,6 @@ on(wfrpModule.wfrp.public_weapon_attrs.map(attr => `change:main_hand_${attr} cha
 on(`change:strength_bonus change:toughness_bonus change:willpower_bonus change:wound_mod change:size`, eventInfo => wfrpModule.calculateMaxWounds());
 
 on(`change:toughness_bonus change:willpower_bonus change:corruption_points_mod`, eventInfo => wfrpModule.calculateMaxCorruptionPoints());
-
-on(`change:basic change:willpower_bonus change:corruption_points_mod`, eventInfo => wfrpModule.calculateMaxCorruptionPoints());
 
 on(`change:strength_bonus change:toughness_bonus change:encumbrance_mod`, eventInfo => wfrpModule.calculateMaxEncumbrance());
 
