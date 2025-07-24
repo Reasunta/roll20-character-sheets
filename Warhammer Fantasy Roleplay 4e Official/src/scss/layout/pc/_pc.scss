@@ -213,6 +213,13 @@
         }
     }
 }
+.sheet-icon, .sheet-page__encounter .sheet-wfrp-panel .sheet-icon {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100%;
+    min-width: 100%;
+}
 
 .sheet-page__encounter .sheet-wfrp-panel .sheet-imaged button {
     background-size: contain;
@@ -233,11 +240,13 @@ input[name="attr_off_hand_weapon_is_ranged"][type="hidden"][value="1"] ~ div but
     background-image: url("https://www.svgrepo.com/show/320348/arrows-shield.svg");
 }
 input[name="attr_main_hand_weapon_is_ranged"][type="hidden"] ~ div button[name="act_main_unopposed_attack"],
-input[name="attr_off_hand_weapon_is_ranged"][type="hidden"] ~ div button[name="act_off_unopposed_attack"]{
+input[name="attr_off_hand_weapon_is_ranged"][type="hidden"] ~ div button[name="act_off_unopposed_attack"],
+.sheet-wfrp-wrapper .sheet-unopposed-melee-attack-icon {
     background-image: url("https://www.svgrepo.com/show/321308/saber-slash.svg");
 }
 input[name="attr_main_hand_weapon_is_ranged"][type="hidden"][value="1"] ~ div button[name="act_main_unopposed_attack"],
-input[name="attr_off_hand_weapon_is_ranged"][type="hidden"][value="1"] ~ div button[name="act_off_unopposed_attack"]{
+input[name="attr_off_hand_weapon_is_ranged"][type="hidden"][value="1"] ~ div button[name="act_off_unopposed_attack"],
+.sheet-wfrp-wrapper .sheet-unopposed-ranged-attack-icon {
     background-image: url("https://www.svgrepo.com/show/320942/high-shot.svg");
 }
 
@@ -247,11 +256,16 @@ input[name="attr_off_hand_weapon_is_ranged"][type="hidden"][value="1"] + input[n
 }
 
 div button[name="act_main_defend"],
-div button[name="act_off_defend"] {
+div button[name="act_off_defend"],
+.sheet-wfrp-wrapper .sheet-unopposed-parry-attack-icon {
     background-image: url("https://www.svgrepo.com/show/321360/shield-reflect.svg");
 }
 div button[name="act_dual_wielder_attack"] {
     background-image: url("https://www.svgrepo.com/show/320605/crossed-swords.svg");
+}
+
+.sheet-wfrp-wrapper .sheet-unopposed-dodge-attack-icon {
+    background-image: url("https://www.svgrepo.com/show/499332/player-dodge.svg");
 }
 
 input[name="attr_main_hand_weapon_is_pistol"][type="hidden"] + input[name="attr_main_hand_weapon_is_ranged"],

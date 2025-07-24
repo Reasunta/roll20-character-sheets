@@ -489,6 +489,9 @@
     .sheet-margin-#{$i} {
         margin: #{$i}px;
     }
+    .sheet-margin-right-#{$i} {
+        margin-right: #{$i}px;
+    }
 }
 
 .sheet-grid-align-content-start {
@@ -500,10 +503,20 @@
 .sheet-grid-align-items-center {
     align-items: center;
 }
+.sheet-grid-justify-items-center {
+    justify-items: center;
+}
+.sheet-grid-justify-items-right {
+    justify-items: right;
+}
 .sheet-text-align-center {
     text-align: center;
 }
-
 .sheet-flex {
     display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start
+}
+.sheet-settings-color {
+    background-color: rgba(195, 223, 241, 0.125);
 }

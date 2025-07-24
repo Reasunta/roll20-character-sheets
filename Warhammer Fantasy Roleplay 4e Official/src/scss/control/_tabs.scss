@@ -92,4 +92,21 @@ input[name="attr_is_combat"][type="hidden"][value="1"] + div[class="sheet-wfrp-t
     display: grid;
 }
 
+input[name="attr_show_melee_modifiers_settings"][type="hidden"] + div.sheet-modifiers-settings,
+input[name="attr_show_parry_modifiers_settings"][type="hidden"] + div.sheet-modifiers-settings,
+input[name="attr_show_dodge_modifiers_settings"][type="hidden"] + div.sheet-modifiers-settings,
+input[name="attr_show_ranged_modifiers_settings"][type="hidden"] + div.sheet-modifiers-settings,
+input[name*="attr_cm"][type="hidden"] + span
+{
+    display: none;
+}
+input[name="attr_show_melee_modifiers_settings"][type="hidden"][value="1"] + div.sheet-modifiers-settings,
+input[name="attr_show_parry_modifiers_settings"][type="hidden"][value="1"] + div.sheet-modifiers-settings,
+input[name="attr_show_dodge_modifiers_settings"][type="hidden"][value="1"] + div.sheet-modifiers-settings,
+input[name="attr_show_ranged_modifiers_settings"][type="hidden"][value="1"] + div.sheet-modifiers-settings,
+input[name*="attr_cm"][type="hidden"][value="1"] + span{
+    display: inherit;
+}
+
+
 

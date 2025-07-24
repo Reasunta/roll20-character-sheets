@@ -350,6 +350,131 @@ const wfrpModule = ( () => {
             `weapon_is_off_hand`,
             `weapon_is_ranged`,
             `weapon_is_pistol`,
+            `weapon_is_dodge`,
+        ],
+
+        combat_modifiers: [
+            {
+                "attr": "cm_outnumbered_21",
+                "values": { "melee": 20 },
+                "group": "outnumbered"
+            },
+            {
+                "attr": "cm_outnumbered_31",
+                "values": { "melee": 40 },
+                "group": "outnumbered"
+            },
+            {
+                "attr": "cm_target_grapple_leader",
+                "values": { "melee": 10 },
+                "group": "grapple"
+            },
+            {
+                "attr": "cm_target_grapple_follower",
+                "values": { "melee": 20 },
+                "group": "grapple"
+            },
+            {
+                "attr": "cm_point_blank_range",
+                "values": {"ranged": 40},
+                "group": "distance"
+            },
+            {
+                "attr": "cm_short_range",
+                "values": {"ranged": 20},
+                "group": "distance"
+            },
+            {
+                "attr": "cm_long_range",
+                "values": {"ranged": -10},
+                "group": "distance"
+            },
+            {
+                "attr": "cm_extreme_range",
+                "values": {"ranged": -30},
+                "group": "distance"
+            },
+            {
+                "attr": "cm_target_small_group",
+                "values": {"ranged": 20},
+                "group": "group_size"
+            },
+            {
+                "attr": "cm_target_large_group",
+                "values": {"ranged": 40},
+                "group": "group_size"
+            },
+            {
+                "attr": "cm_target_crowd",
+                "values": {"ranged": 60},
+                "group": "group_size"
+            },
+            {
+                "attr": "cm_shoot_after_move",
+                "values": {"ranged": -10},
+            },
+            {
+                "attr": "cm_target_soft_cover",
+                "values": { "melee": -10, "ranged": -10 },
+                "group": "cover"
+            },
+            {
+                "attr": "cm_target_medium_cover",
+                "values": { "melee": -20, "ranged": -20 },
+                "group": "cover"
+            },
+            {
+                "attr": "cm_target_hard_cover",
+                "values": { "melee": -30, "ranged": -30 },
+                "group": "cover"
+            },
+            {
+                "attr": "cm_specific_hit_location",
+                "values": { "melee": -20, "ranged": -20 },
+            },
+            {
+                "attr": "cm_shoot_after_aim",
+                "values": {"ranged": 20}
+            },
+            {
+                "attr": "cm_hard_terrain",
+                "values": { "melee": -10 },
+                "group": "terrain"
+            },
+            {
+                "attr": "cm_extreme_terrain",
+                "values": { "melee": -30, "dodge": -30 },
+                "group": "terrain"
+            },
+            {
+                "attr": "cm_extreme_weather",
+                "values": { "melee": -20, 'ranged': '-20' }
+            },
+            {
+                "attr": "cm_darkness",
+                "values": {
+                    "melee": -20,
+                    "ranged": -30,
+                    "parry": -20,
+                    "dodge": -20,
+                },
+            },
+            {
+                "attr": "cm_side_rear_attack",
+                "values": { "melee": 20 },
+            },
+            {
+                "attr": "cm_target_is_fleeing",
+                "values": { "melee": 20 },
+            },
+            {
+                "attr": "cm_defensive_stand",
+                "values": { "parry": 20, "dodge": 20 },
+            },
+            {
+                "attr": "cm_after_dual_wielder",
+                "values": { "parry": -10, "dodge": -10 },
+            }
         ]
     }
 
@@ -381,8 +506,8 @@ const wfrpModule = ( () => {
 
     const getSkillAttrById = (id) => {
         if (id < 0) return ""
-        const integerId = id * 100
-        return (integerId > 0 && integerId < 100) ? wfrp.specialisations[integerId - 1] : skill_name = wfrp.skills[id];
+        const integerId = Math.round(id * 100)
+        return (integerId > 0 && integerId < 100) ? wfrp.specialisations[integerId - 1] : wfrp.skills[id];
     }
 
     const getHitLocation = (roll) => {
@@ -425,7 +550,8 @@ const wfrpModule = ( () => {
                 rtNumAttrEntry(`${prefix}s_value`, `${char_source}dodge`),
                 rtNumEntry(`${prefix}w_damage`, `0`),
                 rtNumEntry(`${prefix}w_qualities`, `0`),
-                rtNumAttrEntry(`${prefix}w_off_hand`, `0`)
+                rtNumAttrEntry(`${prefix}w_off_hand`, `0`),
+                rtNumAttrEntry(`${prefix}w_is_dodge`, `1`)
             )
         } else if (w_type === 'grapple') {
             entries.push(
@@ -434,7 +560,8 @@ const wfrpModule = ( () => {
                 rtNumAttrEntry(`${prefix}s_value`, `${char_source}strength`),
                 rtNumEntry(`${prefix}w_damage`, `0`),
                 rtNumEntry(`${prefix}w_qualities`, `0`),
-                rtNumAttrEntry(`${prefix}w_off_hand`, `0`)
+                rtNumAttrEntry(`${prefix}w_off_hand`, `0`),
+                rtNumAttrEntry(`${prefix}w_is_dodge`, `0`)
             )
         }
         else {
@@ -445,7 +572,8 @@ const wfrpModule = ( () => {
                 rtNumAttrEntry(`${prefix}w_damage`, `${char_source}${w_type}_weapon_damage`),
                 rtNumAttrEntry(`${prefix}w_qualities`, `${char_source}${w_type}_weapon_qualities`),
                 rtNumAttrEntry(`${prefix}w_off_hand`, `${char_source}${w_type}_weapon_is_off_hand`),
-                rtNumAttrEntry(`${prefix}w_is_ranged`, `${char_source}${w_type}_weapon_is_ranged`)
+                rtNumAttrEntry(`${prefix}w_is_ranged`, `${char_source}${w_type}_weapon_is_ranged`),
+                rtNumAttrEntry(`${prefix}w_is_dodge`, `${char_source}${w_type}_weapon_is_dodge`)
             )
         }
         return entries
@@ -525,6 +653,11 @@ const wfrpModule = ( () => {
         setAttrs(update)
     }
     const processRoll = (input, p) => {
+        if (input[`${p}_mod`] > 60) input[`${p}_mod`] = 60
+        if (input[`${p}_mod`] < -30) input[`${p}_mod`] = -30
+
+        input[`${p}_target`] = input[`${p}_target`] + input[`${p}_mod`]
+
         input[`${p}_is_passed`] = input[`${p}_roll`] <= input[`${p}_target`] && input[`${p}_roll`] < 100
         input[`${p}_roll_sl`] = Math.trunc((input[`${p}_target`] - input[`${p}_roll`]) / 10)
 
@@ -537,6 +670,10 @@ const wfrpModule = ( () => {
         const prepareRoll = (input) => {
             input.a_adv = input.a_adv * 10
             input.d_adv = input.d_adv * 10
+
+            input.a_mod = 0
+            input.d_mod = 0
+
             input.a_target = input.as_value + input.a_adv
             input.d_target = input.ds_value + input.d_adv
 
@@ -545,7 +682,7 @@ const wfrpModule = ( () => {
 
         const applyAccurateQuality = (input) => {
             input.aw_accurate = hasQuality(input.aw_qualities, 'accurate') ?  10 : 0
-            input.a_target = input.a_target + input.aw_accurate
+            input.a_mod = input.a_mod + input.aw_accurate
             return input
         }
         const applyFastQuality = (input) => {
@@ -555,7 +692,7 @@ const wfrpModule = ( () => {
                     const attr = wfrpModule.getSkillAttrById(input.ds_id)
                     const is_melee = wfrp.specialisations.slice(0, 8).includes(attr)
                     input.dw_fast = is_melee ? -10 : 0
-                    input.d_target = input.d_target + input.dw_fast
+                    input.d_mod = input.d_mod + input.dw_fast
                 }
             }
             return input
@@ -569,11 +706,36 @@ const wfrpModule = ( () => {
                 ? 0
                 : Math.min(-20 + (parseInt(input.d_ambidextrous_rank) || 0) * 10)
 
-            input.a_target = input.a_target + input.a_off_hand_penalty
-            input.d_target = input.d_target + input.d_off_hand_penalty
+            input.a_mod = input.a_mod + input.a_off_hand_penalty
+            input.d_mod = input.d_mod + input.d_off_hand_penalty
             return input
         }
+        const applyCombatModifiers= (input) => {
+            const a_type = input.aw_is_ranged ? `ranged` : `melee`
+            const d_type = input.dw_is_dodge ? `dodge` : `parry`
 
+            wfrp.combat_modifiers.filter(m => input[`a_${m.attr}`]).forEach(m => {
+                if (Object.keys(m.values).includes(a_type)) {
+                    input.a_mod = input.a_mod + m.values[a_type]
+                    input[`a_${m.attr}_value`] = m.values[a_type] > 0 ? `+${m.values[a_type]}` : `${m.values[a_type]}`
+                }
+                else {
+                    input[`a_${m.attr}`] = 0
+                }
+            })
+
+            wfrp.combat_modifiers.filter(m => input[`d_${m.attr}`]).forEach(m => {
+                if (Object.keys(m.values).includes(d_type)) {
+                    input.d_mod = input.d_mod + m.values[d_type]
+                    input[`d_${m.attr}_value`] = m.values[d_type] > 0 ? `+${m.values[d_type]}` : `${m.values[d_type]}`
+                }
+                else {
+                    input[`d_${m.attr}`] = 0
+                }
+            })
+
+            return input
+        }
         const applyDefensiveQuality = (input) => {
             input.dw_defensive = hasQuality(input.dw_qualities, 'defensive') ?  1 : 0
             input.d_roll_sl = input.d_roll_sl + input.dw_defensive
@@ -636,6 +798,15 @@ const wfrpModule = ( () => {
         entries = addDefenderResistanceToRoll(entries, d_char_source)
         entries = addLastValuesToRoll(entries, a_char_source, d_char_source)
         entries = addRollsToRoll(entries, a_roll_source, d_roll_source, opposed_source)
+
+        wfrp.combat_modifiers.filter(m => Object.keys(m.values).includes('melee') || Object.keys(m.values).includes('ranged'))
+            .forEach(m => {
+                entries.push(rtNumAttrEntry(`a_${m.attr}`, `${a_char_source}${m.attr}`), rtOutputEntry(`a_${m.attr}_value`))
+            })
+        wfrp.combat_modifiers.filter(m => Object.keys(m.values).includes('parry') || Object.keys(m.values).includes('dodge'))
+            .forEach(m => {
+                entries.push(rtNumAttrEntry(`d_${m.attr}`, `${d_char_source}${m.attr}`), rtOutputEntry(`d_${m.attr}_value`))
+            })
         entries = addOutputsToRoll(entries, [
             `a_target`, `d_target`, `a_roll_sl`, `d_roll_sl`, `total_sl`,
             `hit_location`, `armour`, `is_attacker_win`, `a_is_crit`, `d_is_crit`, `total_damage`,
@@ -656,6 +827,7 @@ const wfrpModule = ( () => {
             outputs = applyAccurateQuality(outputs)
             outputs = applyFastQuality(outputs)
             outputs = applyOffHand(outputs)
+            outputs = applyCombatModifiers(outputs)
 
             outputs = processRoll(outputs, "a")
             outputs = processRoll(outputs, "d")
@@ -2361,6 +2533,7 @@ const wfrpModule = ( () => {
             const weapon_attrs = calculateCurrentWeaponAttrsForOpposedTest(weapon_id, v)
             weapon_attrs.weapon_is_off_hand = weapon_type==="off_hand" ? 1 : 0
             weapon_attrs.weapon_is_pistol = hasQuality(weapon_attrs.weapon_qualities, 'pistol') ? 1 : 0
+            result.weapon_is_dodge = 0
             setWeaponAttrsForOpposedTest(weapon_type, weapon_attrs)
         })
     }
@@ -2368,7 +2541,7 @@ const wfrpModule = ( () => {
     const setEmptyWeaponAs = (weapon_type) => {
         const empty = {weapon_id: '', weapon_name: '---',
             weapon_s_index: 0, weapon_s_value: 0, weapon_damage:0, weapon_qualities: 0, weapon_qualities_str: "---",
-            weapon_is_off_hand: 0, weapon_is_ranged: 0
+            weapon_is_off_hand: 0, weapon_is_ranged: 0, weapon_is_dodge: 0
         }
         setWeaponAttrsForOpposedTest(weapon_type, empty)
     }
@@ -2380,7 +2553,7 @@ const wfrpModule = ( () => {
                 weapon_id: '', weapon_name: wfrpModule.getSkillLabelById(skill_index),
                 weapon_s_index: skill_index, weapon_s_value: v[`dodge`], weapon_damage:0,
                 weapon_qualities: 0, weapon_qualities_str: '',
-                weapon_is_off_hand: 0, weapon_is_ranged: 0
+                weapon_is_off_hand: 0, weapon_is_ranged: 0, weapon_is_pistol: 0, weapon_is_dodge: 1
             }
             setWeaponAttrsForOpposedTest(weapon_type, dodge_attrs)
         })
@@ -3175,7 +3348,32 @@ on(`clicked:increment_fp`, eventInfo => wfrpModule.incrementAttribute("fortune",
 on(`clicked:decrement_fp`, eventInfo => wfrpModule.decrementAttribute("fortune"));
 on(`clicked:reset_fp`, eventInfo => {getAttrs(["fortune_max"], v => {setAttrs({fortune: v["fortune_max"]})})})
 
+on(wfrpModule.wfrp.combat_modifiers.map(m => `change:${m.attr}`).join(` `), eventInfo => {
+    const calculateModifier = (type, v) => {
+        const result = wfrpModule.wfrp.combat_modifiers.filter(m => m.values[type] && v[m.attr] === '1').reduce((s, m) => s + m.values[type], 0);
+        return result > 0 ? `+${result}` : result < 0 ? `${result}` : `0`;
+    }
 
+    getAttrs(wfrpModule.wfrp.combat_modifiers.map(m => m.attr), v => {
+        setAttrs({
+            ["cm_melee_sum"]: calculateModifier('melee', v),
+            ["cm_ranged_sum"]: calculateModifier('ranged', v),
+            ["cm_parry_sum"]: calculateModifier('parry', v),
+            ["cm_dodge_sum"]: calculateModifier('dodge', v),
+        })
+    })
+
+    const triggered_group = wfrpModule.wfrp.combat_modifiers.filter(m => m.attr === eventInfo.sourceAttribute)[0].group
+    if (triggered_group && eventInfo.newValue === "1") {
+        const attrs_for_unselect = wfrpModule.wfrp.combat_modifiers
+            .filter(m => m.attr !== eventInfo.sourceAttribute && m.group === triggered_group)
+            .map(m => m.attr)
+
+        const update = {}
+        attrs_for_unselect.forEach(attr => {update[attr] = "0"})
+        setAttrs(update)
+    }
+})
 // SPELL FUNCTIONS
 
 on(`change:repeating_spells:spell_type change:repeating_spells:spell_lore change:repeating_spells:spell_deity`, eventInfo => wfrpModule.calculateSpellValue(eventInfo.sourceAttribute));

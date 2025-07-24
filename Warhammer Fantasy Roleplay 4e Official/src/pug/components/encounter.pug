@@ -88,13 +88,43 @@ mixin encounter-talent-row
         .wfrp-talenttable__cell
             span(name=`attr_talent_ranks`)
         .wfrp-talenttable__cell
-            input.wfrp-settings__input(name=`attr_use_in_attack`, type="checkbox", value="1", title="Add the Talent's Ranks to SL of passed Melee Test in Attack")
+            input.wfrp-settings__input(name=`attr_use_in_attack`, type="checkbox", value="1", title="Add the Talent's Ranks to SL of passed Weapon Test in Attack")
         input(name="attr_talent_toggle", type="hidden")
         .wfrp-talenttable__cell--description
             span(name=`attr_talent_description`)
         .wfrp-talenttable__row.wfrp-settings.control__hide--talent_settings
             +talent-row-settings()
 
+mixin encounter-modifier-v2(label, mod_label, attr, tooltip)
+    div(class=`sheet-flex`)
+        span.wfrp-settings__label.sheet-margin-right-2(title=tooltip, data-i18n=label)
+        span.wfrp-settings__label.sheet-margin-right-2 (#{mod_label})
+        input.wfrp-settings__input(name=attr, type="checkbox", title=tooltip, value="1")
+
+mixin encounter-modifier-header-view(label, mod_label, attr, tooltip)
+    input(name=attr, type="hidden")
+    span
+        span.wfrp-settings__label.sheet-margin-right-2(title=tooltip, data-i18n=label)
+        span.wfrp-settings__label.sheet-margin-right-2(title=tooltip) (#{mod_label}),
+
+mixin encounter-modifier-block(title, type, modifiers)
+    .sheet-grid-12
+        label(title=title, class=`sheet-icon sheet-unopposed-${type}-attack-icon`)
+            input(type="checkbox" value="1" name=`attr_show_${type}_modifiers_settings`, style="display: none;")
+        div
+            .sheet-bold Total
+            span(name=`attr_cm_${type}_sum`)
+        .sheet-grid-span-10
+            .sheet-bold Active
+            div.sheet-flex
+                for modifier in modifiers
+                    +encounter-modifier-header-view(modifier.label, modifier.values[type], modifier.attr, modifier.tooltips[type])
+    input(type="hidden" name=`attr_show_${type}_modifiers_settings`)
+    .modifiers-settings.sheet-settings-color
+        .sheet-wfrp-roll__divider
+        .sheet-grid-4.sheet-grid-justify-items-right
+            for modifier in modifiers
+                +encounter-modifier-v2(modifier.label, modifier.values[type], modifier.attr, modifier.tooltips[type])
 
 mixin encounter()
     .wfrp-panel.page__encounter.sheet-grid-span-6
@@ -130,9 +160,7 @@ mixin encounter()
                 +encounter_button("Leadership", "roll", rolls.combat.leadership)
                 +encounter_button("Perception", "roll", rolls.combat.perception)
                 .sheet-grid-span-3.sheet-wfrp-roll__divider
-                .sheet-grid-span-1
-                    .sheet-wfrp-controls
-                        button(data-i18n="Initiative", type="roll", value="&{template:wfrp} {{name=@{character_name}}} {{roll_name=Initiative}} @{roll_init}")
+                +encounter_button("Initiative", "roll", "&{template:wfrp} {{name=@{character_name}}} {{roll_name=Initiative}} @{roll_init}")
                 .sheet-grid-span-2.sheet-flex
                     span.wfrp-controls__cell Active Defence
                     input.wfrp-settings__input(name=`attr_active_defence`, type="checkbox", value="1")
@@ -150,6 +178,16 @@ mixin encounter()
                 +encounter_button("Reroll Attacker Roll", "action", "act_reroll_as_attacker")
                 +encounter_button("Reroll Defender Roll", "action", "act_reroll_as_defender")
                 +encounter_button("Log Last Roll", "action", "act_debug_roll")
+
+        h1.wfrp-panel__header(data-i18n="Modifiers")
+        .sheet-wfrp-panel
+            +encounter-modifier-block("Melee attack modifiers", `melee`, Object.values(modifiers).filter(m => Object.keys(m.values).includes(`melee`)))
+        .sheet-wfrp-panel
+            +encounter-modifier-block("Ranged attack modifiers", `ranged`, Object.values(modifiers).filter(m => Object.keys(m.values).includes(`ranged`)))
+        .sheet-wfrp-panel
+            +encounter-modifier-block("Parry modifiers", `parry`, Object.values(modifiers).filter(m => Object.keys(m.values).includes(`parry`)))
+        .sheet-wfrp-panel
+            +encounter-modifier-block("Dodge modifiers", `dodge`, Object.values(modifiers).filter(m => Object.keys(m.values).includes(`dodge`)))
 
         .sheet-grid-3.sheet-grid-gap-10
             .sheet-grid-span-2
@@ -177,4 +215,5 @@ mixin encounter()
                         .wfrp-talenttable__cell(data-i18n="Name")
                         .wfrp-talenttable__cell(data-i18n="Ranks")
                         .wfrp-talenttable__cell--last
+                            .sheet-icon.sheet-unopposed-melee-attack-icon(title="Add the Talent's Ranks to SL of passed Weapon Test in Attack")
                     +repeating-section("talent","encounter-talent-row")

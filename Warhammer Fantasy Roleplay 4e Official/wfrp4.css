@@ -266,6 +266,14 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
   flex-grow: 1;
 }
 
+.sheet-icon, .sheet-page__encounter .sheet-wfrp-panel .sheet-icon {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100%;
+  min-width: 100%;
+}
+
 .sheet-page__encounter .sheet-wfrp-panel .sheet-imaged button {
   background-size: contain;
   background-repeat: no-repeat;
@@ -287,12 +295,14 @@ input[name=attr_off_hand_weapon_is_ranged][type=hidden][value="1"] ~ div button[
 }
 
 input[name=attr_main_hand_weapon_is_ranged][type=hidden] ~ div button[name=act_main_unopposed_attack],
-input[name=attr_off_hand_weapon_is_ranged][type=hidden] ~ div button[name=act_off_unopposed_attack] {
+input[name=attr_off_hand_weapon_is_ranged][type=hidden] ~ div button[name=act_off_unopposed_attack],
+.sheet-wfrp-wrapper .sheet-unopposed-melee-attack-icon {
   background-image: url("https://www.svgrepo.com/show/321308/saber-slash.svg");
 }
 
 input[name=attr_main_hand_weapon_is_ranged][type=hidden][value="1"] ~ div button[name=act_main_unopposed_attack],
-input[name=attr_off_hand_weapon_is_ranged][type=hidden][value="1"] ~ div button[name=act_off_unopposed_attack] {
+input[name=attr_off_hand_weapon_is_ranged][type=hidden][value="1"] ~ div button[name=act_off_unopposed_attack],
+.sheet-wfrp-wrapper .sheet-unopposed-ranged-attack-icon {
   background-image: url("https://www.svgrepo.com/show/320942/high-shot.svg");
 }
 
@@ -302,12 +312,17 @@ input[name=attr_off_hand_weapon_is_ranged][type=hidden][value="1"] + input[name=
 }
 
 div button[name=act_main_defend],
-div button[name=act_off_defend] {
+div button[name=act_off_defend],
+.sheet-wfrp-wrapper .sheet-unopposed-parry-attack-icon {
   background-image: url("https://www.svgrepo.com/show/321360/shield-reflect.svg");
 }
 
 div button[name=act_dual_wielder_attack] {
   background-image: url("https://www.svgrepo.com/show/320605/crossed-swords.svg");
+}
+
+.sheet-wfrp-wrapper .sheet-unopposed-dodge-attack-icon {
+  background-image: url("https://www.svgrepo.com/show/499332/player-dodge.svg");
 }
 
 input[name=attr_main_hand_weapon_is_pistol][type=hidden] + input[name=attr_main_hand_weapon_is_ranged],
@@ -731,6 +746,10 @@ input[name=attr_off_hand_weapon_is_pistol][type=hidden][value="1"] + input[name=
   margin: 1px;
 }
 
+.sheet-margin-right-1 {
+  margin-right: 1px;
+}
+
 .sheet-grid-2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -751,6 +770,10 @@ input[name=attr_off_hand_weapon_is_pistol][type=hidden][value="1"] + input[name=
 
 .sheet-margin-2 {
   margin: 2px;
+}
+
+.sheet-margin-right-2 {
+  margin-right: 2px;
 }
 
 .sheet-grid-3 {
@@ -775,6 +798,10 @@ input[name=attr_off_hand_weapon_is_pistol][type=hidden][value="1"] + input[name=
   margin: 3px;
 }
 
+.sheet-margin-right-3 {
+  margin-right: 3px;
+}
+
 .sheet-grid-4 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -795,6 +822,10 @@ input[name=attr_off_hand_weapon_is_pistol][type=hidden][value="1"] + input[name=
 
 .sheet-margin-4 {
   margin: 4px;
+}
+
+.sheet-margin-right-4 {
+  margin-right: 4px;
 }
 
 .sheet-grid-5 {
@@ -819,6 +850,10 @@ input[name=attr_off_hand_weapon_is_pistol][type=hidden][value="1"] + input[name=
   margin: 5px;
 }
 
+.sheet-margin-right-5 {
+  margin-right: 5px;
+}
+
 .sheet-grid-6 {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -839,6 +874,10 @@ input[name=attr_off_hand_weapon_is_pistol][type=hidden][value="1"] + input[name=
 
 .sheet-margin-6 {
   margin: 6px;
+}
+
+.sheet-margin-right-6 {
+  margin-right: 6px;
 }
 
 .sheet-grid-7 {
@@ -863,6 +902,10 @@ input[name=attr_off_hand_weapon_is_pistol][type=hidden][value="1"] + input[name=
   margin: 7px;
 }
 
+.sheet-margin-right-7 {
+  margin-right: 7px;
+}
+
 .sheet-grid-8 {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
@@ -883,6 +926,10 @@ input[name=attr_off_hand_weapon_is_pistol][type=hidden][value="1"] + input[name=
 
 .sheet-margin-8 {
   margin: 8px;
+}
+
+.sheet-margin-right-8 {
+  margin-right: 8px;
 }
 
 .sheet-grid-9 {
@@ -907,6 +954,10 @@ input[name=attr_off_hand_weapon_is_pistol][type=hidden][value="1"] + input[name=
   margin: 9px;
 }
 
+.sheet-margin-right-9 {
+  margin-right: 9px;
+}
+
 .sheet-grid-10 {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
@@ -927,6 +978,10 @@ input[name=attr_off_hand_weapon_is_pistol][type=hidden][value="1"] + input[name=
 
 .sheet-margin-10 {
   margin: 10px;
+}
+
+.sheet-margin-right-10 {
+  margin-right: 10px;
 }
 
 .sheet-grid-11 {
@@ -951,6 +1006,10 @@ input[name=attr_off_hand_weapon_is_pistol][type=hidden][value="1"] + input[name=
   margin: 11px;
 }
 
+.sheet-margin-right-11 {
+  margin-right: 11px;
+}
+
 .sheet-grid-12 {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -973,6 +1032,10 @@ input[name=attr_off_hand_weapon_is_pistol][type=hidden][value="1"] + input[name=
   margin: 12px;
 }
 
+.sheet-margin-right-12 {
+  margin-right: 12px;
+}
+
 .sheet-grid-align-content-start {
   align-content: start;
 }
@@ -985,12 +1048,26 @@ input[name=attr_off_hand_weapon_is_pistol][type=hidden][value="1"] + input[name=
   align-items: center;
 }
 
+.sheet-grid-justify-items-center {
+  justify-items: center;
+}
+
+.sheet-grid-justify-items-right {
+  justify-items: right;
+}
+
 .sheet-text-align-center {
   text-align: center;
 }
 
 .sheet-flex {
   display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.sheet-settings-color {
+  background-color: rgba(195, 223, 241, 0.125);
 }
 
 .sheet-wfrp-field {
@@ -1627,6 +1704,10 @@ button.sheet-pictos[type=action]:hover {
   font-size: large;
 }
 
+.sheet-bold {
+  font-weight: bold;
+}
+
 .sheet-wfrp-wrapper input[type=number].sheet-border, .sheet-border {
   border: 1px solid black;
 }
@@ -1974,6 +2055,22 @@ input[name=attr_is_combat][type=hidden] + div[class=sheet-wfrp-talenttable__row]
 
 input[name=attr_is_combat][type=hidden][value="1"] + div[class=sheet-wfrp-talenttable__row] {
   display: grid;
+}
+
+input[name=attr_show_melee_modifiers_settings][type=hidden] + div.sheet-modifiers-settings,
+input[name=attr_show_parry_modifiers_settings][type=hidden] + div.sheet-modifiers-settings,
+input[name=attr_show_dodge_modifiers_settings][type=hidden] + div.sheet-modifiers-settings,
+input[name=attr_show_ranged_modifiers_settings][type=hidden] + div.sheet-modifiers-settings,
+input[name*=attr_cm][type=hidden] + span {
+  display: none;
+}
+
+input[name=attr_show_melee_modifiers_settings][type=hidden][value="1"] + div.sheet-modifiers-settings,
+input[name=attr_show_parry_modifiers_settings][type=hidden][value="1"] + div.sheet-modifiers-settings,
+input[name=attr_show_dodge_modifiers_settings][type=hidden][value="1"] + div.sheet-modifiers-settings,
+input[name=attr_show_ranged_modifiers_settings][type=hidden][value="1"] + div.sheet-modifiers-settings,
+input[name*=attr_cm][type=hidden][value="1"] + span {
+  display: inherit;
 }
 
 .sheet-wfrp-npc {

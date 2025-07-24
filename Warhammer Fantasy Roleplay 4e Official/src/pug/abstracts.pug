@@ -539,3 +539,211 @@
                (char === "fellowship") ? "fel" :
                "UNKNOWN";
     };
+
+    const modifiers = {
+        "outnumbered_21": {
+            "attr": "attr_cm_outnumbered_21",
+            "rt_attr": "cm_outnumbered_21",
+            "label": "Outnumbered 2:1",
+            "values": { "melee": "+20" },
+            "tooltips": { "melee": "Attacking an opponent you outnumber 2 to 1" }
+        },
+        "outnumbered_31": {
+            "attr": "attr_cm_outnumbered_31",
+            "rt_attr": "cm_outnumbered_31",
+            "label": "Outnumbered 3:1",
+            "values": { "melee": "+40" },
+            "tooltips": { "melee": "Attacking an opponent you outnumber 3 to 1" }
+        },
+        "target_grapple_leader": {
+            "attr": "attr_cm_target_grapple_leader",
+            "rt_attr": "cm_target_grapple_leader",
+            "label": "Attack Grapple Leader",
+            "values": { "melee": "+10" },
+            "tooltips": { "melee": "Attacking an opponent who is leader in Grapple" }
+        },
+        "target_grapple_follower": {
+            "attr": "attr_cm_target_grapple_follower",
+            "rt_attr": "cm_target_grapple_follower",
+            "label": "Attack Grapple Follower",
+            "values": { "melee": "+20" },
+            "tooltips": { "melee": "Attacking an opponent who is follower in Grapple" }
+        },
+        "point_blank_range": {
+            "attr": "attr_cm_point_blank_range",
+            "rt_attr": "cm_point_blank_range",
+            "label": `Point Blank Range`,
+            "values": {"ranged": "+40"},
+            "tooltips": {"ranged": `Shooting a target at Point Blank Range`}
+        },
+        "short_range": {
+            "attr": "attr_cm_short_range",
+            "rt_attr": "cm_short_range",
+            "label": `Short Range`,
+            "values": {"ranged": "+20"},
+            "tooltips": {"ranged": `Shooting at Short Range: less than half weapon range`}
+        },
+        "long_range": {
+            "attr": "attr_cm_long_range",
+            "rt_attr": "cm_long_range",
+            "label": `Long Range`,
+            "values": {"ranged": "-10"},
+            "tooltips": {"ranged": `Shooting at Long Range: up to double weapon range`}
+        },
+        "extreme_range": {
+            "attr": "attr_cm_extreme_range",
+            "rt_attr": "cm_extreme_range",
+            "label": `Extreme Range`,
+            "values": {"ranged": "-30"},
+            "tooltips": {"ranged": `Shooting at Extreme range, up to three times weapon range`}
+        },
+        "target_small_group": {
+            "attr": "attr_cm_target_small_group",
+            "rt_attr": "cm_target_small_group",
+            "label": `Shoot At Small Group`,
+            "values": {"ranged": "+20"},
+            "tooltips": {"ranged": `Shooting at a small group (3–6 targets)`}
+        },
+        "target_large_group": {
+            "attr": "attr_cm_target_large_group",
+            "rt_attr": "cm_target_large_group",
+            "label": `Shoot At Large Group`,
+            "values": {"ranged": "+40"},
+            "tooltips": {"ranged": `Shooting at a Large group (7–12 targets)`}
+        },
+        "target_crowd": {
+            "attr": "attr_cm_target_crowd",
+            "rt_attr": "cm_target_crowd",
+            "label": `Shoot Into Crowd`,
+            "values": {"ranged": "+60"},
+            "tooltips": {"ranged": `Shooting into a crowd (13+ targets)`}
+        },
+        "shoot_after_move": {
+            "attr": "attr_cm_shoot_after_move",
+            "rt_attr": "cm_shoot_after_move",
+            "label": `Shoot After Move`,
+            "values": {"ranged": "-10"},
+            "tooltips": {"ranged": `Shooting on a Round where you also use your Move`}
+        },
+        "target_soft_cover": {
+            "attr": "attr_cm_target_soft_cover",
+            "rt_attr": "cm_target_soft_cover",
+            "label": "Target's Soft Cover",
+            "values": { "melee": "-10", "ranged": "-10" },
+            "tooltips": {
+                "melee": "Target in soft cover (behind a hedge for example)",
+                "ranged": "Target in soft cover (behind a hedge for example)"
+            }
+        },
+        "target_medium_cover": {
+            "attr": "attr_cm_target_medium_cover",
+            "rt_attr": "cm_target_medium_cover",
+            "label": "Target's Medium Cover",
+            "values": { "melee": "-20", "ranged": "-20" },
+            "tooltips": {
+                "melee": `Target in medium cover (wooden fence for example)`,
+                "ranged": `Target in medium cover (wooden fence for example)`
+            }
+        },
+        "target_hard_cover": {
+            "attr": "attr_cm_target_hard_cover",
+            "rt_attr": "cm_target_hard_cover",
+            "label": "Target's Hard Cover",
+            "values": { "melee": "-30", "ranged": "-30" },
+            "tooltips": {
+                "melee": `Target in hard cover (behind stone wall, for example)`,
+                "ranged": `Target in hard cover (behind stone wall, for example)`
+            }
+        },
+        "specific_hit_location": {
+            "attr": "attr_cm_specific_hit_location",
+            "rt_attr": "cm_specific_hit_location",
+            "label": "Specific Hit Location",
+            "values": { "melee": "-20", "ranged": "-20" },
+            "tooltips": {
+                "melee": `A called strike to a specific Hit Location. If you succeed you hit that location`,
+                "ranged": `A called shot to a specific Hit Location. If you succeed you hit that location`
+            }
+        },
+        "shoot_after_aim": {
+            "attr": "attr_cm_shoot_after_aim",
+            "rt_attr": "cm_shoot_after_aim",
+            "label": `Shoot After Aim`,
+            "values": {"ranged": "+20"},
+            "tooltips": {"ranged": `Shooting when you spent your last Action aiming (no Test to aim required)`}
+        },
+        "defensive_stand": {
+            "attr": "attr_cm_defensive_stand",
+            "rt_attr": "cm_defensive_stand",
+            "label": `Defensive Stand`,
+            "values": {"parry": "+20", "dodge": "+20"},
+            "tooltips": {"parry": `Add +20 to all defensive rolls`, "dodge": `Add +20 to all defensive rolls`}
+        },
+        "after_dual_wielder": {
+            "attr": "attr_cm_after_dual_wielder",
+            "rt_attr": "cm_after_dual_wielder",
+            "label": `After Dual Wielder`,
+            "values": {"parry": "-10", "dodge": "-10"},
+            "tooltips": {"parry": ``, "dodge": ``}
+        },
+        "hard_terrain": {
+            "attr": "attr_cm_hard_terrain",
+            "rt_attr": "cm_hard_terrain",
+            "label": `Hard Terrain`,
+            "values": { "melee": "-10" },
+            "tooltips": {
+                "melee": `Attacking whilst in the mud, heavy rain or difficult terrain`
+            }
+        },
+        "extreme_terrain": {
+            "attr": "attr_cm_extreme_terrain",
+            "rt_attr": "cm_extreme_terrain",
+            "label": `Extreme Terrain`,
+            "values": { "melee": "-30", "dodge": "-30" },
+            "tooltips": {
+                "melee": `Attacking or dodging in the deep snow, water or other arduous terrain`,
+                "dodge": `Attacking or dodging in the deep snow, water or other arduous terrain`
+            }
+        },
+        "extreme_weather": {
+            "attr": "attr_cm_extreme_weather",
+            "rt_attr": "cm_extreme_weather",
+            "label": `Extreme Weather`,
+            "values": { "melee": "-20", 'ranged': '-20' },
+            "tooltips": {
+                "melee": `Attacking in monsoon, hurricane, thick blizzard, or other extreme weather`,
+                "ranged": `Shooting targets concealed by fog, mist or shadow`
+            }
+        },
+        "darkness": {
+            "attr": "attr_cm_darkness",
+            "rt_attr": "cm_darkness",
+            "label": "Darkness",
+            "values": {
+                "melee": "-20",
+                "ranged": "-30",
+                "parry": "-20",
+                "dodge": "-20",
+            },
+            "tooltips": {
+                "melee": "Close combat in darkness",
+                "ranged": "Shoot in darkness",
+                "parry": "Close combat in darkness",
+                "dodge": "Close combat in darkness",
+            }
+        },
+        "side_rear_attack": {
+            "attr": "attr_cm_side_rear_attack",
+            "rt_attr": "cm_side_rear_attack",
+            "label": `Side/Rear Attack`,
+            "values": { "melee": "+20" },
+            "tooltips": { "melee": `Attacking an Engaged opponent in the sides or rear` }
+        },
+        "target_is_fleeing": {
+            "attr": "attr_cm_target_is_fleeing",
+            "rt_attr": "cm_target_is_fleeing",
+            "label": `Opponent is fleeing`,
+            "values": { "melee": "+20" },
+            "tooltips": { "melee": `Attacking disengaging opponent` }
+        },
+    }
