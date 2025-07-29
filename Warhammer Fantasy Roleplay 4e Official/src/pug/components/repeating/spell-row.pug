@@ -22,13 +22,13 @@ mixin spell-row
             span(name=`attr_spell_cn`)
 
         .wfrp-spelltable__cell
-            span(name=`attr_spell_range`)
+            span(name=`attr_spell_range_str`)
 
         .wfrp-spelltable__cell
             span(name=`attr_spell_target`)
 
         .wfrp-spelltable__cell--last
-            span(name=`attr_spell_duration`)
+            span(name=`attr_spell_duration_str`)
             
         .wfrp-spelltable__cell.wfrp-settings.control__hide--spell_settings
         
@@ -45,7 +45,13 @@ mixin spell-row
         
             .wfrp-settings__row.control__hide--Spell
                 .wfrp-settings__label(data-i18n=`Lore`) 
+                input(name=`attr_spell_type`, type=`hidden`)
                 input.wfrp-settings__input(name=`attr_spell_lore`, type="text")
+                select.wfrp-settings__input(name=`attr_spell_lore`)
+                    -
+                        const all_specs = skills.advanced[2].specialisations
+                    each specialisation in all_specs
+                        option(value=specialisation, data-i18n=specialisation)
         
             .wfrp-settings__row.control__hide--Prayer
                 .wfrp-settings__label(data-i18n=`Deity`) 

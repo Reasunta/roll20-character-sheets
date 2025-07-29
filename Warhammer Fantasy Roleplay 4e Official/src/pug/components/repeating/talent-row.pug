@@ -41,8 +41,13 @@ mixin talent-row-settings
         input.wfrp-settings__input(name=`attr_talent_ranks_max`, type="number")
     .wfrp-settings__row--span
         .wfrp-settings__label(data-i18n=`Modifiers`)
-        input.wfrp-settings__input(name=`attr_talent_mods`, type="text")
-
+        .sheet-grid-6.sheet-grid-justify-items-center
+            .sheet-grid-span-5
+                input.wfrp-settings__input(name=`attr_talent_mods`, type="text")
+            .sheet-grid-span-1
+                +display-toggle("show_mod_help", false, "i")
+    .sheet-grid-span-2
+        +mod-help()
     .wfrp-settings__row
         .wfrp-settings__label(data-i18n=`Combat`)
         input.wfrp-settings__input(name=`attr_is_combat`, type="checkbox", value="1", title="Show the talent in encounter mode")
@@ -55,9 +60,3 @@ mixin talent-row-settings
     .wfrp-settings__row
         .wfrp-settings__label(data-i18n=`Ambidextrous`)
         input.wfrp-settings__input(name=`attr_ambidextrous`, type="checkbox", value="1", title="Use the talent's Ranks to decrease off hand penalty")
-    .wfrp-settings__row
-        .wfrp-settings__label(data-i18n=`Accurate Shot`)
-        input.wfrp-settings__input(name=`attr_accurate_shot`, type="checkbox", value="1", title="Add the Talent's Ranks to Ranged Weapon Damage")
-    .wfrp-settings__row
-        .wfrp-settings__label(data-i18n=`Strike Mighty Blow`)
-        input.wfrp-settings__input(name=`attr_strike_mighty_blow`, type="checkbox", value="1", title="Add the Talent's Ranks to Melee weapon Damage")

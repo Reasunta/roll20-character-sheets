@@ -18,6 +18,98 @@ const wfrpModule = ( () => {
             "fellowship"
         ],
 
+        characteristics_v2: [
+            {
+                "attr": "weapon_skill",
+                "bonus_attr": "weapon_skill_bonus",
+                "modifier_attr": "weapon_skill_modifier",
+                "bonus_modifier_attr": "weapon_skill_bonusmod",
+                "custom_modifier_attr": "weapon_skill_custom_mod",
+                "short": "WS",
+                "bonus_short": "WSB",
+            },
+            {
+                "attr": "ballistic_skill",
+                "bonus_attr": "ballistic_skill_bonus",
+                "modifier_attr": "ballistic_skill_modifier",
+                "bonus_modifier_attr": "ballistic_skill_bonusmod",
+                "custom_modifier_attr": "ballistic_skill_custom_mod",
+                "short": "BS", "bonus_short": "BSB"
+            },
+            {
+                "attr": "strength",
+                "bonus_attr": "strength_bonus",
+                "modifier_attr": "strength_modifier",
+                "bonus_modifier_attr": "strength_bonusmod",
+                "custom_modifier_attr": "strength_custom_mod",
+                "short": "S",
+                "bonus_short": "SB"
+            },
+            {
+                "attr": "toughness",
+                "bonus_attr": "toughness_bonus",
+                "modifier_attr": "toughness_modifier",
+                "bonus_modifier_attr": "toughness_bonusmod",
+                "custom_modifier_attr": "toughness_custom_mod",
+                "short": "T",
+                "bonus_short": "TB"
+            },
+            {
+                "attr": "initiative",
+                "bonus_attr": "initiative_bonus",
+                "modifier_attr": "initiative_modifier",
+                "bonus_modifier_attr": "initiative_bonusmod",
+                "custom_modifier_attr": "initiative_custom_mod",
+                "short": "I",
+                "bonus_short": "IB"
+            },
+            {
+                "attr": "agility",
+                "bonus_attr": "agility_bonus",
+                "modifier_attr": "agility_modifier",
+                "bonus_modifier_attr": "agility_bonusmod",
+                "custom_modifier_attr": "agility_custom_mod",
+                "short": "Ag",
+                "bonus_short": "AgB"
+            },
+            {
+                "attr": "dexterity",
+                "bonus_attr": "dexterity_bonus",
+                "modifier_attr": "dexterity_modifier",
+                "bonus_modifier_attr": "dexterity_bonusmod",
+                "custom_modifier_attr": "dexterity_custom_mod",
+                "short": "Dex",
+                "bonus_short": "DexB"
+            },
+            {
+                "attr": "intelligence",
+                "bonus_attr": "intelligence_bonus",
+                "modifier_attr": "intelligence_modifier",
+                "bonus_modifier_attr": "intelligence_bonusmod",
+                "custom_modifier_attr": "intelligence_custom_mod",
+                "short": "Int",
+                "bonus_short": "IntB"
+            },
+            {
+                "attr": "willpower",
+                "bonus_attr": "willpower_bonus",
+                "modifier_attr": "willpower_modifier",
+                "bonus_modifier_attr": "willpower_bonusmod",
+                "custom_modifier_attr": "willpower_custom_mod",
+                "short": "WP",
+                "bonus_short": "WPB"
+            },
+            {
+                "attr": "fellowship",
+                "bonus_attr": "fellowship_bonus",
+                "modifier_attr": "fellowship_modifier",
+                "bonus_modifier_attr": "fellowship_bonusmod",
+                "custom_modifier_attr": "fellowship_custom_mod",
+                "short": "Fel",
+                "bonus_short": "FelB"
+            }
+        ],
+
         characteristics_short: [
             "WS",
             "BS",
@@ -126,13 +218,13 @@ const wfrpModule = ( () => {
         ],
 
         repeating_sections: [
-            "talent",
-            "condition",
-            "psychology",
-            "corruption",
-            "trappings",
-            "armour",
-            "weapons"
+            {"name": "talent", "mods_attr": "talent_mods"},
+            {"name": "condition", "mods_attr": "condition_mods"},
+            {"name": "psychology", "mods_attr": "psychology_mods"},
+            {"name": "corruption", "mods_attr": "corruption_mods"},
+            {"name": "trappings", "mods_attr": "trappings_mods"},
+            {"name": "armour", "mods_attr": "armour_mods"},
+            {"name": "weapons", "mods_attr": "weapon_mods"}
         ],
 
         species: {
@@ -478,6 +570,33 @@ const wfrpModule = ( () => {
         ],
 
         sizes: ["tiny", "little", "small", "average", "large", "enormous", "monstrous"],
+
+        modifiers: [
+            {
+                "short": "W",
+                "attr": "wound_mod"
+            },
+            {
+                "short": "CP",
+                "attr": "corruption_points_mod"
+            },
+            {
+                "short": "MD",
+                "attr": "melee_damage_bonus"
+            },
+            {
+                "short": "RD",
+                "attr": "ranged_damage_bonus"
+            },
+            {
+                "short": "R",
+                "attr": "run_mod"
+            },
+            {
+                "short": "Enc",
+                "attr": "encumbrance_bonus"
+            },
+        ]
     }
 
     // if input is skill name, return integer positive number
@@ -887,14 +1006,14 @@ const wfrpModule = ( () => {
         entries = addOutputsToRoll(entries, [`total_sl`, `hit_location`, `armour`, `total_damage`,
             `aw_damaging`, `aw_impact`, `aw_penetrating`, `aw_undamaging`, `size_damage_mod`])
 
-        entries.push(rtNumAttrEntry(`a_size`, `${a_char_source}size_index`), rtNumAttrEntry(`d_size`, `${d_char_source}size_index`))
+        entries.push(rtNumAttrEntry(`a_size`, `size_index`), rtNumAttrEntry(`d_size`, `target|size_index`))
 
         startRoll(rtString(`&{template:wfrp-riposte}`, entries), (results) => {
             let inputs = extractRollResults(results)
             inputs.a_roll = getLastValue(inputs, "a_roll")
             inputs.total_sl = getLastValue(inputs, "total_sl")
             inputs.total_sl = -inputs.total_sl
-            outputs.size_delta = outputs.a_size - outputs.d_size
+            inputs.size_delta = inputs.a_size - inputs.d_size
 
             let outputs = calculateDamage(inputs)
 
@@ -983,8 +1102,8 @@ const wfrpModule = ( () => {
 
         wfrp.characteristics.forEach(char => {
             calculateCharacteristic(char)
-            recalculateAttribute(`${char}_modifier`, char);
         });
+        updateAllCharModifiers()
 
         wfrp.skills.forEach(skill => calculateSkill(skill));
 
@@ -1016,14 +1135,7 @@ const wfrpModule = ( () => {
             update.advantage_max= values["setting_max_advantage"] || 10
             setAttrs(update)
         })
-        setAttrs({
-            ["active_defence"]: "0",
-            ["dodge_defence"]: "1",
-            ["main_hand_defence"]: "0",
-            ["off_hand_defence"]: "0"
-        })
         calculateCombatTalentAttr()
-        handleDefenceSelection("dodge_defence")
     }
 
     const updateSheet = (version) => {
@@ -1095,130 +1207,92 @@ const wfrpModule = ( () => {
         setAttrs({roll_whisper:whisper});
     }
 
-    const parseModField = (new_value="", previous_value) => {
-        const mods = new_value.toLowerCase().split(",").map(item=>item.trim());
-        const prev_mods = (previous_value) ? previous_value.toLowerCase().split(",").map(item=>item.trim()) : [];
-
-        [...mods, ...prev_mods].forEach(mod => applyMod(mod));
-    }
-
-    const applyMod = (mod) => {
-        const parsed_name = mod.toLowerCase().replace(/[^a-z ]/g,"").trim().replace(/ /g,"_");
-
-        wfrp.characteristics.forEach((char, index) => {
-            const standard = new RegExp(`\\b${char.toLowerCase()}\\b`, "g");
-            const short = new RegExp(`\\b${wfrp.characteristics_short[index].toLowerCase()}\\b`, "g");
-
-            if (parsed_name.match(standard) || parsed_name.match(short)) recalculateAttribute(`${char}_modifier`, char);
-        });
-        wfrp.characteristics.forEach((char, index) => {
-            const standard = `${char.toLowerCase()}_bonus`;
-            const short = `${wfrp.characteristics_short[index].toLowerCase()}_bonus`;
-            const tiny = `${wfrp.characteristics_short[index].toLowerCase()}b`;
-
-            if (parsed_name === standard || parsed_name.match === short || parsed_name === tiny) recalculateAttribute(`${char}_bonusmod`, standard);
-        });
-        wfrp.skills.forEach(skill => (parsed_name.indexOf(skill) > -1) ? recalculateAttribute(`${skill}_modifier`, skill.replace(/_/g," ")) : false);
-        if (parsed_name === "ranged damage") recalculateAttribute("ranged_damage_bonus","ranged damage");
-        if (parsed_name === "melee damage") recalculateAttribute("melee_damage_bonus","melee damage");
-        if (parsed_name === "movement") recalculateAttribute("movement_mod","movement");
-        if (parsed_name === "walking" || parsed_name === "walk") recalculateAttribute("walk_mod","walking");
-        if (parsed_name === "run" || parsed_name === "running") recalculateAttribute("run_mod","running");
-        if (parsed_name === "wounds") recalculateAttribute("wound_mod","wounds");
-        if (parsed_name === "encumbrance") recalculateAttribute("encumbrance_bonus","encumbrance");
-    }
-
-    const recalculateAttribute = (attribute, query) => {
-        const attrs = [...wfrp.characteristics, ...wfrp.characteristics.map(item => `${item}_bonus`), ...wfrp.characteristics.map(item => `${item}_custom_mod`)];
-        let match_array = [query];
-        const parsed_query = query.replace(/ /g, "_");
-
-        const synonyms = {
-            "weapon_skill": ["ws","weapon_skill"],
-            "ballistic_skill": ["bs","ballistic_skill"],
-            "strength": ["s", "strength"],
-            "toughness": ["t", "toughness"],
-            "initiative": ["int", "initiative"],
-            "agility": ["ag", "agility"],
-            "dexterity": ["dex", "dexterity"],
-            "intelligence": ["int", "intelligence"],
-            "willpower": ["wp", "willpower"],
-            "fellowship": ["fel", "fellowship"],
-            "walking": ["walk", "walking"],
-            "run": ["run", "run"],
-            "wounds": ["wound", "wnds"],
-            "weapon_skill_bonus": ["weapon_skill_bonus", "ws_bonus", "wsb"],
-            "ballistic_skill_bonus": ["ballistic_skill_bonus", "bs_bonus", "bsb"],
-            "strength_bonus": ["strength_bonus", "s_bonus", "sb"],
-            "toughness_bonus": ["toughness_bonus", "t_bonus", "tb"],
-            "initiative_bonus": ["initiative_bonus", "i_bonus", "isb"],
-            "agility_bonus": ["agility_bonus", "ag_bonus", "agb"],
-            "dexterity_bonus": ["dexterity_bonus", "dex_bonus", "dexb"],
-            "intelligence_bonus": ["intelligence_bonus", "int_bonus", "intb"],
-            "willpower_bonus": ["willpower_bonus", "wp_bonus", "wpb"],
-            "fellowship_bonus": ["fellowship_bonus", "fel_bonus", "felb"],
-        };
-
-        Object.entries(synonyms).forEach(([key, array]) => {
-            if (array.includes(parsed_query)) {
-                query = query;
-                match_array = array;
-            }
-        });
+    // Iterates on all modifier sources and updates all possible char modifiers
+    const updateAllCharModifiers = () => {
+        // acquires all repeating sections ids
+        let handled_section_count = 0
+        const section_ids = []
 
         wfrp.repeating_sections.forEach(section => {
-            getSectionIDs(section, id_array => {
-                id_array.forEach(id => attrs.push(`repeating_${section}_${id}_${section}_mods`));
-                id_array.forEach(id => attrs.push(`repeating_${section}_${id}_${section}_ranks`));
+            getSectionIDs(section.name, (ids) => {
+                section_ids.push({section, ids})
+                handled_section_count++
 
-                getAttrs(attrs, values => {
-                    const mod_array = [];
-                    const filtered_values = Object.entries(values).filter(([key, value]) => key.includes("_mods"));
+                if (handled_section_count === wfrp.repeating_sections.length) setModifiers(section_ids)
+            })
+        })
 
-                    filtered_values.forEach(([key, value]) => {
-                        const modifiers = value.split(",");
+        // gets all needed attrs and updates modifiers
+        const sectionAttr = (name, id, attr) => `repeating_${name}_${id}_${attr}`
+        const setModifiers = (section_ids) => {
+            const repeating_mod_attrs = section_ids.flatMap(s => [
+                ...s.ids.map(id => sectionAttr(s.section.name, id, s.section.mods_attr)),
+                ...(s.section.name === "talent" ? s.ids.map(id => sectionAttr("talent", id, "talent_ranks")) : [])
+            ])
+            const attrs = [
+                ...repeating_mod_attrs,
+                ...wfrp.characteristics_v2.flatMap(c => [c.attr, c.bonus_attr, c.custom_modifier_attr])
+            ]
 
-                        if (modifiers[0] !== "") {
-                            modifiers.forEach(mod => {
+            getAttrs(attrs, values => {
+                let update = {}
+                wfrp.characteristics_v2.forEach(c => {update[c.modifier_attr] = 0; update[c.bonus_modifier_attr] = 0;})
+                wfrp.modifiers.forEach(m => {update[m.attr] = 0;})
+                wfrp.skills.forEach(s => {update[`${s}_modifier`] = 0;})
 
-                                mod = mod.toLowerCase();
+                for (section of section_ids) update = handleRepModValue(update, values, section)
 
-                                wfrp.characteristics.forEach((characteristic, index) => {
-                                    mod = mod.replace(`\[${characteristic.replace(/_/g, " ")}\]`, values[characteristic]);
-                                    mod = mod.replace(`\[${characteristic.replace(/_/g, " ")} bonus\]`, values[`${characteristic}_bonus`]);
-                                    mod = mod.replace(`\[${wfrp.characteristics_short[index].toLowerCase().replace(/_/g, " ")}\]`, values[characteristic]);
-                                    mod = mod.replace(`\[${wfrp.characteristics_short[index].toLowerCase().replace(/_/g, " ")}b\]`, values[`${characteristic}_bonus`]);
-                                });
+                wfrp.characteristics_v2.forEach(c => {
+                    const custom_mod = parseInt(values[c.custom_modifier_attr]) || 0
+                    update[c.modifier_attr] = update[c.modifier_attr] + custom_mod
+                })
 
-                                const row_id = helperFunctions.extractRepeatingId(key,"talent");
-                                const ranks = values[`${row_id}_talent_ranks`];
+                setAttrs(update)
+            })
+        }
 
-                                mod = mod.replace(`\[rank\]`, ranks);
+        const handleRepModValue = (result, values, section) => {
+            for(id of section.ids) {
+                const mod_attr = sectionAttr(section.section.name, id, section.section.mods_attr)
+                let mod_string = values[mod_attr] || ""
 
-                                match_array.forEach(match => {
-                                    const reg = new RegExp(`${match}\\b`, "g")
-                                    mod = mod.replace(reg, query)
-                                });
+                mod_string.split(",").map(i => i.trim()).forEach(mod => {
+                    const mod_parts = mod.split(" ").map(i => i.trim())
+                    if (mod_parts.length !== 2) return
 
-                                const mod_test = mod.toLowerCase().replace(/[^a-z _]/g, "").trim().replace(/ /g,"_");
-                                const mod_value = parseInt(mod.toLowerCase().replace(/[^0-9\-]/g, "").trim());
+                    let mod_value = mod_parts[0], mod_unit = mod_parts[1]
+                    if (section.section.name === `talent`) mod_value = mod_value.replace(`[TR]`, values[sectionAttr('talent', id, `talent_ranks`)])
+                    if (wfrp.modifiers.map(m => m.short).includes(mod_unit)) {
+                        wfrp.characteristics_v2.forEach(c => {
+                            mod_value = mod_value
+                                .replace(`[${c.short}]`, values[c.attr])
+                                .replace(`[${c.bonus_short}]`, values[c.bonus_attr])
+                        })
+                    }
 
-                                if (mod_test === query) mod_array.push(mod_value);
-                            });
+                    if (mod_value.match(/\[\s*\d+\s*\*\s*\d+\s*\]/)) {
+                        const parts = mod_value.replace("[", "").replace("]", "").split("*").map(i => i.trim())
+                        mod_value = parseInt(parts[0]) * parseInt(parts[1])
+                    }
 
-                        }
-                    });
+                    if(!parseInt(mod_value)) return
 
-                    if (wfrp.characteristics.includes(query)) mod_array.push(+values[`${parsed_query}_custom_mod`]);
+                    wfrp.characteristics_v2.forEach(c => {
+                        if (c.short === mod_unit) result[c.modifier_attr] = result[c.modifier_attr] + parseInt(mod_value)
+                        if (c.bonus_short === mod_unit) result[c.bonus_modifier_attr] = result[c.bonus_modifier_attr] + parseInt(mod_value)
+                    })
+                    wfrp.modifiers.forEach(m => {
+                        if (m.short === mod_unit) result[m.attr] = result[m.attr] + parseInt(mod_value)
+                    })
+                    wfrp.skills.forEach(s => {
+                        if (s === mod_unit) result[`${s}_modifier`] = result[`${s}_modifier`] + parseInt(mod_value)
+                    })
+                })
+            }
 
-                    const new_value = mod_array.reduce((a,b) => a+b, 0);
-
-                    setAttrs({[attribute]:new_value});
-                });
-            });
-        });
+            return result
+        }
     }
-
     // Species Controls
 
     const changeSpecies = (new_value) => {
@@ -1423,15 +1497,16 @@ const wfrpModule = ( () => {
         });
     }
 
-    const updateMovementRates = (newValue) => {
+    const updateMovementRates = () => {
 
-        getAttrs(["npc"], check => {
+        getAttrs(["npc", "movement", "run_mod"], v => {
 
-            if (check["npc"] === "on") return;
+            if (v["npc"] === "on") return;
 
-            const movement = parseInt(newValue) || 0;
+            const movement = parseInt(v["movement"]) || 0;
+            const run_mod = parseInt(v["run_mod"]) || 0;
             const walk = movement * 2 || 0;
-            const run = walk * 2 || 0;
+            const run = (movement + run_mod) * 4 || 0;
 
             setAttrs({
                 walk: walk,
@@ -2480,12 +2555,12 @@ const wfrpModule = ( () => {
     }
 
     const calculateMaxCorruptionPoints = () => {
-        const attrs = ["toughness_bonus", "willpower_bonus", "corruption_points_modifier"];
+        const attrs = ["toughness_bonus", "willpower_bonus", "corruption_points_mod"];
 
         getAttrs(attrs, values => {
             const toughness_bonus = parseInt(values["toughness_bonus"]) || 0;
             const willpower_bonus = parseInt(values["willpower_bonus"]) || 0;
-            const cp_mod = parseInt(values["corruption_points_modifier"]) || 0;
+            const cp_mod = parseInt(values["corruption_points_mod"]) || 0;
 
             const update = {};
 
@@ -2791,6 +2866,35 @@ const wfrpModule = ( () => {
         });
     }
 
+    const updateSpellStrings = () => {
+        const spellAttr = (id, attr) => `repeating_spells_${id}_${attr}`
+
+        getSectionIDs(`spells`, id_array => {
+            const attrs = [
+                ...wfrp.characteristics_v2.map(c => c.attr),
+                ...wfrp.characteristics_v2.map(c => c.bonus_attr),
+                ...id_array.flatMap(id => [spellAttr(id, `spell_range`), spellAttr(id, `spell_duration`)])
+            ]
+
+            getAttrs(attrs, values => {
+                const update = {}
+                id_array.forEach(id => {
+                    let range_str = values[spellAttr(id, `spell_range`)]
+                    let duration_str = values[spellAttr(id, `spell_range`)]
+
+                    wfrp.characteristics_v2.forEach(c => {
+                        range_str = range_str.replace(`[${c.short}]`, values[c.attr]).replace(`[${c.bonus_short}]`, values[c.bonus_attr])
+                        duration_str = duration_str.replace(`[${c.short}]`, values[c.attr]).replace(`[${c.bonus_short}]`, values[c.bonus_attr])
+                    })
+
+                    update[spellAttr(id, `spell_range_str`)] = range_str
+                    update[spellAttr(id, `spell_duration_str`)] = duration_str
+                })
+                setAttrs(update)
+            });
+        });
+    }
+
     // NPC Functions
 
     const getAttackValue = (attribute) => {
@@ -2967,8 +3071,7 @@ const wfrpModule = ( () => {
         toggleRollCrits:toggleRollCrits,
         toggleInitOption:toggleInitOption,
         toggleWhisper:toggleWhisper,
-        recalculateAttribute:recalculateAttribute,
-        parseModField:parseModField,
+        updateAllCharModifiers:updateAllCharModifiers,
 
         // Class and Species Controls
         changeSpecies:changeSpecies,
@@ -3030,6 +3133,7 @@ const wfrpModule = ( () => {
 
         // Spells & Prayers Functions
         calculateSpellValue:calculateSpellValue,
+        updateSpellStrings:updateSpellStrings,
 
         // NPC Functions
         getAttackValue:getAttackValue,
@@ -3053,21 +3157,11 @@ on(`change:setting_crit_option`, eventInfo => wfrpModule.toggleRollCrits(eventIn
 on(`change:setting_init_option`, eventInfo => wfrpModule.toggleInitOption(eventInfo.newValue));
 on(`change:setting_whisper`, eventInfo => wfrpModule.toggleWhisper(eventInfo.newValue));
 
-[
-    "repeating_talent:talent_mods",
-    "repeating_condition:condition_mods",
-    "repeating_psychology:psychology_mods",
-    "repeating_corruption:corruption_mods",
-    "repeating_trappings:trappings_mods",
-    "repeating_weapon:weapon_mods",
-    "repeating_armour:armour_mods",
-].forEach(modifier => {
-    on(`change:${modifier}`, eventInfo => wfrpModule.parseModField(eventInfo.newValue, eventInfo.previousValue));
-});
-
-wfrpModule.wfrp.characteristics.forEach(characteristic => {
-    on(`change:${characteristic}_custom_mod`, eventInfo => wfrpModule.recalculateAttribute(`${characteristic}_modifier`, characteristic));
-});
+on([
+    ...wfrpModule.wfrp.characteristics_v2.flatMap(c => `change:${c.attr} change:${c.bonus_attr} change:${c.custom_modifier_attr}`),
+    ...wfrpModule.wfrp.repeating_sections.map(rs => `change:repeating_${rs.name}:${rs.mods_attr}`),
+    `change:repeating_talent:talent_ranks`
+].join(" "), () => wfrpModule.updateAllCharModifiers())
 
 // CLASS AND SPECIES CONTROLS
 
@@ -3093,7 +3187,7 @@ wfrpModule.wfrp.characteristics.forEach(characteristic => {
     on(`change:repeating_careers:career_${characteristic}_advances`, eventInfo => wfrpModule.calculateCharacteristicAdvances(characteristic))
 });
 
-on(`change:movement`, eventInfo => wfrpModule.updateMovementRates(eventInfo.newValue));
+on(`change:movement change:run_mod`, () => wfrpModule.updateMovementRates());
 on(`clicked:roll_initial`, eventInfo => wfrpModule.rollInitial());
 
 // SKILL CALCULATIONS
@@ -3411,6 +3505,9 @@ on(wfrpModule.wfrp.combat_modifiers.map(m => `change:${m.attr}`).join(` `), even
 // SPELL FUNCTIONS
 
 on(`change:repeating_spells:spell_type change:repeating_spells:spell_lore change:repeating_spells:spell_deity`, eventInfo => wfrpModule.calculateSpellValue(eventInfo.sourceAttribute));
+on(`change:repeating_spells:spell_range change:repeating_spells:spell_duration ${wfrpModule.wfrp.characteristics_v2.flatMap(c => [`change:${c.attr}`, `change:${c.bonus_attr}`]).join(" ")}`,
+    () => wfrpModule.updateSpellStrings()
+);
 
 // NPC FUNCTIONS
 

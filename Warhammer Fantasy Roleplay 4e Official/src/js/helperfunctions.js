@@ -22,7 +22,7 @@ const helperFunctions = (() => {
         if (roll === 100) return true;
         const tens = Math.floor(roll / 10);
         const units = roll % 10;
-        return tens == units;
+        return tens === units;
     };
     
     const extractRepeatingId = (attribute, section) => {
@@ -86,6 +86,11 @@ const helperFunctions = (() => {
         }
     }
 
+    const getSectionIDsPromise = (section_name) => new Promise((resolve) => {
+        getSectionIDs(section_name, (ids) => {
+            resolve({ section_name, ids });
+        });
+    });
     return {
         reverseRoll: reverseRoll,
         isRollDouble: isRollDouble,
@@ -95,6 +100,7 @@ const helperFunctions = (() => {
         capitalizeString: capitalizeString,
         parseJSON: parseJSON, 
         aggregateRepeatingIDs:aggregateRepeatingIDs,
+        getSectionIDsPromise:getSectionIDsPromise,
     }
 
 })();

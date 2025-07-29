@@ -109,7 +109,7 @@ rolltemplate.sheet-rolltemplate-wfrp-opposed
         != `{{/rollGreater() computed::is_opposed 0}}`
         // Results
         != `{{#rollLess() computed::is_attacker_win 1}}`
-        +total_sl(`wfrp-roll__fail`, `Total SL:`, `{{computed::total_sl}}`)
+        +total_sl(`wfrp-roll__fail`, `Total SL`, `{{computed::total_sl}}`)
         != `{{/rollLess() computed::is_attacker_win 1}}`
         != `{{#rollGreater() computed::is_attacker_win 0}}`
         +damage

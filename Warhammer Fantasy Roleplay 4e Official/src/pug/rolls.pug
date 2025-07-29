@@ -168,14 +168,22 @@
             roll_name: `@{spell_name}`,
             roll_type: `@{spell_type}`,
             roll_target: `@{spell_target}`,
-            roll_duration: `@{spell_duration}`,
-            roll_range: `@{spell_range}`,
+            roll_duration: `@{spell_duration_str}`,
+            roll_range: `@{spell_range_str}`,
             roll_cn: `[[@{spell_cn}-?{Channeling|0}]]`,
             roll_text: `@{spell_description}`,
             roll_spell: 1,
         }
 
         rolls.spell = makeRoll(roll_values, attr, "combat")
+    }
+    {
+        const channelling = skills.advanced[2].specialisations;
+
+        channelling.forEach(lore => {
+            const roll_values = {roll_name: `Channelling (${lore})`}
+            rolls[lore] = makeRoll(roll_values, lore.toLowerCase(), "combat")
+        })
     }
 
     {

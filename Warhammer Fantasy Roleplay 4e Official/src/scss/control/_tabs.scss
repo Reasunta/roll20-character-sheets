@@ -78,10 +78,14 @@ input[name="attr_active_defence"][type="hidden"][value="0"] + div.sheet-passive-
     display: inherit;
 }
 
-input[name="attr_show_description"][type="hidden"] + textarea[name="attr_weapon_description"] {
+input[name="attr_show_description"][type="hidden"] + textarea[name="attr_weapon_description"],
+input[name="attr_show_description"][type="hidden"] + textarea[name="attr_spell_description"]
+{
     display: none;
 }
-input[name="attr_show_description"][type="hidden"][value="1"] + textarea[name="attr_weapon_description"] {
+input[name="attr_show_description"][type="hidden"][value="1"] + textarea[name="attr_weapon_description"],
+input[name="attr_show_description"][type="hidden"][value="1"] + textarea[name="attr_spell_description"]
+{
     display: inherit;
 }
 
@@ -106,6 +110,42 @@ input[name="attr_show_dodge_modifiers_settings"][type="hidden"][value="1"] + div
 input[name="attr_show_ranged_modifiers_settings"][type="hidden"][value="1"] + div.sheet-modifiers-settings,
 input[name*="attr_cm"][type="hidden"][value="1"] + span{
     display: inherit;
+}
+
+input[name="attr_spell_type"][type="hidden"][value="Spell"] ~ input[name="attr_spell_lore"],
+input[name="attr_spell_type"][type="hidden"][value="Prayer"] ~ select[name="attr_spell_lore"],
+input[name="attr_spell_type"][type="hidden"][value="Prayer"] ~ div[class*="sheet-encounter-channelling"],
+input[name="attr_spell_lore"][type="hidden"] ~ button[type="roll"]
+{
+    display: none;
+}
+
+input[name="attr_spell_type"][type="hidden"][value="Prayer"] ~ input[name="attr_spell_lore"],
+input[name="attr_spell_type"][type="hidden"][value="Spell"] ~ select[name="attr_spell_lore"],
+input[name="attr_spell_type"][type="hidden"][value="Spell"] ~ div[class*="sheet-encounter-channelling"]
+{
+    display: inherit;
+}
+@each $lore in $channelling {
+    input[name="attr_spell_lore"][type="hidden"][value="#{$lore}"] ~ button[type="roll"][name="sheet-#{$lore}"] {
+        display: inherit;
+    }
+}
+
+input[name="attr_main_hand_weapon_id"][type="hidden"] + div[class*="sheet-wfrp-panel"],
+input[name="attr_off_hand_weapon_id"][type="hidden"] + div[class*="sheet-wfrp-panel"] {
+    display: none;
+}
+input[name="attr_main_hand_weapon_id"][type="hidden"][value*="-"] + div[class*="sheet-wfrp-panel"],
+input[name="attr_off_hand_weapon_id"][type="hidden"][value*="-"] + div[class*="sheet-wfrp-panel"] {
+    display: inherit;
+}
+
+input[name="attr_show_mod_help"][type="hidden"] + div[class*="sheet-mod-help"] {
+    display: none
+}
+input[name="attr_show_mod_help"][type="hidden"][value="1"] + div[class*="sheet-mod-help"] {
+    display: inherit
 }
 
 

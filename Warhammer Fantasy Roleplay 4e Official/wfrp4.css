@@ -2041,11 +2041,13 @@ input[name=attr_active_defence][type=hidden][value="0"] + div.sheet-passive-defe
   display: inherit;
 }
 
-input[name=attr_show_description][type=hidden] + textarea[name=attr_weapon_description] {
+input[name=attr_show_description][type=hidden] + textarea[name=attr_weapon_description],
+input[name=attr_show_description][type=hidden] + textarea[name=attr_spell_description] {
   display: none;
 }
 
-input[name=attr_show_description][type=hidden][value="1"] + textarea[name=attr_weapon_description] {
+input[name=attr_show_description][type=hidden][value="1"] + textarea[name=attr_weapon_description],
+input[name=attr_show_description][type=hidden][value="1"] + textarea[name=attr_spell_description] {
   display: inherit;
 }
 
@@ -2070,6 +2072,73 @@ input[name=attr_show_parry_modifiers_settings][type=hidden][value="1"] + div.she
 input[name=attr_show_dodge_modifiers_settings][type=hidden][value="1"] + div.sheet-modifiers-settings,
 input[name=attr_show_ranged_modifiers_settings][type=hidden][value="1"] + div.sheet-modifiers-settings,
 input[name*=attr_cm][type=hidden][value="1"] + span {
+  display: inherit;
+}
+
+input[name=attr_spell_type][type=hidden][value=Spell] ~ input[name=attr_spell_lore],
+input[name=attr_spell_type][type=hidden][value=Prayer] ~ select[name=attr_spell_lore],
+input[name=attr_spell_type][type=hidden][value=Prayer] ~ div[class*=sheet-encounter-channelling],
+input[name=attr_spell_lore][type=hidden] ~ button[type=roll] {
+  display: none;
+}
+
+input[name=attr_spell_type][type=hidden][value=Prayer] ~ input[name=attr_spell_lore],
+input[name=attr_spell_type][type=hidden][value=Spell] ~ select[name=attr_spell_lore],
+input[name=attr_spell_type][type=hidden][value=Spell] ~ div[class*=sheet-encounter-channelling] {
+  display: inherit;
+}
+
+input[name=attr_spell_lore][type=hidden][value=Azyr] ~ button[type=roll][name=sheet-Azyr] {
+  display: inherit;
+}
+
+input[name=attr_spell_lore][type=hidden][value=Aqshy] ~ button[type=roll][name=sheet-Aqshy] {
+  display: inherit;
+}
+
+input[name=attr_spell_lore][type=hidden][value=Chamon] ~ button[type=roll][name=sheet-Chamon] {
+  display: inherit;
+}
+
+input[name=attr_spell_lore][type=hidden][value=Dhar] ~ button[type=roll][name=sheet-Dhar] {
+  display: inherit;
+}
+
+input[name=attr_spell_lore][type=hidden][value=Ghur] ~ button[type=roll][name=sheet-Ghur] {
+  display: inherit;
+}
+
+input[name=attr_spell_lore][type=hidden][value=Ghyran] ~ button[type=roll][name=sheet-Ghyran] {
+  display: inherit;
+}
+
+input[name=attr_spell_lore][type=hidden][value=Hysh] ~ button[type=roll][name=sheet-Hysh] {
+  display: inherit;
+}
+
+input[name=attr_spell_lore][type=hidden][value=Shyish] ~ button[type=roll][name=sheet-Shyish] {
+  display: inherit;
+}
+
+input[name=attr_spell_lore][type=hidden][value=Ulgu] ~ button[type=roll][name=sheet-Ulgu] {
+  display: inherit;
+}
+
+input[name=attr_main_hand_weapon_id][type=hidden] + div[class*=sheet-wfrp-panel],
+input[name=attr_off_hand_weapon_id][type=hidden] + div[class*=sheet-wfrp-panel] {
+  display: none;
+}
+
+input[name=attr_main_hand_weapon_id][type=hidden][value*="-"] + div[class*=sheet-wfrp-panel],
+input[name=attr_off_hand_weapon_id][type=hidden][value*="-"] + div[class*=sheet-wfrp-panel] {
+  display: inherit;
+}
+
+input[name=attr_show_mod_help][type=hidden] + div[class*=sheet-mod-help] {
+  display: none;
+}
+
+input[name=attr_show_mod_help][type=hidden][value="1"] + div[class*=sheet-mod-help] {
   display: inherit;
 }
 

@@ -15,8 +15,8 @@ mixin wounds()
     .wfrp-advantage__wrapper.sheet-grid-6
         button.wfrp-advantage__reset.pictos(name="act_reset_wounds", type="action") 1
         button.wfrp-advantage__decrement.pictos(name="act_decrement_wounds", type="action") -
-        input.wfrp-advantage__input.sheet-grid-span-2(name="attr_wounds", type="number", value="0")
-        div.sheet-wfrp-field.no-border
+        input.wfrp-advantage__input(name="attr_wounds", type="number", value="0")
+        div.sheet-wfrp-field.no-border.sheet-grid-span-2
             span.wfrp-armour__display.no-border /
             span.wfrp-armour__display.no-border(name="attr_wounds_max")
         button.wfrp-advantage__increment.pictos(name="act_increment_wounds", type="action") +

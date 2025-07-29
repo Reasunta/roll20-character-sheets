@@ -9,28 +9,29 @@ mixin hand-header(hand)
 mixin hand-row(hand)
     -
         const grid_class = hand === 'main' ? 'sheet-grid-3' : 'sheet-grid-4'
-
-    div(class=`${grid_class} sheet-grid-gap-5 sheet-wfrp-panel`)
-        input(name=`attr_${hand}_hand_weapon_is_ranged`, type=`hidden`)
-        input(name=`attr_${hand}_hand_weapon_is_pistol`, type=`hidden`)
-        div.sheet-grid-1
-            .sheet-wfrp-controls.sheet-grid-1.sheet-imaged
-                button(title="Opposed Attack", type="action", name=`act_${hand}_opposed_attack`)
-        div.sheet-grid-1
-            .sheet-wfrp-controls.sheet-grid-1.sheet-imaged
-                button(title="Unopposed Attack", type="action", name=`act_${hand}_unopposed_attack`)
-        if hand === `off`
+    .sheet-hand-row-panel.sheet-grid-1
+        input(type="hidden", name=`attr_${hand}_hand_weapon_id`)
+        div(class=`${grid_class} sheet-grid-gap-5 sheet-wfrp-panel`)
+            input(name=`attr_${hand}_hand_weapon_is_ranged`, type=`hidden`)
+            input(name=`attr_${hand}_hand_weapon_is_pistol`, type=`hidden`)
             div.sheet-grid-1
                 .sheet-wfrp-controls.sheet-grid-1.sheet-imaged
-                    button(title="Second attack with Dual Wielder", type="action", name="act_dual_wielder_attack")
-        input(name=`attr_active_defence`, type="hidden")
-        .sheet-grid-1.sheet-grid-align-content-start.passive-defence
-            span.wfrp-controls__cell(data-i18n="Use for defence")
-            input.wfrp-settings__input(name=`attr_${hand}_hand_defence`, type="checkbox", value="1")
-        input(name=`attr_active_defence`, type="hidden")
-        div.sheet-grid-1.active-defence.sheet-imaged
-            .sheet-wfrp-controls.sheet-grid-1.sheet-imaged
-                button(title="Defend with the weapon", type="action", name=`act_${hand}_defend`)
+                    button(title="Opposed Attack", type="action", name=`act_${hand}_opposed_attack`)
+            div.sheet-grid-1
+                .sheet-wfrp-controls.sheet-grid-1.sheet-imaged
+                    button(title="Unopposed Attack", type="action", name=`act_${hand}_unopposed_attack`)
+            if hand === `off`
+                div.sheet-grid-1
+                    .sheet-wfrp-controls.sheet-grid-1.sheet-imaged
+                        button(title="Second attack with Dual Wielder", type="action", name="act_dual_wielder_attack")
+            input(name=`attr_active_defence`, type="hidden")
+            .sheet-grid-1.sheet-grid-align-content-start.passive-defence
+                span.wfrp-controls__cell(data-i18n="Use for defence")
+                input.wfrp-settings__input(name=`attr_${hand}_hand_defence`, type="checkbox", value="1")
+            input(name=`attr_active_defence`, type="hidden")
+            div.sheet-grid-1.active-defence.sheet-imaged
+                .sheet-wfrp-controls.sheet-grid-1.sheet-imaged
+                    button(title="Defend with the weapon", type="action", name=`act_${hand}_defend`)
 
 
 mixin encounter_button(label, type, value)
@@ -43,8 +44,11 @@ mixin encounter_button(label, type, value)
 
 mixin encounter-weapon-row
     .wfrp-weapontable__row.sheet-grid-9
-        .wfrp-weapontable__cell.sheet-grid-span-2
-            span(name=`attr_weapon_name`)
+        .wfrp-weapontable__cell.sheet-grid-span-2.sheet-grid-6.sheet-grid-gap-5
+            .sheet-grid-span-1
+                +display-toggle("show_description", false, "w")
+            .sheet-grid-span-5
+                span(name=`attr_weapon_name`)
         .wfrp-weapontable__cell.sheet-grid-span-2
             span(data-i18n="main-hand-checkbox")
             input.wfrp-settings__input(name=`attr_main_hand`, type="checkbox", value="1")
@@ -56,26 +60,44 @@ mixin encounter-weapon-row
             span(name=`attr_weapon_damage_flat`)
             input(name=`attr_weapon_damage_bonus`, type="hidden")
             span(data-i18n="+SB")
-        .wfrp-weapontable__cell--last.sheet-grid-span-3.sheet-grid-6.sheet-grid-gap-5
-            .sheet-grid-span-1
-                +display-toggle("show_description", false, "w")
-            .sheet-grid-span-5
+        .wfrp-weapontable__cell--last.sheet-grid-span-3.sheet-grid-2
+            .sheet-grid-span-2
                 span(name=`attr_weapon_qualities_str`)
     .wfrp-weapontable__row
         input(name="attr_show_description", type="hidden")
         textarea.wfrp-settings__textarea(name=`attr_weapon_description`)
 
+mixin channelling-btn-group
+    input(type="hidden" name="attr_spell_lore")
+    each specialisation in skills.advanced[2].specialisations
+        button(type="roll", name=specialisation, value=rolls[specialisation], data-i18n=specialisation)
+
 mixin encounter-spell-row
     .wfrp-spelltable__row.sheet-grid-8
-        .wfrp-spelltable__cell.sheet-grid-span-2
-            button(type="roll", value=rolls.spell)
-                span(name=`attr_spell_name`)
-        .wfrp-spelltable__cell.sheet-grid-span-2
-            span(name=`attr_spell_range`)
-        .wfrp-spelltable__cell.sheet-grid-span-2
+        .wfrp-spelltable__cell.sheet-grid-span-2.sheet-grid-6.sheet-grid-gap-5
+            .sheet-grid-span-1
+                +display-toggle("show_description", false, "w")
+            .sheet-grid-span-5
+                button(type="roll", value=rolls.spell)
+                    span(name=`attr_spell_name`)
+        .wfrp-spelltable__cell.sheet-grid-span-1
+            span(name=`attr_spell_range_str`)
+        .wfrp-spelltable__cell.sheet-grid-span-1
             span(name=`attr_spell_target`)
-        .wfrp-spelltable__cell--last.sheet-grid-span-2
-            span(name=`attr_spell_duration`)
+        .wfrp-spelltable__cell.sheet-grid-span-1
+            span(name=`attr_spell_duration_str`)
+        .wfrp-spelltable__cell.sheet-grid-span-1
+            span(name=`attr_spell_cn`)
+        .wfrp-spelltable__cell--last.sheet-grid-span-2.sheet-wfrp-controls.sheet-grid-4.sheet-grid-gap-5
+            input(name=`attr_spell_type`, type=`hidden`)
+            .sheet-grid-span-3.sheet-encounter-channelling
+                +channelling-btn-group()
+            input(name=`attr_spell_type`, type=`hidden`)
+            .sheet-grid-span-1.sheet-encounter-channelling
+                input(type="number", name="attr_channelling_sl")
+    .wfrp-weapontable__row
+        input(name="attr_show_description", type="hidden")
+        textarea.wfrp-settings__textarea(name=`attr_spell_description`)
 
 mixin encounter-talent-row
     input(name=`attr_talent_settings`, type="hidden", value=1)
@@ -128,6 +150,8 @@ mixin encounter-modifier-block(title, type, modifiers)
 
 mixin encounter()
     .wfrp-panel.page__encounter.sheet-grid-span-6
+        .sheet-grid-1
+            button(type="action", name="act_test") Test
         .sheet-grid-3
             .sheet-wfrp-panel
                 +advantage()
@@ -204,9 +228,11 @@ mixin encounter()
                 .sheet-wfrp-panel
                     .wfrp-spelltable__row--head.sheet-grid-8
                         .wfrp-spelltable__cell.sheet-grid-span-2(data-i18n="Name")
-                        .wfrp-spelltable__cell.sheet-grid-span-2(data-i18n="Range")
-                        .wfrp-spelltable__cell.sheet-grid-span-2(data-i18n="Target")
-                        .wfrp-spelltable__cell--last.sheet-grid-span-2(data-i18n="Duration")
+                        .wfrp-spelltable__cell.sheet-grid-span-1(data-i18n="Range")
+                        .wfrp-spelltable__cell.sheet-grid-span-1(data-i18n="Target")
+                        .wfrp-spelltable__cell.sheet-grid-span-1(data-i18n="Duration")
+                        .wfrp-spelltable__cell.sheet-grid-span-1(data-i18n="CN")
+                        .wfrp-spelltable__cell--last.sheet-grid-span-2(data-i18n="Channelling")
                     +repeating-section("spells","encounter-spell-row")
             .sheet-grid-span-1
                 h1.wfrp-panel__header(data-i18n="Talents")
