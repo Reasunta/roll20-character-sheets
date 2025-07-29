@@ -2085,7 +2085,7 @@ input[name=attr_spell_lore][type=hidden] ~ button[type=roll] {
 input[name=attr_spell_type][type=hidden][value=Prayer] ~ input[name=attr_spell_lore],
 input[name=attr_spell_type][type=hidden][value=Spell] ~ select[name=attr_spell_lore],
 input[name=attr_spell_type][type=hidden][value=Spell] ~ div[class*=sheet-encounter-channelling] {
-  display: inherit;
+  display: flex;
 }
 
 input[name=attr_spell_lore][type=hidden][value=Azyr] ~ button[type=roll][name=sheet-Azyr] {

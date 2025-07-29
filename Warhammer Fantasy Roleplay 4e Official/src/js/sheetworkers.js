@@ -2726,8 +2726,10 @@ const wfrpModule = ( () => {
 
     const incrementAttribute = (attr, attr_max, can_overflow) => {
         getAttrs([attr, attr_max], values => {
-            const maximum = (values[attr_max] && parseInt(values[attr_max]) > 0) ? parseInt(values[attr_max]) : 9999;
-            const result = (parseInt(values[attr]) < maximum || can_overflow) ? parseInt(values[attr]) + 1 : parseInt(values[attr]);
+            const v = parseInt(values[attr] || 0)
+            const v_max = parseInt(values[attr_max] || 0)
+            const maximum = (v_max > 0) ? v_max : 9999;
+            const result = (v < maximum || can_overflow) ? v + 1 : v;
 
             const update = {}
             update[attr] = result
@@ -2883,22 +2885,25 @@ const wfrpModule = ( () => {
             const attrs = [
                 ...wfrp.characteristics_v2.map(c => c.attr),
                 ...wfrp.characteristics_v2.map(c => c.bonus_attr),
-                ...id_array.flatMap(id => [spellAttr(id, `spell_range`), spellAttr(id, `spell_duration`)])
+                ...id_array.flatMap(id => [spellAttr(id, `spell_range`), spellAttr(id, `spell_duration`), spellAttr(id, `spell_target`)])
             ]
 
             getAttrs(attrs, values => {
                 const update = {}
                 id_array.forEach(id => {
                     let range_str = values[spellAttr(id, `spell_range`)]
-                    let duration_str = values[spellAttr(id, `spell_range`)]
+                    let duration_str = values[spellAttr(id, `spell_duration`)]
+                    let target_str = values[spellAttr(id, `spell_target`)]
 
                     wfrp.characteristics_v2.forEach(c => {
                         range_str = range_str.replace(`[${c.short}]`, values[c.attr]).replace(`[${c.bonus_short}]`, values[c.bonus_attr])
                         duration_str = duration_str.replace(`[${c.short}]`, values[c.attr]).replace(`[${c.bonus_short}]`, values[c.bonus_attr])
+                        target_str = target_str.replace(`[${c.short}]`, values[c.attr]).replace(`[${c.bonus_short}]`, values[c.bonus_attr])
                     })
 
                     update[spellAttr(id, `spell_range_str`)] = range_str
                     update[spellAttr(id, `spell_duration_str`)] = duration_str
+                    update[spellAttr(id, `spell_target_str`)] = target_str
                 })
                 setAttrs(update)
             });
@@ -3515,9 +3520,18 @@ on(wfrpModule.wfrp.combat_modifiers.map(m => `change:${m.attr}`).join(` `), even
 // SPELL FUNCTIONS
 
 on(`change:repeating_spells:spell_type change:repeating_spells:spell_lore change:repeating_spells:spell_deity`, eventInfo => wfrpModule.calculateSpellValue(eventInfo.sourceAttribute));
-on(`change:repeating_spells:spell_range change:repeating_spells:spell_duration ${wfrpModule.wfrp.characteristics_v2.flatMap(c => [`change:${c.attr}`, `change:${c.bonus_attr}`]).join(" ")}`,
+on(`${["range", "target", "duration"].map(a => `change:repeating_spells:spell_${a}`).join(' ')} ${wfrpModule.wfrp.characteristics_v2.flatMap(c => [`change:${c.attr}`, `change:${c.bonus_attr}`]).join(" ")}`,
     () => wfrpModule.updateSpellStrings()
 );
+
+on(`clicked:repeating_spells:increment-channelling-sl`, eventInfo => {
+    const row_id = eventInfo.sourceAttribute.split("_")[2]
+    wfrpModule.incrementAttribute(`repeating_spells_${row_id}_channelling_sl`, `repeating_spells_${row_id}_spell_cn`, false)
+});
+on(`clicked:repeating_spells:reset-channelling-sl`, eventInfo => {
+    const row_id = eventInfo.sourceAttribute.split("_")[2]
+    setAttrs({[`repeating_spells_${row_id}_channelling_sl`]: 0})
+});
 
 // NPC FUNCTIONS
 

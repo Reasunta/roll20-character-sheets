@@ -74,6 +74,14 @@ mixin channelling-btn-group
 
 mixin encounter-spell-row
     .wfrp-spelltable__row.sheet-grid-8
+        input(type="hidden", name="attr_spell_total")
+        input(type="hidden", name="attr_spell_name")
+        input(type="hidden", name="attr_spell_target")
+        input(type="hidden", name="attr_spell_duration_str")
+        input(type="hidden", name="attr_spell_range_str")
+        input(type="hidden", name="attr_spell_cn")
+        input(type="hidden", name=`attr_spell_target_str`)
+        input(type="hidden", name=`attr_spell_damage`)
         .wfrp-spelltable__cell.sheet-grid-span-2.sheet-grid-6.sheet-grid-gap-5
             .sheet-grid-span-1
                 +display-toggle("show_description", false, "w")
@@ -83,18 +91,20 @@ mixin encounter-spell-row
         .wfrp-spelltable__cell.sheet-grid-span-1
             span(name=`attr_spell_range_str`)
         .wfrp-spelltable__cell.sheet-grid-span-1
-            span(name=`attr_spell_target`)
+            span(name=`attr_spell_target_str`)
         .wfrp-spelltable__cell.sheet-grid-span-1
             span(name=`attr_spell_duration_str`)
         .wfrp-spelltable__cell.sheet-grid-span-1
             span(name=`attr_spell_cn`)
         .wfrp-spelltable__cell--last.sheet-grid-span-2.sheet-wfrp-controls.sheet-grid-4.sheet-grid-gap-5
             input(name=`attr_spell_type`, type=`hidden`)
-            .sheet-grid-span-3.sheet-encounter-channelling
+            .sheet-grid-span-2.sheet-encounter-channelling
                 +channelling-btn-group()
             input(name=`attr_spell_type`, type=`hidden`)
-            .sheet-grid-span-1.sheet-encounter-channelling
+            .sheet-grid-span-2.sheet-encounter-channelling.sheet-grid-align-items-center
+                button.sheet-pictos(type="action", name="act_reset-channelling-sl") 1
                 input(type="number", name="attr_channelling_sl")
+                button.sheet-pictos(type="action", name="act_increment-channelling-sl") +
     .wfrp-weapontable__row
         input(name="attr_show_description", type="hidden")
         textarea.wfrp-settings__textarea(name=`attr_spell_description`)

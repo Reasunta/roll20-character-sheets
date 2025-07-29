@@ -1,7 +1,7 @@
 mixin spell-row
     input(name=`attr_spell_settings`, type="hidden", value=1)
     .wfrp-spelltable__row
-
+        input(type="hidden", name=`attr_channelling_sl`)
         .wfrp-spelltable__cell--settingstoggle
             +display-toggle(`spell_settings`, true)
 
@@ -22,12 +22,15 @@ mixin spell-row
             span(name=`attr_spell_cn`)
 
         .wfrp-spelltable__cell
+            input(name=`attr_spell_range_str`, type="hidden" value="")
             span(name=`attr_spell_range_str`)
 
         .wfrp-spelltable__cell
-            span(name=`attr_spell_target`)
+            input(name=`attr_spell_target_str`, type="hidden" value="")
+            span(name=`attr_spell_target_str`)
 
         .wfrp-spelltable__cell--last
+            input(name=`attr_spell_duration_str`, type="hidden" value="")
             span(name=`attr_spell_duration_str`)
             
         .wfrp-spelltable__cell.wfrp-settings.control__hide--spell_settings
@@ -72,7 +75,10 @@ mixin spell-row
             .wfrp-settings__row--span
                 .wfrp-settings__label(data-i18n=`Duration`) 
                 input.wfrp-settings__input(name=`attr_spell_duration`, type="text")
-                            
+
+            .wfrp-settings__row--span
+                .wfrp-settings__label(data-i18n=`Damage`)
+                input.wfrp-settings__input(name=`attr_spell_damage`, type="number", value="0")
             .wfrp-settings__row--span
                 .wfrp-settings__label--full(data-i18n=`Description`) 
                 textarea.wfrp-settings__textarea(name=`attr_spell_description`)

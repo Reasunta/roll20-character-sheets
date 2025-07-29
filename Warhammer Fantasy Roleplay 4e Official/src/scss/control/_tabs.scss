@@ -124,7 +124,7 @@ input[name="attr_spell_type"][type="hidden"][value="Prayer"] ~ input[name="attr_
 input[name="attr_spell_type"][type="hidden"][value="Spell"] ~ select[name="attr_spell_lore"],
 input[name="attr_spell_type"][type="hidden"][value="Spell"] ~ div[class*="sheet-encounter-channelling"]
 {
-    display: inherit;
+    display: flex;
 }
 @each $lore in $channelling {
     input[name="attr_spell_lore"][type="hidden"][value="#{$lore}"] ~ button[type="roll"][name="sheet-#{$lore}"] {

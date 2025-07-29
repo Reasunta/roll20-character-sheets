@@ -634,6 +634,14 @@
             </div>
             <fieldset class="repeating_spells">
               <div class="wfrp-spelltable__row sheet-grid-8">
+                <input type="hidden" name="attr_spell_total"/>
+                <input type="hidden" name="attr_spell_name"/>
+                <input type="hidden" name="attr_spell_target"/>
+                <input type="hidden" name="attr_spell_duration_str"/>
+                <input type="hidden" name="attr_spell_range_str"/>
+                <input type="hidden" name="attr_spell_cn"/>
+                <input type="hidden" name="attr_spell_target_str"/>
+                <input type="hidden" name="attr_spell_damage"/>
                 <div class="wfrp-spelltable__cell sheet-grid-span-2 sheet-grid-6 sheet-grid-gap-5">
                   <div class="sheet-grid-span-1">
                     <label class="wfrp-displaytoggle">
@@ -641,31 +649,33 @@
                     </label>
                   </div>
                   <div class="sheet-grid-span-5">
-                    <button type="roll" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{spell_total}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=@{spell_name}}} {{roll_type=@{spell_type}}} {{roll_target=@{spell_target}}} {{roll_duration=@{spell_duration_str}}} {{roll_range=@{spell_range_str}}} {{roll_cn=[[@{spell_cn}-?{Channeling|0}]]}} {{roll_text=@{spell_description}}} {{roll_spell=1}}"><span name="attr_spell_name"></span></button>
+                    <button type="roll" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query_combat}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{spell_total}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=@{spell_name}}} {{roll_type=@{spell_type}}} {{roll_target=@{spell_target_str}}} {{roll_duration=@{spell_duration_str}}} {{roll_damage=[[@{spell_damage}+@{willpower_bonus}]] + SL over CN}} {{roll_range=@{spell_range_str}}} {{roll_cn=[[@{spell_cn}-@{channelling_sl}]]}} {{roll_text=@{spell_description}}} {{roll_spell=1}}"><span name="attr_spell_name"></span></button>
                   </div>
                 </div>
                 <div class="wfrp-spelltable__cell sheet-grid-span-1"><span name="attr_spell_range_str"></span></div>
-                <div class="wfrp-spelltable__cell sheet-grid-span-1"><span name="attr_spell_target"></span></div>
+                <div class="wfrp-spelltable__cell sheet-grid-span-1"><span name="attr_spell_target_str"></span></div>
                 <div class="wfrp-spelltable__cell sheet-grid-span-1"><span name="attr_spell_duration_str"></span></div>
                 <div class="wfrp-spelltable__cell sheet-grid-span-1"><span name="attr_spell_cn"></span></div>
                 <div class="wfrp-spelltable__cell--last sheet-grid-span-2 sheet-wfrp-controls sheet-grid-4 sheet-grid-gap-5">
                   <input name="attr_spell_type" type="hidden"/>
-                  <div class="sheet-grid-span-3 sheet-encounter-channelling">
+                  <div class="sheet-grid-span-2 sheet-encounter-channelling">
                     <input type="hidden" name="attr_spell_lore"/>
-                    <button type="roll" name="Azyr" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{azyr}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Azyr)}}" data-i18n="Azyr"></button>
-                    <button type="roll" name="Aqshy" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{aqshy}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Aqshy)}}" data-i18n="Aqshy"></button>
-                    <button type="roll" name="Chamon" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{chamon}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Chamon)}}" data-i18n="Chamon"></button>
-                    <button type="roll" name="Dhar" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{dhar}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Dhar)}}" data-i18n="Dhar"></button>
-                    <button type="roll" name="Ghur" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{ghur}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Ghur)}}" data-i18n="Ghur"></button>
-                    <button type="roll" name="Ghyran" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{ghyran}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Ghyran)}}" data-i18n="Ghyran"></button>
-                    <button type="roll" name="Hysh" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{hysh}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Hysh)}}" data-i18n="Hysh"></button>
-                    <button type="roll" name="Shyish" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{shyish}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Shyish)}}" data-i18n="Shyish"></button>
-                    <button type="roll" name="Ulgu" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{ulgu}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Ulgu)}}" data-i18n="Ulgu"></button>
-                    <button type="roll" name="Custom" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{custom}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Custom)}}" data-i18n="Custom"></button>
+                    <button type="roll" name="Azyr" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query_combat}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{azyr}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Azyr)}}" data-i18n="Azyr"></button>
+                    <button type="roll" name="Aqshy" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query_combat}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{aqshy}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Aqshy)}}" data-i18n="Aqshy"></button>
+                    <button type="roll" name="Chamon" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query_combat}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{chamon}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Chamon)}}" data-i18n="Chamon"></button>
+                    <button type="roll" name="Dhar" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query_combat}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{dhar}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Dhar)}}" data-i18n="Dhar"></button>
+                    <button type="roll" name="Ghur" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query_combat}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{ghur}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Ghur)}}" data-i18n="Ghur"></button>
+                    <button type="roll" name="Ghyran" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query_combat}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{ghyran}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Ghyran)}}" data-i18n="Ghyran"></button>
+                    <button type="roll" name="Hysh" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query_combat}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{hysh}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Hysh)}}" data-i18n="Hysh"></button>
+                    <button type="roll" name="Shyish" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query_combat}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{shyish}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Shyish)}}" data-i18n="Shyish"></button>
+                    <button type="roll" name="Ulgu" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query_combat}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{ulgu}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Ulgu)}}" data-i18n="Ulgu"></button>
+                    <button type="roll" name="Custom" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query_combat}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{custom}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Custom)}}" data-i18n="Custom"></button>
                   </div>
                   <input name="attr_spell_type" type="hidden"/>
-                  <div class="sheet-grid-span-1 sheet-encounter-channelling">
+                  <div class="sheet-grid-span-2 sheet-encounter-channelling sheet-grid-align-items-center">
+                    <button class="sheet-pictos" type="action" name="act_reset-channelling-sl">1</button>
                     <input type="number" name="attr_channelling_sl"/>
+                    <button class="sheet-pictos" type="action" name="act_increment-channelling-sl">+</button>
                   </div>
                 </div>
               </div>
@@ -6545,13 +6555,14 @@
         <fieldset class="repeating_spells">
           <input name="attr_spell_settings" type="hidden" value="1"/>
           <div class="wfrp-spelltable__row">
+            <input type="hidden" name="attr_channelling_sl"/>
             <div class="wfrp-spelltable__cell--settingstoggle">
               <label class="wfrp-displaytoggle">
                 <input class="wfrp-displaytoggle__hide" checked="checked" name="attr_spell_settings" type="checkbox" value="1"/><span class="wfrp-displaytoggle__span">y</span>
               </label>
             </div>
             <div class="wfrp-spelltable__cell">
-              <button type="roll" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{spell_total}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=@{spell_name}}} {{roll_type=@{spell_type}}} {{roll_target=@{spell_target}}} {{roll_duration=@{spell_duration_str}}} {{roll_range=@{spell_range_str}}} {{roll_cn=[[@{spell_cn}-?{Channeling|0}]]}} {{roll_text=@{spell_description}}} {{roll_spell=1}}"><span name="attr_spell_name"></span></button>
+              <button type="roll" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query_combat}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{spell_total}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=@{spell_name}}} {{roll_type=@{spell_type}}} {{roll_target=@{spell_target_str}}} {{roll_duration=@{spell_duration_str}}} {{roll_damage=[[@{spell_damage}+@{willpower_bonus}]] + SL over CN}} {{roll_range=@{spell_range_str}}} {{roll_cn=[[@{spell_cn}-@{channelling_sl}]]}} {{roll_text=@{spell_description}}} {{roll_spell=1}}"><span name="attr_spell_name"></span></button>
             </div>
             <div class="wfrp-spelltable__cell"><span name="attr_spell_deity"></span><span name="attr_spell_lore"></span></div>
             <div class="wfrp-spelltable__cell"><span name="attr_spell_display"></span>
@@ -6559,9 +6570,15 @@
               <input name="attr_spell_display" type="hidden"/>
             </div>
             <div class="wfrp-spelltable__cell"><span name="attr_spell_cn"></span></div>
-            <div class="wfrp-spelltable__cell"><span name="attr_spell_range_str"></span></div>
-            <div class="wfrp-spelltable__cell"><span name="attr_spell_target"></span></div>
-            <div class="wfrp-spelltable__cell--last"><span name="attr_spell_duration_str"></span></div>
+            <div class="wfrp-spelltable__cell">
+              <input name="attr_spell_range_str" type="hidden" value=""/><span name="attr_spell_range_str"></span>
+            </div>
+            <div class="wfrp-spelltable__cell">
+              <input name="attr_spell_target_str" type="hidden" value=""/><span name="attr_spell_target_str"></span>
+            </div>
+            <div class="wfrp-spelltable__cell--last">
+              <input name="attr_spell_duration_str" type="hidden" value=""/><span name="attr_spell_duration_str"></span>
+            </div>
             <div class="wfrp-spelltable__cell wfrp-settings control__hide--spell_settings">
               <div class="wfrp-settings__row--span">
                 <div class="wfrp-settings__label" data-i18n="Name"> </div>
@@ -6611,6 +6628,10 @@
               <div class="wfrp-settings__row--span">
                 <div class="wfrp-settings__label" data-i18n="Duration"> </div>
                 <input class="wfrp-settings__input" name="attr_spell_duration" type="text"/>
+              </div>
+              <div class="wfrp-settings__row--span">
+                <div class="wfrp-settings__label" data-i18n="Damage"></div>
+                <input class="wfrp-settings__input" name="attr_spell_damage" type="number" value="0"/>
               </div>
               <div class="wfrp-settings__row--span">
                 <div class="wfrp-settings__label--full" data-i18n="Description"> </div>
@@ -8827,13 +8848,14 @@
             <fieldset class="repeating_spells">
               <input name="attr_spell_settings" type="hidden" value="1"/>
               <div class="wfrp-spelltable__row">
+                <input type="hidden" name="attr_channelling_sl"/>
                 <div class="wfrp-spelltable__cell--settingstoggle">
                   <label class="wfrp-displaytoggle">
                     <input class="wfrp-displaytoggle__hide" checked="checked" name="attr_spell_settings" type="checkbox" value="1"/><span class="wfrp-displaytoggle__span">y</span>
                   </label>
                 </div>
                 <div class="wfrp-spelltable__cell">
-                  <button type="roll" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{spell_total}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=@{spell_name}}} {{roll_type=@{spell_type}}} {{roll_target=@{spell_target}}} {{roll_duration=@{spell_duration_str}}} {{roll_range=@{spell_range_str}}} {{roll_cn=[[@{spell_cn}-?{Channeling|0}]]}} {{roll_text=@{spell_description}}} {{roll_spell=1}}"><span name="attr_spell_name"></span></button>
+                  <button type="roll" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query_combat}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{spell_total}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=@{spell_name}}} {{roll_type=@{spell_type}}} {{roll_target=@{spell_target_str}}} {{roll_duration=@{spell_duration_str}}} {{roll_damage=[[@{spell_damage}+@{willpower_bonus}]] + SL over CN}} {{roll_range=@{spell_range_str}}} {{roll_cn=[[@{spell_cn}-@{channelling_sl}]]}} {{roll_text=@{spell_description}}} {{roll_spell=1}}"><span name="attr_spell_name"></span></button>
                 </div>
                 <div class="wfrp-spelltable__cell"><span name="attr_spell_deity"></span><span name="attr_spell_lore"></span></div>
                 <div class="wfrp-spelltable__cell"><span name="attr_spell_display"></span>
@@ -8841,9 +8863,15 @@
                   <input name="attr_spell_display" type="hidden"/>
                 </div>
                 <div class="wfrp-spelltable__cell"><span name="attr_spell_cn"></span></div>
-                <div class="wfrp-spelltable__cell"><span name="attr_spell_range_str"></span></div>
-                <div class="wfrp-spelltable__cell"><span name="attr_spell_target"></span></div>
-                <div class="wfrp-spelltable__cell--last"><span name="attr_spell_duration_str"></span></div>
+                <div class="wfrp-spelltable__cell">
+                  <input name="attr_spell_range_str" type="hidden" value=""/><span name="attr_spell_range_str"></span>
+                </div>
+                <div class="wfrp-spelltable__cell">
+                  <input name="attr_spell_target_str" type="hidden" value=""/><span name="attr_spell_target_str"></span>
+                </div>
+                <div class="wfrp-spelltable__cell--last">
+                  <input name="attr_spell_duration_str" type="hidden" value=""/><span name="attr_spell_duration_str"></span>
+                </div>
                 <div class="wfrp-spelltable__cell wfrp-settings control__hide--spell_settings">
                   <div class="wfrp-settings__row--span">
                     <div class="wfrp-settings__label" data-i18n="Name"> </div>
@@ -8893,6 +8921,10 @@
                   <div class="wfrp-settings__row--span">
                     <div class="wfrp-settings__label" data-i18n="Duration"> </div>
                     <input class="wfrp-settings__input" name="attr_spell_duration" type="text"/>
+                  </div>
+                  <div class="wfrp-settings__row--span">
+                    <div class="wfrp-settings__label" data-i18n="Damage"></div>
+                    <input class="wfrp-settings__input" name="attr_spell_damage" type="number" value="0"/>
                   </div>
                   <div class="wfrp-settings__row--span">
                     <div class="wfrp-settings__label--full" data-i18n="Description"> </div>
@@ -9403,6 +9435,14 @@
               </div>
               <fieldset class="repeating_spells">
                 <div class="wfrp-spelltable__row sheet-grid-8">
+                  <input type="hidden" name="attr_spell_total"/>
+                  <input type="hidden" name="attr_spell_name"/>
+                  <input type="hidden" name="attr_spell_target"/>
+                  <input type="hidden" name="attr_spell_duration_str"/>
+                  <input type="hidden" name="attr_spell_range_str"/>
+                  <input type="hidden" name="attr_spell_cn"/>
+                  <input type="hidden" name="attr_spell_target_str"/>
+                  <input type="hidden" name="attr_spell_damage"/>
                   <div class="wfrp-spelltable__cell sheet-grid-span-2 sheet-grid-6 sheet-grid-gap-5">
                     <div class="sheet-grid-span-1">
                       <label class="wfrp-displaytoggle">
@@ -9410,31 +9450,33 @@
                       </label>
                     </div>
                     <div class="sheet-grid-span-5">
-                      <button type="roll" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{spell_total}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=@{spell_name}}} {{roll_type=@{spell_type}}} {{roll_target=@{spell_target}}} {{roll_duration=@{spell_duration_str}}} {{roll_range=@{spell_range_str}}} {{roll_cn=[[@{spell_cn}-?{Channeling|0}]]}} {{roll_text=@{spell_description}}} {{roll_spell=1}}"><span name="attr_spell_name"></span></button>
+                      <button type="roll" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query_combat}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{spell_total}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=@{spell_name}}} {{roll_type=@{spell_type}}} {{roll_target=@{spell_target_str}}} {{roll_duration=@{spell_duration_str}}} {{roll_damage=[[@{spell_damage}+@{willpower_bonus}]] + SL over CN}} {{roll_range=@{spell_range_str}}} {{roll_cn=[[@{spell_cn}-@{channelling_sl}]]}} {{roll_text=@{spell_description}}} {{roll_spell=1}}"><span name="attr_spell_name"></span></button>
                     </div>
                   </div>
                   <div class="wfrp-spelltable__cell sheet-grid-span-1"><span name="attr_spell_range_str"></span></div>
-                  <div class="wfrp-spelltable__cell sheet-grid-span-1"><span name="attr_spell_target"></span></div>
+                  <div class="wfrp-spelltable__cell sheet-grid-span-1"><span name="attr_spell_target_str"></span></div>
                   <div class="wfrp-spelltable__cell sheet-grid-span-1"><span name="attr_spell_duration_str"></span></div>
                   <div class="wfrp-spelltable__cell sheet-grid-span-1"><span name="attr_spell_cn"></span></div>
                   <div class="wfrp-spelltable__cell--last sheet-grid-span-2 sheet-wfrp-controls sheet-grid-4 sheet-grid-gap-5">
                     <input name="attr_spell_type" type="hidden"/>
-                    <div class="sheet-grid-span-3 sheet-encounter-channelling">
+                    <div class="sheet-grid-span-2 sheet-encounter-channelling">
                       <input type="hidden" name="attr_spell_lore"/>
-                      <button type="roll" name="Azyr" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{azyr}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Azyr)}}" data-i18n="Azyr"></button>
-                      <button type="roll" name="Aqshy" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{aqshy}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Aqshy)}}" data-i18n="Aqshy"></button>
-                      <button type="roll" name="Chamon" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{chamon}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Chamon)}}" data-i18n="Chamon"></button>
-                      <button type="roll" name="Dhar" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{dhar}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Dhar)}}" data-i18n="Dhar"></button>
-                      <button type="roll" name="Ghur" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{ghur}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Ghur)}}" data-i18n="Ghur"></button>
-                      <button type="roll" name="Ghyran" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{ghyran}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Ghyran)}}" data-i18n="Ghyran"></button>
-                      <button type="roll" name="Hysh" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{hysh}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Hysh)}}" data-i18n="Hysh"></button>
-                      <button type="roll" name="Shyish" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{shyish}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Shyish)}}" data-i18n="Shyish"></button>
-                      <button type="roll" name="Ulgu" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{ulgu}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Ulgu)}}" data-i18n="Ulgu"></button>
-                      <button type="roll" name="Custom" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{custom}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Custom)}}" data-i18n="Custom"></button>
+                      <button type="roll" name="Azyr" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query_combat}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{azyr}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Azyr)}}" data-i18n="Azyr"></button>
+                      <button type="roll" name="Aqshy" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query_combat}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{aqshy}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Aqshy)}}" data-i18n="Aqshy"></button>
+                      <button type="roll" name="Chamon" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query_combat}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{chamon}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Chamon)}}" data-i18n="Chamon"></button>
+                      <button type="roll" name="Dhar" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query_combat}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{dhar}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Dhar)}}" data-i18n="Dhar"></button>
+                      <button type="roll" name="Ghur" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query_combat}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{ghur}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Ghur)}}" data-i18n="Ghur"></button>
+                      <button type="roll" name="Ghyran" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query_combat}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{ghyran}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Ghyran)}}" data-i18n="Ghyran"></button>
+                      <button type="roll" name="Hysh" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query_combat}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{hysh}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Hysh)}}" data-i18n="Hysh"></button>
+                      <button type="roll" name="Shyish" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query_combat}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{shyish}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Shyish)}}" data-i18n="Shyish"></button>
+                      <button type="roll" name="Ulgu" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query_combat}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{ulgu}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Ulgu)}}" data-i18n="Ulgu"></button>
+                      <button type="roll" name="Custom" value="@{roll_whisper} &amp;{template:wfrp} {{name=@{character_name}}} {{roll=[[1d100cs&lt;@{roll_cs}cf&gt;@{roll_cf}]]}} {{difficulty=[[@{difficulty_query_combat}]]}} {{bonus=[[@{roll_query}]]}} @{roll_slbonus} {{target=[[@{custom}+@{difficulty_query}+@{roll_query}+(@{advantage}*10)]]}} {{roll_advantage=[[(@{advantage}*10)]]}} {{roll_name=Channelling (Custom)}}" data-i18n="Custom"></button>
                     </div>
                     <input name="attr_spell_type" type="hidden"/>
-                    <div class="sheet-grid-span-1 sheet-encounter-channelling">
+                    <div class="sheet-grid-span-2 sheet-encounter-channelling sheet-grid-align-items-center">
+                      <button class="sheet-pictos" type="action" name="act_reset-channelling-sl">1</button>
                       <input type="number" name="attr_channelling_sl"/>
+                      <button class="sheet-pictos" type="action" name="act_increment-channelling-sl">+</button>
                     </div>
                   </div>
                 </div>
@@ -13769,8 +13811,10 @@
 
     const incrementAttribute = (attr, attr_max, can_overflow) => {
         getAttrs([attr, attr_max], values => {
-            const maximum = (values[attr_max] && parseInt(values[attr_max]) > 0) ? parseInt(values[attr_max]) : 9999;
-            const result = (parseInt(values[attr]) < maximum || can_overflow) ? parseInt(values[attr]) + 1 : parseInt(values[attr]);
+            const v = parseInt(values[attr] || 0)
+            const v_max = parseInt(values[attr_max] || 0)
+            const maximum = (v_max > 0) ? v_max : 9999;
+            const result = (v < maximum || can_overflow) ? v + 1 : v;
 
             const update = {}
             update[attr] = result
@@ -13926,22 +13970,25 @@
             const attrs = [
                 ...wfrp.characteristics_v2.map(c => c.attr),
                 ...wfrp.characteristics_v2.map(c => c.bonus_attr),
-                ...id_array.flatMap(id => [spellAttr(id, `spell_range`), spellAttr(id, `spell_duration`)])
+                ...id_array.flatMap(id => [spellAttr(id, `spell_range`), spellAttr(id, `spell_duration`), spellAttr(id, `spell_target`)])
             ]
 
             getAttrs(attrs, values => {
                 const update = {}
                 id_array.forEach(id => {
                     let range_str = values[spellAttr(id, `spell_range`)]
-                    let duration_str = values[spellAttr(id, `spell_range`)]
+                    let duration_str = values[spellAttr(id, `spell_duration`)]
+                    let target_str = values[spellAttr(id, `spell_target`)]
 
                     wfrp.characteristics_v2.forEach(c => {
                         range_str = range_str.replace(`[${c.short}]`, values[c.attr]).replace(`[${c.bonus_short}]`, values[c.bonus_attr])
                         duration_str = duration_str.replace(`[${c.short}]`, values[c.attr]).replace(`[${c.bonus_short}]`, values[c.bonus_attr])
+                        target_str = target_str.replace(`[${c.short}]`, values[c.attr]).replace(`[${c.bonus_short}]`, values[c.bonus_attr])
                     })
 
                     update[spellAttr(id, `spell_range_str`)] = range_str
                     update[spellAttr(id, `spell_duration_str`)] = duration_str
+                    update[spellAttr(id, `spell_target_str`)] = target_str
                 })
                 setAttrs(update)
             });
@@ -14558,9 +14605,18 @@ on(wfrpModule.wfrp.combat_modifiers.map(m => `change:${m.attr}`).join(` `), even
 // SPELL FUNCTIONS
 
 on(`change:repeating_spells:spell_type change:repeating_spells:spell_lore change:repeating_spells:spell_deity`, eventInfo => wfrpModule.calculateSpellValue(eventInfo.sourceAttribute));
-on(`change:repeating_spells:spell_range change:repeating_spells:spell_duration ${wfrpModule.wfrp.characteristics_v2.flatMap(c => [`change:${c.attr}`, `change:${c.bonus_attr}`]).join(" ")}`,
+on(`${["range", "target", "duration"].map(a => `change:repeating_spells:spell_${a}`).join(' ')} ${wfrpModule.wfrp.characteristics_v2.flatMap(c => [`change:${c.attr}`, `change:${c.bonus_attr}`]).join(" ")}`,
     () => wfrpModule.updateSpellStrings()
 );
+
+on(`clicked:repeating_spells:increment-channelling-sl`, eventInfo => {
+    const row_id = eventInfo.sourceAttribute.split("_")[2]
+    wfrpModule.incrementAttribute(`repeating_spells_${row_id}_channelling_sl`, `repeating_spells_${row_id}_spell_cn`, false)
+});
+on(`clicked:repeating_spells:reset-channelling-sl`, eventInfo => {
+    const row_id = eventInfo.sourceAttribute.split("_")[2]
+    setAttrs({[`repeating_spells_${row_id}_channelling_sl`]: 0})
+});
 
 // NPC FUNCTIONS
 
