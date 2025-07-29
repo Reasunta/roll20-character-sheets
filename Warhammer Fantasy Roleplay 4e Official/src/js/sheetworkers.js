@@ -2547,7 +2547,7 @@ const wfrpModule = ( () => {
             const updateAttrs = {};
 
             updateAttrs["wounds_max"] = new_wounds + wound_mod;
-            updateAttrs["size_index"] = wfrp.sizes.indexOf(values["size"]) || 3;
+            updateAttrs["size_index"] = wfrp.sizes.indexOf(values["size"]) < 0 ? 3 : wfrp.sizes.indexOf(values["size"]);
 
             setAttrs(updateAttrs);
         });

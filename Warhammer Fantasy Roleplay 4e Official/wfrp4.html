@@ -10797,31 +10797,31 @@
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label" data-i18n="Attacker is smaller"></div>
       <div class="wfrp-roll__value">+{{computed::a_is_smaller_mod}}</div>
-    </div>{{/rollGreater() computed::a_is_smaller_mod 0}}{{#rollTotal() d_size_mod -30}}
+    </div>{{/rollGreater() computed::a_is_smaller_mod 0}}{{#rollTotal() computed::d_size_mod -30}}
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label" data-i18n="Target is tiny"></div>
       <div class="wfrp-roll__value">{{computed::d_size_mod}}</div>
-    </div>{{/rollTotal() d_size_mod -30}}{{#rollTotal() d_size_mod -20}}
+    </div>{{/rollTotal() computed::d_size_mod -30}}{{#rollTotal() computed::d_size_mod -20}}
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label" data-i18n="Target is little"></div>
       <div class="wfrp-roll__value">{{computed::d_size_mod}}</div>
-    </div>{{/rollTotal() d_size_mod -20}}{{#rollTotal() d_size_mod -10}}
+    </div>{{/rollTotal() computed::d_size_mod -20}}{{#rollTotal() computed::d_size_mod -10}}
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label" data-i18n="Target is small"></div>
       <div class="wfrp-roll__value">{{computed::d_size_mod}}</div>
-    </div>{{/rollTotal() d_size_mod -10}}{{#rollTotal() d_size_mod 20}}
+    </div>{{/rollTotal() computed::d_size_mod -10}}{{#rollTotal() computed::d_size_mod 20}}
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label" data-i18n="Target is large"></div>
       <div class="wfrp-roll__value">+{{computed::d_size_mod}}</div>
-    </div>{{/rollTotal() d_size_mod 20}}{{#rollTotal() d_size_mod 40}}
+    </div>{{/rollTotal() computed::d_size_mod 20}}{{#rollTotal() computed::d_size_mod 40}}
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label" data-i18n="Target is enormous"></div>
       <div class="wfrp-roll__value">{{computed::d_size_mod}}</div>
-    </div>{{/rollTotal() d_size_mod 40}}{{#rollTotal() d_size_mod 60}}
+    </div>{{/rollTotal() computed::d_size_mod 40}}{{#rollTotal() computed::d_size_mod 60}}
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label" data-i18n="Target is monstrous"></div>
       <div class="wfrp-roll__value">{{computed::d_size_mod}}</div>
-    </div>{{/rollTotal() d_size_mod 60}}{{#rollGreater() computed::a_talent_rank 0}}
+    </div>{{/rollTotal() computed::d_size_mod 60}}{{#rollGreater() computed::a_talent_rank 0}}
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label-italic">{{a_talent_str}}</div>
       <div class="wfrp-roll__value">+{{a_talent_rank}} SL</div>
@@ -13598,7 +13598,7 @@
             const updateAttrs = {};
 
             updateAttrs["wounds_max"] = new_wounds + wound_mod;
-            updateAttrs["size_index"] = wfrp.sizes.indexOf(values["size"]) || 3;
+            updateAttrs["size_index"] = wfrp.sizes.indexOf(values["size"]) < 0 ? 3 : wfrp.sizes.indexOf(values["size"]);
 
             setAttrs(updateAttrs);
         });

@@ -47,12 +47,12 @@ mixin damage
     != `{{/rollGreater() aw_damage 0}}`
 
 mixin target-size
-    +row(`Target is tiny`, `{{computed::d_size_mod}}`, `rollTotal() d_size_mod -30`)
-    +row(`Target is little`, `{{computed::d_size_mod}}`, `rollTotal() d_size_mod -20`)
-    +row(`Target is small`, `{{computed::d_size_mod}}`, `rollTotal() d_size_mod -10`)
-    +row(`Target is large`, `+{{computed::d_size_mod}}`, `rollTotal() d_size_mod 20`)
-    +row(`Target is enormous`, `{{computed::d_size_mod}}`, `rollTotal() d_size_mod 40`)
-    +row(`Target is monstrous`, `{{computed::d_size_mod}}`, `rollTotal() d_size_mod 60`)
+    +row(`Target is tiny`, `{{computed::d_size_mod}}`, `rollTotal() computed::d_size_mod -30`)
+    +row(`Target is little`, `{{computed::d_size_mod}}`, `rollTotal() computed::d_size_mod -20`)
+    +row(`Target is small`, `{{computed::d_size_mod}}`, `rollTotal() computed::d_size_mod -10`)
+    +row(`Target is large`, `+{{computed::d_size_mod}}`, `rollTotal() computed::d_size_mod 20`)
+    +row(`Target is enormous`, `{{computed::d_size_mod}}`, `rollTotal() computed::d_size_mod 40`)
+    +row(`Target is monstrous`, `{{computed::d_size_mod}}`, `rollTotal() computed::d_size_mod 60`)
 
 
 
