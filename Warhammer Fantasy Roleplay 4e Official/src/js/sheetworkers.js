@@ -219,7 +219,7 @@ const wfrpModule = ( () => {
 
         repeating_sections: [
             {"name": "talent", "mods_attr": "talent_mods"},
-            {"name": "condition", "mods_attr": "condition_mods"},
+            {"name": "conditions", "mods_attr": "condition_mods"},
             {"name": "psychology", "mods_attr": "psychology_mods"},
             {"name": "corruption", "mods_attr": "corruption_mods"},
             {"name": "trappings", "mods_attr": "trappings_mods"},
@@ -596,6 +596,14 @@ const wfrpModule = ( () => {
                 "short": "Enc",
                 "attr": "encumbrance_bonus"
             },
+            {
+                "short": "OHP",
+                "attr": "off_hand_penalty_mod"
+            },
+            {
+                "short": "MHP",
+                "attr": "main_hand_penalty_mod"
+            },
         ]
     }
 
@@ -801,17 +809,20 @@ const wfrpModule = ( () => {
             }
             return input
         }
-        const applyOffHand = (input) => {
+        const applyHandPenalties = (input) => {
             input.a_off_hand_penalty = !input.aw_off_hand
                 ? 0
-                : Math.min(-20 + (parseInt(input.a_ambidextrous_rank) || 0) * 10, 0)
+                : Math.min(-20 + (parseInt(input.a_off_hand_penalty_mod) || 0), 0)
 
             input.d_off_hand_penalty = (!input.dw_off_hand || hasQuality(input.dw_qualities, 'defensive'))
                 ? 0
-                : Math.min(-20 + (parseInt(input.d_ambidextrous_rank) || 0) * 10)
+                : Math.min(-20 + (parseInt(input.d_off_hand_penalty_mod) || 0), 0)
 
-            input.a_mod = input.a_mod + input.a_off_hand_penalty
-            input.d_mod = input.d_mod + input.d_off_hand_penalty
+            input.a_main_hand_penalty = input.aw_off_hand ? 0 : Math.min((parseInt(input.a_main_hand_penalty_mod) || 0), 0)
+            input.d_main_hand_penalty = input.dw_off_hand ? 0 : Math.min((parseInt(input.d_main_hand_penalty_mod) || 0), 0)
+
+            input.a_mod = input.a_mod + input.a_off_hand_penalty + input.a_main_hand_penalty
+            input.d_mod = input.d_mod + input.d_off_hand_penalty + input.d_main_hand_penalty
             return input
         }
         const applyCombatModifiers= (input) => {
@@ -917,7 +928,8 @@ const wfrpModule = ( () => {
         entries.push(rtNumAttrEntry(`a_talent_rank`, `${a_char_source}attacker_talent_rank`), rtNumAttrEntry(`d_talent_rank`, `${d_char_source}defender_talent_rank`))
         entries.push(rtNumAttrEntry(`a_adv`, `${a_char_source}advantage`))
         entries.push(rtNumAttrEntry(`d_adv`, `${d_char_source}advantage`))
-        entries.push(rtNumAttrEntry(`a_ambidextrous_rank`,`${a_char_source}ambidextrous_rank`),rtNumAttrEntry(`d_ambidextrous_rank`,`${d_char_source}ambidextrous_rank`))
+        entries.push(rtNumAttrEntry(`a_off_hand_penalty_mod`,`${a_char_source}off_hand_penalty_mod`),rtNumAttrEntry(`d_off_hand_penalty_mod`,`${d_char_source}off_hand_penalty_mod`))
+        entries.push(rtNumAttrEntry(`a_main_hand_penalty_mod`,`${a_char_source}main_hand_penalty_mod`),rtNumAttrEntry(`d_main_hand_penalty_mod`,`${d_char_source}main_hand_penalty_mod`))
         entries.push(rtNumAttrEntry(`a_size`, `${a_char_source}size_index`), rtNumAttrEntry(`d_size`, `${d_char_source}size_index`))
 
         entries = addWeaponToRoll(entries, 'a', a_char_source, aw_type)
@@ -940,7 +952,7 @@ const wfrpModule = ( () => {
             `aw_accurate`, `aw_damaging`, `aw_impact`, `aw_impale`, `aw_penetrating`, `aw_precise`,
             `aw_dangerous`, `aw_imprecise`, `aw_undamaging`,
             `dw_defensive`, `dw_fast`, `dw_impale`, `dw_dangerous`, `dw_slow`,
-            `is_only_aw_name`, `a_off_hand_penalty`, `d_off_hand_penalty`,
+            `is_only_aw_name`, `a_off_hand_penalty`, `d_off_hand_penalty`,`a_main_hand_penalty`, `d_main_hand_penalty`,
             `a_is_smaller_mod`, `d_size_mod`, `d_is_smaller_sl`, `size_damage_mod`])
 
         startRoll(rtString(`&{template:wfrp-opposed}`, entries), (results) => {
@@ -956,7 +968,7 @@ const wfrpModule = ( () => {
             outputs = prepareRoll(outputs)
             outputs = applyAccurateQuality(outputs)
             outputs = applyFastQuality(outputs)
-            outputs = applyOffHand(outputs)
+            outputs = applyHandPenalties(outputs)
             outputs = applyCombatModifiers(outputs)
             outputs = applySizeModifers(outputs)
 
@@ -2827,14 +2839,12 @@ const wfrpModule = ( () => {
             getAttrs(talent_attrs, v => {
                 const defence_ids = ids.filter(id => v[getTAttr(id, "use_in_defence")] === "1")
                 const attack_ids = ids.filter(id => v[getTAttr(id, "use_in_attack")] === "1")
-                const ambidextrous_ids = ids.filter(id => v[getTAttr(id, "ambidextrous")] === "1")
 
                 const update = {
                     ["defender_talent_str"]: calcTalentStr(defence_ids, v),
                     ["defender_talent_rank"]: calcTalentRank(defence_ids, v),
                     ["attacker_talent_str"]: calcTalentStr(attack_ids, v),
                     ["attacker_talent_rank"]: calcTalentRank(attack_ids, v),
-                    ["ambidextrous_rank"]: calcTalentRank(ambidextrous_ids, v),
                 }
                 setAttrs(update)
             })
@@ -3523,4 +3533,4 @@ on(`change:npc sheet:opened`, eventInfo => wfrpModule.updateNPCButtons());
 
 // TALENT FUNCTIONS
 on(`change:repeating_talent:talent_name change:repeating_talent:talent_ranks change:repeating_talent:use_in_defence ` +
-    `change:repeating_talent:use_in_attack change:repeating_talent:ambidextrous`, (eventInfo) => wfrpModule.calculateCombatTalentAttr())
+    `change:repeating_talent:use_in_attack`, (eventInfo) => wfrpModule.calculateCombatTalentAttr())
