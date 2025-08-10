@@ -395,9 +395,7 @@ const wfrpModule = ( () => {
             "repeating_weapons_weapon_name",
             "repeating_weapons_weapon_group",
             "repeating_weapons_weapon_target_display",
-            "repeating_weapons_weapon_damage_flat",
-            "repeating_weapons_weapon_damage_bonus",
-            "strength_bonus",
+            "repeating_weapons_weapon_damage",
             "repeating_weapons_weapon_q_accurate",
             "repeating_weapons_weapon_q_damaging",
             "repeating_weapons_weapon_q_defensive",
@@ -2608,9 +2606,7 @@ const wfrpModule = ( () => {
     const calculateCurrentWeaponAttrsForOpposedTest = (source_attr_name, v) => {
         result = {}
 
-        let weapon_damage = +v["repeating_weapons_weapon_damage_flat"] || 0
-        const useSB = v["repeating_weapons_weapon_damage_bonus"] === 'on'
-        if (useSB) weapon_damage = weapon_damage + +(v["strength_bonus"] || 0)
+        let weapon_damage = +v["repeating_weapons_weapon_damage"] || 0
 
         // each quality is 1 bit
         let qualityState = 0;
@@ -2746,21 +2742,32 @@ const wfrpModule = ( () => {
         });
     }
 
-    const updateWeaponDamage = (attribute) => {
-        const section = "weapons";
-        const repeating_id = helperFunctions.extractRepeatingId(attribute, section);
+    const updateWeaponDamages = () => {
+        getSectionIDs("weapons", ids => {
+            const attrs = [
+                ...ids.flatMap(id => [
+                    `repeating_weapons_${id}_weapon_damage_flat`,
+                    `repeating_weapons_${id}_weapon_damage_bonus`,
+                    `repeating_weapons_${id}_weapon_group`
+                ]),
+                `melee_damage_bonus`, `ranged_damage_bonus`, `strength_bonus`
+            ]
 
-        const attrs = [];
+            getAttrs(attrs, values => {
+                const update = {}
+                for(id of ids) {
+                    let result = parseInt(values[`repeating_weapons_${id}_weapon_damage_flat`] || 0)
+                    if (wfrp.specialisations.slice(0, 8).includes(values[`repeating_weapons_${id}_weapon_group`].toLowerCase()))
+                        result = result + parseInt(values[`melee_damage_bonus`] || 0)
+                    if (wfrp.specialisations.slice(8, 16).includes(values[`repeating_weapons_${id}_weapon_group`].toLowerCase()))
+                        result = result + parseInt(values[`ranged_damage_bonus`] || 0)
+                    if (values[`repeating_weapons_${id}_weapon_damage_bonus`] === "on")
+                        result = result + parseInt(values[`strength_bonus`] || 0)
 
-        attrs.push(`${repeating_id}_weapon_damage_flat`);
-        attrs.push(`${repeating_id}_weapon_damage_bonus`);
-
-        getAttrs(attrs, values => {
-            const string = (values[`${repeating_id}_weapon_damage_bonus`] === "on") ? `@{strength_bonus}+${values[`${repeating_id}_weapon_damage_flat`]}` : values[`${repeating_id}_weapon_damage_flat`];
-
-            setAttrs({
-                [`${repeating_id}_weapon_damage`]:string
-            });
+                    update[`repeating_weapons_${id}_weapon_damage`] = result
+                }
+                setAttrs(update)
+            })
         })
     }
 
@@ -3127,7 +3134,7 @@ const wfrpModule = ( () => {
         calculateArmour:calculateArmour,
         calculateCurrentEncumbrance:calculateCurrentEncumbrance,
         calculateMaxEncumbrance:calculateMaxEncumbrance,
-        updateWeaponDamage:updateWeaponDamage,
+        updateWeaponDamages:updateWeaponDamages,
         updateWeaponTarget:updateWeaponTarget,
         currencyConversion:currencyConversion,
         calculateCurrentWeaponAttrsForOpposedTest: calculateCurrentWeaponAttrsForOpposedTest,
@@ -3308,7 +3315,14 @@ on(`change:repeating_armour remove:repeating_armour`, eventInfo => wfrpModule.ca
 
 on(`change:repeating_trappings change:repeating_armour:armour_enc change:repeating_armour:armour_worn change:repeating_weapons:weapon_enc`, eventInfo => wfrpModule.calculateCurrentEncumbrance());
 
-on(`change:repeating_weapons:weapon_damage_flat change:repeating_weapons:weapon_damage_bonus`, eventInfo => wfrpModule.updateWeaponDamage(eventInfo.sourceAttribute));
+on([
+    `change:repeating_weapons:weapon_damage_flat`,
+    `change:repeating_weapons:weapon_damage_bonus`,
+    `change:repeating_weapons:weapon_group`,
+    `change:melee_damage_bonus`,
+    `change:ranged_damage_bonus`,
+    `change:strength_bonus`
+].join(" "), eventInfo => wfrpModule.updateWeaponDamages());
 
 on(`change:repeating_weapons:weapon_group`, eventInfo => wfrpModule.updateWeaponTarget(eventInfo.sourceAttribute, eventInfo.newValue));
 
