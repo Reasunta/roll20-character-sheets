@@ -33,7 +33,6 @@ mixin hand-row(hand)
                 .sheet-wfrp-controls.sheet-grid-1.sheet-imaged
                     button(title="Defend with the weapon", type="action", name=`act_${hand}_defend`)
 
-
 mixin encounter_button(label, type, value)
     div.sheet-grid-1
         .sheet-wfrp-controls.sheet-grid-1
@@ -144,11 +143,13 @@ mixin encounter-modifier-block(title, type, modifiers)
         div
             .sheet-bold(data-i18n=`Total`)
             span(name=`attr_cm_${type}_sum`)
-        .sheet-grid-span-10
+        .sheet-grid-span-9
             .sheet-bold(data-i18n=`Active`)
             div.sheet-flex
                 for modifier in modifiers
                     +encounter-modifier-header-view(modifier.label, modifier.values[type], modifier.attr, modifier.tooltips[type])
+        button.sheet-pictos(type="action", name=`act_reset_${type}_modifiers`)
+            div.sheet-text-align-center 1
     input(type="hidden" name=`attr_show_${type}_modifiers_settings`)
     .modifiers-settings.sheet-settings-color
         .sheet-wfrp-roll__divider
@@ -158,8 +159,9 @@ mixin encounter-modifier-block(title, type, modifiers)
 
 mixin encounter()
     .wfrp-panel.page__encounter.sheet-grid-span-6
-        .sheet-grid-1
-            button(type="action", name="act_test") Test
+        .sheet-grid-8
+            p.sheet-grid-span-1 Cell size
+            input.sheet-grid-span-2(type="text", name="attr_cell_size")
         .sheet-grid-3
             .sheet-wfrp-panel
                 +advantage()
@@ -168,7 +170,6 @@ mixin encounter()
             .sheet-wfrp-panel
                 +corruption_points()
                 +fortune_points()
-
         .sheet-grid-2
             h1.wfrp-panel__header(data-i18n="Main hand")
             h1.wfrp-panel__header(data-i18n="Off hand")
@@ -206,7 +207,7 @@ mixin encounter()
                     input.wfrp-settings__input(name=`attr_dodge_defence`, type="checkbox", value="1")
                 input(name=`attr_active_defence`, type="hidden")
                 .active-defence
-                    +encounter_button("Defend with Dodge", "action", "act_dodge_defend")
+                    +encounter_button("Use Dodge for defence", "action", "act_dodge_defend")
                 +encounter_button("Reroll Attacker Roll", "action", "act_reroll_as_attacker")
                 +encounter_button("Reroll Defender Roll", "action", "act_reroll_as_defender")
                 +encounter_button("Log Last Roll", "action", "act_debug_roll")
@@ -249,5 +250,6 @@ mixin encounter()
                         .wfrp-talenttable__cell(data-i18n="Name")
                         .wfrp-talenttable__cell(data-i18n="Ranks")
                         .wfrp-talenttable__cell--last
-                            .sheet-icon.sheet-unopposed-melee-attack-icon(title="Add the Talent's Ranks to SL of passed Weapon Test in Attack")
+                            button.sheet-pictos(type="action", name=`act_reset_talent_attack_sl`, title="Reset used talents in Attack")
+                                div.sheet-text-align-center 1
                     +repeating-section("talent","encounter-talent-row")

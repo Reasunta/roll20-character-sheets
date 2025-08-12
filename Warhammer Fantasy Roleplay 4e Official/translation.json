@@ -529,5 +529,6 @@
     "mods help 41": "integer value (10 W, -20 WS)",
     "mods help 42": "[TR] (talent ranks) for talent mods ([TR] MD)",
     "mods help 43": "[CH] or [CHB] where CH - char's short label if mod's unit is not char or skill ([TB] W)",
-    "mods help 5": "&lt;mod_value&gt; supports simple value's production in format [a * b]. [[TR]*[TB]] W, [2 * 4] MD are correct records"
+    "mods help 5": "&lt;mod_value&gt; supports simple value's production in format [a * b]. [[TR]*[TB]] W, [2 * 4] MD are correct records",
+    "Initial char values": "Initial char values"
 }

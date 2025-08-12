@@ -5,19 +5,6 @@ const wfrpModule = ( () => {
     const wfrp = {
         sheet_version: "1.0.4",
 
-        characteristics: [
-            "weapon_skill",
-            "ballistic_skill",
-            "strength",
-            "toughness",
-            "initiative",
-            "agility",
-            "dexterity",
-            "intelligence",
-            "willpower",
-            "fellowship"
-        ],
-
         characteristics_v2: [
             {
                 "attr": "weapon_skill",
@@ -108,19 +95,6 @@ const wfrpModule = ( () => {
                 "short": "Fel",
                 "bonus_short": "FelB"
             }
-        ],
-
-        characteristics_short: [
-            "WS",
-            "BS",
-            "S",
-            "T",
-            "I",
-            "Ag",
-            "Dex",
-            "Int",
-            "WP",
-            "Fel"
         ],
 
         skills: [
@@ -682,8 +656,8 @@ const wfrpModule = ( () => {
                 rtNumAttrEntry(`${prefix}s_value`, `${char_source}dodge`),
                 rtNumEntry(`${prefix}w_damage`, `0`),
                 rtNumEntry(`${prefix}w_qualities`, `0`),
-                rtNumAttrEntry(`${prefix}w_off_hand`, `0`),
-                rtNumAttrEntry(`${prefix}w_is_dodge`, `1`)
+                rtNumEntry(`${prefix}w_off_hand`, `0`),
+                rtNumEntry(`${prefix}w_is_dodge`, `1`)
             )
         } else if (w_type === 'grapple') {
             entries.push(
@@ -692,8 +666,8 @@ const wfrpModule = ( () => {
                 rtNumAttrEntry(`${prefix}s_value`, `${char_source}strength`),
                 rtNumEntry(`${prefix}w_damage`, `0`),
                 rtNumEntry(`${prefix}w_qualities`, `0`),
-                rtNumAttrEntry(`${prefix}w_off_hand`, `0`),
-                rtNumAttrEntry(`${prefix}w_is_dodge`, `0`)
+                rtNumEntry(`${prefix}w_off_hand`, `0`),
+                rtNumEntry(`${prefix}w_is_dodge`, `0`)
             )
         }
         else {
@@ -1110,7 +1084,7 @@ const wfrpModule = ( () => {
 
     const initSheet = () => {
 
-        wfrp.characteristics.forEach(char => {
+        wfrp.characteristics_v2.map(c => c.attr).forEach(char => {
             calculateCharacteristic(char)
         });
         updateAllCharModifiers()
@@ -1410,14 +1384,17 @@ const wfrpModule = ( () => {
     // Characteristic Functions
 
     const rollInitial = () => {
-        const rolls = wfrp.characteristics.map(ch => `{{${ch}=[[2d10]]}}`)
+        const rolls = wfrp.characteristics_v2.map(c => c.attr).map(ch => `{{${ch}=[[2d10]]}}`)
         update = {}
-        startRoll(`&{template:wfrp-initial} {{character_name=@{character_name}}} ${rolls.join(" ")}`, function(results) {
-            wfrp.characteristics.forEach(ch => {
+        startRoll(`&{template:wfrp-initial} {{character_name=@{character_name}}} ${rolls.join(" ")} {{sorted_values=[[0]]}}`, function(results) {
+            wfrp.characteristics_v2.map(c => c.attr).forEach(ch => {
                 update[`${ch}_initial`] = results.results[ch].result
             })
+
+            let outputs = {}
+            outputs[`sorted_values`] = Object.values(update).sort(((a, b) => b - a)).join(", ")
             setAttrs(update)
-            finishRoll(results.rollId);
+            finishRoll(results.rollId, outputs);
         });
     }
 
@@ -1776,7 +1753,7 @@ const wfrpModule = ( () => {
 
         const attrs = [];
 
-        wfrp.characteristics.forEach(characteristic => attrs.push(`${repeating_id}_career_${characteristic}_advances`));
+        wfrp.characteristics_v2.map(c => c.attr).forEach(characteristic => attrs.push(`${repeating_id}_career_${characteristic}_advances`));
 
         for (let i = 1; i <= 4; i++) {
             for (let j = 1; j <= 10; j++) {
@@ -1897,7 +1874,7 @@ const wfrpModule = ( () => {
 
             for (const id of ids.careers) {
 
-                for (const characteristic of wfrp.characteristics) {
+                for (const characteristic of wfrp.characteristics_v2.map(c => c.attr)) {
                     attrs.push(`repeating_careers_${id}_career_${characteristic}_advances`);
                     attrs.push(`repeating_careers_${id}_career_${characteristic}_init`);
                 }
@@ -1950,7 +1927,7 @@ const wfrpModule = ( () => {
 
                 for (const id of ids.careers) {
 
-                    wfrp.characteristics.forEach(characteristic => {
+                    wfrp.characteristics_v2.map(c => c.attr).forEach(characteristic => {
                         const value = parseInt(values[`repeating_careers_${id}_career_${characteristic}_advances`]) || 0;
                         const current = characteristic_advances.get(characteristic) || 0;
                         const total = value + current;
@@ -2368,7 +2345,7 @@ const wfrpModule = ( () => {
     }
 
     const updateAdvances = () => {
-        wfrp.characteristics.forEach(characteristic => calculateCharacteristicAdvances(characteristic));
+        wfrp.characteristics_v2.map(c => c.attr).forEach(characteristic => calculateCharacteristicAdvances(characteristic));
         calculateSkillAdvances();
         calculateTalentAdvances();
 
@@ -3034,7 +3011,7 @@ const wfrpModule = ( () => {
             "npc_intuition",
             "npc_perception",
             "npc_cool",
-            ...wfrp.characteristics
+            ...wfrp.characteristics_v2.map(c => c.attr)
         ];
 
         getAttrs(attrs, values => {
@@ -3199,7 +3176,7 @@ for (let index = 1; index <= 12; index++) {
 
 // CHARACTERISTIC CALCULATIONS
 
-wfrpModule.wfrp.characteristics.forEach(characteristic => {
+wfrpModule.wfrp.characteristics_v2.map(c => c.attr).forEach(characteristic => {
     on(`change:${characteristic} change:${characteristic}_species change:${characteristic}_initial change:${characteristic}_advances change:${characteristic}_modifier change:${characteristic}_custom_mod change:${characteristic}_bonusmod change:${characteristic}_bonus`, eventInfo => wfrpModule.calculateCharacteristic(characteristic));
 
     on(`change:${characteristic}`, eventInfo => wfrpModule.cascadeAttributeChange(characteristic));
@@ -3271,7 +3248,7 @@ on(`change:repeating_experience change:repeating_experiencespent change:experien
 
 const advance_triggers = []
 
-wfrpModule.wfrp.characteristics.forEach(characteristic => {
+wfrpModule.wfrp.characteristics_v2.map(c => c.attr).forEach(characteristic => {
     advance_triggers.push(`change:repeating_careers:career_${characteristic}_advances change:repeating_careers:career_${characteristic}_init`)
 });
 
@@ -3531,6 +3508,18 @@ on(wfrpModule.wfrp.combat_modifiers.map(m => `change:${m.attr}`).join(` `), even
         setAttrs(update)
     }
 })
+
+on("clicked:reset_melee_modifiers clicked:reset_ranged_modifiers clicked:reset_parry_modifiers clicked:reset_dodge_modifiers", (eventInfo) => {
+    const type = eventInfo.triggerName.replace("clicked:reset_", "").replace("_modifiers", "")
+    const attrs_for_unselect = wfrpModule.wfrp.combat_modifiers
+        .filter(m => Object.keys(m.values).includes(type))
+        .map(m => m.attr)
+
+    const update = {}
+    attrs_for_unselect.forEach(attr => {update[attr] = "0"})
+    setAttrs(update)
+
+})
 // SPELL FUNCTIONS
 
 on(`change:repeating_spells:spell_type change:repeating_spells:spell_lore change:repeating_spells:spell_deity`, eventInfo => wfrpModule.calculateSpellValue(eventInfo.sourceAttribute));
@@ -3553,7 +3542,7 @@ on(`change:repeating_attacks:attack_name change:repeating_attacks:attack_type`, 
 
 on(`change:weapon_skill change:ballistic_skill`, eventInfo => wfrpModule.cascadeNPCAttacks());
 
-[...wfrpModule.wfrp.characteristics, "initiative", "dodge", "endurance", "intuition", "perception", "cool"].forEach(characteristic => {
+[...wfrpModule.wfrp.characteristics_v2.map(c => c.attr), "initiative", "dodge", "endurance", "intuition", "perception", "cool"].forEach(characteristic => {
     on(`change:${characteristic} change:${characteristic}_bonus`, eventInfo => wfrpModule.updateNPCButtons())
 });
 
@@ -3562,3 +3551,13 @@ on(`change:npc sheet:opened`, eventInfo => wfrpModule.updateNPCButtons());
 // TALENT FUNCTIONS
 on(`change:repeating_talent:talent_name change:repeating_talent:talent_ranks change:repeating_talent:use_in_defence ` +
     `change:repeating_talent:use_in_attack`, (eventInfo) => wfrpModule.calculateCombatTalentAttr())
+
+on (`clicked:reset_talent_attack_sl`, () => {
+    helperFunctions.getSectionIDsOrdered('talent', (ids) => {
+        const update = {}
+        ids.forEach(id => {
+            update[`repeating_talent_${id}_use_in_attack`] = "0"
+        })
+        setAttrs(update)
+    })
+})

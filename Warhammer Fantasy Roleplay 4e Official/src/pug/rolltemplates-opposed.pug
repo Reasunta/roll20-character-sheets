@@ -129,7 +129,7 @@ rolltemplate.sheet-rolltemplate-wfrp-riposte
 rolltemplate.sheet-rolltemplate-wfrp-initial
     .wfrp-roll
         h1 {{character_name}}
-        h2 Initial char values
+        h2(data-i18n=`Initial char values`)
         .wfrp-roll__divider
         +row(`Weapon Skill`, `{{weapon_skill}}`)
         +row(`Ballistic Skill`, `{{ballistic_skill}}`)
@@ -141,3 +141,6 @@ rolltemplate.sheet-rolltemplate-wfrp-initial
         +row(`Intelligence`, `{{intelligence}}`)
         +row(`Willpower`, `{{willpower}}`)
         +row(`Fellowship`, `{{fellowship}}`)
+        .wfrp-roll__divider
+        div {{computed::sorted_values}}
+

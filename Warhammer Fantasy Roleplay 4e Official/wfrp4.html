@@ -136,8 +136,9 @@
       </div>
     </div>
     <div class="wfrp-panel page__encounter sheet-grid-span-6">
-      <div class="sheet-grid-1">
-        <button type="action" name="act_test">Test</button>
+      <div class="sheet-grid-8">
+        <p class="sheet-grid-span-1">Cell size</p>
+        <input class="sheet-grid-span-2" type="text" name="attr_cell_size"/>
       </div>
       <div class="sheet-grid-3">
         <div class="sheet-wfrp-panel">
@@ -333,7 +334,7 @@
           <div class="active-defence">
             <div class="sheet-grid-1">
               <div class="sheet-wfrp-controls sheet-grid-1">
-                <button data-i18n="Defend with Dodge" type="action" name="act_dodge_defend"></button>
+                <button data-i18n="Use Dodge for defence" type="action" name="act_dodge_defend"></button>
               </div>
             </div>
           </div>
@@ -363,7 +364,7 @@
           <div>
             <div class="sheet-bold" data-i18n="Total"></div><span name="attr_cm_melee_sum"></span>
           </div>
-          <div class="sheet-grid-span-10">
+          <div class="sheet-grid-span-9">
             <div class="sheet-bold" data-i18n="Active"></div>
             <div class="sheet-flex">
               <input name="attr_cm_outnumbered_21" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber 2 to 1" data-i18n="Outnumbered 2:1"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber 2 to 1">(+20),</span></span>
@@ -382,6 +383,9 @@
               <input name="attr_cm_target_is_fleeing" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking disengaging opponent" data-i18n="Opponent is fleeing"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking disengaging opponent">(+20),</span></span>
             </div>
           </div>
+          <button class="sheet-pictos" type="action" name="act_reset_melee_modifiers">
+            <div class="sheet-text-align-center">1</div>
+          </button>
         </div>
         <input type="hidden" name="attr_show_melee_modifiers_settings"/>
         <div class="modifiers-settings sheet-settings-color">
@@ -440,7 +444,7 @@
           <div>
             <div class="sheet-bold" data-i18n="Total"></div><span name="attr_cm_ranged_sum"></span>
           </div>
-          <div class="sheet-grid-span-10">
+          <div class="sheet-grid-span-9">
             <div class="sheet-bold" data-i18n="Active"></div>
             <div class="sheet-flex">
               <input name="attr_cm_point_blank_range" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting a target at Point Blank Range" data-i18n="Point Blank Range"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting a target at Point Blank Range">(+40),</span></span>
@@ -460,6 +464,9 @@
               <input name="attr_cm_darkness" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shoot in darkness" data-i18n="Darkness"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shoot in darkness">(-30),</span></span>
             </div>
           </div>
+          <button class="sheet-pictos" type="action" name="act_reset_ranged_modifiers">
+            <div class="sheet-text-align-center">1</div>
+          </button>
         </div>
         <input type="hidden" name="attr_show_ranged_modifiers_settings"/>
         <div class="modifiers-settings sheet-settings-color">
@@ -521,7 +528,7 @@
           <div>
             <div class="sheet-bold" data-i18n="Total"></div><span name="attr_cm_parry_sum"></span>
           </div>
-          <div class="sheet-grid-span-10">
+          <div class="sheet-grid-span-9">
             <div class="sheet-bold" data-i18n="Active"></div>
             <div class="sheet-flex">
               <input name="attr_cm_defensive_stand" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls" data-i18n="Defensive Stand"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls">(+20),</span></span>
@@ -529,6 +536,9 @@
               <input name="attr_cm_darkness" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Close combat in darkness" data-i18n="Darkness"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Close combat in darkness">(-20),</span></span>
             </div>
           </div>
+          <button class="sheet-pictos" type="action" name="act_reset_parry_modifiers">
+            <div class="sheet-text-align-center">1</div>
+          </button>
         </div>
         <input type="hidden" name="attr_show_parry_modifiers_settings"/>
         <div class="modifiers-settings sheet-settings-color">
@@ -554,7 +564,7 @@
           <div>
             <div class="sheet-bold" data-i18n="Total"></div><span name="attr_cm_dodge_sum"></span>
           </div>
-          <div class="sheet-grid-span-10">
+          <div class="sheet-grid-span-9">
             <div class="sheet-bold" data-i18n="Active"></div>
             <div class="sheet-flex">
               <input name="attr_cm_defensive_stand" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls" data-i18n="Defensive Stand"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls">(+20),</span></span>
@@ -563,6 +573,9 @@
               <input name="attr_cm_darkness" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Close combat in darkness" data-i18n="Darkness"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Close combat in darkness">(-20),</span></span>
             </div>
           </div>
+          <button class="sheet-pictos" type="action" name="act_reset_dodge_modifiers">
+            <div class="sheet-text-align-center">1</div>
+          </button>
         </div>
         <input type="hidden" name="attr_show_dodge_modifiers_settings"/>
         <div class="modifiers-settings sheet-settings-color">
@@ -691,7 +704,9 @@
               <div class="wfrp-talenttable__cell" data-i18n="Name"></div>
               <div class="wfrp-talenttable__cell" data-i18n="Ranks"></div>
               <div class="wfrp-talenttable__cell--last">
-                <div class="sheet-icon sheet-unopposed-melee-attack-icon" title="Add the Talent's Ranks to SL of passed Weapon Test in Attack"></div>
+                <button class="sheet-pictos" type="action" name="act_reset_talent_attack_sl" title="Reset used talents in Attack">
+                  <div class="sheet-text-align-center">1</div>
+                </button>
               </div>
             </div>
             <fieldset class="repeating_talent">
@@ -8931,8 +8946,9 @@
         </div>
       </div>
       <div class="wfrp-panel page__encounter sheet-grid-span-6">
-        <div class="sheet-grid-1">
-          <button type="action" name="act_test">Test</button>
+        <div class="sheet-grid-8">
+          <p class="sheet-grid-span-1">Cell size</p>
+          <input class="sheet-grid-span-2" type="text" name="attr_cell_size"/>
         </div>
         <div class="sheet-grid-3">
           <div class="sheet-wfrp-panel">
@@ -9128,7 +9144,7 @@
             <div class="active-defence">
               <div class="sheet-grid-1">
                 <div class="sheet-wfrp-controls sheet-grid-1">
-                  <button data-i18n="Defend with Dodge" type="action" name="act_dodge_defend"></button>
+                  <button data-i18n="Use Dodge for defence" type="action" name="act_dodge_defend"></button>
                 </div>
               </div>
             </div>
@@ -9158,7 +9174,7 @@
             <div>
               <div class="sheet-bold" data-i18n="Total"></div><span name="attr_cm_melee_sum"></span>
             </div>
-            <div class="sheet-grid-span-10">
+            <div class="sheet-grid-span-9">
               <div class="sheet-bold" data-i18n="Active"></div>
               <div class="sheet-flex">
                 <input name="attr_cm_outnumbered_21" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber 2 to 1" data-i18n="Outnumbered 2:1"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber 2 to 1">(+20),</span></span>
@@ -9177,6 +9193,9 @@
                 <input name="attr_cm_target_is_fleeing" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking disengaging opponent" data-i18n="Opponent is fleeing"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking disengaging opponent">(+20),</span></span>
               </div>
             </div>
+            <button class="sheet-pictos" type="action" name="act_reset_melee_modifiers">
+              <div class="sheet-text-align-center">1</div>
+            </button>
           </div>
           <input type="hidden" name="attr_show_melee_modifiers_settings"/>
           <div class="modifiers-settings sheet-settings-color">
@@ -9235,7 +9254,7 @@
             <div>
               <div class="sheet-bold" data-i18n="Total"></div><span name="attr_cm_ranged_sum"></span>
             </div>
-            <div class="sheet-grid-span-10">
+            <div class="sheet-grid-span-9">
               <div class="sheet-bold" data-i18n="Active"></div>
               <div class="sheet-flex">
                 <input name="attr_cm_point_blank_range" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting a target at Point Blank Range" data-i18n="Point Blank Range"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting a target at Point Blank Range">(+40),</span></span>
@@ -9255,6 +9274,9 @@
                 <input name="attr_cm_darkness" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shoot in darkness" data-i18n="Darkness"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shoot in darkness">(-30),</span></span>
               </div>
             </div>
+            <button class="sheet-pictos" type="action" name="act_reset_ranged_modifiers">
+              <div class="sheet-text-align-center">1</div>
+            </button>
           </div>
           <input type="hidden" name="attr_show_ranged_modifiers_settings"/>
           <div class="modifiers-settings sheet-settings-color">
@@ -9316,7 +9338,7 @@
             <div>
               <div class="sheet-bold" data-i18n="Total"></div><span name="attr_cm_parry_sum"></span>
             </div>
-            <div class="sheet-grid-span-10">
+            <div class="sheet-grid-span-9">
               <div class="sheet-bold" data-i18n="Active"></div>
               <div class="sheet-flex">
                 <input name="attr_cm_defensive_stand" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls" data-i18n="Defensive Stand"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls">(+20),</span></span>
@@ -9324,6 +9346,9 @@
                 <input name="attr_cm_darkness" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Close combat in darkness" data-i18n="Darkness"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Close combat in darkness">(-20),</span></span>
               </div>
             </div>
+            <button class="sheet-pictos" type="action" name="act_reset_parry_modifiers">
+              <div class="sheet-text-align-center">1</div>
+            </button>
           </div>
           <input type="hidden" name="attr_show_parry_modifiers_settings"/>
           <div class="modifiers-settings sheet-settings-color">
@@ -9349,7 +9374,7 @@
             <div>
               <div class="sheet-bold" data-i18n="Total"></div><span name="attr_cm_dodge_sum"></span>
             </div>
-            <div class="sheet-grid-span-10">
+            <div class="sheet-grid-span-9">
               <div class="sheet-bold" data-i18n="Active"></div>
               <div class="sheet-flex">
                 <input name="attr_cm_defensive_stand" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls" data-i18n="Defensive Stand"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls">(+20),</span></span>
@@ -9358,6 +9383,9 @@
                 <input name="attr_cm_darkness" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Close combat in darkness" data-i18n="Darkness"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Close combat in darkness">(-20),</span></span>
               </div>
             </div>
+            <button class="sheet-pictos" type="action" name="act_reset_dodge_modifiers">
+              <div class="sheet-text-align-center">1</div>
+            </button>
           </div>
           <input type="hidden" name="attr_show_dodge_modifiers_settings"/>
           <div class="modifiers-settings sheet-settings-color">
@@ -9486,7 +9514,9 @@
                 <div class="wfrp-talenttable__cell" data-i18n="Name"></div>
                 <div class="wfrp-talenttable__cell" data-i18n="Ranks"></div>
                 <div class="wfrp-talenttable__cell--last">
-                  <div class="sheet-icon sheet-unopposed-melee-attack-icon" title="Add the Talent's Ranks to SL of passed Weapon Test in Attack"></div>
+                  <button class="sheet-pictos" type="action" name="act_reset_talent_attack_sl" title="Reset used talents in Attack">
+                    <div class="sheet-text-align-center">1</div>
+                  </button>
                 </div>
               </div>
               <fieldset class="repeating_talent">
@@ -11030,7 +11060,7 @@
 <rolltemplate class="sheet-rolltemplate-wfrp-initial">
   <div class="wfrp-roll">
     <h1>{{character_name}}</h1>
-    <h2>Initial char values</h2>
+    <h2 data-i18n="Initial char values"></h2>
     <div class="wfrp-roll__divider"></div>
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label" data-i18n="Weapon Skill"></div>
@@ -11072,6 +11102,8 @@
       <div class="wfrp-roll__label" data-i18n="Fellowship"></div>
       <div class="wfrp-roll__value">{{fellowship}}</div>
     </div>
+    <div class="wfrp-roll__divider"></div>
+    <div>{{computed::sorted_values}}</div>
   </div>
 </rolltemplate>
 <script type="text/worker">
@@ -11081,19 +11113,6 @@
 
     const wfrp = {
         sheet_version: "1.0.4",
-
-        characteristics: [
-            "weapon_skill",
-            "ballistic_skill",
-            "strength",
-            "toughness",
-            "initiative",
-            "agility",
-            "dexterity",
-            "intelligence",
-            "willpower",
-            "fellowship"
-        ],
 
         characteristics_v2: [
             {
@@ -11185,19 +11204,6 @@
                 "short": "Fel",
                 "bonus_short": "FelB"
             }
-        ],
-
-        characteristics_short: [
-            "WS",
-            "BS",
-            "S",
-            "T",
-            "I",
-            "Ag",
-            "Dex",
-            "Int",
-            "WP",
-            "Fel"
         ],
 
         skills: [
@@ -11759,8 +11765,8 @@
                 rtNumAttrEntry(`${prefix}s_value`, `${char_source}dodge`),
                 rtNumEntry(`${prefix}w_damage`, `0`),
                 rtNumEntry(`${prefix}w_qualities`, `0`),
-                rtNumAttrEntry(`${prefix}w_off_hand`, `0`),
-                rtNumAttrEntry(`${prefix}w_is_dodge`, `1`)
+                rtNumEntry(`${prefix}w_off_hand`, `0`),
+                rtNumEntry(`${prefix}w_is_dodge`, `1`)
             )
         } else if (w_type === 'grapple') {
             entries.push(
@@ -11769,8 +11775,8 @@
                 rtNumAttrEntry(`${prefix}s_value`, `${char_source}strength`),
                 rtNumEntry(`${prefix}w_damage`, `0`),
                 rtNumEntry(`${prefix}w_qualities`, `0`),
-                rtNumAttrEntry(`${prefix}w_off_hand`, `0`),
-                rtNumAttrEntry(`${prefix}w_is_dodge`, `0`)
+                rtNumEntry(`${prefix}w_off_hand`, `0`),
+                rtNumEntry(`${prefix}w_is_dodge`, `0`)
             )
         }
         else {
@@ -12187,7 +12193,7 @@
 
     const initSheet = () => {
 
-        wfrp.characteristics.forEach(char => {
+        wfrp.characteristics_v2.map(c => c.attr).forEach(char => {
             calculateCharacteristic(char)
         });
         updateAllCharModifiers()
@@ -12487,14 +12493,17 @@
     // Characteristic Functions
 
     const rollInitial = () => {
-        const rolls = wfrp.characteristics.map(ch => `{{${ch}=[[2d10]]}}`)
+        const rolls = wfrp.characteristics_v2.map(c => c.attr).map(ch => `{{${ch}=[[2d10]]}}`)
         update = {}
-        startRoll(`&{template:wfrp-initial} {{character_name=@{character_name}}} ${rolls.join(" ")}`, function(results) {
-            wfrp.characteristics.forEach(ch => {
+        startRoll(`&{template:wfrp-initial} {{character_name=@{character_name}}} ${rolls.join(" ")} {{sorted_values=[[0]]}}`, function(results) {
+            wfrp.characteristics_v2.map(c => c.attr).forEach(ch => {
                 update[`${ch}_initial`] = results.results[ch].result
             })
+
+            let outputs = {}
+            outputs[`sorted_values`] = Object.values(update).sort(((a, b) => b - a)).join(", ")
             setAttrs(update)
-            finishRoll(results.rollId);
+            finishRoll(results.rollId, outputs);
         });
     }
 
@@ -12853,7 +12862,7 @@
 
         const attrs = [];
 
-        wfrp.characteristics.forEach(characteristic => attrs.push(`${repeating_id}_career_${characteristic}_advances`));
+        wfrp.characteristics_v2.map(c => c.attr).forEach(characteristic => attrs.push(`${repeating_id}_career_${characteristic}_advances`));
 
         for (let i = 1; i <= 4; i++) {
             for (let j = 1; j <= 10; j++) {
@@ -12974,7 +12983,7 @@
 
             for (const id of ids.careers) {
 
-                for (const characteristic of wfrp.characteristics) {
+                for (const characteristic of wfrp.characteristics_v2.map(c => c.attr)) {
                     attrs.push(`repeating_careers_${id}_career_${characteristic}_advances`);
                     attrs.push(`repeating_careers_${id}_career_${characteristic}_init`);
                 }
@@ -13027,7 +13036,7 @@
 
                 for (const id of ids.careers) {
 
-                    wfrp.characteristics.forEach(characteristic => {
+                    wfrp.characteristics_v2.map(c => c.attr).forEach(characteristic => {
                         const value = parseInt(values[`repeating_careers_${id}_career_${characteristic}_advances`]) || 0;
                         const current = characteristic_advances.get(characteristic) || 0;
                         const total = value + current;
@@ -13445,7 +13454,7 @@
     }
 
     const updateAdvances = () => {
-        wfrp.characteristics.forEach(characteristic => calculateCharacteristicAdvances(characteristic));
+        wfrp.characteristics_v2.map(c => c.attr).forEach(characteristic => calculateCharacteristicAdvances(characteristic));
         calculateSkillAdvances();
         calculateTalentAdvances();
 
@@ -14111,7 +14120,7 @@
             "npc_intuition",
             "npc_perception",
             "npc_cool",
-            ...wfrp.characteristics
+            ...wfrp.characteristics_v2.map(c => c.attr)
         ];
 
         getAttrs(attrs, values => {
@@ -14276,7 +14285,7 @@ for (let index = 1; index <= 12; index++) {
 
 // CHARACTERISTIC CALCULATIONS
 
-wfrpModule.wfrp.characteristics.forEach(characteristic => {
+wfrpModule.wfrp.characteristics_v2.map(c => c.attr).forEach(characteristic => {
     on(`change:${characteristic} change:${characteristic}_species change:${characteristic}_initial change:${characteristic}_advances change:${characteristic}_modifier change:${characteristic}_custom_mod change:${characteristic}_bonusmod change:${characteristic}_bonus`, eventInfo => wfrpModule.calculateCharacteristic(characteristic));
 
     on(`change:${characteristic}`, eventInfo => wfrpModule.cascadeAttributeChange(characteristic));
@@ -14348,7 +14357,7 @@ on(`change:repeating_experience change:repeating_experiencespent change:experien
 
 const advance_triggers = []
 
-wfrpModule.wfrp.characteristics.forEach(characteristic => {
+wfrpModule.wfrp.characteristics_v2.map(c => c.attr).forEach(characteristic => {
     advance_triggers.push(`change:repeating_careers:career_${characteristic}_advances change:repeating_careers:career_${characteristic}_init`)
 });
 
@@ -14608,6 +14617,18 @@ on(wfrpModule.wfrp.combat_modifiers.map(m => `change:${m.attr}`).join(` `), even
         setAttrs(update)
     }
 })
+
+on("clicked:reset_melee_modifiers clicked:reset_ranged_modifiers clicked:reset_parry_modifiers clicked:reset_dodge_modifiers", (eventInfo) => {
+    const type = eventInfo.triggerName.replace("clicked:reset_", "").replace("_modifiers", "")
+    const attrs_for_unselect = wfrpModule.wfrp.combat_modifiers
+        .filter(m => Object.keys(m.values).includes(type))
+        .map(m => m.attr)
+
+    const update = {}
+    attrs_for_unselect.forEach(attr => {update[attr] = "0"})
+    setAttrs(update)
+
+})
 // SPELL FUNCTIONS
 
 on(`change:repeating_spells:spell_type change:repeating_spells:spell_lore change:repeating_spells:spell_deity`, eventInfo => wfrpModule.calculateSpellValue(eventInfo.sourceAttribute));
@@ -14630,7 +14651,7 @@ on(`change:repeating_attacks:attack_name change:repeating_attacks:attack_type`, 
 
 on(`change:weapon_skill change:ballistic_skill`, eventInfo => wfrpModule.cascadeNPCAttacks());
 
-[...wfrpModule.wfrp.characteristics, "initiative", "dodge", "endurance", "intuition", "perception", "cool"].forEach(characteristic => {
+[...wfrpModule.wfrp.characteristics_v2.map(c => c.attr), "initiative", "dodge", "endurance", "intuition", "perception", "cool"].forEach(characteristic => {
     on(`change:${characteristic} change:${characteristic}_bonus`, eventInfo => wfrpModule.updateNPCButtons())
 });
 
@@ -14639,6 +14660,16 @@ on(`change:npc sheet:opened`, eventInfo => wfrpModule.updateNPCButtons());
 // TALENT FUNCTIONS
 on(`change:repeating_talent:talent_name change:repeating_talent:talent_ranks change:repeating_talent:use_in_defence ` +
     `change:repeating_talent:use_in_attack`, (eventInfo) => wfrpModule.calculateCombatTalentAttr())
+
+on (`clicked:reset_talent_attack_sl`, () => {
+    helperFunctions.getSectionIDsOrdered('talent', (ids) => {
+        const update = {}
+        ids.forEach(id => {
+            update[`repeating_talent_${id}_use_in_attack`] = "0"
+        })
+        setAttrs(update)
+    })
+})
 const wfrpDragAndDrop = ( () => {
 
     const handleDrop = (values, name) => {
