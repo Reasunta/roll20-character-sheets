@@ -356,242 +356,333 @@
         </div>
       </div>
       <h1 class="wfrp-panel__header" data-i18n="Modifiers"></h1>
-      <div class="sheet-wfrp-panel">
-        <div class="sheet-grid-12">
-          <label class="sheet-icon sheet-unopposed-melee-attack-icon" title="Melee attack modifiers">
-            <input type="checkbox" value="1" name="attr_show_melee_modifiers_settings" style="display: none;"/>
-          </label>
-          <div>
-            <div class="sheet-bold" data-i18n="Total"></div><span name="attr_cm_melee_sum"></span>
+      <div class="sheet-grid-5">
+        <div class="sheet-wfrp-panel">
+          <div class="sheet-bold sheet-text-align-center" data-i18n="Melee Attack"></div>
+          <div class="sheet-grid-3 sheet-grid-justify-items-center">
+            <label class="sheet-icon sheet-unopposed-melee-attack-icon" title="Melee Attack">
+              <input type="checkbox" value="1" name="attr_show_modifiers_settings" style="display: none;"/>
+            </label>
+            <div><span name="attr_cm_melee_sum"></span></div>
+            <button class="sheet-pictos" type="action" name="act_reset_melee_modifiers">
+              <div class="sheet-text-align-center">1</div>
+            </button>
           </div>
-          <div class="sheet-grid-span-9">
-            <div class="sheet-bold" data-i18n="Active"></div>
-            <div class="sheet-flex">
-              <input name="attr_cm_outnumbered_21" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber 2 to 1" data-i18n="Outnumbered 2:1"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber 2 to 1">(+20),</span></span>
-              <input name="attr_cm_outnumbered_31" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber 3 to 1" data-i18n="Outnumbered 3:1"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber 3 to 1">(+40),</span></span>
-              <input name="attr_cm_target_grapple_leader" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent who is leader in Grapple" data-i18n="Attack Grapple Leader"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent who is leader in Grapple">(+10),</span></span>
-              <input name="attr_cm_target_grapple_follower" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent who is follower in Grapple" data-i18n="Attack Grapple Follower"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent who is follower in Grapple">(+20),</span></span>
-              <input name="attr_cm_target_soft_cover" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Target in soft cover (behind a hedge for example)" data-i18n="Target's Soft Cover"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Target in soft cover (behind a hedge for example)">(-10),</span></span>
-              <input name="attr_cm_target_medium_cover" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Target in medium cover (wooden fence for example)" data-i18n="Target's Medium Cover"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Target in medium cover (wooden fence for example)">(-20),</span></span>
-              <input name="attr_cm_target_hard_cover" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Target in hard cover (behind stone wall, for example)" data-i18n="Target's Hard Cover"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Target in hard cover (behind stone wall, for example)">(-30),</span></span>
-              <input name="attr_cm_specific_hit_location" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="A called strike to a specific Hit Location. If you succeed you hit that location" data-i18n="Specific Hit Location"></span><span class="wfrp-settings__label sheet-margin-right-2" title="A called strike to a specific Hit Location. If you succeed you hit that location">(-20),</span></span>
-              <input name="attr_cm_hard_terrain" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking whilst in the mud, heavy rain or difficult terrain" data-i18n="Hard Terrain"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking whilst in the mud, heavy rain or difficult terrain">(-10),</span></span>
-              <input name="attr_cm_extreme_terrain" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking or dodging in the deep snow, water or other arduous terrain" data-i18n="Extreme Terrain"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking or dodging in the deep snow, water or other arduous terrain">(-30),</span></span>
-              <input name="attr_cm_extreme_weather" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking in monsoon, hurricane, thick blizzard, or other extreme weather" data-i18n="Extreme Weather"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking in monsoon, hurricane, thick blizzard, or other extreme weather">(-20),</span></span>
-              <input name="attr_cm_darkness" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Close combat in darkness" data-i18n="Darkness"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Close combat in darkness">(-20),</span></span>
-              <input name="attr_cm_side_rear_attack" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an Engaged opponent in the sides or rear" data-i18n="Side/Rear Attack"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an Engaged opponent in the sides or rear">(+20),</span></span>
-              <input name="attr_cm_target_is_fleeing" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking disengaging opponent" data-i18n="Opponent is fleeing"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking disengaging opponent">(+20),</span></span>
-            </div>
-          </div>
-          <button class="sheet-pictos" type="action" name="act_reset_melee_modifiers">
-            <div class="sheet-text-align-center">1</div>
-          </button>
         </div>
-        <input type="hidden" name="attr_show_melee_modifiers_settings"/>
-        <div class="modifiers-settings sheet-settings-color">
-          <div class="sheet-wfrp-roll__divider"></div>
-          <div class="sheet-grid-4 sheet-grid-justify-items-right">
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber 2 to 1" data-i18n="Outnumbered 2:1"></span><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span>
-              <input class="wfrp-settings__input" name="attr_cm_outnumbered_21" type="checkbox" title="Attacking an opponent you outnumber 2 to 1" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber 3 to 1" data-i18n="Outnumbered 3:1"></span><span class="wfrp-settings__label sheet-margin-right-2">(+40)</span>
-              <input class="wfrp-settings__input" name="attr_cm_outnumbered_31" type="checkbox" title="Attacking an opponent you outnumber 3 to 1" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent who is leader in Grapple" data-i18n="Attack Grapple Leader"></span><span class="wfrp-settings__label sheet-margin-right-2">(+10)</span>
-              <input class="wfrp-settings__input" name="attr_cm_target_grapple_leader" type="checkbox" title="Attacking an opponent who is leader in Grapple" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent who is follower in Grapple" data-i18n="Attack Grapple Follower"></span><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span>
-              <input class="wfrp-settings__input" name="attr_cm_target_grapple_follower" type="checkbox" title="Attacking an opponent who is follower in Grapple" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Target in soft cover (behind a hedge for example)" data-i18n="Target's Soft Cover"></span><span class="wfrp-settings__label sheet-margin-right-2">(-10)</span>
-              <input class="wfrp-settings__input" name="attr_cm_target_soft_cover" type="checkbox" title="Target in soft cover (behind a hedge for example)" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Target in medium cover (wooden fence for example)" data-i18n="Target's Medium Cover"></span><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span>
-              <input class="wfrp-settings__input" name="attr_cm_target_medium_cover" type="checkbox" title="Target in medium cover (wooden fence for example)" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Target in hard cover (behind stone wall, for example)" data-i18n="Target's Hard Cover"></span><span class="wfrp-settings__label sheet-margin-right-2">(-30)</span>
-              <input class="wfrp-settings__input" name="attr_cm_target_hard_cover" type="checkbox" title="Target in hard cover (behind stone wall, for example)" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="A called strike to a specific Hit Location. If you succeed you hit that location" data-i18n="Specific Hit Location"></span><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span>
-              <input class="wfrp-settings__input" name="attr_cm_specific_hit_location" type="checkbox" title="A called strike to a specific Hit Location. If you succeed you hit that location" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking whilst in the mud, heavy rain or difficult terrain" data-i18n="Hard Terrain"></span><span class="wfrp-settings__label sheet-margin-right-2">(-10)</span>
-              <input class="wfrp-settings__input" name="attr_cm_hard_terrain" type="checkbox" title="Attacking whilst in the mud, heavy rain or difficult terrain" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking or dodging in the deep snow, water or other arduous terrain" data-i18n="Extreme Terrain"></span><span class="wfrp-settings__label sheet-margin-right-2">(-30)</span>
-              <input class="wfrp-settings__input" name="attr_cm_extreme_terrain" type="checkbox" title="Attacking or dodging in the deep snow, water or other arduous terrain" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking in monsoon, hurricane, thick blizzard, or other extreme weather" data-i18n="Extreme Weather"></span><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span>
-              <input class="wfrp-settings__input" name="attr_cm_extreme_weather" type="checkbox" title="Attacking in monsoon, hurricane, thick blizzard, or other extreme weather" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Close combat in darkness" data-i18n="Darkness"></span><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span>
-              <input class="wfrp-settings__input" name="attr_cm_darkness" type="checkbox" title="Close combat in darkness" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an Engaged opponent in the sides or rear" data-i18n="Side/Rear Attack"></span><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span>
-              <input class="wfrp-settings__input" name="attr_cm_side_rear_attack" type="checkbox" title="Attacking an Engaged opponent in the sides or rear" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking disengaging opponent" data-i18n="Opponent is fleeing"></span><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span>
-              <input class="wfrp-settings__input" name="attr_cm_target_is_fleeing" type="checkbox" title="Attacking disengaging opponent" value="1"/>
-            </div>
+        <div class="sheet-wfrp-panel">
+          <div class="sheet-bold sheet-text-align-center" data-i18n="Ranged Attack"></div>
+          <div class="sheet-grid-3 sheet-grid-justify-items-center">
+            <label class="sheet-icon sheet-unopposed-ranged-attack-icon" title="Ranged Attack">
+              <input type="checkbox" value="1" name="attr_show_modifiers_settings" style="display: none;"/>
+            </label>
+            <div><span name="attr_cm_ranged_sum"></span></div>
+            <button class="sheet-pictos" type="action" name="act_reset_ranged_modifiers">
+              <div class="sheet-text-align-center">1</div>
+            </button>
+          </div>
+        </div>
+        <div class="sheet-wfrp-panel">
+          <div class="sheet-bold sheet-text-align-center" data-i18n="Parrying"></div>
+          <div class="sheet-grid-3 sheet-grid-justify-items-center">
+            <label class="sheet-icon sheet-unopposed-parry-attack-icon" title="Parrying">
+              <input type="checkbox" value="1" name="attr_show_modifiers_settings" style="display: none;"/>
+            </label>
+            <div><span name="attr_cm_parry_sum"></span></div>
+            <button class="sheet-pictos" type="action" name="act_reset_parry_modifiers">
+              <div class="sheet-text-align-center">1</div>
+            </button>
+          </div>
+        </div>
+        <div class="sheet-wfrp-panel">
+          <div class="sheet-bold sheet-text-align-center" data-i18n="Dodge"></div>
+          <div class="sheet-grid-3 sheet-grid-justify-items-center">
+            <label class="sheet-icon sheet-unopposed-dodge-attack-icon" title="Dodge">
+              <input type="checkbox" value="1" name="attr_show_modifiers_settings" style="display: none;"/>
+            </label>
+            <div><span name="attr_cm_dodge_sum"></span></div>
+            <button class="sheet-pictos" type="action" name="act_reset_dodge_modifiers">
+              <div class="sheet-text-align-center">1</div>
+            </button>
+          </div>
+        </div>
+        <div class="sheet-wfrp-panel">
+          <div class="sheet-bold sheet-text-align-center" data-i18n="Other"></div>
+          <div class="sheet-grid-3 sheet-grid-justify-items-center">
+            <label class="sheet-icon sheet-unopposed--attack-icon" title="Other">
+              <input type="checkbox" value="1" name="attr_show_modifiers_settings" style="display: none;"/>
+            </label>
+            <div><span name="attr_cm__sum"></span></div>
+            <button class="sheet-pictos" type="action" name="act_reset__modifiers">
+              <div class="sheet-text-align-center">1</div>
+            </button>
           </div>
         </div>
       </div>
+      <input type="hidden" name="attr_show_modifiers_settings"/>
       <div class="sheet-wfrp-panel">
-        <div class="sheet-grid-12">
-          <label class="sheet-icon sheet-unopposed-ranged-attack-icon" title="Ranged attack modifiers">
-            <input type="checkbox" value="1" name="attr_show_ranged_modifiers_settings" style="display: none;"/>
-          </label>
-          <div>
-            <div class="sheet-bold" data-i18n="Total"></div><span name="attr_cm_ranged_sum"></span>
+        <div class="sheet-grid-5 sheet-grid-justify-items-center modifiers-settings sheet-settings-color">
+          <div style="width: 100%">
+            <input name="attr_cm_outnumbered_option" type="hidden"/>
+            <input name="attr_cm_outnumbered" type="hidden"/>
+            <div>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber">(+20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber" data-i18n="2:1"></span><span class="wfrp-settings__label" title="Attacking an opponent you outnumber" data-i18n="Outnumbered"></span>
+              </div>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber">(+40)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber" data-i18n="3:1"></span><span class="wfrp-settings__label" title="Attacking an opponent you outnumber" data-i18n="Outnumbered"></span>
+              </div>
+            </div>
+            <input name="attr_cm_target_grapple_option" type="hidden"/>
+            <input name="attr_cm_target_grapple" type="hidden"/>
+            <div>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent who is in Grapple">(+10)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent who is in Grapple" data-i18n="Leader"></span><span class="wfrp-settings__label" title="Attacking an opponent who is in Grapple" data-i18n="Target in Grapple"></span>
+              </div>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent who is in Grapple">(+20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent who is in Grapple" data-i18n="Follower"></span><span class="wfrp-settings__label" title="Attacking an opponent who is in Grapple" data-i18n="Target in Grapple"></span>
+              </div>
+            </div>
+            <input name="attr_cm_side_rear_attack" type="hidden"/>
+            <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an Engaged opponent in the sides or rear" data-i18n="Side/Rear Attack"></span></div>
+            <input name="attr_cm_target_is_fleeing" type="hidden"/>
+            <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking disengaging opponent" data-i18n="Opponent is fleeing"></span></div>
+            <input name="attr_cm_specific_hit_location" type="hidden"/>
+            <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="A called strike / shot to a specific hit Location. If you succeed you hit that location" data-i18n="Specific Hit Location"></span></div>
+            <input name="attr_cm_terrain_option" type="hidden"/>
+            <input name="attr_cm_terrain" type="hidden"/>
+            <div>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Mud, heavy rain or difficult terrain">(-10)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Mud, heavy rain or difficult terrain" data-i18n="Hard Terrain"></span><span class="wfrp-settings__label" title="Mud, heavy rain or difficult terrain" data-i18n="On Terrain"></span>
+              </div>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Deep snow, water or other arduous terrain">(-30)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Deep snow, water or other arduous terrain" data-i18n="Extreme Terrain"></span><span class="wfrp-settings__label" title="Deep snow, water or other arduous terrain" data-i18n="On Terrain"></span>
+              </div>
+            </div>
+            <input name="attr_cm_extreme_weather" type="hidden"/>
+            <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Monsoon, hurricane, thick blizzard, fog, mist, shadow or other extreme weather" data-i18n="Extreme Weather"></span></div>
+            <input name="attr_cm_darkness" type="hidden"/>
+            <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Acting in darkness" data-i18n="Darkness"></span></div>
           </div>
-          <div class="sheet-grid-span-9">
-            <div class="sheet-bold" data-i18n="Active"></div>
-            <div class="sheet-flex">
-              <input name="attr_cm_point_blank_range" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting a target at Point Blank Range" data-i18n="Point Blank Range"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting a target at Point Blank Range">(+40),</span></span>
-              <input name="attr_cm_short_range" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at Short Range: less than half weapon range" data-i18n="Short Range"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at Short Range: less than half weapon range">(+20),</span></span>
-              <input name="attr_cm_long_range" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at Long Range: up to double weapon range" data-i18n="Long Range"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at Long Range: up to double weapon range">(-10),</span></span>
-              <input name="attr_cm_extreme_range" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at Extreme range, up to three times weapon range" data-i18n="Extreme Range"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at Extreme range, up to three times weapon range">(-30),</span></span>
-              <input name="attr_cm_target_small_group" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at a small group (3–6 targets)" data-i18n="Shoot At Small Group"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at a small group (3–6 targets)">(+20),</span></span>
-              <input name="attr_cm_target_large_group" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at a Large group (7–12 targets)" data-i18n="Shoot At Large Group"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at a Large group (7–12 targets)">(+40),</span></span>
-              <input name="attr_cm_target_crowd" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting into a crowd (13+ targets)" data-i18n="Shoot Into Crowd"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting into a crowd (13+ targets)">(+60),</span></span>
-              <input name="attr_cm_shoot_after_move" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting on a Round where you also use your Move" data-i18n="Shoot After Move"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting on a Round where you also use your Move">(-10),</span></span>
-              <input name="attr_cm_target_soft_cover" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Target in soft cover (behind a hedge for example)" data-i18n="Target's Soft Cover"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Target in soft cover (behind a hedge for example)">(-10),</span></span>
-              <input name="attr_cm_target_medium_cover" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Target in medium cover (wooden fence for example)" data-i18n="Target's Medium Cover"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Target in medium cover (wooden fence for example)">(-20),</span></span>
-              <input name="attr_cm_target_hard_cover" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Target in hard cover (behind stone wall, for example)" data-i18n="Target's Hard Cover"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Target in hard cover (behind stone wall, for example)">(-30),</span></span>
-              <input name="attr_cm_specific_hit_location" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="A called shot to a specific Hit Location. If you succeed you hit that location" data-i18n="Specific Hit Location"></span><span class="wfrp-settings__label sheet-margin-right-2" title="A called shot to a specific Hit Location. If you succeed you hit that location">(-20),</span></span>
-              <input name="attr_cm_shoot_after_aim" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting when you spent your last Action aiming (no Test to aim required)" data-i18n="Shoot After Aim"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting when you spent your last Action aiming (no Test to aim required)">(+20),</span></span>
-              <input name="attr_cm_extreme_weather" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting targets concealed by fog, mist or shadow" data-i18n="Extreme Weather"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting targets concealed by fog, mist or shadow">(-20),</span></span>
-              <input name="attr_cm_darkness" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shoot in darkness" data-i18n="Darkness"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shoot in darkness">(-30),</span></span>
+          <div style="width: 100%">
+            <input name="attr_cm_range_option" type="hidden"/>
+            <input name="attr_cm_range" type="hidden"/>
+            <div>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Less than 1/10 weapon range">(+40)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Less than 1/10 weapon range" data-i18n="Point Blank Range"></span><span class="wfrp-settings__label" title="Less than 1/10 weapon range" data-i18n="Shoot Range"></span>
+              </div>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Less than 1/2 weapon range">(+20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Less than 1/2 weapon range" data-i18n="Short Range"></span><span class="wfrp-settings__label" title="Less than 1/2 weapon range" data-i18n="Shoot Range"></span>
+              </div>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Up to 2 weapon range">(-10)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Up to 2 weapon range" data-i18n="Long Range"></span><span class="wfrp-settings__label" title="Up to 2 weapon range" data-i18n="Shoot Range"></span>
+              </div>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Up to 3 weapon range">(-30)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Up to 3 weapon range" data-i18n="Extreme Range"></span><span class="wfrp-settings__label" title="Up to 3 weapon range" data-i18n="Shoot Range"></span>
+              </div>
             </div>
+            <input name="attr_cm_target_group_option" type="hidden"/>
+            <input name="attr_cm_target_group" type="hidden"/>
+            <div>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at a small group (3–6 targets)">(+20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at a small group (3–6 targets)" data-i18n="Shoot At Small Group"></span><span class="wfrp-settings__label" title="Shooting at a small group (3–6 targets)" data-i18n="Target is Group"></span>
+              </div>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at a Large group (7–12 targets)">(+40)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at a Large group (7–12 targets)" data-i18n="Shoot At Large Group"></span><span class="wfrp-settings__label" title="Shooting at a Large group (7–12 targets)" data-i18n="Target is Group"></span>
+              </div>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting into a crowd (13+ targets)">(+60)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting into a crowd (13+ targets)" data-i18n="Shoot Into Crowd"></span><span class="wfrp-settings__label" title="Shooting into a crowd (13+ targets)" data-i18n="Target is Group"></span>
+              </div>
+            </div>
+            <input name="attr_cm_shoot_after_move" type="hidden"/>
+            <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(-10)</span><span class="wfrp-settings__label sheet-margin-right-2" title=" Shooting on a Round where you also use your Move" data-i18n="Shoot After Move"></span></div>
+            <input name="attr_cm_shoot_after_aim" type="hidden"/>
+            <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting when you spent your last Action aiming (no Test to aim required)" data-i18n="Shoot After Aim"></span></div>
+            <input name="attr_cm_specific_hit_location" type="hidden"/>
+            <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="A called strike / shot to a specific hit Location. If you succeed you hit that location" data-i18n="Specific Hit Location"></span></div>
+            <input name="attr_cm_extreme_weather" type="hidden"/>
+            <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Monsoon, hurricane, thick blizzard, fog, mist, shadow or other extreme weather" data-i18n="Extreme Weather"></span></div>
+            <input name="attr_cm_darkness" type="hidden"/>
+            <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(-30)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Acting in darkness" data-i18n="Darkness"></span></div>
           </div>
-          <button class="sheet-pictos" type="action" name="act_reset_ranged_modifiers">
-            <div class="sheet-text-align-center">1</div>
-          </button>
-        </div>
-        <input type="hidden" name="attr_show_ranged_modifiers_settings"/>
-        <div class="modifiers-settings sheet-settings-color">
-          <div class="sheet-wfrp-roll__divider"></div>
-          <div class="sheet-grid-4 sheet-grid-justify-items-right">
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting a target at Point Blank Range" data-i18n="Point Blank Range"></span><span class="wfrp-settings__label sheet-margin-right-2">(+40)</span>
-              <input class="wfrp-settings__input" name="attr_cm_point_blank_range" type="checkbox" title="Shooting a target at Point Blank Range" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at Short Range: less than half weapon range" data-i18n="Short Range"></span><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span>
-              <input class="wfrp-settings__input" name="attr_cm_short_range" type="checkbox" title="Shooting at Short Range: less than half weapon range" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at Long Range: up to double weapon range" data-i18n="Long Range"></span><span class="wfrp-settings__label sheet-margin-right-2">(-10)</span>
-              <input class="wfrp-settings__input" name="attr_cm_long_range" type="checkbox" title="Shooting at Long Range: up to double weapon range" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at Extreme range, up to three times weapon range" data-i18n="Extreme Range"></span><span class="wfrp-settings__label sheet-margin-right-2">(-30)</span>
-              <input class="wfrp-settings__input" name="attr_cm_extreme_range" type="checkbox" title="Shooting at Extreme range, up to three times weapon range" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at a small group (3–6 targets)" data-i18n="Shoot At Small Group"></span><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span>
-              <input class="wfrp-settings__input" name="attr_cm_target_small_group" type="checkbox" title="Shooting at a small group (3–6 targets)" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at a Large group (7–12 targets)" data-i18n="Shoot At Large Group"></span><span class="wfrp-settings__label sheet-margin-right-2">(+40)</span>
-              <input class="wfrp-settings__input" name="attr_cm_target_large_group" type="checkbox" title="Shooting at a Large group (7–12 targets)" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting into a crowd (13+ targets)" data-i18n="Shoot Into Crowd"></span><span class="wfrp-settings__label sheet-margin-right-2">(+60)</span>
-              <input class="wfrp-settings__input" name="attr_cm_target_crowd" type="checkbox" title="Shooting into a crowd (13+ targets)" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting on a Round where you also use your Move" data-i18n="Shoot After Move"></span><span class="wfrp-settings__label sheet-margin-right-2">(-10)</span>
-              <input class="wfrp-settings__input" name="attr_cm_shoot_after_move" type="checkbox" title="Shooting on a Round where you also use your Move" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Target in soft cover (behind a hedge for example)" data-i18n="Target's Soft Cover"></span><span class="wfrp-settings__label sheet-margin-right-2">(-10)</span>
-              <input class="wfrp-settings__input" name="attr_cm_target_soft_cover" type="checkbox" title="Target in soft cover (behind a hedge for example)" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Target in medium cover (wooden fence for example)" data-i18n="Target's Medium Cover"></span><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span>
-              <input class="wfrp-settings__input" name="attr_cm_target_medium_cover" type="checkbox" title="Target in medium cover (wooden fence for example)" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Target in hard cover (behind stone wall, for example)" data-i18n="Target's Hard Cover"></span><span class="wfrp-settings__label sheet-margin-right-2">(-30)</span>
-              <input class="wfrp-settings__input" name="attr_cm_target_hard_cover" type="checkbox" title="Target in hard cover (behind stone wall, for example)" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="A called shot to a specific Hit Location. If you succeed you hit that location" data-i18n="Specific Hit Location"></span><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span>
-              <input class="wfrp-settings__input" name="attr_cm_specific_hit_location" type="checkbox" title="A called shot to a specific Hit Location. If you succeed you hit that location" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting when you spent your last Action aiming (no Test to aim required)" data-i18n="Shoot After Aim"></span><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span>
-              <input class="wfrp-settings__input" name="attr_cm_shoot_after_aim" type="checkbox" title="Shooting when you spent your last Action aiming (no Test to aim required)" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting targets concealed by fog, mist or shadow" data-i18n="Extreme Weather"></span><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span>
-              <input class="wfrp-settings__input" name="attr_cm_extreme_weather" type="checkbox" title="Shooting targets concealed by fog, mist or shadow" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Shoot in darkness" data-i18n="Darkness"></span><span class="wfrp-settings__label sheet-margin-right-2">(-30)</span>
-              <input class="wfrp-settings__input" name="attr_cm_darkness" type="checkbox" title="Shoot in darkness" value="1"/>
-            </div>
+          <div style="width: 100%">
+            <input name="attr_cm_after_dual_wielder" type="hidden"/>
+            <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(-10)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Defence after Dual Wielder action" data-i18n="After Dual Wielder"></span></div>
+            <input name="attr_cm_defensive_stand" type="hidden"/>
+            <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls" data-i18n="Defensive Stand"></span></div>
+            <input name="attr_cm_darkness" type="hidden"/>
+            <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Acting in darkness" data-i18n="Darkness"></span></div>
           </div>
-        </div>
-      </div>
-      <div class="sheet-wfrp-panel">
-        <div class="sheet-grid-12">
-          <label class="sheet-icon sheet-unopposed-parry-attack-icon" title="Parry modifiers">
-            <input type="checkbox" value="1" name="attr_show_parry_modifiers_settings" style="display: none;"/>
-          </label>
-          <div>
-            <div class="sheet-bold" data-i18n="Total"></div><span name="attr_cm_parry_sum"></span>
-          </div>
-          <div class="sheet-grid-span-9">
-            <div class="sheet-bold" data-i18n="Active"></div>
-            <div class="sheet-flex">
-              <input name="attr_cm_defensive_stand" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls" data-i18n="Defensive Stand"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls">(+20),</span></span>
-              <input name="attr_cm_after_dual_wielder" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="" data-i18n="After Dual Wielder"></span><span class="wfrp-settings__label sheet-margin-right-2" title="">(-10),</span></span>
-              <input name="attr_cm_darkness" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Close combat in darkness" data-i18n="Darkness"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Close combat in darkness">(-20),</span></span>
+          <div style="width: 100%">
+            <input name="attr_cm_after_dual_wielder" type="hidden"/>
+            <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(-10)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Defence after Dual Wielder action" data-i18n="After Dual Wielder"></span></div>
+            <input name="attr_cm_defensive_stand" type="hidden"/>
+            <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls" data-i18n="Defensive Stand"></span></div>
+            <input name="attr_cm_terrain_option" type="hidden"/>
+            <input name="attr_cm_terrain" type="hidden"/>
+            <div>
+              <div class="sheet-modifier-list">
+              </div>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Deep snow, water or other arduous terrain">(-30)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Deep snow, water or other arduous terrain" data-i18n="Extreme Terrain"></span><span class="wfrp-settings__label" title="Deep snow, water or other arduous terrain" data-i18n="On Terrain"></span>
+              </div>
             </div>
-          </div>
-          <button class="sheet-pictos" type="action" name="act_reset_parry_modifiers">
-            <div class="sheet-text-align-center">1</div>
-          </button>
-        </div>
-        <input type="hidden" name="attr_show_parry_modifiers_settings"/>
-        <div class="modifiers-settings sheet-settings-color">
-          <div class="sheet-wfrp-roll__divider"></div>
-          <div class="sheet-grid-4 sheet-grid-justify-items-right">
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls" data-i18n="Defensive Stand"></span><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span>
-              <input class="wfrp-settings__input" name="attr_cm_defensive_stand" type="checkbox" title="Add +20 to all defensive rolls" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="" data-i18n="After Dual Wielder"></span><span class="wfrp-settings__label sheet-margin-right-2">(-10)</span>
-              <input class="wfrp-settings__input" name="attr_cm_after_dual_wielder" type="checkbox" title="" value="1"/>
-            </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Close combat in darkness" data-i18n="Darkness"></span><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span>
-              <input class="wfrp-settings__input" name="attr_cm_darkness" type="checkbox" title="Close combat in darkness" value="1"/>
-            </div>
+            <input name="attr_cm_darkness" type="hidden"/>
+            <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Acting in darkness" data-i18n="Darkness"></span></div>
           </div>
         </div>
-      </div>
-      <div class="sheet-wfrp-panel">
-        <div class="sheet-grid-12">
-          <label class="sheet-icon sheet-unopposed-dodge-attack-icon" title="Dodge modifiers">
-            <input type="checkbox" value="1" name="attr_show_dodge_modifiers_settings" style="display: none;"/>
-          </label>
-          <div>
-            <div class="sheet-bold" data-i18n="Total"></div><span name="attr_cm_dodge_sum"></span>
-          </div>
-          <div class="sheet-grid-span-9">
-            <div class="sheet-bold" data-i18n="Active"></div>
-            <div class="sheet-flex">
-              <input name="attr_cm_defensive_stand" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls" data-i18n="Defensive Stand"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls">(+20),</span></span>
-              <input name="attr_cm_after_dual_wielder" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="" data-i18n="After Dual Wielder"></span><span class="wfrp-settings__label sheet-margin-right-2" title="">(-10),</span></span>
-              <input name="attr_cm_extreme_terrain" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking or dodging in the deep snow, water or other arduous terrain" data-i18n="Extreme Terrain"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking or dodging in the deep snow, water or other arduous terrain">(-30),</span></span>
-              <input name="attr_cm_darkness" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Close combat in darkness" data-i18n="Darkness"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Close combat in darkness">(-20),</span></span>
+        <div class="sheet-wfrp-roll__divider"></div>
+        <div class="sheet-grid-3 modifiers-settings sheet-grid-justify-items-center sheet-settings-color">
+          <div style="width:90%">
+            <h3 data-i18n="Melee Attack"></h3>
+            <div class="sheet-flex sheet-flex-justify-content-space-between">
+              <div>
+                <input class="wfrp-settings__input" name="attr_cm_outnumbered" type="checkbox" title="Attacking an opponent you outnumber" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="Attacking an opponent you outnumber" data-i18n="Outnumbered"></span>
+              </div>
+              <div>
+                <select class="wfrp-settings__input sheet-text-align-center" name="attr_cm_outnumbered_option">
+                  <option value="1"><span data-i18n="2:1"></span><span>(+20)</span>
+                  </option>
+                  <option value="2"><span data-i18n="3:1"></span><span>(+40)</span>
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="sheet-flex sheet-flex-justify-content-space-between">
+              <div>
+                <input class="wfrp-settings__input" name="attr_cm_target_grapple" type="checkbox" title="Attacking an opponent who is in Grapple" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="Attacking an opponent who is in Grapple" data-i18n="Target in Grapple"></span>
+              </div>
+              <div>
+                <select class="wfrp-settings__input sheet-text-align-center" name="attr_cm_target_grapple_option">
+                  <option value="1"><span data-i18n="Leader"></span><span>(+10)</span>
+                  </option>
+                  <option value="2"><span data-i18n="Follower"></span><span>(+20)</span>
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="sheet-flex sheet-flex-justify-content-space-between">
+              <div>
+                <input class="wfrp-settings__input" name="attr_cm_side_rear_attack" type="checkbox" title="Attacking an Engaged opponent in the sides or rear" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="Attacking an Engaged opponent in the sides or rear" data-i18n="Side/Rear Attack"></span><span class="wfrp-settings__label">(+20)</span>
+              </div>
+            </div>
+            <div class="sheet-flex sheet-flex-justify-content-space-between">
+              <div>
+                <input class="wfrp-settings__input" name="attr_cm_target_is_fleeing" type="checkbox" title="Attacking disengaging opponent" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="Attacking disengaging opponent" data-i18n="Opponent is fleeing"></span><span class="wfrp-settings__label">(+20)</span>
+              </div>
+            </div>
+            <div class="sheet-flex sheet-flex-justify-content-space-between">
+              <div>
+                <input class="wfrp-settings__input" name="attr_cm_after_dual_wielder" type="checkbox" title="Defence after Dual Wielder action" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="Defence after Dual Wielder action" data-i18n="After Dual Wielder"></span><span class="wfrp-settings__label">(-10)</span>
+              </div>
             </div>
           </div>
-          <button class="sheet-pictos" type="action" name="act_reset_dodge_modifiers">
-            <div class="sheet-text-align-center">1</div>
-          </button>
-        </div>
-        <input type="hidden" name="attr_show_dodge_modifiers_settings"/>
-        <div class="modifiers-settings sheet-settings-color">
-          <div class="sheet-wfrp-roll__divider"></div>
-          <div class="sheet-grid-4 sheet-grid-justify-items-right">
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls" data-i18n="Defensive Stand"></span><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span>
-              <input class="wfrp-settings__input" name="attr_cm_defensive_stand" type="checkbox" title="Add +20 to all defensive rolls" value="1"/>
+          <div style="width:90%">
+            <h3 data-i18n="Ranged Attack"></h3>
+            <div class="sheet-flex sheet-flex-justify-content-space-between">
+              <div>
+                <input class="wfrp-settings__input" name="attr_cm_range" type="checkbox" title="Shooting a target at Range" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="Shooting a target at Range" data-i18n="Shoot Range"></span>
+              </div>
+              <div>
+                <select class="wfrp-settings__input sheet-text-align-center" name="attr_cm_range_option">
+                  <option value="1" title="Less than 1/10 weapon range"><span data-i18n="Point Blank Range"></span><span>(+40)</span>
+                  </option>
+                  <option value="2" title="Less than 1/2 weapon range"><span data-i18n="Short Range"></span><span>(+20)</span>
+                  </option>
+                  <option value="3" title="Up to 2 weapon range"><span data-i18n="Long Range"></span><span>(-10)</span>
+                  </option>
+                  <option value="4" title="Up to 3 weapon range"><span data-i18n="Extreme Range"></span><span>(-30)</span>
+                  </option>
+                </select>
+              </div>
             </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="" data-i18n="After Dual Wielder"></span><span class="wfrp-settings__label sheet-margin-right-2">(-10)</span>
-              <input class="wfrp-settings__input" name="attr_cm_after_dual_wielder" type="checkbox" title="" value="1"/>
+            <div class="sheet-flex sheet-flex-justify-content-space-between">
+              <div>
+                <input class="wfrp-settings__input" name="attr_cm_target_group" type="checkbox" title="Shooting a group of targets" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="Shooting a group of targets" data-i18n="Target is Group"></span>
+              </div>
+              <div>
+                <select class="wfrp-settings__input sheet-text-align-center" name="attr_cm_target_group_option">
+                  <option value="1" title="Shooting at a small group (3–6 targets)"><span data-i18n="Shoot At Small Group"></span><span>(+20)</span>
+                  </option>
+                  <option value="2" title="Shooting at a Large group (7–12 targets)"><span data-i18n="Shoot At Large Group"></span><span>(+40)</span>
+                  </option>
+                  <option value="3" title="Shooting into a crowd (13+ targets)"><span data-i18n="Shoot Into Crowd"></span><span>(+60)</span>
+                  </option>
+                </select>
+              </div>
             </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking or dodging in the deep snow, water or other arduous terrain" data-i18n="Extreme Terrain"></span><span class="wfrp-settings__label sheet-margin-right-2">(-30)</span>
-              <input class="wfrp-settings__input" name="attr_cm_extreme_terrain" type="checkbox" title="Attacking or dodging in the deep snow, water or other arduous terrain" value="1"/>
+            <div class="sheet-flex sheet-flex-justify-content-space-between">
+              <div>
+                <input class="wfrp-settings__input" name="attr_cm_shoot_after_move" type="checkbox" title=" Shooting on a Round where you also use your Move" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title=" Shooting on a Round where you also use your Move" data-i18n="Shoot After Move"></span><span class="wfrp-settings__label">(-10)</span>
+              </div>
             </div>
-            <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Close combat in darkness" data-i18n="Darkness"></span><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span>
-              <input class="wfrp-settings__input" name="attr_cm_darkness" type="checkbox" title="Close combat in darkness" value="1"/>
+            <div class="sheet-flex sheet-flex-justify-content-space-between">
+              <div>
+                <input class="wfrp-settings__input" name="attr_cm_shoot_after_aim" type="checkbox" title="Shooting when you spent your last Action aiming (no Test to aim required)" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="Shooting when you spent your last Action aiming (no Test to aim required)" data-i18n="Shoot After Aim"></span><span class="wfrp-settings__label">(+20)</span>
+              </div>
+            </div>
+            <div class="sheet-flex sheet-flex-justify-content-space-between">
+              <div>
+                <input class="wfrp-settings__input" name="attr_cm_specific_hit_location" type="checkbox" title="A called strike / shot to a specific hit Location. If you succeed you hit that location" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="A called strike / shot to a specific hit Location. If you succeed you hit that location" data-i18n="Specific Hit Location"></span><span class="wfrp-settings__label">(-20)</span>
+              </div>
+            </div>
+          </div>
+          <div style="width:90%">
+            <h3 data-i18n="Other"></h3>
+            <div class="sheet-flex sheet-flex-justify-content-space-between">
+              <div>
+                <input class="wfrp-settings__input" name="attr_cm_defensive_stand" type="checkbox" title="Add +20 to all defensive rolls" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="Add +20 to all defensive rolls" data-i18n="Defensive Stand"></span>
+              </div>
+            </div>
+            <div class="sheet-flex sheet-flex-justify-content-space-between">
+              <div>
+                <input class="wfrp-settings__input" name="attr_cm_cover" type="checkbox" title="You have a cover" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="You have a cover" data-i18n="In Cover"></span>
+              </div>
+              <div>
+                <select class="wfrp-settings__input sheet-text-align-center" name="attr_cm_cover_option">
+                  <option value="1" title="Soft cover (behind a hedge for example)"><span data-i18n="Soft Cover"></span>
+                  </option>
+                  <option value="2" title="Medium cover (wooden fence for example)"><span data-i18n="Medium Cover"></span>
+                  </option>
+                  <option value="3" title="Hard cover (behind stone wall, for example)"><span data-i18n="Hard Cover"></span>
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="sheet-flex sheet-flex-justify-content-space-between">
+              <div>
+                <input class="wfrp-settings__input" name="attr_cm_terrain" type="checkbox" title="You are on specific terrain" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="You are on specific terrain" data-i18n="On Terrain"></span>
+              </div>
+              <div>
+                <select class="wfrp-settings__input sheet-text-align-center" name="attr_cm_terrain_option">
+                  <option value="1" title="Mud, heavy rain or difficult terrain"><span data-i18n="Hard Terrain"></span>
+                  </option>
+                  <option value="2" title="Deep snow, water or other arduous terrain"><span data-i18n="Extreme Terrain"></span>
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="sheet-flex sheet-flex-justify-content-space-between">
+              <div>
+                <input class="wfrp-settings__input" name="attr_cm_extreme_weather" type="checkbox" title="Monsoon, hurricane, thick blizzard, fog, mist, shadow or other extreme weather" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="Monsoon, hurricane, thick blizzard, fog, mist, shadow or other extreme weather" data-i18n="Extreme Weather"></span>
+              </div>
+            </div>
+            <div class="sheet-flex sheet-flex-justify-content-space-between">
+              <div>
+                <input class="wfrp-settings__input" name="attr_cm_darkness" type="checkbox" title="Acting in darkness" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="Acting in darkness" data-i18n="Darkness"></span>
+              </div>
+            </div>
+            <div class="sheet-wfrp-roll__divider"></div>
+            <div class="sheet-flex sheet-flex-justify-content-space-between">
+              <div>
+                <input class="wfrp-settings__input" name="attr_mounted" type="checkbox" title="You are mounted" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="You are mounted" data-i18n="Mounted"></span>
+              </div>
+              <div>
+                <select class="wfrp-settings__input sheet-text-align-center" name="attr_mount_size_index">
+                  <option data-i18n="Tiny" value="0"></option>
+                  <option data-i18n="Little" value="1"></option>
+                  <option data-i18n="Small" value="2"></option>
+                  <option data-i18n="Average" value="3"></option>
+                  <option data-i18n="Large" value="4" selected="selected"></option>
+                  <option data-i18n="Enormous" value="5"></option>
+                  <option data-i18n="Monstrous" value="6"></option>
+                </select>
+              </div>
+            </div>
+            <div class="sheet-grid-2">
+              <div>
+                <input class="wfrp-settings__input" name="attr_use_mount_for_charge" type="checkbox" title="Use Mount Size and Strength for Charge" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="Use Mount Size and Strength for Charge" data-i18n="Use Mount for Charge"></span>
+              </div>
+              <div class="sheet-grid-2"><span data-i18n="Strength"></span>
+                <div>
+                  <input class="wfrp-settings__input sheet-text-align-center" name="attr_mount_strength" type="number" value="40"/>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -6485,7 +6576,7 @@
               </div>
               <div class="wfrp-settings__row--span">
                 <div class="wfrp-settings__label" data-i18n="Quality Checkboxes"></div>
-                <div class="wfrp-weapontable__quality-checkbox-row">
+                <div class="sheet-grid-5 sheet-grid-justify-items-right sheet-text-align-left">
                   <div><span class="wfrp-settings__label" data-i18n="Accurate"></span>
                     <input class="wfrp-settings__input" name="attr_weapon_q_accurate" type="checkbox"/>
                   </div>
@@ -6517,7 +6608,7 @@
               </div>
               <div class="wfrp-settings__row--span">
                 <div class="wfrp-settings__label" data-i18n="Flail Checkboxes"></div>
-                <div class="wfrp-weapontable__quality-checkbox-row">
+                <div class="sheet-grid-5 sheet-grid-justify-items-right sheet-text-align-left">
                   <div><span class="wfrp-settings__label" data-i18n="Dangerous"></span>
                     <input class="wfrp-settings__input" name="attr_weapon_q_dangerous" type="checkbox"/>
                   </div>
@@ -6526,6 +6617,9 @@
                   </div>
                   <div><span class="wfrp-settings__label" data-i18n="Slow"></span>
                     <input class="wfrp-settings__input" name="attr_weapon_q_slow" type="checkbox"/>
+                  </div>
+                  <div><span class="wfrp-settings__label" data-i18n="Unbalanced"></span>
+                    <input class="wfrp-settings__input" name="attr_weapon_q_unbalanced" type="checkbox"/>
                   </div>
                   <div><span class="wfrp-settings__label" data-i18n="Undamaging"></span>
                     <input class="wfrp-settings__input" name="attr_weapon_q_undamaging" type="checkbox"/>
@@ -8721,7 +8815,7 @@
                   </div>
                   <div class="wfrp-settings__row--span">
                     <div class="wfrp-settings__label" data-i18n="Quality Checkboxes"></div>
-                    <div class="wfrp-weapontable__quality-checkbox-row">
+                    <div class="sheet-grid-5 sheet-grid-justify-items-right sheet-text-align-left">
                       <div><span class="wfrp-settings__label" data-i18n="Accurate"></span>
                         <input class="wfrp-settings__input" name="attr_weapon_q_accurate" type="checkbox"/>
                       </div>
@@ -8753,7 +8847,7 @@
                   </div>
                   <div class="wfrp-settings__row--span">
                     <div class="wfrp-settings__label" data-i18n="Flail Checkboxes"></div>
-                    <div class="wfrp-weapontable__quality-checkbox-row">
+                    <div class="sheet-grid-5 sheet-grid-justify-items-right sheet-text-align-left">
                       <div><span class="wfrp-settings__label" data-i18n="Dangerous"></span>
                         <input class="wfrp-settings__input" name="attr_weapon_q_dangerous" type="checkbox"/>
                       </div>
@@ -8762,6 +8856,9 @@
                       </div>
                       <div><span class="wfrp-settings__label" data-i18n="Slow"></span>
                         <input class="wfrp-settings__input" name="attr_weapon_q_slow" type="checkbox"/>
+                      </div>
+                      <div><span class="wfrp-settings__label" data-i18n="Unbalanced"></span>
+                        <input class="wfrp-settings__input" name="attr_weapon_q_unbalanced" type="checkbox"/>
                       </div>
                       <div><span class="wfrp-settings__label" data-i18n="Undamaging"></span>
                         <input class="wfrp-settings__input" name="attr_weapon_q_undamaging" type="checkbox"/>
@@ -9166,242 +9263,333 @@
           </div>
         </div>
         <h1 class="wfrp-panel__header" data-i18n="Modifiers"></h1>
-        <div class="sheet-wfrp-panel">
-          <div class="sheet-grid-12">
-            <label class="sheet-icon sheet-unopposed-melee-attack-icon" title="Melee attack modifiers">
-              <input type="checkbox" value="1" name="attr_show_melee_modifiers_settings" style="display: none;"/>
-            </label>
-            <div>
-              <div class="sheet-bold" data-i18n="Total"></div><span name="attr_cm_melee_sum"></span>
+        <div class="sheet-grid-5">
+          <div class="sheet-wfrp-panel">
+            <div class="sheet-bold sheet-text-align-center" data-i18n="Melee Attack"></div>
+            <div class="sheet-grid-3 sheet-grid-justify-items-center">
+              <label class="sheet-icon sheet-unopposed-melee-attack-icon" title="Melee Attack">
+                <input type="checkbox" value="1" name="attr_show_modifiers_settings" style="display: none;"/>
+              </label>
+              <div><span name="attr_cm_melee_sum"></span></div>
+              <button class="sheet-pictos" type="action" name="act_reset_melee_modifiers">
+                <div class="sheet-text-align-center">1</div>
+              </button>
             </div>
-            <div class="sheet-grid-span-9">
-              <div class="sheet-bold" data-i18n="Active"></div>
-              <div class="sheet-flex">
-                <input name="attr_cm_outnumbered_21" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber 2 to 1" data-i18n="Outnumbered 2:1"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber 2 to 1">(+20),</span></span>
-                <input name="attr_cm_outnumbered_31" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber 3 to 1" data-i18n="Outnumbered 3:1"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber 3 to 1">(+40),</span></span>
-                <input name="attr_cm_target_grapple_leader" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent who is leader in Grapple" data-i18n="Attack Grapple Leader"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent who is leader in Grapple">(+10),</span></span>
-                <input name="attr_cm_target_grapple_follower" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent who is follower in Grapple" data-i18n="Attack Grapple Follower"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent who is follower in Grapple">(+20),</span></span>
-                <input name="attr_cm_target_soft_cover" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Target in soft cover (behind a hedge for example)" data-i18n="Target's Soft Cover"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Target in soft cover (behind a hedge for example)">(-10),</span></span>
-                <input name="attr_cm_target_medium_cover" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Target in medium cover (wooden fence for example)" data-i18n="Target's Medium Cover"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Target in medium cover (wooden fence for example)">(-20),</span></span>
-                <input name="attr_cm_target_hard_cover" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Target in hard cover (behind stone wall, for example)" data-i18n="Target's Hard Cover"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Target in hard cover (behind stone wall, for example)">(-30),</span></span>
-                <input name="attr_cm_specific_hit_location" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="A called strike to a specific Hit Location. If you succeed you hit that location" data-i18n="Specific Hit Location"></span><span class="wfrp-settings__label sheet-margin-right-2" title="A called strike to a specific Hit Location. If you succeed you hit that location">(-20),</span></span>
-                <input name="attr_cm_hard_terrain" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking whilst in the mud, heavy rain or difficult terrain" data-i18n="Hard Terrain"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking whilst in the mud, heavy rain or difficult terrain">(-10),</span></span>
-                <input name="attr_cm_extreme_terrain" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking or dodging in the deep snow, water or other arduous terrain" data-i18n="Extreme Terrain"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking or dodging in the deep snow, water or other arduous terrain">(-30),</span></span>
-                <input name="attr_cm_extreme_weather" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking in monsoon, hurricane, thick blizzard, or other extreme weather" data-i18n="Extreme Weather"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking in monsoon, hurricane, thick blizzard, or other extreme weather">(-20),</span></span>
-                <input name="attr_cm_darkness" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Close combat in darkness" data-i18n="Darkness"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Close combat in darkness">(-20),</span></span>
-                <input name="attr_cm_side_rear_attack" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an Engaged opponent in the sides or rear" data-i18n="Side/Rear Attack"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an Engaged opponent in the sides or rear">(+20),</span></span>
-                <input name="attr_cm_target_is_fleeing" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking disengaging opponent" data-i18n="Opponent is fleeing"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking disengaging opponent">(+20),</span></span>
-              </div>
-            </div>
-            <button class="sheet-pictos" type="action" name="act_reset_melee_modifiers">
-              <div class="sheet-text-align-center">1</div>
-            </button>
           </div>
-          <input type="hidden" name="attr_show_melee_modifiers_settings"/>
-          <div class="modifiers-settings sheet-settings-color">
-            <div class="sheet-wfrp-roll__divider"></div>
-            <div class="sheet-grid-4 sheet-grid-justify-items-right">
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber 2 to 1" data-i18n="Outnumbered 2:1"></span><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span>
-                <input class="wfrp-settings__input" name="attr_cm_outnumbered_21" type="checkbox" title="Attacking an opponent you outnumber 2 to 1" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber 3 to 1" data-i18n="Outnumbered 3:1"></span><span class="wfrp-settings__label sheet-margin-right-2">(+40)</span>
-                <input class="wfrp-settings__input" name="attr_cm_outnumbered_31" type="checkbox" title="Attacking an opponent you outnumber 3 to 1" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent who is leader in Grapple" data-i18n="Attack Grapple Leader"></span><span class="wfrp-settings__label sheet-margin-right-2">(+10)</span>
-                <input class="wfrp-settings__input" name="attr_cm_target_grapple_leader" type="checkbox" title="Attacking an opponent who is leader in Grapple" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent who is follower in Grapple" data-i18n="Attack Grapple Follower"></span><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span>
-                <input class="wfrp-settings__input" name="attr_cm_target_grapple_follower" type="checkbox" title="Attacking an opponent who is follower in Grapple" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Target in soft cover (behind a hedge for example)" data-i18n="Target's Soft Cover"></span><span class="wfrp-settings__label sheet-margin-right-2">(-10)</span>
-                <input class="wfrp-settings__input" name="attr_cm_target_soft_cover" type="checkbox" title="Target in soft cover (behind a hedge for example)" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Target in medium cover (wooden fence for example)" data-i18n="Target's Medium Cover"></span><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span>
-                <input class="wfrp-settings__input" name="attr_cm_target_medium_cover" type="checkbox" title="Target in medium cover (wooden fence for example)" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Target in hard cover (behind stone wall, for example)" data-i18n="Target's Hard Cover"></span><span class="wfrp-settings__label sheet-margin-right-2">(-30)</span>
-                <input class="wfrp-settings__input" name="attr_cm_target_hard_cover" type="checkbox" title="Target in hard cover (behind stone wall, for example)" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="A called strike to a specific Hit Location. If you succeed you hit that location" data-i18n="Specific Hit Location"></span><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span>
-                <input class="wfrp-settings__input" name="attr_cm_specific_hit_location" type="checkbox" title="A called strike to a specific Hit Location. If you succeed you hit that location" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking whilst in the mud, heavy rain or difficult terrain" data-i18n="Hard Terrain"></span><span class="wfrp-settings__label sheet-margin-right-2">(-10)</span>
-                <input class="wfrp-settings__input" name="attr_cm_hard_terrain" type="checkbox" title="Attacking whilst in the mud, heavy rain or difficult terrain" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking or dodging in the deep snow, water or other arduous terrain" data-i18n="Extreme Terrain"></span><span class="wfrp-settings__label sheet-margin-right-2">(-30)</span>
-                <input class="wfrp-settings__input" name="attr_cm_extreme_terrain" type="checkbox" title="Attacking or dodging in the deep snow, water or other arduous terrain" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking in monsoon, hurricane, thick blizzard, or other extreme weather" data-i18n="Extreme Weather"></span><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span>
-                <input class="wfrp-settings__input" name="attr_cm_extreme_weather" type="checkbox" title="Attacking in monsoon, hurricane, thick blizzard, or other extreme weather" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Close combat in darkness" data-i18n="Darkness"></span><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span>
-                <input class="wfrp-settings__input" name="attr_cm_darkness" type="checkbox" title="Close combat in darkness" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an Engaged opponent in the sides or rear" data-i18n="Side/Rear Attack"></span><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span>
-                <input class="wfrp-settings__input" name="attr_cm_side_rear_attack" type="checkbox" title="Attacking an Engaged opponent in the sides or rear" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking disengaging opponent" data-i18n="Opponent is fleeing"></span><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span>
-                <input class="wfrp-settings__input" name="attr_cm_target_is_fleeing" type="checkbox" title="Attacking disengaging opponent" value="1"/>
-              </div>
+          <div class="sheet-wfrp-panel">
+            <div class="sheet-bold sheet-text-align-center" data-i18n="Ranged Attack"></div>
+            <div class="sheet-grid-3 sheet-grid-justify-items-center">
+              <label class="sheet-icon sheet-unopposed-ranged-attack-icon" title="Ranged Attack">
+                <input type="checkbox" value="1" name="attr_show_modifiers_settings" style="display: none;"/>
+              </label>
+              <div><span name="attr_cm_ranged_sum"></span></div>
+              <button class="sheet-pictos" type="action" name="act_reset_ranged_modifiers">
+                <div class="sheet-text-align-center">1</div>
+              </button>
+            </div>
+          </div>
+          <div class="sheet-wfrp-panel">
+            <div class="sheet-bold sheet-text-align-center" data-i18n="Parrying"></div>
+            <div class="sheet-grid-3 sheet-grid-justify-items-center">
+              <label class="sheet-icon sheet-unopposed-parry-attack-icon" title="Parrying">
+                <input type="checkbox" value="1" name="attr_show_modifiers_settings" style="display: none;"/>
+              </label>
+              <div><span name="attr_cm_parry_sum"></span></div>
+              <button class="sheet-pictos" type="action" name="act_reset_parry_modifiers">
+                <div class="sheet-text-align-center">1</div>
+              </button>
+            </div>
+          </div>
+          <div class="sheet-wfrp-panel">
+            <div class="sheet-bold sheet-text-align-center" data-i18n="Dodge"></div>
+            <div class="sheet-grid-3 sheet-grid-justify-items-center">
+              <label class="sheet-icon sheet-unopposed-dodge-attack-icon" title="Dodge">
+                <input type="checkbox" value="1" name="attr_show_modifiers_settings" style="display: none;"/>
+              </label>
+              <div><span name="attr_cm_dodge_sum"></span></div>
+              <button class="sheet-pictos" type="action" name="act_reset_dodge_modifiers">
+                <div class="sheet-text-align-center">1</div>
+              </button>
+            </div>
+          </div>
+          <div class="sheet-wfrp-panel">
+            <div class="sheet-bold sheet-text-align-center" data-i18n="Other"></div>
+            <div class="sheet-grid-3 sheet-grid-justify-items-center">
+              <label class="sheet-icon sheet-unopposed--attack-icon" title="Other">
+                <input type="checkbox" value="1" name="attr_show_modifiers_settings" style="display: none;"/>
+              </label>
+              <div><span name="attr_cm__sum"></span></div>
+              <button class="sheet-pictos" type="action" name="act_reset__modifiers">
+                <div class="sheet-text-align-center">1</div>
+              </button>
             </div>
           </div>
         </div>
+        <input type="hidden" name="attr_show_modifiers_settings"/>
         <div class="sheet-wfrp-panel">
-          <div class="sheet-grid-12">
-            <label class="sheet-icon sheet-unopposed-ranged-attack-icon" title="Ranged attack modifiers">
-              <input type="checkbox" value="1" name="attr_show_ranged_modifiers_settings" style="display: none;"/>
-            </label>
-            <div>
-              <div class="sheet-bold" data-i18n="Total"></div><span name="attr_cm_ranged_sum"></span>
+          <div class="sheet-grid-5 sheet-grid-justify-items-center modifiers-settings sheet-settings-color">
+            <div style="width: 100%">
+              <input name="attr_cm_outnumbered_option" type="hidden"/>
+              <input name="attr_cm_outnumbered" type="hidden"/>
+              <div>
+                <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber">(+20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber" data-i18n="2:1"></span><span class="wfrp-settings__label" title="Attacking an opponent you outnumber" data-i18n="Outnumbered"></span>
+                </div>
+                <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber">(+40)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent you outnumber" data-i18n="3:1"></span><span class="wfrp-settings__label" title="Attacking an opponent you outnumber" data-i18n="Outnumbered"></span>
+                </div>
+              </div>
+              <input name="attr_cm_target_grapple_option" type="hidden"/>
+              <input name="attr_cm_target_grapple" type="hidden"/>
+              <div>
+                <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent who is in Grapple">(+10)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent who is in Grapple" data-i18n="Leader"></span><span class="wfrp-settings__label" title="Attacking an opponent who is in Grapple" data-i18n="Target in Grapple"></span>
+                </div>
+                <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent who is in Grapple">(+20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an opponent who is in Grapple" data-i18n="Follower"></span><span class="wfrp-settings__label" title="Attacking an opponent who is in Grapple" data-i18n="Target in Grapple"></span>
+                </div>
+              </div>
+              <input name="attr_cm_side_rear_attack" type="hidden"/>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking an Engaged opponent in the sides or rear" data-i18n="Side/Rear Attack"></span></div>
+              <input name="attr_cm_target_is_fleeing" type="hidden"/>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking disengaging opponent" data-i18n="Opponent is fleeing"></span></div>
+              <input name="attr_cm_specific_hit_location" type="hidden"/>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="A called strike / shot to a specific hit Location. If you succeed you hit that location" data-i18n="Specific Hit Location"></span></div>
+              <input name="attr_cm_terrain_option" type="hidden"/>
+              <input name="attr_cm_terrain" type="hidden"/>
+              <div>
+                <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Mud, heavy rain or difficult terrain">(-10)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Mud, heavy rain or difficult terrain" data-i18n="Hard Terrain"></span><span class="wfrp-settings__label" title="Mud, heavy rain or difficult terrain" data-i18n="On Terrain"></span>
+                </div>
+                <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Deep snow, water or other arduous terrain">(-30)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Deep snow, water or other arduous terrain" data-i18n="Extreme Terrain"></span><span class="wfrp-settings__label" title="Deep snow, water or other arduous terrain" data-i18n="On Terrain"></span>
+                </div>
+              </div>
+              <input name="attr_cm_extreme_weather" type="hidden"/>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Monsoon, hurricane, thick blizzard, fog, mist, shadow or other extreme weather" data-i18n="Extreme Weather"></span></div>
+              <input name="attr_cm_darkness" type="hidden"/>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Acting in darkness" data-i18n="Darkness"></span></div>
             </div>
-            <div class="sheet-grid-span-9">
-              <div class="sheet-bold" data-i18n="Active"></div>
-              <div class="sheet-flex">
-                <input name="attr_cm_point_blank_range" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting a target at Point Blank Range" data-i18n="Point Blank Range"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting a target at Point Blank Range">(+40),</span></span>
-                <input name="attr_cm_short_range" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at Short Range: less than half weapon range" data-i18n="Short Range"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at Short Range: less than half weapon range">(+20),</span></span>
-                <input name="attr_cm_long_range" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at Long Range: up to double weapon range" data-i18n="Long Range"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at Long Range: up to double weapon range">(-10),</span></span>
-                <input name="attr_cm_extreme_range" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at Extreme range, up to three times weapon range" data-i18n="Extreme Range"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at Extreme range, up to three times weapon range">(-30),</span></span>
-                <input name="attr_cm_target_small_group" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at a small group (3–6 targets)" data-i18n="Shoot At Small Group"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at a small group (3–6 targets)">(+20),</span></span>
-                <input name="attr_cm_target_large_group" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at a Large group (7–12 targets)" data-i18n="Shoot At Large Group"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at a Large group (7–12 targets)">(+40),</span></span>
-                <input name="attr_cm_target_crowd" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting into a crowd (13+ targets)" data-i18n="Shoot Into Crowd"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting into a crowd (13+ targets)">(+60),</span></span>
-                <input name="attr_cm_shoot_after_move" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting on a Round where you also use your Move" data-i18n="Shoot After Move"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting on a Round where you also use your Move">(-10),</span></span>
-                <input name="attr_cm_target_soft_cover" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Target in soft cover (behind a hedge for example)" data-i18n="Target's Soft Cover"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Target in soft cover (behind a hedge for example)">(-10),</span></span>
-                <input name="attr_cm_target_medium_cover" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Target in medium cover (wooden fence for example)" data-i18n="Target's Medium Cover"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Target in medium cover (wooden fence for example)">(-20),</span></span>
-                <input name="attr_cm_target_hard_cover" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Target in hard cover (behind stone wall, for example)" data-i18n="Target's Hard Cover"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Target in hard cover (behind stone wall, for example)">(-30),</span></span>
-                <input name="attr_cm_specific_hit_location" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="A called shot to a specific Hit Location. If you succeed you hit that location" data-i18n="Specific Hit Location"></span><span class="wfrp-settings__label sheet-margin-right-2" title="A called shot to a specific Hit Location. If you succeed you hit that location">(-20),</span></span>
-                <input name="attr_cm_shoot_after_aim" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting when you spent your last Action aiming (no Test to aim required)" data-i18n="Shoot After Aim"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting when you spent your last Action aiming (no Test to aim required)">(+20),</span></span>
-                <input name="attr_cm_extreme_weather" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting targets concealed by fog, mist or shadow" data-i18n="Extreme Weather"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting targets concealed by fog, mist or shadow">(-20),</span></span>
-                <input name="attr_cm_darkness" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Shoot in darkness" data-i18n="Darkness"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Shoot in darkness">(-30),</span></span>
+            <div style="width: 100%">
+              <input name="attr_cm_range_option" type="hidden"/>
+              <input name="attr_cm_range" type="hidden"/>
+              <div>
+                <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Less than 1/10 weapon range">(+40)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Less than 1/10 weapon range" data-i18n="Point Blank Range"></span><span class="wfrp-settings__label" title="Less than 1/10 weapon range" data-i18n="Shoot Range"></span>
+                </div>
+                <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Less than 1/2 weapon range">(+20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Less than 1/2 weapon range" data-i18n="Short Range"></span><span class="wfrp-settings__label" title="Less than 1/2 weapon range" data-i18n="Shoot Range"></span>
+                </div>
+                <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Up to 2 weapon range">(-10)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Up to 2 weapon range" data-i18n="Long Range"></span><span class="wfrp-settings__label" title="Up to 2 weapon range" data-i18n="Shoot Range"></span>
+                </div>
+                <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Up to 3 weapon range">(-30)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Up to 3 weapon range" data-i18n="Extreme Range"></span><span class="wfrp-settings__label" title="Up to 3 weapon range" data-i18n="Shoot Range"></span>
+                </div>
               </div>
+              <input name="attr_cm_target_group_option" type="hidden"/>
+              <input name="attr_cm_target_group" type="hidden"/>
+              <div>
+                <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at a small group (3–6 targets)">(+20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at a small group (3–6 targets)" data-i18n="Shoot At Small Group"></span><span class="wfrp-settings__label" title="Shooting at a small group (3–6 targets)" data-i18n="Target is Group"></span>
+                </div>
+                <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at a Large group (7–12 targets)">(+40)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at a Large group (7–12 targets)" data-i18n="Shoot At Large Group"></span><span class="wfrp-settings__label" title="Shooting at a Large group (7–12 targets)" data-i18n="Target is Group"></span>
+                </div>
+                <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting into a crowd (13+ targets)">(+60)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting into a crowd (13+ targets)" data-i18n="Shoot Into Crowd"></span><span class="wfrp-settings__label" title="Shooting into a crowd (13+ targets)" data-i18n="Target is Group"></span>
+                </div>
+              </div>
+              <input name="attr_cm_shoot_after_move" type="hidden"/>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(-10)</span><span class="wfrp-settings__label sheet-margin-right-2" title=" Shooting on a Round where you also use your Move" data-i18n="Shoot After Move"></span></div>
+              <input name="attr_cm_shoot_after_aim" type="hidden"/>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting when you spent your last Action aiming (no Test to aim required)" data-i18n="Shoot After Aim"></span></div>
+              <input name="attr_cm_specific_hit_location" type="hidden"/>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="A called strike / shot to a specific hit Location. If you succeed you hit that location" data-i18n="Specific Hit Location"></span></div>
+              <input name="attr_cm_extreme_weather" type="hidden"/>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Monsoon, hurricane, thick blizzard, fog, mist, shadow or other extreme weather" data-i18n="Extreme Weather"></span></div>
+              <input name="attr_cm_darkness" type="hidden"/>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(-30)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Acting in darkness" data-i18n="Darkness"></span></div>
             </div>
-            <button class="sheet-pictos" type="action" name="act_reset_ranged_modifiers">
-              <div class="sheet-text-align-center">1</div>
-            </button>
-          </div>
-          <input type="hidden" name="attr_show_ranged_modifiers_settings"/>
-          <div class="modifiers-settings sheet-settings-color">
-            <div class="sheet-wfrp-roll__divider"></div>
-            <div class="sheet-grid-4 sheet-grid-justify-items-right">
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting a target at Point Blank Range" data-i18n="Point Blank Range"></span><span class="wfrp-settings__label sheet-margin-right-2">(+40)</span>
-                <input class="wfrp-settings__input" name="attr_cm_point_blank_range" type="checkbox" title="Shooting a target at Point Blank Range" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at Short Range: less than half weapon range" data-i18n="Short Range"></span><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span>
-                <input class="wfrp-settings__input" name="attr_cm_short_range" type="checkbox" title="Shooting at Short Range: less than half weapon range" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at Long Range: up to double weapon range" data-i18n="Long Range"></span><span class="wfrp-settings__label sheet-margin-right-2">(-10)</span>
-                <input class="wfrp-settings__input" name="attr_cm_long_range" type="checkbox" title="Shooting at Long Range: up to double weapon range" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at Extreme range, up to three times weapon range" data-i18n="Extreme Range"></span><span class="wfrp-settings__label sheet-margin-right-2">(-30)</span>
-                <input class="wfrp-settings__input" name="attr_cm_extreme_range" type="checkbox" title="Shooting at Extreme range, up to three times weapon range" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at a small group (3–6 targets)" data-i18n="Shoot At Small Group"></span><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span>
-                <input class="wfrp-settings__input" name="attr_cm_target_small_group" type="checkbox" title="Shooting at a small group (3–6 targets)" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting at a Large group (7–12 targets)" data-i18n="Shoot At Large Group"></span><span class="wfrp-settings__label sheet-margin-right-2">(+40)</span>
-                <input class="wfrp-settings__input" name="attr_cm_target_large_group" type="checkbox" title="Shooting at a Large group (7–12 targets)" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting into a crowd (13+ targets)" data-i18n="Shoot Into Crowd"></span><span class="wfrp-settings__label sheet-margin-right-2">(+60)</span>
-                <input class="wfrp-settings__input" name="attr_cm_target_crowd" type="checkbox" title="Shooting into a crowd (13+ targets)" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting on a Round where you also use your Move" data-i18n="Shoot After Move"></span><span class="wfrp-settings__label sheet-margin-right-2">(-10)</span>
-                <input class="wfrp-settings__input" name="attr_cm_shoot_after_move" type="checkbox" title="Shooting on a Round where you also use your Move" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Target in soft cover (behind a hedge for example)" data-i18n="Target's Soft Cover"></span><span class="wfrp-settings__label sheet-margin-right-2">(-10)</span>
-                <input class="wfrp-settings__input" name="attr_cm_target_soft_cover" type="checkbox" title="Target in soft cover (behind a hedge for example)" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Target in medium cover (wooden fence for example)" data-i18n="Target's Medium Cover"></span><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span>
-                <input class="wfrp-settings__input" name="attr_cm_target_medium_cover" type="checkbox" title="Target in medium cover (wooden fence for example)" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Target in hard cover (behind stone wall, for example)" data-i18n="Target's Hard Cover"></span><span class="wfrp-settings__label sheet-margin-right-2">(-30)</span>
-                <input class="wfrp-settings__input" name="attr_cm_target_hard_cover" type="checkbox" title="Target in hard cover (behind stone wall, for example)" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="A called shot to a specific Hit Location. If you succeed you hit that location" data-i18n="Specific Hit Location"></span><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span>
-                <input class="wfrp-settings__input" name="attr_cm_specific_hit_location" type="checkbox" title="A called shot to a specific Hit Location. If you succeed you hit that location" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting when you spent your last Action aiming (no Test to aim required)" data-i18n="Shoot After Aim"></span><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span>
-                <input class="wfrp-settings__input" name="attr_cm_shoot_after_aim" type="checkbox" title="Shooting when you spent your last Action aiming (no Test to aim required)" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Shooting targets concealed by fog, mist or shadow" data-i18n="Extreme Weather"></span><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span>
-                <input class="wfrp-settings__input" name="attr_cm_extreme_weather" type="checkbox" title="Shooting targets concealed by fog, mist or shadow" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Shoot in darkness" data-i18n="Darkness"></span><span class="wfrp-settings__label sheet-margin-right-2">(-30)</span>
-                <input class="wfrp-settings__input" name="attr_cm_darkness" type="checkbox" title="Shoot in darkness" value="1"/>
-              </div>
+            <div style="width: 100%">
+              <input name="attr_cm_after_dual_wielder" type="hidden"/>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(-10)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Defence after Dual Wielder action" data-i18n="After Dual Wielder"></span></div>
+              <input name="attr_cm_defensive_stand" type="hidden"/>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls" data-i18n="Defensive Stand"></span></div>
+              <input name="attr_cm_darkness" type="hidden"/>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Acting in darkness" data-i18n="Darkness"></span></div>
             </div>
-          </div>
-        </div>
-        <div class="sheet-wfrp-panel">
-          <div class="sheet-grid-12">
-            <label class="sheet-icon sheet-unopposed-parry-attack-icon" title="Parry modifiers">
-              <input type="checkbox" value="1" name="attr_show_parry_modifiers_settings" style="display: none;"/>
-            </label>
-            <div>
-              <div class="sheet-bold" data-i18n="Total"></div><span name="attr_cm_parry_sum"></span>
-            </div>
-            <div class="sheet-grid-span-9">
-              <div class="sheet-bold" data-i18n="Active"></div>
-              <div class="sheet-flex">
-                <input name="attr_cm_defensive_stand" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls" data-i18n="Defensive Stand"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls">(+20),</span></span>
-                <input name="attr_cm_after_dual_wielder" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="" data-i18n="After Dual Wielder"></span><span class="wfrp-settings__label sheet-margin-right-2" title="">(-10),</span></span>
-                <input name="attr_cm_darkness" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Close combat in darkness" data-i18n="Darkness"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Close combat in darkness">(-20),</span></span>
+            <div style="width: 100%">
+              <input name="attr_cm_after_dual_wielder" type="hidden"/>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(-10)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Defence after Dual Wielder action" data-i18n="After Dual Wielder"></span></div>
+              <input name="attr_cm_defensive_stand" type="hidden"/>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls" data-i18n="Defensive Stand"></span></div>
+              <input name="attr_cm_terrain_option" type="hidden"/>
+              <input name="attr_cm_terrain" type="hidden"/>
+              <div>
+                <div class="sheet-modifier-list">
+                </div>
+                <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2" title="Deep snow, water or other arduous terrain">(-30)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Deep snow, water or other arduous terrain" data-i18n="Extreme Terrain"></span><span class="wfrp-settings__label" title="Deep snow, water or other arduous terrain" data-i18n="On Terrain"></span>
+                </div>
               </div>
-            </div>
-            <button class="sheet-pictos" type="action" name="act_reset_parry_modifiers">
-              <div class="sheet-text-align-center">1</div>
-            </button>
-          </div>
-          <input type="hidden" name="attr_show_parry_modifiers_settings"/>
-          <div class="modifiers-settings sheet-settings-color">
-            <div class="sheet-wfrp-roll__divider"></div>
-            <div class="sheet-grid-4 sheet-grid-justify-items-right">
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls" data-i18n="Defensive Stand"></span><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span>
-                <input class="wfrp-settings__input" name="attr_cm_defensive_stand" type="checkbox" title="Add +20 to all defensive rolls" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="" data-i18n="After Dual Wielder"></span><span class="wfrp-settings__label sheet-margin-right-2">(-10)</span>
-                <input class="wfrp-settings__input" name="attr_cm_after_dual_wielder" type="checkbox" title="" value="1"/>
-              </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Close combat in darkness" data-i18n="Darkness"></span><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span>
-                <input class="wfrp-settings__input" name="attr_cm_darkness" type="checkbox" title="Close combat in darkness" value="1"/>
-              </div>
+              <input name="attr_cm_darkness" type="hidden"/>
+              <div class="sheet-modifier-list"><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span><span class="wfrp-settings__label sheet-margin-right-2" title="Acting in darkness" data-i18n="Darkness"></span></div>
             </div>
           </div>
-        </div>
-        <div class="sheet-wfrp-panel">
-          <div class="sheet-grid-12">
-            <label class="sheet-icon sheet-unopposed-dodge-attack-icon" title="Dodge modifiers">
-              <input type="checkbox" value="1" name="attr_show_dodge_modifiers_settings" style="display: none;"/>
-            </label>
-            <div>
-              <div class="sheet-bold" data-i18n="Total"></div><span name="attr_cm_dodge_sum"></span>
-            </div>
-            <div class="sheet-grid-span-9">
-              <div class="sheet-bold" data-i18n="Active"></div>
-              <div class="sheet-flex">
-                <input name="attr_cm_defensive_stand" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls" data-i18n="Defensive Stand"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls">(+20),</span></span>
-                <input name="attr_cm_after_dual_wielder" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="" data-i18n="After Dual Wielder"></span><span class="wfrp-settings__label sheet-margin-right-2" title="">(-10),</span></span>
-                <input name="attr_cm_extreme_terrain" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking or dodging in the deep snow, water or other arduous terrain" data-i18n="Extreme Terrain"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking or dodging in the deep snow, water or other arduous terrain">(-30),</span></span>
-                <input name="attr_cm_darkness" type="hidden"/><span><span class="wfrp-settings__label sheet-margin-right-2" title="Close combat in darkness" data-i18n="Darkness"></span><span class="wfrp-settings__label sheet-margin-right-2" title="Close combat in darkness">(-20),</span></span>
+          <div class="sheet-wfrp-roll__divider"></div>
+          <div class="sheet-grid-3 modifiers-settings sheet-grid-justify-items-center sheet-settings-color">
+            <div style="width:90%">
+              <h3 data-i18n="Melee Attack"></h3>
+              <div class="sheet-flex sheet-flex-justify-content-space-between">
+                <div>
+                  <input class="wfrp-settings__input" name="attr_cm_outnumbered" type="checkbox" title="Attacking an opponent you outnumber" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="Attacking an opponent you outnumber" data-i18n="Outnumbered"></span>
+                </div>
+                <div>
+                  <select class="wfrp-settings__input sheet-text-align-center" name="attr_cm_outnumbered_option">
+                    <option value="1"><span data-i18n="2:1"></span><span>(+20)</span>
+                    </option>
+                    <option value="2"><span data-i18n="3:1"></span><span>(+40)</span>
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="sheet-flex sheet-flex-justify-content-space-between">
+                <div>
+                  <input class="wfrp-settings__input" name="attr_cm_target_grapple" type="checkbox" title="Attacking an opponent who is in Grapple" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="Attacking an opponent who is in Grapple" data-i18n="Target in Grapple"></span>
+                </div>
+                <div>
+                  <select class="wfrp-settings__input sheet-text-align-center" name="attr_cm_target_grapple_option">
+                    <option value="1"><span data-i18n="Leader"></span><span>(+10)</span>
+                    </option>
+                    <option value="2"><span data-i18n="Follower"></span><span>(+20)</span>
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="sheet-flex sheet-flex-justify-content-space-between">
+                <div>
+                  <input class="wfrp-settings__input" name="attr_cm_side_rear_attack" type="checkbox" title="Attacking an Engaged opponent in the sides or rear" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="Attacking an Engaged opponent in the sides or rear" data-i18n="Side/Rear Attack"></span><span class="wfrp-settings__label">(+20)</span>
+                </div>
+              </div>
+              <div class="sheet-flex sheet-flex-justify-content-space-between">
+                <div>
+                  <input class="wfrp-settings__input" name="attr_cm_target_is_fleeing" type="checkbox" title="Attacking disengaging opponent" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="Attacking disengaging opponent" data-i18n="Opponent is fleeing"></span><span class="wfrp-settings__label">(+20)</span>
+                </div>
+              </div>
+              <div class="sheet-flex sheet-flex-justify-content-space-between">
+                <div>
+                  <input class="wfrp-settings__input" name="attr_cm_after_dual_wielder" type="checkbox" title="Defence after Dual Wielder action" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="Defence after Dual Wielder action" data-i18n="After Dual Wielder"></span><span class="wfrp-settings__label">(-10)</span>
+                </div>
               </div>
             </div>
-            <button class="sheet-pictos" type="action" name="act_reset_dodge_modifiers">
-              <div class="sheet-text-align-center">1</div>
-            </button>
-          </div>
-          <input type="hidden" name="attr_show_dodge_modifiers_settings"/>
-          <div class="modifiers-settings sheet-settings-color">
-            <div class="sheet-wfrp-roll__divider"></div>
-            <div class="sheet-grid-4 sheet-grid-justify-items-right">
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Add +20 to all defensive rolls" data-i18n="Defensive Stand"></span><span class="wfrp-settings__label sheet-margin-right-2">(+20)</span>
-                <input class="wfrp-settings__input" name="attr_cm_defensive_stand" type="checkbox" title="Add +20 to all defensive rolls" value="1"/>
+            <div style="width:90%">
+              <h3 data-i18n="Ranged Attack"></h3>
+              <div class="sheet-flex sheet-flex-justify-content-space-between">
+                <div>
+                  <input class="wfrp-settings__input" name="attr_cm_range" type="checkbox" title="Shooting a target at Range" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="Shooting a target at Range" data-i18n="Shoot Range"></span>
+                </div>
+                <div>
+                  <select class="wfrp-settings__input sheet-text-align-center" name="attr_cm_range_option">
+                    <option value="1" title="Less than 1/10 weapon range"><span data-i18n="Point Blank Range"></span><span>(+40)</span>
+                    </option>
+                    <option value="2" title="Less than 1/2 weapon range"><span data-i18n="Short Range"></span><span>(+20)</span>
+                    </option>
+                    <option value="3" title="Up to 2 weapon range"><span data-i18n="Long Range"></span><span>(-10)</span>
+                    </option>
+                    <option value="4" title="Up to 3 weapon range"><span data-i18n="Extreme Range"></span><span>(-30)</span>
+                    </option>
+                  </select>
+                </div>
               </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="" data-i18n="After Dual Wielder"></span><span class="wfrp-settings__label sheet-margin-right-2">(-10)</span>
-                <input class="wfrp-settings__input" name="attr_cm_after_dual_wielder" type="checkbox" title="" value="1"/>
+              <div class="sheet-flex sheet-flex-justify-content-space-between">
+                <div>
+                  <input class="wfrp-settings__input" name="attr_cm_target_group" type="checkbox" title="Shooting a group of targets" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="Shooting a group of targets" data-i18n="Target is Group"></span>
+                </div>
+                <div>
+                  <select class="wfrp-settings__input sheet-text-align-center" name="attr_cm_target_group_option">
+                    <option value="1" title="Shooting at a small group (3–6 targets)"><span data-i18n="Shoot At Small Group"></span><span>(+20)</span>
+                    </option>
+                    <option value="2" title="Shooting at a Large group (7–12 targets)"><span data-i18n="Shoot At Large Group"></span><span>(+40)</span>
+                    </option>
+                    <option value="3" title="Shooting into a crowd (13+ targets)"><span data-i18n="Shoot Into Crowd"></span><span>(+60)</span>
+                    </option>
+                  </select>
+                </div>
               </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Attacking or dodging in the deep snow, water or other arduous terrain" data-i18n="Extreme Terrain"></span><span class="wfrp-settings__label sheet-margin-right-2">(-30)</span>
-                <input class="wfrp-settings__input" name="attr_cm_extreme_terrain" type="checkbox" title="Attacking or dodging in the deep snow, water or other arduous terrain" value="1"/>
+              <div class="sheet-flex sheet-flex-justify-content-space-between">
+                <div>
+                  <input class="wfrp-settings__input" name="attr_cm_shoot_after_move" type="checkbox" title=" Shooting on a Round where you also use your Move" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title=" Shooting on a Round where you also use your Move" data-i18n="Shoot After Move"></span><span class="wfrp-settings__label">(-10)</span>
+                </div>
               </div>
-              <div class="sheet-flex"><span class="wfrp-settings__label sheet-margin-right-2" title="Close combat in darkness" data-i18n="Darkness"></span><span class="wfrp-settings__label sheet-margin-right-2">(-20)</span>
-                <input class="wfrp-settings__input" name="attr_cm_darkness" type="checkbox" title="Close combat in darkness" value="1"/>
+              <div class="sheet-flex sheet-flex-justify-content-space-between">
+                <div>
+                  <input class="wfrp-settings__input" name="attr_cm_shoot_after_aim" type="checkbox" title="Shooting when you spent your last Action aiming (no Test to aim required)" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="Shooting when you spent your last Action aiming (no Test to aim required)" data-i18n="Shoot After Aim"></span><span class="wfrp-settings__label">(+20)</span>
+                </div>
+              </div>
+              <div class="sheet-flex sheet-flex-justify-content-space-between">
+                <div>
+                  <input class="wfrp-settings__input" name="attr_cm_specific_hit_location" type="checkbox" title="A called strike / shot to a specific hit Location. If you succeed you hit that location" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="A called strike / shot to a specific hit Location. If you succeed you hit that location" data-i18n="Specific Hit Location"></span><span class="wfrp-settings__label">(-20)</span>
+                </div>
+              </div>
+            </div>
+            <div style="width:90%">
+              <h3 data-i18n="Other"></h3>
+              <div class="sheet-flex sheet-flex-justify-content-space-between">
+                <div>
+                  <input class="wfrp-settings__input" name="attr_cm_defensive_stand" type="checkbox" title="Add +20 to all defensive rolls" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="Add +20 to all defensive rolls" data-i18n="Defensive Stand"></span>
+                </div>
+              </div>
+              <div class="sheet-flex sheet-flex-justify-content-space-between">
+                <div>
+                  <input class="wfrp-settings__input" name="attr_cm_cover" type="checkbox" title="You have a cover" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="You have a cover" data-i18n="In Cover"></span>
+                </div>
+                <div>
+                  <select class="wfrp-settings__input sheet-text-align-center" name="attr_cm_cover_option">
+                    <option value="1" title="Soft cover (behind a hedge for example)"><span data-i18n="Soft Cover"></span>
+                    </option>
+                    <option value="2" title="Medium cover (wooden fence for example)"><span data-i18n="Medium Cover"></span>
+                    </option>
+                    <option value="3" title="Hard cover (behind stone wall, for example)"><span data-i18n="Hard Cover"></span>
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="sheet-flex sheet-flex-justify-content-space-between">
+                <div>
+                  <input class="wfrp-settings__input" name="attr_cm_terrain" type="checkbox" title="You are on specific terrain" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="You are on specific terrain" data-i18n="On Terrain"></span>
+                </div>
+                <div>
+                  <select class="wfrp-settings__input sheet-text-align-center" name="attr_cm_terrain_option">
+                    <option value="1" title="Mud, heavy rain or difficult terrain"><span data-i18n="Hard Terrain"></span>
+                    </option>
+                    <option value="2" title="Deep snow, water or other arduous terrain"><span data-i18n="Extreme Terrain"></span>
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="sheet-flex sheet-flex-justify-content-space-between">
+                <div>
+                  <input class="wfrp-settings__input" name="attr_cm_extreme_weather" type="checkbox" title="Monsoon, hurricane, thick blizzard, fog, mist, shadow or other extreme weather" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="Monsoon, hurricane, thick blizzard, fog, mist, shadow or other extreme weather" data-i18n="Extreme Weather"></span>
+                </div>
+              </div>
+              <div class="sheet-flex sheet-flex-justify-content-space-between">
+                <div>
+                  <input class="wfrp-settings__input" name="attr_cm_darkness" type="checkbox" title="Acting in darkness" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="Acting in darkness" data-i18n="Darkness"></span>
+                </div>
+              </div>
+              <div class="sheet-wfrp-roll__divider"></div>
+              <div class="sheet-flex sheet-flex-justify-content-space-between">
+                <div>
+                  <input class="wfrp-settings__input" name="attr_mounted" type="checkbox" title="You are mounted" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="You are mounted" data-i18n="Mounted"></span>
+                </div>
+                <div>
+                  <select class="wfrp-settings__input sheet-text-align-center" name="attr_mount_size_index">
+                    <option data-i18n="Tiny" value="0"></option>
+                    <option data-i18n="Little" value="1"></option>
+                    <option data-i18n="Small" value="2"></option>
+                    <option data-i18n="Average" value="3"></option>
+                    <option data-i18n="Large" value="4" selected="selected"></option>
+                    <option data-i18n="Enormous" value="5"></option>
+                    <option data-i18n="Monstrous" value="6"></option>
+                  </select>
+                </div>
+              </div>
+              <div class="sheet-grid-2">
+                <div>
+                  <input class="wfrp-settings__input" name="attr_use_mount_for_charge" type="checkbox" title="Use Mount Size and Strength for Charge" value="1"/><span class="wfrp-settings__label sheet-margin-left-2 sheet-margin-right-2" title="Use Mount Size and Strength for Charge" data-i18n="Use Mount for Charge"></span>
+                </div>
+                <div class="sheet-grid-2"><span data-i18n="Strength"></span>
+                  <div>
+                    <input class="wfrp-settings__input sheet-text-align-center" name="attr_mount_strength" type="number" value="40"/>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -10725,99 +10913,115 @@
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label" data-i18n="Advantages"></div>
       <div class="wfrp-roll__value">{{computed::a_adv}}</div>
-    </div>{{#^rollTotal() computed::a_cm_outnumbered_21 0}}
-    <div class="wfrp-roll__row">
-      <div class="wfrp-roll__label" data-i18n="Outnumbered 2:1"></div>
-      <div class="wfrp-roll__value">{{computed::a_cm_outnumbered_21_value}}</div>
-    </div>{{/^rollTotal() computed::a_cm_outnumbered_21 0}}{{#^rollTotal() computed::a_cm_outnumbered_31 0}}
-    <div class="wfrp-roll__row">
-      <div class="wfrp-roll__label" data-i18n="Outnumbered 3:1"></div>
-      <div class="wfrp-roll__value">{{computed::a_cm_outnumbered_31_value}}</div>
-    </div>{{/^rollTotal() computed::a_cm_outnumbered_31 0}}{{#^rollTotal() computed::a_cm_target_grapple_leader 0}}
-    <div class="wfrp-roll__row">
-      <div class="wfrp-roll__label" data-i18n="Attack Grapple Leader"></div>
-      <div class="wfrp-roll__value">{{computed::a_cm_target_grapple_leader_value}}</div>
-    </div>{{/^rollTotal() computed::a_cm_target_grapple_leader 0}}{{#^rollTotal() computed::a_cm_target_grapple_follower 0}}
-    <div class="wfrp-roll__row">
-      <div class="wfrp-roll__label" data-i18n="Attack Grapple Follower"></div>
-      <div class="wfrp-roll__value">{{computed::a_cm_target_grapple_follower_value}}</div>
-    </div>{{/^rollTotal() computed::a_cm_target_grapple_follower 0}}{{#^rollTotal() computed::a_cm_point_blank_range 0}}
-    <div class="wfrp-roll__row">
-      <div class="wfrp-roll__label" data-i18n="Point Blank Range"></div>
-      <div class="wfrp-roll__value">{{computed::a_cm_point_blank_range_value}}</div>
-    </div>{{/^rollTotal() computed::a_cm_point_blank_range 0}}{{#^rollTotal() computed::a_cm_short_range 0}}
-    <div class="wfrp-roll__row">
-      <div class="wfrp-roll__label" data-i18n="Short Range"></div>
-      <div class="wfrp-roll__value">{{computed::a_cm_short_range_value}}</div>
-    </div>{{/^rollTotal() computed::a_cm_short_range 0}}{{#^rollTotal() computed::a_cm_long_range 0}}
-    <div class="wfrp-roll__row">
-      <div class="wfrp-roll__label" data-i18n="Long Range"></div>
-      <div class="wfrp-roll__value">{{computed::a_cm_long_range_value}}</div>
-    </div>{{/^rollTotal() computed::a_cm_long_range 0}}{{#^rollTotal() computed::a_cm_extreme_range 0}}
-    <div class="wfrp-roll__row">
-      <div class="wfrp-roll__label" data-i18n="Extreme Range"></div>
-      <div class="wfrp-roll__value">{{computed::a_cm_extreme_range_value}}</div>
-    </div>{{/^rollTotal() computed::a_cm_extreme_range 0}}{{#^rollTotal() computed::a_cm_target_small_group 0}}
-    <div class="wfrp-roll__row">
-      <div class="wfrp-roll__label" data-i18n="Shoot At Small Group"></div>
-      <div class="wfrp-roll__value">{{computed::a_cm_target_small_group_value}}</div>
-    </div>{{/^rollTotal() computed::a_cm_target_small_group 0}}{{#^rollTotal() computed::a_cm_target_large_group 0}}
-    <div class="wfrp-roll__row">
-      <div class="wfrp-roll__label" data-i18n="Shoot At Large Group"></div>
-      <div class="wfrp-roll__value">{{computed::a_cm_target_large_group_value}}</div>
-    </div>{{/^rollTotal() computed::a_cm_target_large_group 0}}{{#^rollTotal() computed::a_cm_target_crowd 0}}
-    <div class="wfrp-roll__row">
-      <div class="wfrp-roll__label" data-i18n="Shoot Into Crowd"></div>
-      <div class="wfrp-roll__value">{{computed::a_cm_target_crowd_value}}</div>
-    </div>{{/^rollTotal() computed::a_cm_target_crowd 0}}{{#^rollTotal() computed::a_cm_shoot_after_move 0}}
-    <div class="wfrp-roll__row">
-      <div class="wfrp-roll__label" data-i18n="Shoot After Move"></div>
-      <div class="wfrp-roll__value">{{computed::a_cm_shoot_after_move_value}}</div>
-    </div>{{/^rollTotal() computed::a_cm_shoot_after_move 0}}{{#^rollTotal() computed::a_cm_target_soft_cover 0}}
-    <div class="wfrp-roll__row">
-      <div class="wfrp-roll__label" data-i18n="Target's Soft Cover"></div>
-      <div class="wfrp-roll__value">{{computed::a_cm_target_soft_cover_value}}</div>
-    </div>{{/^rollTotal() computed::a_cm_target_soft_cover 0}}{{#^rollTotal() computed::a_cm_target_medium_cover 0}}
-    <div class="wfrp-roll__row">
-      <div class="wfrp-roll__label" data-i18n="Target's Medium Cover"></div>
-      <div class="wfrp-roll__value">{{computed::a_cm_target_medium_cover_value}}</div>
-    </div>{{/^rollTotal() computed::a_cm_target_medium_cover 0}}{{#^rollTotal() computed::a_cm_target_hard_cover 0}}
-    <div class="wfrp-roll__row">
-      <div class="wfrp-roll__label" data-i18n="Target's Hard Cover"></div>
-      <div class="wfrp-roll__value">{{computed::a_cm_target_hard_cover_value}}</div>
-    </div>{{/^rollTotal() computed::a_cm_target_hard_cover 0}}{{#^rollTotal() computed::a_cm_specific_hit_location 0}}
-    <div class="wfrp-roll__row">
-      <div class="wfrp-roll__label" data-i18n="Specific Hit Location"></div>
-      <div class="wfrp-roll__value">{{computed::a_cm_specific_hit_location_value}}</div>
-    </div>{{/^rollTotal() computed::a_cm_specific_hit_location 0}}{{#^rollTotal() computed::a_cm_shoot_after_aim 0}}
-    <div class="wfrp-roll__row">
-      <div class="wfrp-roll__label" data-i18n="Shoot After Aim"></div>
-      <div class="wfrp-roll__value">{{computed::a_cm_shoot_after_aim_value}}</div>
-    </div>{{/^rollTotal() computed::a_cm_shoot_after_aim 0}}{{#^rollTotal() computed::a_cm_hard_terrain 0}}
-    <div class="wfrp-roll__row">
-      <div class="wfrp-roll__label" data-i18n="Hard Terrain"></div>
-      <div class="wfrp-roll__value">{{computed::a_cm_hard_terrain_value}}</div>
-    </div>{{/^rollTotal() computed::a_cm_hard_terrain 0}}{{#^rollTotal() computed::a_cm_extreme_terrain 0}}
-    <div class="wfrp-roll__row">
-      <div class="wfrp-roll__label" data-i18n="Extreme Terrain"></div>
-      <div class="wfrp-roll__value">{{computed::a_cm_extreme_terrain_value}}</div>
-    </div>{{/^rollTotal() computed::a_cm_extreme_terrain 0}}{{#^rollTotal() computed::a_cm_extreme_weather 0}}
-    <div class="wfrp-roll__row">
-      <div class="wfrp-roll__label" data-i18n="Extreme Weather"></div>
-      <div class="wfrp-roll__value">{{computed::a_cm_extreme_weather_value}}</div>
-    </div>{{/^rollTotal() computed::a_cm_extreme_weather 0}}{{#^rollTotal() computed::a_cm_darkness 0}}
-    <div class="wfrp-roll__row">
-      <div class="wfrp-roll__label" data-i18n="Darkness"></div>
-      <div class="wfrp-roll__value">{{computed::a_cm_darkness_value}}</div>
-    </div>{{/^rollTotal() computed::a_cm_darkness 0}}{{#^rollTotal() computed::a_cm_side_rear_attack 0}}
+    </div>{{#^rollTotal() computed::a_cm_side_rear_attack_value 0}}
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label" data-i18n="Side/Rear Attack"></div>
       <div class="wfrp-roll__value">{{computed::a_cm_side_rear_attack_value}}</div>
-    </div>{{/^rollTotal() computed::a_cm_side_rear_attack 0}}{{#^rollTotal() computed::a_cm_target_is_fleeing 0}}
+    </div>{{/^rollTotal() computed::a_cm_side_rear_attack_value 0}}{{#^rollTotal() computed::a_cm_target_is_fleeing_value 0}}
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label" data-i18n="Opponent is fleeing"></div>
       <div class="wfrp-roll__value">{{computed::a_cm_target_is_fleeing_value}}</div>
-    </div>{{/^rollTotal() computed::a_cm_target_is_fleeing 0}}{{#rollLess() computed::a_off_hand_penalty 0}}
+    </div>{{/^rollTotal() computed::a_cm_target_is_fleeing_value 0}}{{#^rollTotal() computed::a_cm_after_dual_wielder_value 0}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="After Dual Wielder"></div>
+      <div class="wfrp-roll__value">{{computed::a_cm_after_dual_wielder_value}}</div>
+    </div>{{/^rollTotal() computed::a_cm_after_dual_wielder_value 0}}{{#^rollTotal() computed::a_cm_shoot_after_move_value 0}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Shoot After Move"></div>
+      <div class="wfrp-roll__value">{{computed::a_cm_shoot_after_move_value}}</div>
+    </div>{{/^rollTotal() computed::a_cm_shoot_after_move_value 0}}{{#^rollTotal() computed::a_cm_shoot_after_aim_value 0}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Shoot After Aim"></div>
+      <div class="wfrp-roll__value">{{computed::a_cm_shoot_after_aim_value}}</div>
+    </div>{{/^rollTotal() computed::a_cm_shoot_after_aim_value 0}}{{#^rollTotal() computed::a_cm_specific_hit_location_value 0}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Specific Hit Location"></div>
+      <div class="wfrp-roll__value">{{computed::a_cm_specific_hit_location_value}}</div>
+    </div>{{/^rollTotal() computed::a_cm_specific_hit_location_value 0}}{{#^rollTotal() computed::a_cm_defensive_stand_value 0}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Defensive Stand"></div>
+      <div class="wfrp-roll__value">{{computed::a_cm_defensive_stand_value}}</div>
+    </div>{{/^rollTotal() computed::a_cm_defensive_stand_value 0}}{{#^rollTotal() computed::a_cm_extreme_weather_value 0}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Extreme Weather"></div>
+      <div class="wfrp-roll__value">{{computed::a_cm_extreme_weather_value}}</div>
+    </div>{{/^rollTotal() computed::a_cm_extreme_weather_value 0}}{{#^rollTotal() computed::a_cm_darkness_value 0}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Darkness"></div>
+      <div class="wfrp-roll__value">{{computed::a_cm_darkness_value}}</div>
+    </div>{{/^rollTotal() computed::a_cm_darkness_value 0}}{{#^rollTotal() computed::a_cm_outnumbered_value 0}}{{#rollTotal() a_cm_outnumbered_option 1}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Outnumbered"></span><span class="sheet-margin-right-2">-</span><span data-i18n="2:1"></span></div>
+      <div class="wfrp-roll__value">{{computed::a_cm_outnumbered_value}}</div>
+    </div>{{/rollTotal() a_cm_outnumbered_option 1}}{{#rollTotal() a_cm_outnumbered_option 2}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Outnumbered"></span><span class="sheet-margin-right-2">-</span><span data-i18n="3:1"></span></div>
+      <div class="wfrp-roll__value">{{computed::a_cm_outnumbered_value}}</div>
+    </div>{{/rollTotal() a_cm_outnumbered_option 2}}{{/^rollTotal() computed::a_cm_outnumbered_value 0}}{{#^rollTotal() computed::a_cm_target_grapple_value 0}}{{#rollTotal() a_cm_target_grapple_option 1}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Target in Grapple"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Leader"></span></div>
+      <div class="wfrp-roll__value">{{computed::a_cm_target_grapple_value}}</div>
+    </div>{{/rollTotal() a_cm_target_grapple_option 1}}{{#rollTotal() a_cm_target_grapple_option 2}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Target in Grapple"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Follower"></span></div>
+      <div class="wfrp-roll__value">{{computed::a_cm_target_grapple_value}}</div>
+    </div>{{/rollTotal() a_cm_target_grapple_option 2}}{{/^rollTotal() computed::a_cm_target_grapple_value 0}}{{#^rollTotal() computed::a_cm_range_value 0}}{{#rollTotal() a_cm_range_option 1}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Shoot Range"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Point Blank Range"></span></div>
+      <div class="wfrp-roll__value">{{computed::a_cm_range_value}}</div>
+    </div>{{/rollTotal() a_cm_range_option 1}}{{#rollTotal() a_cm_range_option 2}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Shoot Range"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Short Range"></span></div>
+      <div class="wfrp-roll__value">{{computed::a_cm_range_value}}</div>
+    </div>{{/rollTotal() a_cm_range_option 2}}{{#rollTotal() a_cm_range_option 3}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Shoot Range"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Long Range"></span></div>
+      <div class="wfrp-roll__value">{{computed::a_cm_range_value}}</div>
+    </div>{{/rollTotal() a_cm_range_option 3}}{{#rollTotal() a_cm_range_option 4}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Shoot Range"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Extreme Range"></span></div>
+      <div class="wfrp-roll__value">{{computed::a_cm_range_value}}</div>
+    </div>{{/rollTotal() a_cm_range_option 4}}{{/^rollTotal() computed::a_cm_range_value 0}}{{#^rollTotal() computed::a_cm_target_group_value 0}}{{#rollTotal() a_cm_target_group_option 1}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Target is Group"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Shoot At Small Group"></span></div>
+      <div class="wfrp-roll__value">{{computed::a_cm_target_group_value}}</div>
+    </div>{{/rollTotal() a_cm_target_group_option 1}}{{#rollTotal() a_cm_target_group_option 2}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Target is Group"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Shoot At Large Group"></span></div>
+      <div class="wfrp-roll__value">{{computed::a_cm_target_group_value}}</div>
+    </div>{{/rollTotal() a_cm_target_group_option 2}}{{#rollTotal() a_cm_target_group_option 3}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Target is Group"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Shoot Into Crowd"></span></div>
+      <div class="wfrp-roll__value">{{computed::a_cm_target_group_value}}</div>
+    </div>{{/rollTotal() a_cm_target_group_option 3}}{{/^rollTotal() computed::a_cm_target_group_value 0}}{{#^rollTotal() computed::a_cm_cover_value 0}}{{#rollTotal() a_cm_cover_option 1}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Target in Cover"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Soft Cover"></span></div>
+      <div class="wfrp-roll__value">{{computed::a_cm_cover_value}}</div>
+    </div>{{/rollTotal() a_cm_cover_option 1}}{{#rollTotal() a_cm_cover_option 2}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Target in Cover"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Medium Cover"></span></div>
+      <div class="wfrp-roll__value">{{computed::a_cm_cover_value}}</div>
+    </div>{{/rollTotal() a_cm_cover_option 2}}{{#rollTotal() a_cm_cover_option 3}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Target in Cover"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Hard Cover"></span></div>
+      <div class="wfrp-roll__value">{{computed::a_cm_cover_value}}</div>
+    </div>{{/rollTotal() a_cm_cover_option 3}}{{/^rollTotal() computed::a_cm_cover_value 0}}{{#^rollTotal() computed::a_cm_terrain_value 0}}{{#rollTotal() a_cm_terrain_option 1}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="On Terrain"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Hard Terrain"></span></div>
+      <div class="wfrp-roll__value">{{computed::a_cm_terrain_value}}</div>
+    </div>{{/rollTotal() a_cm_terrain_option 1}}{{#rollTotal() a_cm_terrain_option 2}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="On Terrain"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Extreme Terrain"></span></div>
+      <div class="wfrp-roll__value">{{computed::a_cm_terrain_value}}</div>
+    </div>{{/rollTotal() a_cm_terrain_option 2}}{{/^rollTotal() computed::a_cm_terrain_value 0}}{{#rollGreater() computed::a_mounted_attack_mod 0}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="You are rider"></div>
+      <div class="wfrp-roll__value">+{{computed::a_mounted_attack_mod}}</div>
+    </div>{{/rollGreater() computed::a_mounted_attack_mod 0}}{{#rollLess() computed::a_attack_vs_mounted_mod 0}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Target is rider"></div>
+      <div class="wfrp-roll__value">{{computed::a_attack_vs_mounted_mod}}</div>
+    </div>{{/rollLess() computed::a_attack_vs_mounted_mod 0}}{{#rollLess() computed::a_off_hand_penalty 0}}
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label" data-i18n="Off hand penalty"></div>
       <div class="wfrp-roll__value">{{computed::a_off_hand_penalty}}</div>
@@ -10902,23 +11106,111 @@
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label" data-i18n="Advantages"></div>
       <div class="wfrp-roll__value">{{computed::d_adv}}</div>
-    </div>{{#^rollTotal() computed::d_cm_defensive_stand 0}}
+    </div>{{#^rollTotal() computed::d_cm_side_rear_attack_value 0}}
     <div class="wfrp-roll__row">
-      <div class="wfrp-roll__label" data-i18n="Defensive Stand"></div>
-      <div class="wfrp-roll__value">{{computed::d_cm_defensive_stand_value}}</div>
-    </div>{{/^rollTotal() computed::d_cm_defensive_stand 0}}{{#^rollTotal() computed::d_cm_after_dual_wielder 0}}
+      <div class="wfrp-roll__label" data-i18n="Side/Rear Attack"></div>
+      <div class="wfrp-roll__value">{{computed::d_cm_side_rear_attack_value}}</div>
+    </div>{{/^rollTotal() computed::d_cm_side_rear_attack_value 0}}{{#^rollTotal() computed::d_cm_target_is_fleeing_value 0}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Opponent is fleeing"></div>
+      <div class="wfrp-roll__value">{{computed::d_cm_target_is_fleeing_value}}</div>
+    </div>{{/^rollTotal() computed::d_cm_target_is_fleeing_value 0}}{{#^rollTotal() computed::d_cm_after_dual_wielder_value 0}}
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label" data-i18n="After Dual Wielder"></div>
       <div class="wfrp-roll__value">{{computed::d_cm_after_dual_wielder_value}}</div>
-    </div>{{/^rollTotal() computed::d_cm_after_dual_wielder 0}}{{#^rollTotal() computed::d_cm_extreme_terrain 0}}
+    </div>{{/^rollTotal() computed::d_cm_after_dual_wielder_value 0}}{{#^rollTotal() computed::d_cm_shoot_after_move_value 0}}
     <div class="wfrp-roll__row">
-      <div class="wfrp-roll__label" data-i18n="Extreme Terrain"></div>
-      <div class="wfrp-roll__value">{{computed::d_cm_extreme_terrain_value}}</div>
-    </div>{{/^rollTotal() computed::d_cm_extreme_terrain 0}}{{#^rollTotal() computed::d_cm_darkness 0}}
+      <div class="wfrp-roll__label" data-i18n="Shoot After Move"></div>
+      <div class="wfrp-roll__value">{{computed::d_cm_shoot_after_move_value}}</div>
+    </div>{{/^rollTotal() computed::d_cm_shoot_after_move_value 0}}{{#^rollTotal() computed::d_cm_shoot_after_aim_value 0}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Shoot After Aim"></div>
+      <div class="wfrp-roll__value">{{computed::d_cm_shoot_after_aim_value}}</div>
+    </div>{{/^rollTotal() computed::d_cm_shoot_after_aim_value 0}}{{#^rollTotal() computed::d_cm_specific_hit_location_value 0}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Specific Hit Location"></div>
+      <div class="wfrp-roll__value">{{computed::d_cm_specific_hit_location_value}}</div>
+    </div>{{/^rollTotal() computed::d_cm_specific_hit_location_value 0}}{{#^rollTotal() computed::d_cm_defensive_stand_value 0}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Defensive Stand"></div>
+      <div class="wfrp-roll__value">{{computed::d_cm_defensive_stand_value}}</div>
+    </div>{{/^rollTotal() computed::d_cm_defensive_stand_value 0}}{{#^rollTotal() computed::d_cm_extreme_weather_value 0}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Extreme Weather"></div>
+      <div class="wfrp-roll__value">{{computed::d_cm_extreme_weather_value}}</div>
+    </div>{{/^rollTotal() computed::d_cm_extreme_weather_value 0}}{{#^rollTotal() computed::d_cm_darkness_value 0}}
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label" data-i18n="Darkness"></div>
       <div class="wfrp-roll__value">{{computed::d_cm_darkness_value}}</div>
-    </div>{{/^rollTotal() computed::d_cm_darkness 0}}{{#rollLess() computed::d_off_hand_penalty 0}}
+    </div>{{/^rollTotal() computed::d_cm_darkness_value 0}}{{#^rollTotal() computed::d_cm_outnumbered_value 0}}{{#rollTotal() d_cm_outnumbered_option 1}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Outnumbered"></span><span class="sheet-margin-right-2">-</span><span data-i18n="2:1"></span></div>
+      <div class="wfrp-roll__value">{{computed::d_cm_outnumbered_value}}</div>
+    </div>{{/rollTotal() d_cm_outnumbered_option 1}}{{#rollTotal() d_cm_outnumbered_option 2}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Outnumbered"></span><span class="sheet-margin-right-2">-</span><span data-i18n="3:1"></span></div>
+      <div class="wfrp-roll__value">{{computed::d_cm_outnumbered_value}}</div>
+    </div>{{/rollTotal() d_cm_outnumbered_option 2}}{{/^rollTotal() computed::d_cm_outnumbered_value 0}}{{#^rollTotal() computed::d_cm_target_grapple_value 0}}{{#rollTotal() d_cm_target_grapple_option 1}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Target in Grapple"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Leader"></span></div>
+      <div class="wfrp-roll__value">{{computed::d_cm_target_grapple_value}}</div>
+    </div>{{/rollTotal() d_cm_target_grapple_option 1}}{{#rollTotal() d_cm_target_grapple_option 2}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Target in Grapple"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Follower"></span></div>
+      <div class="wfrp-roll__value">{{computed::d_cm_target_grapple_value}}</div>
+    </div>{{/rollTotal() d_cm_target_grapple_option 2}}{{/^rollTotal() computed::d_cm_target_grapple_value 0}}{{#^rollTotal() computed::d_cm_range_value 0}}{{#rollTotal() d_cm_range_option 1}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Shoot Range"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Point Blank Range"></span></div>
+      <div class="wfrp-roll__value">{{computed::d_cm_range_value}}</div>
+    </div>{{/rollTotal() d_cm_range_option 1}}{{#rollTotal() d_cm_range_option 2}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Shoot Range"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Short Range"></span></div>
+      <div class="wfrp-roll__value">{{computed::d_cm_range_value}}</div>
+    </div>{{/rollTotal() d_cm_range_option 2}}{{#rollTotal() d_cm_range_option 3}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Shoot Range"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Long Range"></span></div>
+      <div class="wfrp-roll__value">{{computed::d_cm_range_value}}</div>
+    </div>{{/rollTotal() d_cm_range_option 3}}{{#rollTotal() d_cm_range_option 4}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Shoot Range"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Extreme Range"></span></div>
+      <div class="wfrp-roll__value">{{computed::d_cm_range_value}}</div>
+    </div>{{/rollTotal() d_cm_range_option 4}}{{/^rollTotal() computed::d_cm_range_value 0}}{{#^rollTotal() computed::d_cm_target_group_value 0}}{{#rollTotal() d_cm_target_group_option 1}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Target is Group"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Shoot At Small Group"></span></div>
+      <div class="wfrp-roll__value">{{computed::d_cm_target_group_value}}</div>
+    </div>{{/rollTotal() d_cm_target_group_option 1}}{{#rollTotal() d_cm_target_group_option 2}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Target is Group"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Shoot At Large Group"></span></div>
+      <div class="wfrp-roll__value">{{computed::d_cm_target_group_value}}</div>
+    </div>{{/rollTotal() d_cm_target_group_option 2}}{{#rollTotal() d_cm_target_group_option 3}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Target is Group"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Shoot Into Crowd"></span></div>
+      <div class="wfrp-roll__value">{{computed::d_cm_target_group_value}}</div>
+    </div>{{/rollTotal() d_cm_target_group_option 3}}{{/^rollTotal() computed::d_cm_target_group_value 0}}{{#^rollTotal() computed::d_cm_cover_value 0}}{{#rollTotal() d_cm_cover_option 1}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Target in Cover"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Soft Cover"></span></div>
+      <div class="wfrp-roll__value">{{computed::d_cm_cover_value}}</div>
+    </div>{{/rollTotal() d_cm_cover_option 1}}{{#rollTotal() d_cm_cover_option 2}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Target in Cover"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Medium Cover"></span></div>
+      <div class="wfrp-roll__value">{{computed::d_cm_cover_value}}</div>
+    </div>{{/rollTotal() d_cm_cover_option 2}}{{#rollTotal() d_cm_cover_option 3}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="Target in Cover"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Hard Cover"></span></div>
+      <div class="wfrp-roll__value">{{computed::d_cm_cover_value}}</div>
+    </div>{{/rollTotal() d_cm_cover_option 3}}{{/^rollTotal() computed::d_cm_cover_value 0}}{{#^rollTotal() computed::d_cm_terrain_value 0}}{{#rollTotal() d_cm_terrain_option 1}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="On Terrain"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Hard Terrain"></span></div>
+      <div class="wfrp-roll__value">{{computed::d_cm_terrain_value}}</div>
+    </div>{{/rollTotal() d_cm_terrain_option 1}}{{#rollTotal() d_cm_terrain_option 2}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label"><span class="sheet-margin-right-2" data-i18n="On Terrain"></span><span class="sheet-margin-right-2">-</span><span data-i18n="Extreme Terrain"></span></div>
+      <div class="wfrp-roll__value">{{computed::d_cm_terrain_value}}</div>
+    </div>{{/rollTotal() d_cm_terrain_option 2}}{{/^rollTotal() computed::d_cm_terrain_value 0}}{{#rollLess() computed::d_mounted_dodge_mod 0}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Rider is dodging"></div>
+      <div class="wfrp-roll__value">{{computed::d_mounted_dodge_mod}}</div>
+    </div>{{/rollLess() computed::d_mounted_dodge_mod 0}}{{#rollLess() computed::d_off_hand_penalty 0}}
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label" data-i18n="Off hand penalty"></div>
       <div class="wfrp-roll__value">{{computed::d_off_hand_penalty}}</div>
@@ -10937,8 +11229,12 @@
     </div>{{/rollGreater() computed::dw_defensive 0}}{{#rollGreater() computed::dw_slow 0}}
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label-italic" data-i18n="vs Slow weapon"></div>
-      <div class="wfrp-roll__value">+{{computed::dw_defensive}} SL</div>
-    </div>{{/rollGreater() computed::dw_slow 0}}{{#rollGreater() computed::dw_impale 0}}
+      <div class="wfrp-roll__value">+{{computed::dw_slow}} SL</div>
+    </div>{{/rollGreater() computed::dw_slow 0}}{{#rollLess() computed::dw_unbalanced 0}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label-italic" data-i18n="Unbalanced weapon"></div>
+      <div class="wfrp-roll__value">{{computed::dw_unbalanced}} SL</div>
+    </div>{{/rollLess() computed::dw_unbalanced 0}}{{#rollGreater() computed::dw_impale 0}}
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label-italic" data-i18n="Impale weapon"></div>
       <div class="wfrp-roll__value"></div>
@@ -10965,7 +11261,11 @@
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label" data-i18n="Weapon damage"></div>
       <div class="wfrp-roll__value">+{{aw_damage}}</div>
-    </div>{{#rollGreater() computed::aw_damaging 0}}
+    </div>{{#rollGreater() computed::a_mount_damage_bonus 0}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Use mount strength"></div>
+      <div class="wfrp-roll__value">+{{computed::a_mount_damage_bonus}}</div>
+    </div>{{/rollGreater() computed::a_mount_damage_bonus 0}}{{#rollGreater() computed::aw_damaging 0}}
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label-italic" data-i18n="Damaging weapon"></div>
       <div class="wfrp-roll__value">+{{computed::aw_damaging}}</div>
@@ -10978,11 +11278,31 @@
       <div class="wfrp-roll__label-italic" data-i18n="Attacker is bigger"></div>
       <div class="wfrp-roll__value">x{{computed::size_damage_mod}}</div>
     </div>{{/rollGreater() computed::size_damage_mod 1}}
-    <div class="wfrp-roll__divider"></div>
+    <div class="wfrp-roll__divider"></div>{{#rollBetween() computed::hit_location 1 9}}
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label" data-i18n="Hit Location"></div>
-      <div class="wfrp-roll__value">{{computed::hit_location}}</div>
-    </div>
+      <div class="wfrp-roll__value" data-i18n="Head"></div>
+    </div>{{/rollBetween() computed::hit_location 1 9}}{{#rollBetween() computed::hit_location 10 24}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Hit Location"></div>
+      <div class="wfrp-roll__value" data-i18n="Left Arm"></div>
+    </div>{{/rollBetween() computed::hit_location 10 24}}{{#rollBetween() computed::hit_location 25 44}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Hit Location"></div>
+      <div class="wfrp-roll__value" data-i18n="Right Arm"></div>
+    </div>{{/rollBetween() computed::hit_location 25 44}}{{#rollBetween() computed::hit_location 45 79}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Hit Location"></div>
+      <div class="wfrp-roll__value" data-i18n="Body"></div>
+    </div>{{/rollBetween() computed::hit_location 45 79}}{{#rollBetween() computed::hit_location 80 89}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Hit Location"></div>
+      <div class="wfrp-roll__value" data-i18n="Left Leg"></div>
+    </div>{{/rollBetween() computed::hit_location 80 89}}{{#rollBetween() computed::hit_location 90 100}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Hit Location"></div>
+      <div class="wfrp-roll__value" data-i18n="Right Leg"></div>
+    </div>{{/rollBetween() computed::hit_location 90 100}}
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label" data-i18n="AP"></div>
       <div class="wfrp-roll__value">{{computed::armour}}</div>
@@ -11016,7 +11336,11 @@
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label" data-i18n="Weapon damage"></div>
       <div class="wfrp-roll__value">+{{aw_damage}}</div>
-    </div>{{#rollGreater() computed::aw_damaging 0}}
+    </div>{{#rollGreater() computed::a_mount_damage_bonus 0}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Use mount strength"></div>
+      <div class="wfrp-roll__value">+{{computed::a_mount_damage_bonus}}</div>
+    </div>{{/rollGreater() computed::a_mount_damage_bonus 0}}{{#rollGreater() computed::aw_damaging 0}}
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label-italic" data-i18n="Damaging weapon"></div>
       <div class="wfrp-roll__value">+{{computed::aw_damaging}}</div>
@@ -11029,11 +11353,31 @@
       <div class="wfrp-roll__label-italic" data-i18n="Attacker is bigger"></div>
       <div class="wfrp-roll__value">x{{computed::size_damage_mod}}</div>
     </div>{{/rollGreater() computed::size_damage_mod 1}}
-    <div class="wfrp-roll__divider"></div>
+    <div class="wfrp-roll__divider"></div>{{#rollBetween() computed::hit_location 1 9}}
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label" data-i18n="Hit Location"></div>
-      <div class="wfrp-roll__value">{{computed::hit_location}}</div>
-    </div>
+      <div class="wfrp-roll__value" data-i18n="Head"></div>
+    </div>{{/rollBetween() computed::hit_location 1 9}}{{#rollBetween() computed::hit_location 10 24}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Hit Location"></div>
+      <div class="wfrp-roll__value" data-i18n="Left Arm"></div>
+    </div>{{/rollBetween() computed::hit_location 10 24}}{{#rollBetween() computed::hit_location 25 44}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Hit Location"></div>
+      <div class="wfrp-roll__value" data-i18n="Right Arm"></div>
+    </div>{{/rollBetween() computed::hit_location 25 44}}{{#rollBetween() computed::hit_location 45 79}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Hit Location"></div>
+      <div class="wfrp-roll__value" data-i18n="Body"></div>
+    </div>{{/rollBetween() computed::hit_location 45 79}}{{#rollBetween() computed::hit_location 80 89}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Hit Location"></div>
+      <div class="wfrp-roll__value" data-i18n="Left Leg"></div>
+    </div>{{/rollBetween() computed::hit_location 80 89}}{{#rollBetween() computed::hit_location 90 100}}
+    <div class="wfrp-roll__row">
+      <div class="wfrp-roll__label" data-i18n="Hit Location"></div>
+      <div class="wfrp-roll__value" data-i18n="Right Leg"></div>
+    </div>{{/rollBetween() computed::hit_location 90 100}}
     <div class="wfrp-roll__row">
       <div class="wfrp-roll__label" data-i18n="AP"></div>
       <div class="wfrp-roll__value">{{computed::armour}}</div>
@@ -11491,6 +11835,7 @@
             "repeating_weapons_weapon_q_dangerous",
             "repeating_weapons_weapon_q_imprecise",
             "repeating_weapons_weapon_q_slow",
+            "repeating_weapons_weapon_q_unbalanced",
             "repeating_weapons_weapon_q_undamaging",
             "repeating_weapons_weapon_qualities",
             "repeating_weapons_weapon_qualities_str"
@@ -11510,6 +11855,7 @@
             "slow",
             "undamaging",
             "pistol",
+            "unbalanced"
         ],
 
         public_weapon_attrs: [
@@ -11650,6 +11996,170 @@
             }
         ],
 
+        combat_modifiers_v2 : [
+            {
+                "group": "melee",
+                "attr": "cm_outnumbered",
+                "option_attr": "cm_outnumbered_option",
+                "label": "Outnumbered",
+                "tooltip": "Attacking an opponent you outnumber",
+                "type": "select",
+                "options": [
+                    {"label": "2:1", "value": "1", "mods": {"melee": 20}},
+                    {"label": "3:1", "value": "2", "mods": {"melee": 40}}
+                ]
+            },
+            {
+                "group": "melee",
+                "attr": "cm_target_grapple",
+                "option_attr": "cm_target_grapple_option",
+                "label": "Target in Grapple",
+                "tooltip": "Attacking an opponent who is in Grapple",
+                "type": "select",
+                "options": [
+                    {"label": "Leader", "value": "1", "mods": {"melee": 10}},
+                    {"label": "Follower", "value": "2", "mods": {"melee": 20}}
+                ]
+            },
+            {
+                "group": "melee",
+                "attr": "cm_side_rear_attack",
+                "label": `Side/Rear Attack`,
+                "tooltip": "Attacking an Engaged opponent in the sides or rear",
+                "type": "checkbox",
+                "mods": {"melee": 20}
+            },
+            {
+                "group": "melee",
+                "attr": "cm_target_is_fleeing",
+                "label": `Opponent is fleeing`,
+                "tooltip": "Attacking disengaging opponent",
+                "type": "checkbox",
+                "mods": {"melee": 20}
+            },
+            {
+                "group": "melee",
+                "attr": "cm_after_dual_wielder",
+                "label": `After Dual Wielder`,
+                "type": "checkbox",
+                "mods": {"parry": -10, "dodge": -10},
+                "tooltip": "Defence after Dual Wielder action"
+            },
+            {
+                "group": "ranged",
+                "attr": "cm_range",
+                "option_attr": "cm_range_option",
+                "label": "Shoot Range",
+                "tooltip": "Shooting a target at Range",
+                "type": "select",
+                "options": [
+                    {"label": "Point Blank Range", "value": "1", "tooltip": "Less than 1/10 weapon range", "mods": {"ranged": 40}},
+                    {"label": "Short Range", "value": "2", "tooltip": "Less than 1/2 weapon range", "mods": {"ranged": 20}},
+                    {"label": "Long Range", "value": "3", "tooltip": "Up to 2 weapon range", "mods": {"ranged": -10}},
+                    {"label": "Extreme Range", "value": "4", "tooltip": "Up to 3 weapon range", "mods": {"ranged": -30}},
+                ]
+            },
+            {
+                "group": "ranged",
+                "attr": "cm_target_group",
+                "option_attr": "cm_target_group_option",
+                "label": "Target is Group",
+                "tooltip": "Shooting a group of targets",
+                "type": "select",
+                "options": [
+                    {"label": "Shoot At Small Group", "value": "1", "tooltip": "Shooting at a small group (3–6 targets)", "mods": {"ranged": 20}},
+                    {"label": "Shoot At Large Group", "value": "2", "tooltip": "Shooting at a Large group (7–12 targets)", "mods": {"ranged": 40}},
+                    {"label": "Shoot Into Crowd", "value": "3", "tooltip": "Shooting into a crowd (13+ targets)", "mods": {"ranged": 60}},
+                ]
+            },
+            {
+                "group": "ranged",
+                "attr": "cm_shoot_after_move",
+                "label": `Shoot After Move`,
+                "type": "checkbox",
+                "mods": {"ranged": -10},
+                "tooltip":" Shooting on a Round where you also use your Move"
+            },
+            {
+                "group": "ranged",
+                "attr": "cm_shoot_after_aim",
+                "label": `Shoot After Aim`,
+                "type": "checkbox",
+                "mods": {"ranged": 20},
+                "tooltip": "Shooting when you spent your last Action aiming (no Test to aim required)"
+            },
+            {
+                "group": "ranged",
+                "attr": "cm_specific_hit_location",
+                "label": "Specific Hit Location",
+                "type": "checkbox",
+                "mods": {"melee": -20, "ranged": -20},
+                "tooltip": "A called strike / shot to a specific hit Location. If you succeed you hit that location"
+            },
+            {
+                "group": "other",
+                "attr": "cm_defensive_stand",
+                "label": "Defensive Stand",
+                "type": "checkbox",
+                "mods": {"parry": 20, "dodge": 20},
+                "tooltip": "Add +20 to all defensive rolls"
+            },
+            {
+                "group": "other",
+                "attr": "cm_cover",
+                "option_attr": "cm_cover_option",
+                "label": "In Cover",
+                "tooltip": "You have a cover",
+                "type": "select",
+                "options": [
+                    {
+                        "label": "Soft Cover",
+                        "value": "1",
+                        "tooltip": "Soft cover (behind a hedge for example)",
+                        "mods": {"opposed_melee": -10, "opposed_ranged": -10}
+                    },{
+                        "label": "Medium Cover",
+                        "value": "2",
+                        "tooltip": "Medium cover (wooden fence for example)",
+                        "mods": {"opposed_melee": -20, "opposed_ranged": -20}
+                    },{
+                        "label": "Hard Cover",
+                        "value": "3",
+                        "tooltip": "Hard cover (behind stone wall, for example)",
+                        "mods": {"opposed_melee": -30, "opposed_ranged": -30}
+                    }
+                ]
+            },
+            {
+                "group": "other",
+                "attr": "cm_terrain",
+                "option_attr": "cm_terrain_option",
+                "label": "On Terrain",
+                "tooltip": "You are on specific terrain",
+                "type": "select",
+                "options": [
+                    {"label": "Hard Terrain", "value": "1", "tooltip": "Mud, heavy rain or difficult terrain", "mods": {"melee": -10}},
+                    {"label": "Extreme Terrain", "value": "2", "tooltip": "Deep snow, water or other arduous terrain", "mods": { "melee": -30, "dodge": -30 }},
+                ]
+            },
+            {
+                "group": "other",
+                "type": "checkbox",
+                "attr": "cm_extreme_weather",
+                "label": `Extreme Weather`,
+                "mods": {"melee": -20, "ranged": -20},
+                "tooltip": "Monsoon, hurricane, thick blizzard, fog, mist, shadow or other extreme weather",
+            },
+            {
+                "group": "other",
+                "attr": "cm_darkness",
+                "label": "Darkness",
+                "type": "checkbox",
+                "mods": {"melee": -20, "ranged": -30, "parry": -20, "dodge": -20,},
+                "tooltip": "Acting in darkness"
+            }
+        ],
+
         sizes: ["tiny", "little", "small", "average", "large", "enormous", "monstrous"],
 
         modifiers: [
@@ -11722,7 +12232,8 @@
 
     const getHitLocation = (roll) => {
         const reversed = helperFunctions.reverseRoll(roll)
-        const result = Object.entries(wfrp.hit_locations).filter(e => reversed >= e[1]["from"] && reversed <= e[1]["to"])[0]
+        const hl = Object.entries(wfrp.hit_locations).filter(e => reversed >= e[1]["from"] && reversed <= e[1]["to"])[0]
+        const result = {[`roll`]: reversed, [`attr`]: hl[0], [`label`]: hl[1]}
         return result
     }
 
@@ -11906,29 +12417,47 @@
             input.d_mod = input.d_mod + input.d_off_hand_penalty + input.d_main_hand_penalty
             return input
         }
-        const applyCombatModifiers= (input) => {
+        const applyCombatModifiers = (input) => {
             const a_type = input.aw_is_ranged ? `ranged` : `melee`
             const d_type = input.dw_is_dodge ? `dodge` : `parry`
 
-            wfrp.combat_modifiers.filter(m => input[`a_${m.attr}`]).forEach(m => {
-                if (Object.keys(m.values).includes(a_type)) {
-                    input.a_mod = input.a_mod + m.values[a_type]
-                    input[`a_${m.attr}_value`] = m.values[a_type] > 0 ? `+${m.values[a_type]}` : `${m.values[a_type]}`
-                }
-                else {
-                    input[`a_${m.attr}`] = 0
-                }
+            const isModSelected = (m, player) => m.type === 'checkbox' ? !!input[`${player}_${m.attr}`] : !!input[`${player}_${m.attr}`] && !!input[`${player}_${m.option_attr}`]
+            const getMods = (m, player) => m.type === 'checkbox' ? m.mods : m.options.filter(o => parseInt(o.value) === input[`${player}_${m.option_attr}`])[0].mods
+
+            const applyMod = (m, player, type) => {
+                input[`${player}_mod`] = input[`${player}_mod`] + getMods(m, player)[type]
+                input[`${player}_${m.attr}_value`] = getMods(m, player)[type] > 0 ? `+${getMods(m, player)[type]}` : `${getMods(m, player)[type]}`
+            }
+
+            wfrp.combat_modifiers_v2.forEach(m => {
+                input[`a_${m.attr}_value`] = '0'
+                input[`d_${m.attr}_value`] = '0'
+
+                if (isModSelected(m, 'a') && Object.keys(getMods(m, 'a')).includes(a_type)) applyMod(m, 'a', a_type)
+                if (isModSelected(m, 'd') && Object.keys(getMods(m, 'd')).includes(d_type)) applyMod(m, "d", d_type)
+                if (isModSelected(m, 'd') && Object.keys(getMods(m, 'd')).includes(`opposed_${a_type}`)) applyMod(m, 'a', `opposed_${a_type}`)
             })
 
-            wfrp.combat_modifiers.filter(m => input[`d_${m.attr}`]).forEach(m => {
-                if (Object.keys(m.values).includes(d_type)) {
-                    input.d_mod = input.d_mod + m.values[d_type]
-                    input[`d_${m.attr}_value`] = m.values[d_type] > 0 ? `+${m.values[d_type]}` : `${m.values[d_type]}`
-                }
-                else {
-                    input[`d_${m.attr}`] = 0
-                }
-            })
+            return input
+        }
+        const applyMountedModifiers = (input) => {
+            input.a_mounted_attack_mod = 0
+            input.a_attack_vs_mounted_mod = 0
+            input.d_mounted_dodge_mod = 0
+
+            if (input.a_mounted && !input.aw_is_ranged) {
+                const d_mounted_size = input.d_mounted ? input.d_mount_size_index : input.d_size
+                input.a_mounted_attack_mod = input.a_mount_size_index > d_mounted_size ? 20 : 0
+                input.a_mod = input.a_mod + input.a_mounted_attack_mod
+            }
+            if (input.d_mounted && !input.aw_is_ranged) {
+                const a_mounted_size = input.a_mounted ? input.a_mount_size_index : input.a_size
+                input.a_attack_vs_mounted_mod = input.d_mount_size_index > a_mounted_size ? -10 : 0
+                input.a_mod = input.a_mod + input.a_attack_vs_mounted_mod
+            }
+
+            input.d_mounted_dodge_mod = input.d_mounted && input.dw_is_dodge ? -20 : 0
+            input.d_mod = input.d_mod + input.d_mounted_dodge_mod
 
             return input
         }
@@ -11976,6 +12505,11 @@
             input.d_roll_sl = input.d_roll_sl + input.dw_slow
             return input
         }
+        const applyUnbalancedQuality = (input) => {
+            input.dw_unbalanced = hasQuality(input.dw_qualities, 'unbalanced') ? -1 : 0
+            input.d_roll_sl = input.d_roll_sl + input.dw_unbalanced
+            return input
+        }
 
         const applySizeModifers = (input) => {
             input.a_is_smaller_mod = 0
@@ -12019,22 +12553,38 @@
         entries = addLastValuesToRoll(entries, a_char_source, d_char_source)
         entries = addRollsToRoll(entries, a_roll_source, d_roll_source, opposed_source)
 
-        wfrp.combat_modifiers.filter(m => Object.keys(m.values).includes('melee') || Object.keys(m.values).includes('ranged'))
-            .forEach(m => {
-                entries.push(rtNumAttrEntry(`a_${m.attr}`, `${a_char_source}${m.attr}`), rtOutputEntry(`a_${m.attr}_value`))
-            })
-        wfrp.combat_modifiers.filter(m => Object.keys(m.values).includes('parry') || Object.keys(m.values).includes('dodge'))
-            .forEach(m => {
-                entries.push(rtNumAttrEntry(`d_${m.attr}`, `${d_char_source}${m.attr}`), rtOutputEntry(`d_${m.attr}_value`))
-            })
+        wfrp.combat_modifiers_v2.filter(m => m.type === "checkbox").forEach(m => {
+            entries.push(
+                rtNumAttrEntry(`a_${m.attr}`, `${a_char_source}${m.attr}`), rtOutputEntry(`a_${m.attr}_value`),
+                rtNumAttrEntry(`d_${m.attr}`, `${d_char_source}${m.attr}`), rtOutputEntry(`d_${m.attr}_value`)
+            )
+        })
+        wfrp.combat_modifiers_v2.filter(m => m.type === "select").forEach(m => {
+            entries.push(
+                rtNumAttrEntry(`a_${m.attr}`, `${a_char_source}${m.attr}`),
+                rtNumAttrEntry(`a_${m.attr}_option`, `${a_char_source}${m.option_attr}`),
+                rtOutputEntry(`a_${m.attr}_value`),
+                rtNumAttrEntry(`d_${m.attr}`, `${d_char_source}${m.attr}`),
+                rtNumAttrEntry(`d_${m.attr}_option`, `${d_char_source}${m.option_attr}`),
+                rtOutputEntry(`d_${m.attr}_value`)
+            )
+        })
+
+        entries.push(rtNumAttrEntry(`a_mounted`,`${a_char_source}mounted`), rtNumAttrEntry(`d_mounted`,`${d_char_source}mounted`))
+        entries.push(rtNumAttrEntry(`a_mount_size_index`,`${a_char_source}mount_size_index`), rtNumAttrEntry(`d_mount_size_index`,`${d_char_source}mount_size_index`))
+        entries.push(rtNumAttrEntry(`a_use_mount_for_charge`,`${a_char_source}use_mount_for_charge`), rtNumAttrEntry(`d_use_mount_for_charge`,`${d_char_source}use_mount_for_charge`))
+        entries.push(rtNumAttrEntry(`a_mount_strength`,`${a_char_source}mount_strength`), rtNumAttrEntry(`d_mount_strength`,`${d_char_source}mount_strength`))
+        entries.push(rtNumAttrEntry(`a_sb`,`${a_char_source}strength_bonus`), rtNumAttrEntry(`d_sb`,`${d_char_source}strength_bonus`))
+
         entries = addOutputsToRoll(entries, [
             `a_target`, `d_target`, `a_roll_sl`, `d_roll_sl`, `total_sl`,
             `hit_location`, `armour`, `is_attacker_win`, `a_is_crit`, `d_is_crit`, `total_damage`,
             `aw_accurate`, `aw_damaging`, `aw_impact`, `aw_impale`, `aw_penetrating`, `aw_precise`,
             `aw_dangerous`, `aw_imprecise`, `aw_undamaging`,
-            `dw_defensive`, `dw_fast`, `dw_impale`, `dw_dangerous`, `dw_slow`,
+            `dw_defensive`, `dw_fast`, `dw_impale`, `dw_dangerous`, `dw_slow`, `dw_unbalanced`,
             `is_only_aw_name`, `a_off_hand_penalty`, `d_off_hand_penalty`,`a_main_hand_penalty`, `d_main_hand_penalty`,
-            `a_is_smaller_mod`, `d_size_mod`, `d_is_smaller_sl`, `size_damage_mod`])
+            `a_is_smaller_mod`, `d_size_mod`, `d_is_smaller_sl`, `size_damage_mod`,
+            `a_mounted_attack_mod`, `a_attack_vs_mounted_mod`, `d_mounted_dodge_mod`, `a_mount_damage_bonus`])
 
         startRoll(rtString(`&{template:wfrp-opposed}`, entries), (results) => {
             let outputs = extractRollResults(results)
@@ -12052,6 +12602,7 @@
             outputs = applyHandPenalties(outputs)
             outputs = applyCombatModifiers(outputs)
             outputs = applySizeModifers(outputs)
+            outputs = applyMountedModifiers(outputs)
 
             outputs = processRoll(outputs, "a")
             outputs = processRoll(outputs, "d")
@@ -12062,6 +12613,7 @@
             outputs = applyDangerousQuality(outputs)
             outputs = applyImpreciseQuality(outputs)
             outputs = applySlowQuality(outputs)
+            outputs = applyUnbalancedQuality(outputs)
             outputs = applySizeSL(outputs)
 
             if (!outputs.a_is_passed) outputs.a_talent_rank = 0
@@ -12163,6 +12715,15 @@
             }
             return input
         }
+        const applyMountedRule = (input) => {
+            input.a_mount_damage_bonus = 0
+
+            if (!input.a_use_mount_for_charge || !input.a_mounted || input.aw_is_ranged) return input
+            const mount_sb = Math.floor(input.a_mount_strength / 10)
+            if (mount_sb > input.a_sb) input.a_mount_damage_bonus  = mount_sb - input.a_sb
+            if (input.a_mount_size_index > input.a_size)  input.size_delta = input.a_mount_size_index - input.d_size
+            return input
+        }
         const applySizeDamage = (input) => {
             input.size_damage_mod = (!input.aw_is_ranged && input.size_delta > 1) ? input.size_delta : 1
             return input
@@ -12170,20 +12731,21 @@
 
         const hit_location = getHitLocation(inputs.a_roll)
 
-        inputs.hit_location = hit_location[1].label
-        const initial_armour = inputs[`da_${hit_location[0]}`] + inputs.da_shield
+        inputs.hit_location = hit_location.roll
+        const initial_armour = inputs[`da_${hit_location.attr}`] + inputs.da_shield
         inputs.armour = initial_armour
 
         const initial_total_sl = inputs.total_sl
 
-        let outputs = applySizeWeaponQualities(inputs)
-        outputs = applyDamagingQuality(inputs)
+        let outputs = applyMountedRule(inputs)
+        outputs = applySizeWeaponQualities(outputs)
+        outputs = applyDamagingQuality(outputs)
         outputs = applyImpactQuality(outputs)
         outputs = applyPenetratingQuality(outputs)
         outputs = applyUndamagingQuality(outputs)
         outputs = applySizeDamage(outputs)
 
-        outputs.total_damage = Math.max((outputs.total_sl + outputs.aw_damage) * outputs.size_damage_mod - outputs.armour - outputs.d_tb, outputs.min_damage)
+        outputs.total_damage = Math.max((outputs.total_sl + outputs.aw_damage + outputs.a_mount_damage_bonus) * outputs.size_damage_mod - outputs.armour - outputs.d_tb, outputs.min_damage)
         outputs.total_sl = initial_total_sl
         outputs.armour = initial_armour
         return outputs
@@ -14591,13 +15153,30 @@ on(`clicked:increment_fp`, eventInfo => wfrpModule.incrementAttribute("fortune",
 on(`clicked:decrement_fp`, eventInfo => wfrpModule.decrementAttribute("fortune"));
 on(`clicked:reset_fp`, eventInfo => {getAttrs(["fortune_max"], v => {setAttrs({fortune: v["fortune_max"]})})})
 
-on(wfrpModule.wfrp.combat_modifiers.map(m => `change:${m.attr}`).join(` `), eventInfo => {
+on([...wfrpModule.wfrp.combat_modifiers_v2.map(m => m.attr),
+    ...wfrpModule.wfrp.combat_modifiers_v2.filter(m => m.option_attr).map(m => m.option_attr)].map(m => `change:${m}`).join(` `), eventInfo => {
     const calculateModifier = (type, v) => {
-        const result = wfrpModule.wfrp.combat_modifiers.filter(m => m.values[type] && v[m.attr] === '1').reduce((s, m) => s + m.values[type], 0);
+        let result = wfrpModule.wfrp.combat_modifiers_v2
+            .filter(m => m.type === "checkbox" && m.mods[type] && v[m.attr] === '1')
+            .reduce((s, m) => s + m.mods[type], 0);
+
+        result = wfrpModule.wfrp.combat_modifiers_v2
+            .filter(m => m.type === "select" && v[m.attr] === "1")
+            .flatMap(m => m.options.map(o => Object.assign(o, {["option_attr"]: m.option_attr})))
+            .filter(o => o.mods[type] && v[o.option_attr] === o.value)
+            .reduce((s, o) => s + o.mods[type], result);
+
+        if (result < -30) result = -30
+        if (result > 60) result = 60
         return result > 0 ? `+${result}` : result < 0 ? `${result}` : `0`;
     }
 
-    getAttrs(wfrpModule.wfrp.combat_modifiers.map(m => m.attr), v => {
+    const attrs = [
+        ...wfrpModule.wfrp.combat_modifiers_v2.map(m => m.attr),
+        ...wfrpModule.wfrp.combat_modifiers_v2.filter(m => m.option_attr).map(m => m.option_attr)
+    ]
+
+    getAttrs(attrs, v => {
         setAttrs({
             ["cm_melee_sum"]: calculateModifier('melee', v),
             ["cm_ranged_sum"]: calculateModifier('ranged', v),
@@ -14605,25 +15184,10 @@ on(wfrpModule.wfrp.combat_modifiers.map(m => `change:${m.attr}`).join(` `), even
             ["cm_dodge_sum"]: calculateModifier('dodge', v),
         })
     })
-
-    const triggered_group = wfrpModule.wfrp.combat_modifiers.filter(m => m.attr === eventInfo.sourceAttribute)[0].group
-    if (triggered_group && eventInfo.newValue === "1") {
-        const attrs_for_unselect = wfrpModule.wfrp.combat_modifiers
-            .filter(m => m.attr !== eventInfo.sourceAttribute && m.group === triggered_group)
-            .map(m => m.attr)
-
-        const update = {}
-        attrs_for_unselect.forEach(attr => {update[attr] = "0"})
-        setAttrs(update)
-    }
 })
 
 on("clicked:reset_melee_modifiers clicked:reset_ranged_modifiers clicked:reset_parry_modifiers clicked:reset_dodge_modifiers", (eventInfo) => {
-    const type = eventInfo.triggerName.replace("clicked:reset_", "").replace("_modifiers", "")
-    const attrs_for_unselect = wfrpModule.wfrp.combat_modifiers
-        .filter(m => Object.keys(m.values).includes(type))
-        .map(m => m.attr)
-
+    const attrs_for_unselect = wfrpModule.wfrp.combat_modifiers_v2.map(m => m.attr)
     const update = {}
     attrs_for_unselect.forEach(attr => {update[attr] = "0"})
     setAttrs(update)
@@ -14669,6 +15233,10 @@ on (`clicked:reset_talent_attack_sl`, () => {
         })
         setAttrs(update)
     })
+})
+
+on(`clicked:test`, () => {
+
 })
 const wfrpDragAndDrop = ( () => {
 

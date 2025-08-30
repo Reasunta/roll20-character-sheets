@@ -489,8 +489,11 @@
     .sheet-margin-#{$i} {
         margin: #{$i}px;
     }
-    .sheet-margin-right-#{$i} {
+    .sheet-wfrp-wrapper .sheet-margin-right-#{$i}, .sheet-margin-right-#{$i} {
         margin-right: #{$i}px;
+    }
+    .sheet-wfrp-wrapper .sheet-margin-left-#{$i}, .sheet-margin-left-#{$i} {
+        margin-left: #{$i}px;
     }
 }
 
@@ -509,13 +512,19 @@
 .sheet-grid-justify-items-right {
     justify-items: right;
 }
-.sheet-text-align-center {
+.sheet-text-align-center, .sheet-wfrp-wrapper .sheet-text-align-center {
     text-align: center;
+}
+.sheet-text-align-left, .sheet-wfrp-wrapper .sheet-text-align-left {
+    text-align: left;
 }
 .sheet-flex {
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start
+}
+.sheet-flex-justify-content-space-between {
+    justify-content: space-between;
 }
 .sheet-settings-color {
     background-color: rgba(195, 223, 241, 0.125);

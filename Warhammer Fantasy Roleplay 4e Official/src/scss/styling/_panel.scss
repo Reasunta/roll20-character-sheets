@@ -69,3 +69,10 @@
 .sheet-wfrp-wrapper input[type="number"].sheet-border, .sheet-border {
   border: 1px solid black;
 }
+
+.sheet-modifier-list {
+  width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -382,6 +382,7 @@ const wfrpModule = ( () => {
             "repeating_weapons_weapon_q_dangerous",
             "repeating_weapons_weapon_q_imprecise",
             "repeating_weapons_weapon_q_slow",
+            "repeating_weapons_weapon_q_unbalanced",
             "repeating_weapons_weapon_q_undamaging",
             "repeating_weapons_weapon_qualities",
             "repeating_weapons_weapon_qualities_str"
@@ -401,6 +402,7 @@ const wfrpModule = ( () => {
             "slow",
             "undamaging",
             "pistol",
+            "unbalanced"
         ],
 
         public_weapon_attrs: [
@@ -541,6 +543,170 @@ const wfrpModule = ( () => {
             }
         ],
 
+        combat_modifiers_v2 : [
+            {
+                "group": "melee",
+                "attr": "cm_outnumbered",
+                "option_attr": "cm_outnumbered_option",
+                "label": "Outnumbered",
+                "tooltip": "Attacking an opponent you outnumber",
+                "type": "select",
+                "options": [
+                    {"label": "2:1", "value": "1", "mods": {"melee": 20}},
+                    {"label": "3:1", "value": "2", "mods": {"melee": 40}}
+                ]
+            },
+            {
+                "group": "melee",
+                "attr": "cm_target_grapple",
+                "option_attr": "cm_target_grapple_option",
+                "label": "Target in Grapple",
+                "tooltip": "Attacking an opponent who is in Grapple",
+                "type": "select",
+                "options": [
+                    {"label": "Leader", "value": "1", "mods": {"melee": 10}},
+                    {"label": "Follower", "value": "2", "mods": {"melee": 20}}
+                ]
+            },
+            {
+                "group": "melee",
+                "attr": "cm_side_rear_attack",
+                "label": `Side/Rear Attack`,
+                "tooltip": "Attacking an Engaged opponent in the sides or rear",
+                "type": "checkbox",
+                "mods": {"melee": 20}
+            },
+            {
+                "group": "melee",
+                "attr": "cm_target_is_fleeing",
+                "label": `Opponent is fleeing`,
+                "tooltip": "Attacking disengaging opponent",
+                "type": "checkbox",
+                "mods": {"melee": 20}
+            },
+            {
+                "group": "melee",
+                "attr": "cm_after_dual_wielder",
+                "label": `After Dual Wielder`,
+                "type": "checkbox",
+                "mods": {"parry": -10, "dodge": -10},
+                "tooltip": "Defence after Dual Wielder action"
+            },
+            {
+                "group": "ranged",
+                "attr": "cm_range",
+                "option_attr": "cm_range_option",
+                "label": "Shoot Range",
+                "tooltip": "Shooting a target at Range",
+                "type": "select",
+                "options": [
+                    {"label": "Point Blank Range", "value": "1", "tooltip": "Less than 1/10 weapon range", "mods": {"ranged": 40}},
+                    {"label": "Short Range", "value": "2", "tooltip": "Less than 1/2 weapon range", "mods": {"ranged": 20}},
+                    {"label": "Long Range", "value": "3", "tooltip": "Up to 2 weapon range", "mods": {"ranged": -10}},
+                    {"label": "Extreme Range", "value": "4", "tooltip": "Up to 3 weapon range", "mods": {"ranged": -30}},
+                ]
+            },
+            {
+                "group": "ranged",
+                "attr": "cm_target_group",
+                "option_attr": "cm_target_group_option",
+                "label": "Target is Group",
+                "tooltip": "Shooting a group of targets",
+                "type": "select",
+                "options": [
+                    {"label": "Shoot At Small Group", "value": "1", "tooltip": "Shooting at a small group (3–6 targets)", "mods": {"ranged": 20}},
+                    {"label": "Shoot At Large Group", "value": "2", "tooltip": "Shooting at a Large group (7–12 targets)", "mods": {"ranged": 40}},
+                    {"label": "Shoot Into Crowd", "value": "3", "tooltip": "Shooting into a crowd (13+ targets)", "mods": {"ranged": 60}},
+                ]
+            },
+            {
+                "group": "ranged",
+                "attr": "cm_shoot_after_move",
+                "label": `Shoot After Move`,
+                "type": "checkbox",
+                "mods": {"ranged": -10},
+                "tooltip":" Shooting on a Round where you also use your Move"
+            },
+            {
+                "group": "ranged",
+                "attr": "cm_shoot_after_aim",
+                "label": `Shoot After Aim`,
+                "type": "checkbox",
+                "mods": {"ranged": 20},
+                "tooltip": "Shooting when you spent your last Action aiming (no Test to aim required)"
+            },
+            {
+                "group": "ranged",
+                "attr": "cm_specific_hit_location",
+                "label": "Specific Hit Location",
+                "type": "checkbox",
+                "mods": {"melee": -20, "ranged": -20},
+                "tooltip": "A called strike / shot to a specific hit Location. If you succeed you hit that location"
+            },
+            {
+                "group": "other",
+                "attr": "cm_defensive_stand",
+                "label": "Defensive Stand",
+                "type": "checkbox",
+                "mods": {"parry": 20, "dodge": 20},
+                "tooltip": "Add +20 to all defensive rolls"
+            },
+            {
+                "group": "other",
+                "attr": "cm_cover",
+                "option_attr": "cm_cover_option",
+                "label": "In Cover",
+                "tooltip": "You have a cover",
+                "type": "select",
+                "options": [
+                    {
+                        "label": "Soft Cover",
+                        "value": "1",
+                        "tooltip": "Soft cover (behind a hedge for example)",
+                        "mods": {"opposed_melee": -10, "opposed_ranged": -10}
+                    },{
+                        "label": "Medium Cover",
+                        "value": "2",
+                        "tooltip": "Medium cover (wooden fence for example)",
+                        "mods": {"opposed_melee": -20, "opposed_ranged": -20}
+                    },{
+                        "label": "Hard Cover",
+                        "value": "3",
+                        "tooltip": "Hard cover (behind stone wall, for example)",
+                        "mods": {"opposed_melee": -30, "opposed_ranged": -30}
+                    }
+                ]
+            },
+            {
+                "group": "other",
+                "attr": "cm_terrain",
+                "option_attr": "cm_terrain_option",
+                "label": "On Terrain",
+                "tooltip": "You are on specific terrain",
+                "type": "select",
+                "options": [
+                    {"label": "Hard Terrain", "value": "1", "tooltip": "Mud, heavy rain or difficult terrain", "mods": {"melee": -10}},
+                    {"label": "Extreme Terrain", "value": "2", "tooltip": "Deep snow, water or other arduous terrain", "mods": { "melee": -30, "dodge": -30 }},
+                ]
+            },
+            {
+                "group": "other",
+                "type": "checkbox",
+                "attr": "cm_extreme_weather",
+                "label": `Extreme Weather`,
+                "mods": {"melee": -20, "ranged": -20},
+                "tooltip": "Monsoon, hurricane, thick blizzard, fog, mist, shadow or other extreme weather",
+            },
+            {
+                "group": "other",
+                "attr": "cm_darkness",
+                "label": "Darkness",
+                "type": "checkbox",
+                "mods": {"melee": -20, "ranged": -30, "parry": -20, "dodge": -20,},
+                "tooltip": "Acting in darkness"
+            }
+        ],
+
         sizes: ["tiny", "little", "small", "average", "large", "enormous", "monstrous"],
 
         modifiers: [
@@ -613,7 +779,8 @@ const wfrpModule = ( () => {
 
     const getHitLocation = (roll) => {
         const reversed = helperFunctions.reverseRoll(roll)
-        const result = Object.entries(wfrp.hit_locations).filter(e => reversed >= e[1]["from"] && reversed <= e[1]["to"])[0]
+        const hl = Object.entries(wfrp.hit_locations).filter(e => reversed >= e[1]["from"] && reversed <= e[1]["to"])[0]
+        const result = {[`roll`]: reversed, [`attr`]: hl[0], [`label`]: hl[1]}
         return result
     }
 
@@ -797,29 +964,47 @@ const wfrpModule = ( () => {
             input.d_mod = input.d_mod + input.d_off_hand_penalty + input.d_main_hand_penalty
             return input
         }
-        const applyCombatModifiers= (input) => {
+        const applyCombatModifiers = (input) => {
             const a_type = input.aw_is_ranged ? `ranged` : `melee`
             const d_type = input.dw_is_dodge ? `dodge` : `parry`
 
-            wfrp.combat_modifiers.filter(m => input[`a_${m.attr}`]).forEach(m => {
-                if (Object.keys(m.values).includes(a_type)) {
-                    input.a_mod = input.a_mod + m.values[a_type]
-                    input[`a_${m.attr}_value`] = m.values[a_type] > 0 ? `+${m.values[a_type]}` : `${m.values[a_type]}`
-                }
-                else {
-                    input[`a_${m.attr}`] = 0
-                }
+            const isModSelected = (m, player) => m.type === 'checkbox' ? !!input[`${player}_${m.attr}`] : !!input[`${player}_${m.attr}`] && !!input[`${player}_${m.option_attr}`]
+            const getMods = (m, player) => m.type === 'checkbox' ? m.mods : m.options.filter(o => parseInt(o.value) === input[`${player}_${m.option_attr}`])[0].mods
+
+            const applyMod = (m, player, type) => {
+                input[`${player}_mod`] = input[`${player}_mod`] + getMods(m, player)[type]
+                input[`${player}_${m.attr}_value`] = getMods(m, player)[type] > 0 ? `+${getMods(m, player)[type]}` : `${getMods(m, player)[type]}`
+            }
+
+            wfrp.combat_modifiers_v2.forEach(m => {
+                input[`a_${m.attr}_value`] = '0'
+                input[`d_${m.attr}_value`] = '0'
+
+                if (isModSelected(m, 'a') && Object.keys(getMods(m, 'a')).includes(a_type)) applyMod(m, 'a', a_type)
+                if (isModSelected(m, 'd') && Object.keys(getMods(m, 'd')).includes(d_type)) applyMod(m, "d", d_type)
+                if (isModSelected(m, 'd') && Object.keys(getMods(m, 'd')).includes(`opposed_${a_type}`)) applyMod(m, 'a', `opposed_${a_type}`)
             })
 
-            wfrp.combat_modifiers.filter(m => input[`d_${m.attr}`]).forEach(m => {
-                if (Object.keys(m.values).includes(d_type)) {
-                    input.d_mod = input.d_mod + m.values[d_type]
-                    input[`d_${m.attr}_value`] = m.values[d_type] > 0 ? `+${m.values[d_type]}` : `${m.values[d_type]}`
-                }
-                else {
-                    input[`d_${m.attr}`] = 0
-                }
-            })
+            return input
+        }
+        const applyMountedModifiers = (input) => {
+            input.a_mounted_attack_mod = 0
+            input.a_attack_vs_mounted_mod = 0
+            input.d_mounted_dodge_mod = 0
+
+            if (input.a_mounted && !input.aw_is_ranged) {
+                const d_mounted_size = input.d_mounted ? input.d_mount_size_index : input.d_size
+                input.a_mounted_attack_mod = input.a_mount_size_index > d_mounted_size ? 20 : 0
+                input.a_mod = input.a_mod + input.a_mounted_attack_mod
+            }
+            if (input.d_mounted && !input.aw_is_ranged) {
+                const a_mounted_size = input.a_mounted ? input.a_mount_size_index : input.a_size
+                input.a_attack_vs_mounted_mod = input.d_mount_size_index > a_mounted_size ? -10 : 0
+                input.a_mod = input.a_mod + input.a_attack_vs_mounted_mod
+            }
+
+            input.d_mounted_dodge_mod = input.d_mounted && input.dw_is_dodge ? -20 : 0
+            input.d_mod = input.d_mod + input.d_mounted_dodge_mod
 
             return input
         }
@@ -867,6 +1052,11 @@ const wfrpModule = ( () => {
             input.d_roll_sl = input.d_roll_sl + input.dw_slow
             return input
         }
+        const applyUnbalancedQuality = (input) => {
+            input.dw_unbalanced = hasQuality(input.dw_qualities, 'unbalanced') ? -1 : 0
+            input.d_roll_sl = input.d_roll_sl + input.dw_unbalanced
+            return input
+        }
 
         const applySizeModifers = (input) => {
             input.a_is_smaller_mod = 0
@@ -910,22 +1100,38 @@ const wfrpModule = ( () => {
         entries = addLastValuesToRoll(entries, a_char_source, d_char_source)
         entries = addRollsToRoll(entries, a_roll_source, d_roll_source, opposed_source)
 
-        wfrp.combat_modifiers.filter(m => Object.keys(m.values).includes('melee') || Object.keys(m.values).includes('ranged'))
-            .forEach(m => {
-                entries.push(rtNumAttrEntry(`a_${m.attr}`, `${a_char_source}${m.attr}`), rtOutputEntry(`a_${m.attr}_value`))
-            })
-        wfrp.combat_modifiers.filter(m => Object.keys(m.values).includes('parry') || Object.keys(m.values).includes('dodge'))
-            .forEach(m => {
-                entries.push(rtNumAttrEntry(`d_${m.attr}`, `${d_char_source}${m.attr}`), rtOutputEntry(`d_${m.attr}_value`))
-            })
+        wfrp.combat_modifiers_v2.filter(m => m.type === "checkbox").forEach(m => {
+            entries.push(
+                rtNumAttrEntry(`a_${m.attr}`, `${a_char_source}${m.attr}`), rtOutputEntry(`a_${m.attr}_value`),
+                rtNumAttrEntry(`d_${m.attr}`, `${d_char_source}${m.attr}`), rtOutputEntry(`d_${m.attr}_value`)
+            )
+        })
+        wfrp.combat_modifiers_v2.filter(m => m.type === "select").forEach(m => {
+            entries.push(
+                rtNumAttrEntry(`a_${m.attr}`, `${a_char_source}${m.attr}`),
+                rtNumAttrEntry(`a_${m.attr}_option`, `${a_char_source}${m.option_attr}`),
+                rtOutputEntry(`a_${m.attr}_value`),
+                rtNumAttrEntry(`d_${m.attr}`, `${d_char_source}${m.attr}`),
+                rtNumAttrEntry(`d_${m.attr}_option`, `${d_char_source}${m.option_attr}`),
+                rtOutputEntry(`d_${m.attr}_value`)
+            )
+        })
+
+        entries.push(rtNumAttrEntry(`a_mounted`,`${a_char_source}mounted`), rtNumAttrEntry(`d_mounted`,`${d_char_source}mounted`))
+        entries.push(rtNumAttrEntry(`a_mount_size_index`,`${a_char_source}mount_size_index`), rtNumAttrEntry(`d_mount_size_index`,`${d_char_source}mount_size_index`))
+        entries.push(rtNumAttrEntry(`a_use_mount_for_charge`,`${a_char_source}use_mount_for_charge`), rtNumAttrEntry(`d_use_mount_for_charge`,`${d_char_source}use_mount_for_charge`))
+        entries.push(rtNumAttrEntry(`a_mount_strength`,`${a_char_source}mount_strength`), rtNumAttrEntry(`d_mount_strength`,`${d_char_source}mount_strength`))
+        entries.push(rtNumAttrEntry(`a_sb`,`${a_char_source}strength_bonus`), rtNumAttrEntry(`d_sb`,`${d_char_source}strength_bonus`))
+
         entries = addOutputsToRoll(entries, [
             `a_target`, `d_target`, `a_roll_sl`, `d_roll_sl`, `total_sl`,
             `hit_location`, `armour`, `is_attacker_win`, `a_is_crit`, `d_is_crit`, `total_damage`,
             `aw_accurate`, `aw_damaging`, `aw_impact`, `aw_impale`, `aw_penetrating`, `aw_precise`,
             `aw_dangerous`, `aw_imprecise`, `aw_undamaging`,
-            `dw_defensive`, `dw_fast`, `dw_impale`, `dw_dangerous`, `dw_slow`,
+            `dw_defensive`, `dw_fast`, `dw_impale`, `dw_dangerous`, `dw_slow`, `dw_unbalanced`,
             `is_only_aw_name`, `a_off_hand_penalty`, `d_off_hand_penalty`,`a_main_hand_penalty`, `d_main_hand_penalty`,
-            `a_is_smaller_mod`, `d_size_mod`, `d_is_smaller_sl`, `size_damage_mod`])
+            `a_is_smaller_mod`, `d_size_mod`, `d_is_smaller_sl`, `size_damage_mod`,
+            `a_mounted_attack_mod`, `a_attack_vs_mounted_mod`, `d_mounted_dodge_mod`, `a_mount_damage_bonus`])
 
         startRoll(rtString(`&{template:wfrp-opposed}`, entries), (results) => {
             let outputs = extractRollResults(results)
@@ -943,6 +1149,7 @@ const wfrpModule = ( () => {
             outputs = applyHandPenalties(outputs)
             outputs = applyCombatModifiers(outputs)
             outputs = applySizeModifers(outputs)
+            outputs = applyMountedModifiers(outputs)
 
             outputs = processRoll(outputs, "a")
             outputs = processRoll(outputs, "d")
@@ -953,6 +1160,7 @@ const wfrpModule = ( () => {
             outputs = applyDangerousQuality(outputs)
             outputs = applyImpreciseQuality(outputs)
             outputs = applySlowQuality(outputs)
+            outputs = applyUnbalancedQuality(outputs)
             outputs = applySizeSL(outputs)
 
             if (!outputs.a_is_passed) outputs.a_talent_rank = 0
@@ -1054,6 +1262,15 @@ const wfrpModule = ( () => {
             }
             return input
         }
+        const applyMountedRule = (input) => {
+            input.a_mount_damage_bonus = 0
+
+            if (!input.a_use_mount_for_charge || !input.a_mounted || input.aw_is_ranged) return input
+            const mount_sb = Math.floor(input.a_mount_strength / 10)
+            if (mount_sb > input.a_sb) input.a_mount_damage_bonus  = mount_sb - input.a_sb
+            if (input.a_mount_size_index > input.a_size)  input.size_delta = input.a_mount_size_index - input.d_size
+            return input
+        }
         const applySizeDamage = (input) => {
             input.size_damage_mod = (!input.aw_is_ranged && input.size_delta > 1) ? input.size_delta : 1
             return input
@@ -1061,20 +1278,21 @@ const wfrpModule = ( () => {
 
         const hit_location = getHitLocation(inputs.a_roll)
 
-        inputs.hit_location = hit_location[1].label
-        const initial_armour = inputs[`da_${hit_location[0]}`] + inputs.da_shield
+        inputs.hit_location = hit_location.roll
+        const initial_armour = inputs[`da_${hit_location.attr}`] + inputs.da_shield
         inputs.armour = initial_armour
 
         const initial_total_sl = inputs.total_sl
 
-        let outputs = applySizeWeaponQualities(inputs)
-        outputs = applyDamagingQuality(inputs)
+        let outputs = applyMountedRule(inputs)
+        outputs = applySizeWeaponQualities(outputs)
+        outputs = applyDamagingQuality(outputs)
         outputs = applyImpactQuality(outputs)
         outputs = applyPenetratingQuality(outputs)
         outputs = applyUndamagingQuality(outputs)
         outputs = applySizeDamage(outputs)
 
-        outputs.total_damage = Math.max((outputs.total_sl + outputs.aw_damage) * outputs.size_damage_mod - outputs.armour - outputs.d_tb, outputs.min_damage)
+        outputs.total_damage = Math.max((outputs.total_sl + outputs.aw_damage + outputs.a_mount_damage_bonus) * outputs.size_damage_mod - outputs.armour - outputs.d_tb, outputs.min_damage)
         outputs.total_sl = initial_total_sl
         outputs.armour = initial_armour
         return outputs
@@ -3482,13 +3700,30 @@ on(`clicked:increment_fp`, eventInfo => wfrpModule.incrementAttribute("fortune",
 on(`clicked:decrement_fp`, eventInfo => wfrpModule.decrementAttribute("fortune"));
 on(`clicked:reset_fp`, eventInfo => {getAttrs(["fortune_max"], v => {setAttrs({fortune: v["fortune_max"]})})})
 
-on(wfrpModule.wfrp.combat_modifiers.map(m => `change:${m.attr}`).join(` `), eventInfo => {
+on([...wfrpModule.wfrp.combat_modifiers_v2.map(m => m.attr),
+    ...wfrpModule.wfrp.combat_modifiers_v2.filter(m => m.option_attr).map(m => m.option_attr)].map(m => `change:${m}`).join(` `), eventInfo => {
     const calculateModifier = (type, v) => {
-        const result = wfrpModule.wfrp.combat_modifiers.filter(m => m.values[type] && v[m.attr] === '1').reduce((s, m) => s + m.values[type], 0);
+        let result = wfrpModule.wfrp.combat_modifiers_v2
+            .filter(m => m.type === "checkbox" && m.mods[type] && v[m.attr] === '1')
+            .reduce((s, m) => s + m.mods[type], 0);
+
+        result = wfrpModule.wfrp.combat_modifiers_v2
+            .filter(m => m.type === "select" && v[m.attr] === "1")
+            .flatMap(m => m.options.map(o => Object.assign(o, {["option_attr"]: m.option_attr})))
+            .filter(o => o.mods[type] && v[o.option_attr] === o.value)
+            .reduce((s, o) => s + o.mods[type], result);
+
+        if (result < -30) result = -30
+        if (result > 60) result = 60
         return result > 0 ? `+${result}` : result < 0 ? `${result}` : `0`;
     }
 
-    getAttrs(wfrpModule.wfrp.combat_modifiers.map(m => m.attr), v => {
+    const attrs = [
+        ...wfrpModule.wfrp.combat_modifiers_v2.map(m => m.attr),
+        ...wfrpModule.wfrp.combat_modifiers_v2.filter(m => m.option_attr).map(m => m.option_attr)
+    ]
+
+    getAttrs(attrs, v => {
         setAttrs({
             ["cm_melee_sum"]: calculateModifier('melee', v),
             ["cm_ranged_sum"]: calculateModifier('ranged', v),
@@ -3496,25 +3731,10 @@ on(wfrpModule.wfrp.combat_modifiers.map(m => `change:${m.attr}`).join(` `), even
             ["cm_dodge_sum"]: calculateModifier('dodge', v),
         })
     })
-
-    const triggered_group = wfrpModule.wfrp.combat_modifiers.filter(m => m.attr === eventInfo.sourceAttribute)[0].group
-    if (triggered_group && eventInfo.newValue === "1") {
-        const attrs_for_unselect = wfrpModule.wfrp.combat_modifiers
-            .filter(m => m.attr !== eventInfo.sourceAttribute && m.group === triggered_group)
-            .map(m => m.attr)
-
-        const update = {}
-        attrs_for_unselect.forEach(attr => {update[attr] = "0"})
-        setAttrs(update)
-    }
 })
 
 on("clicked:reset_melee_modifiers clicked:reset_ranged_modifiers clicked:reset_parry_modifiers clicked:reset_dodge_modifiers", (eventInfo) => {
-    const type = eventInfo.triggerName.replace("clicked:reset_", "").replace("_modifiers", "")
-    const attrs_for_unselect = wfrpModule.wfrp.combat_modifiers
-        .filter(m => Object.keys(m.values).includes(type))
-        .map(m => m.attr)
-
+    const attrs_for_unselect = wfrpModule.wfrp.combat_modifiers_v2.map(m => m.attr)
     const update = {}
     attrs_for_unselect.forEach(attr => {update[attr] = "0"})
     setAttrs(update)
@@ -3560,4 +3780,8 @@ on (`clicked:reset_talent_attack_sl`, () => {
         })
         setAttrs(update)
     })
+})
+
+on(`clicked:test`, () => {
+
 })

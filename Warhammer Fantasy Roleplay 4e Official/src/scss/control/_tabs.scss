@@ -96,20 +96,21 @@ input[name="attr_is_combat"][type="hidden"][value="1"] + div[class="sheet-wfrp-t
     display: grid;
 }
 
-input[name="attr_show_melee_modifiers_settings"][type="hidden"] + div.sheet-modifiers-settings,
-input[name="attr_show_parry_modifiers_settings"][type="hidden"] + div.sheet-modifiers-settings,
-input[name="attr_show_dodge_modifiers_settings"][type="hidden"] + div.sheet-modifiers-settings,
-input[name="attr_show_ranged_modifiers_settings"][type="hidden"] + div.sheet-modifiers-settings,
-input[name*="attr_cm"][type="hidden"] + span
+input[name="attr_show_modifiers_settings"][type="hidden"] + div.sheet-wfrp-panel,
+input[name*="attr_cm"][type="hidden"] + div.sheet-modifier-list,
+input[name*="attr_cm"][type="hidden"] + div > div.sheet-modifier-list
 {
     display: none;
 }
-input[name="attr_show_melee_modifiers_settings"][type="hidden"][value="1"] + div.sheet-modifiers-settings,
-input[name="attr_show_parry_modifiers_settings"][type="hidden"][value="1"] + div.sheet-modifiers-settings,
-input[name="attr_show_dodge_modifiers_settings"][type="hidden"][value="1"] + div.sheet-modifiers-settings,
-input[name="attr_show_ranged_modifiers_settings"][type="hidden"][value="1"] + div.sheet-modifiers-settings,
-input[name*="attr_cm"][type="hidden"][value="1"] + span{
+input[name="attr_show_modifiers_settings"][type="hidden"][value="1"] + div.sheet-wfrp-panel,
+input[name*="attr_cm"][type="hidden"][value="1"] + div.sheet-modifier-list {
     display: inherit;
+}
+
+@for $i from 1 through 5 {
+    input[name*="attr_cm"][name*="option"][type="hidden"][value="#{$i}"] + input[name*="attr_cm"][type="hidden"][value="1"] + div > div.sheet-modifier-list:nth-child(#{$i}) {
+        display: block;
+    }
 }
 
 input[name="attr_spell_type"][type="hidden"][value="Spell"] ~ input[name="attr_spell_lore"],

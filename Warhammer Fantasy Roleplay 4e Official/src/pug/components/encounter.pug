@@ -124,38 +124,54 @@ mixin encounter-talent-row
         .wfrp-talenttable__row.wfrp-settings.control__hide--talent_settings
             +talent-row-settings()
 
-mixin encounter-modifier-v2(label, mod_label, attr, tooltip)
-    div(class=`sheet-flex`)
-        span.wfrp-settings__label.sheet-margin-right-2(title=tooltip, data-i18n=label)
-        span.wfrp-settings__label.sheet-margin-right-2 (#{mod_label})
-        input.wfrp-settings__input(name=attr, type="checkbox", title=tooltip, value="1")
-
-mixin encounter-modifier-header-view(label, mod_label, attr, tooltip)
-    input(name=attr, type="hidden")
-    span
-        span.wfrp-settings__label.sheet-margin-right-2(title=tooltip, data-i18n=label)
-        span.wfrp-settings__label.sheet-margin-right-2(title=tooltip) (#{mod_label}),
-
-mixin encounter-modifier-block(title, type, modifiers)
-    .sheet-grid-12
-        label(title=title, class=`sheet-icon sheet-unopposed-${type}-attack-icon`)
-            input(type="checkbox" value="1" name=`attr_show_${type}_modifiers_settings`, style="display: none;")
+mixin encounter-modifier(modifier)
+    .sheet-flex.sheet-flex-justify-content-space-between
         div
-            .sheet-bold(data-i18n=`Total`)
-            span(name=`attr_cm_${type}_sum`)
-        .sheet-grid-span-9
-            .sheet-bold(data-i18n=`Active`)
-            div.sheet-flex
-                for modifier in modifiers
-                    +encounter-modifier-header-view(modifier.label, modifier.values[type], modifier.attr, modifier.tooltips[type])
-        button.sheet-pictos(type="action", name=`act_reset_${type}_modifiers`)
-            div.sheet-text-align-center 1
-    input(type="hidden" name=`attr_show_${type}_modifiers_settings`)
-    .modifiers-settings.sheet-settings-color
-        .sheet-wfrp-roll__divider
-        .sheet-grid-4.sheet-grid-justify-items-right
-            for modifier in modifiers
-                +encounter-modifier-v2(modifier.label, modifier.values[type], modifier.attr, modifier.tooltips[type])
+            input.wfrp-settings__input(name=modifier.attr, type="checkbox", title=modifier.tooltip, value="1")
+            span.wfrp-settings__label.sheet-margin-left-2.sheet-margin-right-2(title=modifier.tooltip, data-i18n=modifier.label)
+            if modifier.type === `checkbox` && (modifier.group === `melee` || modifier.group === `ranged`)
+                span.wfrp-settings__label (#{Object.values(modifier.mods)[0]})
+        if modifier.type === `select`
+            div
+                select.wfrp-settings__input.sheet-text-align-center(name=modifier.option_attr)
+                    for option in modifier.options
+                        option(value=option.value, title=option.tooltip)
+                            span(data-i18n=option.label)
+                            if modifier.group === `melee` || modifier.group === `ranged`
+                                span (#{option.mods[modifier.group]})
+
+mixin encounter-modifier-list(group)
+    div(style="width: 100%")
+        for modifier in modifiers_v2.filter(m => (m.mods && Object.keys(m.mods).includes(group)) || (m.options && m.options.some(o => Object.keys(o.mods).includes(group))))
+            +encounter-modifier-display(modifier, group)
+
+mixin encounter-modifier-display(modifier, group)
+    if modifier.type === "checkbox"
+        input(name=modifier.attr, type="hidden")
+        div.sheet-modifier-list
+            span.wfrp-settings__label.sheet-margin-right-2(title=tooltip) (#{modifier.mods[group]})
+            span.wfrp-settings__label.sheet-margin-right-2(title=modifier.tooltip, data-i18n=modifier.label)
+    if modifier.type === "select"
+        input(name=modifier.option_attr, type="hidden")
+        input(name=modifier.attr, type="hidden")
+        div
+            for option in modifier.options
+                div.sheet-modifier-list
+                    if(option.mods[group])
+                        span.wfrp-settings__label.sheet-margin-right-2(title=option.tooltip || modifier.tooltip) (#{option.mods[group]})
+                        span.wfrp-settings__label.sheet-margin-right-2(title=option.tooltip || modifier.tooltip, data-i18n=option.label)
+                        span.wfrp-settings__label(title=option.tooltip || modifier.tooltip, data-i18n=modifier.label)
+
+mixin encounter-modifier-block(title, type)
+    .sheet-wfrp-panel
+        .sheet-bold.sheet-text-align-center(data-i18n=title)
+        .sheet-grid-3.sheet-grid-justify-items-center
+            label(title=title, class=`sheet-icon sheet-unopposed-${type}-attack-icon`)
+                input(type="checkbox" value="1" name=`attr_show_modifiers_settings`, style="display: none;")
+            div
+                span(name=`attr_cm_${type}_sum`)
+            button.sheet-pictos(type="action", name=`act_reset_${type}_modifiers`)
+                div.sheet-text-align-center 1
 
 mixin encounter()
     .wfrp-panel.page__encounter.sheet-grid-span-6
@@ -213,14 +229,56 @@ mixin encounter()
                 +encounter_button("Log Last Roll", "action", "act_debug_roll")
 
         h1.wfrp-panel__header(data-i18n="Modifiers")
+        .sheet-grid-5
+            +encounter-modifier-block("Melee Attack", `melee`)
+            +encounter-modifier-block("Ranged Attack", `ranged`)
+            +encounter-modifier-block("Parrying", `parry`)
+            +encounter-modifier-block("Dodge", `dodge`)
+            +encounter-modifier-block("Other", ``)
+        input(type="hidden" name=`attr_show_modifiers_settings`)
         .sheet-wfrp-panel
-            +encounter-modifier-block("Melee attack modifiers", `melee`, Object.values(modifiers).filter(m => Object.keys(m.values).includes(`melee`)))
-        .sheet-wfrp-panel
-            +encounter-modifier-block("Ranged attack modifiers", `ranged`, Object.values(modifiers).filter(m => Object.keys(m.values).includes(`ranged`)))
-        .sheet-wfrp-panel
-            +encounter-modifier-block("Parry modifiers", `parry`, Object.values(modifiers).filter(m => Object.keys(m.values).includes(`parry`)))
-        .sheet-wfrp-panel
-            +encounter-modifier-block("Dodge modifiers", `dodge`, Object.values(modifiers).filter(m => Object.keys(m.values).includes(`dodge`)))
+            .sheet-grid-5.sheet-grid-justify-items-center.modifiers-settings.sheet-settings-color
+                +encounter-modifier-list("melee")
+                +encounter-modifier-list("ranged")
+                +encounter-modifier-list("parry")
+                +encounter-modifier-list("dodge")
+
+            .sheet-wfrp-roll__divider
+            .sheet-grid-3.modifiers-settings.sheet-grid-justify-items-center.sheet-settings-color
+                div(style="width:90%")
+                    h3(data-i18n="Melee Attack")
+                    for modifier in modifiers_v2.filter(m => m.group === `melee`)
+                        +encounter-modifier(modifier)
+                div(style="width:90%")
+                    h3(data-i18n="Ranged Attack")
+                    for modifier in modifiers_v2.filter(m => m.group === `ranged`)
+                        +encounter-modifier(modifier)
+                div(style="width:90%")
+                    h3(data-i18n="Other")
+                    for modifier in modifiers_v2.filter(m => m.group === `other`)
+                        +encounter-modifier(modifier)
+                    .sheet-wfrp-roll__divider
+                    .sheet-flex.sheet-flex-justify-content-space-between
+                        div
+                            input.wfrp-settings__input(name="attr_mounted", type="checkbox", title="You are mounted", value="1")
+                            span.wfrp-settings__label.sheet-margin-left-2.sheet-margin-right-2(title="You are mounted", data-i18n="Mounted")
+                        div
+                            select.wfrp-settings__input.sheet-text-align-center(name="attr_mount_size_index")
+                                option(data-i18n="Tiny", value="0")
+                                option(data-i18n="Little", value="1")
+                                option(data-i18n="Small", value="2")
+                                option(data-i18n="Average", value="3")
+                                option(data-i18n="Large", value="4" selected)
+                                option(data-i18n="Enormous", value="5")
+                                option(data-i18n="Monstrous", value="6")
+                    .sheet-grid-2
+                        div
+                            input.wfrp-settings__input(name="attr_use_mount_for_charge", type="checkbox", title="Use Mount Size and Strength for Charge", value="1")
+                            span.wfrp-settings__label.sheet-margin-left-2.sheet-margin-right-2(title="Use Mount Size and Strength for Charge", data-i18n="Use Mount for Charge")
+                        div.sheet-grid-2
+                            span(data-i18n="Strength")
+                            div
+                                input.wfrp-settings__input.sheet-text-align-center(name="attr_mount_strength", type="number" value="40")
 
         .sheet-grid-3.sheet-grid-gap-10
             .sheet-grid-span-2

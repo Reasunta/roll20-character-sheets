@@ -1,4 +1,4 @@
-mixin row(label, value, condition, label_class = 'wfrp-roll__label', is_locale=true)
+mixin row(label, value, condition, label_class='wfrp-roll__label', is_locale=true, is_value_locale=false)
     if condition
         | {{##{condition}}}
     .wfrp-roll__row
@@ -6,6 +6,30 @@ mixin row(label, value, condition, label_class = 'wfrp-roll__label', is_locale=t
             div(class = label_class, data-i18n=label)
         else
             div(class = label_class) #{label}
+        if is_value_locale
+            .wfrp-roll__value(data-i18n=value)
+        else
+            .wfrp-roll__value #{value}
+    if condition
+        | {{/#{condition}}}
+
+mixin select-mod(label, options, value, condition, option_condition)
+    if condition
+        | {{##{condition}}}
+    for option in options
+        +option-row(label, option.label, value, `${option_condition} ${option.value}`)
+    if condition
+        | {{/#{condition}}}
+
+
+mixin option-row(label, option, value, condition, label_class='wfrp-roll__label')
+    if condition
+        | {{##{condition}}}
+    .wfrp-roll__row
+        div(class = label_class)
+            span.sheet-margin-right-2(data-i18n=label)
+            span.sheet-margin-right-2 -
+            span(data-i18n=option)
         .wfrp-roll__value #{value}
     if condition
         | {{/#{condition}}}
@@ -33,11 +57,12 @@ mixin damage
     +total_sl(`wfrp-roll__success`, `Total SL`, `{{computed::total_sl}}`)
     != `{{#rollGreater() aw_damage 0}}`
     +row(`Weapon damage`, `+{{aw_damage}}`)
+    +row(`Use mount strength`, `+{{computed::a_mount_damage_bonus}}`, `rollGreater() computed::a_mount_damage_bonus 0`)
     +row(`Damaging weapon`, `+{{computed::aw_damaging}}`, `rollGreater() computed::aw_damaging 0`, `wfrp-roll__label-italic`)
     +row(`Impact weapon`, `+{{computed::aw_impact}}`, `rollGreater() computed::aw_impact 0`, `wfrp-roll__label-italic`)
     +row(`Attacker is bigger`, `x{{computed::size_damage_mod}}`, `rollGreater() computed::size_damage_mod 1`, `wfrp-roll__label-italic`)
     .wfrp-roll__divider
-    +row(`Hit Location`, `{{computed::hit_location}}`)
+    +hit_location()
     +row(`AP`, `{{computed::armour}}`)
     +row(`Penetrating weapon`, `{{computed::aw_penetrating}} AP`, `rollLess() computed::aw_penetrating 0`, `wfrp-roll__label-italic`)
     +row(`Undamaging weapon`, `+{{computed::aw_undamaging}} AP`, `rollGreater() computed::aw_undamaging 0`, `wfrp-roll__label-italic`)
@@ -54,6 +79,13 @@ mixin target-size
     +row(`Target is enormous`, `{{computed::d_size_mod}}`, `rollTotal() computed::d_size_mod 40`)
     +row(`Target is monstrous`, `{{computed::d_size_mod}}`, `rollTotal() computed::d_size_mod 60`)
 
+mixin hit_location
+    +row(`Hit Location`, `Head`, `rollBetween() computed::hit_location 1 9`, 'wfrp-roll__label', true, true)
+    +row(`Hit Location`, `Left Arm`, `rollBetween() computed::hit_location 10 24`, 'wfrp-roll__label', true, true)
+    +row(`Hit Location`, `Right Arm`, `rollBetween() computed::hit_location 25 44`, 'wfrp-roll__label', true, true)
+    +row(`Hit Location`, `Body`, `rollBetween() computed::hit_location 45 79`, 'wfrp-roll__label', true, true)
+    +row(`Hit Location`, `Left Leg`, `rollBetween() computed::hit_location 80 89`, 'wfrp-roll__label', true, true)
+    +row(`Hit Location`, `Right Leg`, `rollBetween() computed::hit_location 90 100`, 'wfrp-roll__label', true, true)
 
 
 rolltemplate.sheet-rolltemplate-wfrp-opposed
@@ -71,8 +103,16 @@ rolltemplate.sheet-rolltemplate-wfrp-opposed
         +roll_row(`Attacker roll`, `{{computed::a_roll}} vs {{computed::a_target}}`, `computed::a_is_crit`)
         +row(`Skill value`, `{{as_value}}`)
         +row(`Advantages`, `{{computed::a_adv}}`)
-        for modifier in Object.values(modifiers).filter(m => Object.keys(m.values).includes('melee') || Object.keys(m.values).includes('ranged'))
-            +row(modifier.label, `{{computed::a_${modifier.rt_attr}_value}}`, `^rollTotal() computed::a_${modifier.rt_attr} 0`)
+        for modifier in modifiers_v2.filter(m => m.type === "checkbox")
+            +row(modifier.rt_label || modifier.label, `{{computed::a_${modifier.rt_attr}_value}}`, `^rollTotal() computed::a_${modifier.rt_attr}_value 0`)
+        for modifier in modifiers_v2.filter(m => m.type === "select")
+            +select-mod(modifier.rt_label || modifier.label, modifier.options,
+                `{{computed::a_${modifier.rt_attr}_value}}`,
+                `^rollTotal() computed::a_${modifier.rt_attr}_value 0`,
+                `rollTotal() a_${modifier.rt_attr}_option`
+                )
+        +row(`You are rider`, `+{{computed::a_mounted_attack_mod}}`, `rollGreater() computed::a_mounted_attack_mod 0`)
+        +row(`Target is rider`, `{{computed::a_attack_vs_mounted_mod}}`, `rollLess() computed::a_attack_vs_mounted_mod 0`)
         +row(`Off hand penalty`, `{{computed::a_off_hand_penalty}}`, `rollLess() computed::a_off_hand_penalty 0`)
         +row(`Main hand penalty`, `{{computed::a_main_hand_penalty}}`, `rollLess() computed::a_main_hand_penalty 0`)
         +row(`Accurate weapon`, `+{{computed::aw_accurate}}`, `rollGreater() computed::aw_accurate 0`, `wfrp-roll__label-italic`)
@@ -95,13 +135,21 @@ rolltemplate.sheet-rolltemplate-wfrp-opposed
         +roll_row(`Defender roll`, `{{computed::d_roll}} vs {{computed::d_target}}`, `computed::d_is_crit`)
         +row(`Skill value`, `{{ds_value}}`)
         +row(`Advantages`, `{{computed::d_adv}}`)
-        for modifier in Object.values(modifiers).filter(m => Object.keys(m.values).includes('parry') || Object.keys(m.values).includes('dodge'))
-            +row(modifier.label, `{{computed::d_${modifier.rt_attr}_value}}`, `^rollTotal() computed::d_${modifier.rt_attr} 0`)
+        for modifier in modifiers_v2.filter(m => m.type === "checkbox")
+            +row(modifier.rt_label || modifier.label, `{{computed::d_${modifier.rt_attr}_value}}`, `^rollTotal() computed::d_${modifier.rt_attr}_value 0`)
+        for modifier in modifiers_v2.filter(m => m.type === "select")
+            +select-mod(modifier.rt_label || modifier.label, modifier.options,
+                `{{computed::d_${modifier.rt_attr}_value}}`,
+                `^rollTotal() computed::d_${modifier.rt_attr}_value 0`,
+                `rollTotal() d_${modifier.rt_attr}_option`
+            )
+        +row(`Rider is dodging`, `{{computed::d_mounted_dodge_mod}}`, `rollLess() computed::d_mounted_dodge_mod 0`)
         +row(`Off hand penalty`, `{{computed::d_off_hand_penalty}}`, `rollLess() computed::d_off_hand_penalty 0`)
         +row(`Main hand penalty`, `{{computed::d_main_hand_penalty}}`, `rollLess() computed::d_main_hand_penalty 0`)
         +row(`vs Fast weapon`, `{{computed::dw_fast}}`, `rollLess() computed::dw_fast 0`, `wfrp-roll__label-italic`)
         +row(`Defensive weapon`, `+{{computed::dw_defensive}} SL`, `rollGreater() computed::dw_defensive 0`, `wfrp-roll__label-italic`)
-        +row(`vs Slow weapon`, `+{{computed::dw_defensive}} SL`, `rollGreater() computed::dw_slow 0`, `wfrp-roll__label-italic`)
+        +row(`vs Slow weapon`, `+{{computed::dw_slow}} SL`, `rollGreater() computed::dw_slow 0`, `wfrp-roll__label-italic`)
+        +row(`Unbalanced weapon`, `{{computed::dw_unbalanced}} SL`, `rollLess() computed::dw_unbalanced 0`, `wfrp-roll__label-italic`)
         +row(`Impale weapon`, ``, `rollGreater() computed::dw_impale 0`, `wfrp-roll__label-italic`)
         +row(`Dangerous weapon`, ``, `rollGreater() computed::dw_dangerous 0`, `wfrp-roll__label-italic`)
         +row(`Defender is smaller`, `{{computed::d_is_smaller_sl}} SL`, `rollLess() computed::d_is_smaller_sl 0`, `wfrp-roll__label-italic`)

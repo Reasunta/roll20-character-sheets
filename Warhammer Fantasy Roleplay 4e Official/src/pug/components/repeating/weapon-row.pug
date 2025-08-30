@@ -59,7 +59,7 @@ mixin weapon-row
                 input.wfrp-settings__input(name=`attr_weapon_qualities`, type="text")
             .wfrp-settings__row--span
                 .wfrp-settings__label(data-i18n=`Quality Checkboxes`)
-                .wfrp-weapontable__quality-checkbox-row
+                .sheet-grid-5.sheet-grid-justify-items-right.sheet-text-align-left
                     +weapon-quality-checkbox(`Accurate`, `attr_weapon_q_accurate`)
                     +weapon-quality-checkbox(`Damaging`, `attr_weapon_q_damaging`)
                     +weapon-quality-checkbox(`Defensive`, `attr_weapon_q_defensive`)
@@ -71,10 +71,11 @@ mixin weapon-row
                     +weapon-quality-checkbox(`Precise`, `attr_weapon_q_precise`)
             .wfrp-settings__row--span
                 .wfrp-settings__label(data-i18n=`Flail Checkboxes`)
-                .wfrp-weapontable__quality-checkbox-row
+                .sheet-grid-5.sheet-grid-justify-items-right.sheet-text-align-left
                     +weapon-quality-checkbox(`Dangerous`, `attr_weapon_q_dangerous`)
                     +weapon-quality-checkbox(`Imprecise`, `attr_weapon_q_imprecise`)
                     +weapon-quality-checkbox(`Slow`, `attr_weapon_q_slow`)
+                    +weapon-quality-checkbox(`Unbalanced`, `attr_weapon_q_unbalanced`)
                     +weapon-quality-checkbox(`Undamaging`, `attr_weapon_q_undamaging`)
             .wfrp-settings__row
                 .wfrp-settings__label(data-i18n=`Enc.`) 
