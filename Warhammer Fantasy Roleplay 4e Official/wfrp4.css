@@ -286,43 +286,48 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 
 input[name=attr_main_hand_weapon_is_ranged][type=hidden] ~ div button[name=act_main_opposed_attack],
 input[name=attr_off_hand_weapon_is_ranged][type=hidden] ~ div button[name=act_off_opposed_attack] {
-  background-image: url("https://www.svgrepo.com/show/321547/swords-emblem.svg");
+  background-image: url("https://i.ibb.co/yFsHGttG/Opposed-melee.png");
 }
 
 input[name=attr_main_hand_weapon_is_ranged][type=hidden][value="1"] ~ div button[name=act_main_opposed_attack],
 input[name=attr_off_hand_weapon_is_ranged][type=hidden][value="1"] ~ div button[name=act_off_opposed_attack] {
-  background-image: url("https://www.svgrepo.com/show/320348/arrows-shield.svg");
+  background-image: url("https://i.ibb.co/Rpdwp2yp/Opposed-ranged.png");
 }
 
 input[name=attr_main_hand_weapon_is_ranged][type=hidden] ~ div button[name=act_main_unopposed_attack],
 input[name=attr_off_hand_weapon_is_ranged][type=hidden] ~ div button[name=act_off_unopposed_attack],
 .sheet-wfrp-wrapper .sheet-unopposed-melee-attack-icon {
-  background-image: url("https://www.svgrepo.com/show/321308/saber-slash.svg");
+  background-image: url("https://i.ibb.co/vvTkYKwH/Unopposed-melee.png");
 }
 
 input[name=attr_main_hand_weapon_is_ranged][type=hidden][value="1"] ~ div button[name=act_main_unopposed_attack],
 input[name=attr_off_hand_weapon_is_ranged][type=hidden][value="1"] ~ div button[name=act_off_unopposed_attack],
 .sheet-wfrp-wrapper .sheet-unopposed-ranged-attack-icon {
-  background-image: url("https://www.svgrepo.com/show/320942/high-shot.svg");
+  background-image: url("https://i.ibb.co/LXmRF7r4/Unopposed-ranged.png");
+}
+
+input[name=attr_main_hand_weapon_is_ranged][type=hidden][value="1"] + input[name=attr_main_hand_weapon_is_pistol][type=hidden][value="1"] ~ div button[name=act_main_opposed_attack],
+input[name=attr_off_hand_weapon_is_ranged][type=hidden][value="1"] + input[name=attr_off_hand_weapon_is_pistol][type=hidden][value="1"] ~ div button[name=act_off_opposed_attack] {
+  background-image: url("https://i.ibb.co/JgqXzq9/Opposed-pistol.png");
 }
 
 input[name=attr_main_hand_weapon_is_ranged][type=hidden][value="1"] + input[name=attr_main_hand_weapon_is_pistol][type=hidden][value="1"] ~ div button[name=act_main_unopposed_attack],
 input[name=attr_off_hand_weapon_is_ranged][type=hidden][value="1"] + input[name=attr_off_hand_weapon_is_pistol][type=hidden][value="1"] ~ div button[name=act_off_unopposed_attack] {
-  background-image: url("https://www.svgrepo.com/show/320423/blunderbuss.svg");
+  background-image: url("https://i.ibb.co/S7ZtnkCM/Unopposed-pistol.png");
 }
 
 div button[name=act_main_defend],
 div button[name=act_off_defend],
 .sheet-wfrp-wrapper .sheet-unopposed-parry-attack-icon {
-  background-image: url("https://www.svgrepo.com/show/321360/shield-reflect.svg");
+  background-image: url("https://i.ibb.co/3mRw97yQ/Parry.png");
 }
 
 div button[name=act_dual_wielder_attack] {
-  background-image: url("https://www.svgrepo.com/show/320605/crossed-swords.svg");
+  background-image: url("https://i.ibb.co/ZzQdg3fw/Dual-wielded.png");
 }
 
 .sheet-wfrp-wrapper .sheet-unopposed-dodge-attack-icon {
-  background-image: url("https://www.svgrepo.com/show/499332/player-dodge.svg");
+  background-image: url("https://i.ibb.co/yn8DVtTm/Dodge.png");
 }
 
 input[name=attr_main_hand_weapon_is_pistol][type=hidden] + input[name=attr_main_hand_weapon_is_ranged],

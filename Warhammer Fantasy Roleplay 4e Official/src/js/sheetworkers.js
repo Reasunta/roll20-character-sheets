@@ -1331,10 +1331,10 @@ const wfrpModule = ( () => {
 
         saveLastRoll({a_roll: "0", d_roll: "0", total_sl: "0", is_opposed: "0"})
 
-        getAttrs(["setting_max_advantage"], values => {
+        getAttrs(["setting_max_advantage", "advantage_max"], values => {
             const update = {}
             update.advantage= "0"
-            update.advantage_max= values["setting_max_advantage"] || 10
+            update.advantage_max= values["advantage_max"] || values["setting_max_advantage"] || 4
             setAttrs(update)
         })
         calculateCombatTalentAttr()
