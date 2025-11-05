@@ -109,7 +109,7 @@ rolltemplate.sheet-rolltemplate-wfrp-opposed
             +select-mod(modifier.rt_label || modifier.label, modifier.options,
                 `{{computed::a_${modifier.rt_attr}_value}}`,
                 `^rollTotal() computed::a_${modifier.rt_attr}_value 0`,
-                `rollTotal() a_${modifier.rt_attr}_option`
+                `rollTotal() computed::a_${modifier.rt_attr}_option`
                 )
         +row(`You are rider`, `+{{computed::a_mounted_attack_mod}}`, `rollGreater() computed::a_mounted_attack_mod 0`)
         +row(`Target is rider`, `{{computed::a_attack_vs_mounted_mod}}`, `rollLess() computed::a_attack_vs_mounted_mod 0`)

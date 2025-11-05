@@ -971,18 +971,21 @@ const wfrpModule = ( () => {
             const isModSelected = (m, player) => m.type === 'checkbox' ? !!input[`${player}_${m.attr}`] : !!input[`${player}_${m.attr}`] && !!input[`${player}_${m.option_attr}`]
             const getMods = (m, player) => m.type === 'checkbox' ? m.mods : m.options.filter(o => parseInt(o.value) === input[`${player}_${m.option_attr}`])[0].mods
 
-            const applyMod = (m, player, type) => {
-                input[`${player}_mod`] = input[`${player}_mod`] + getMods(m, player)[type]
-                input[`${player}_${m.attr}_value`] = getMods(m, player)[type] > 0 ? `+${getMods(m, player)[type]}` : `${getMods(m, player)[type]}`
+            const applyMod = (m, player, modValue) => {
+                input[`${player}_mod`] = input[`${player}_mod`] + modValue
+                input[`${player}_${m.attr}_value`] = modValue > 0 ? `+${modValue}` : `${modValue}`
             }
 
             wfrp.combat_modifiers_v2.forEach(m => {
                 input[`a_${m.attr}_value`] = '0'
                 input[`d_${m.attr}_value`] = '0'
 
-                if (isModSelected(m, 'a') && Object.keys(getMods(m, 'a')).includes(a_type)) applyMod(m, 'a', a_type)
-                if (isModSelected(m, 'd') && Object.keys(getMods(m, 'd')).includes(d_type)) applyMod(m, "d", d_type)
-                if (isModSelected(m, 'd') && Object.keys(getMods(m, 'd')).includes(`opposed_${a_type}`)) applyMod(m, 'a', `opposed_${a_type}`)
+                if (isModSelected(m, 'a') && Object.keys(getMods(m, 'a')).includes(a_type)) applyMod(m, 'a', getMods(m, 'a')[a_type])
+                if (isModSelected(m, 'd') && Object.keys(getMods(m, 'd')).includes(d_type)) applyMod(m, 'd', getMods(m, 'd')[d_type])
+                if (isModSelected(m, 'd') && Object.keys(getMods(m, 'd')).includes(`opposed_${a_type}`)) {
+                    input[`a_${m.option_attr}`] = input[`d_${m.option_attr}`]
+                    applyMod(m, 'a', getMods(m, 'd')[`opposed_${a_type}`])
+                }
             })
 
             return input
