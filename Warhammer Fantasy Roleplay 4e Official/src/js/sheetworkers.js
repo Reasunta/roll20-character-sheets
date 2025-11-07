@@ -419,130 +419,6 @@ const wfrpModule = ( () => {
             `weapon_is_dodge`,
         ],
 
-        combat_modifiers: [
-            {
-                "attr": "cm_outnumbered_21",
-                "values": { "melee": 20 },
-                "group": "outnumbered"
-            },
-            {
-                "attr": "cm_outnumbered_31",
-                "values": { "melee": 40 },
-                "group": "outnumbered"
-            },
-            {
-                "attr": "cm_target_grapple_leader",
-                "values": { "melee": 10 },
-                "group": "grapple"
-            },
-            {
-                "attr": "cm_target_grapple_follower",
-                "values": { "melee": 20 },
-                "group": "grapple"
-            },
-            {
-                "attr": "cm_point_blank_range",
-                "values": {"ranged": 40},
-                "group": "distance"
-            },
-            {
-                "attr": "cm_short_range",
-                "values": {"ranged": 20},
-                "group": "distance"
-            },
-            {
-                "attr": "cm_long_range",
-                "values": {"ranged": -10},
-                "group": "distance"
-            },
-            {
-                "attr": "cm_extreme_range",
-                "values": {"ranged": -30},
-                "group": "distance"
-            },
-            {
-                "attr": "cm_target_small_group",
-                "values": {"ranged": 20},
-                "group": "group_size"
-            },
-            {
-                "attr": "cm_target_large_group",
-                "values": {"ranged": 40},
-                "group": "group_size"
-            },
-            {
-                "attr": "cm_target_crowd",
-                "values": {"ranged": 60},
-                "group": "group_size"
-            },
-            {
-                "attr": "cm_shoot_after_move",
-                "values": {"ranged": -10},
-            },
-            {
-                "attr": "cm_target_soft_cover",
-                "values": { "melee": -10, "ranged": -10 },
-                "group": "cover"
-            },
-            {
-                "attr": "cm_target_medium_cover",
-                "values": { "melee": -20, "ranged": -20 },
-                "group": "cover"
-            },
-            {
-                "attr": "cm_target_hard_cover",
-                "values": { "melee": -30, "ranged": -30 },
-                "group": "cover"
-            },
-            {
-                "attr": "cm_specific_hit_location",
-                "values": { "melee": -20, "ranged": -20 },
-            },
-            {
-                "attr": "cm_shoot_after_aim",
-                "values": {"ranged": 20}
-            },
-            {
-                "attr": "cm_hard_terrain",
-                "values": { "melee": -10 },
-                "group": "terrain"
-            },
-            {
-                "attr": "cm_extreme_terrain",
-                "values": { "melee": -30, "dodge": -30 },
-                "group": "terrain"
-            },
-            {
-                "attr": "cm_extreme_weather",
-                "values": { "melee": -20, 'ranged': '-20' }
-            },
-            {
-                "attr": "cm_darkness",
-                "values": {
-                    "melee": -20,
-                    "ranged": -30,
-                    "parry": -20,
-                    "dodge": -20,
-                },
-            },
-            {
-                "attr": "cm_side_rear_attack",
-                "values": { "melee": 20 },
-            },
-            {
-                "attr": "cm_target_is_fleeing",
-                "values": { "melee": 20 },
-            },
-            {
-                "attr": "cm_defensive_stand",
-                "values": { "parry": 20, "dodge": 20 },
-            },
-            {
-                "attr": "cm_after_dual_wielder",
-                "values": { "parry": -10, "dodge": -10 },
-            }
-        ],
-
         combat_modifiers_v2 : [
             {
                 "group": "melee",
@@ -704,6 +580,14 @@ const wfrpModule = ( () => {
                 "type": "checkbox",
                 "mods": {"melee": -20, "ranged": -30, "parry": -20, "dodge": -20,},
                 "tooltip": "Acting in darkness"
+            },
+            {
+                "group": "other",
+                "attr": "cm_distracted",
+                "label": "Distracted",
+                "type": "checkbox",
+                "mods": {"melee": -20, "ranged": -20, "parry": -20, "dodge": -20,},
+                "tooltip": "You are distracted"
             }
         ],
 

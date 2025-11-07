@@ -420,7 +420,6 @@
     "settings_bar3_value": "Шкала 3, значение",
     "settings_bar3_max": "Шкала 3, максимум",
     "settings_bar3_link": "Шкала 3, ссылка",
-
     "Quality Checkboxes":"Достоинства",
     "Flail Checkboxes":"Изъяны",
     "Corruption Points Max":" Макс. очки скверны",
@@ -550,5 +549,6 @@
     "Rider is dodging": "Уклонение верхом",
     "Target is rider": "Цель верхом",
     "You are rider": "Атака верхом",
-    "Use mount strength": "Бонус от силы скакуна"
+    "Use mount strength": "Бонус от силы скакуна",
+    "Distracted": "Отвлечен"
 }
